@@ -36,5 +36,4 @@ export default {
   'account.settings': 'Account Settings',
   'account.trigger': 'Trigger Error',
   'account.logout': 'Logout',
-  'dynamicForm': 'Dynamic Form',
 }
