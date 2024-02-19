@@ -23,7 +23,6 @@
     ],
     "resolveJsonModule": true,
     "types": [
-      "vite/client",
       "node"
     ],
     "strict": true,

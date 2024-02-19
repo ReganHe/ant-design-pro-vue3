@@ -24,11 +24,6 @@ An out-of-box UI solution for enterprise applications as a Vue boilerplate. base
 #### 流程图
 ![dashboard](https://i.imgtg.com/2023/03/22/9tbqK.png)
 
-#### Echarts设计器
-
-###### 目前有柱状图,折线图,饼图,自定义图,不同的图有不同的setting,代码文件也是分开的,可自行扩展
-![dashboard](https://i.imgtg.com/2023/07/04/OxWCUY.png)
-
 #### 手机预览(最低支持iphone4)
 <img src="https://i.imgtg.com/2023/03/22/9tq2l.png"  width=250 /><img src="https://i.imgtg.com/2023/03/22/9taiP.png"  width=250/><img src="https://i.imgtg.com/2023/03/22/9to4b.png"  width=250 />
 
@@ -184,7 +179,6 @@ yarn build
 11. 项目报错时的全局路由提示/全局错误提示
 12. 增加两个新页面:动态表单和流程图
 13. 系统设置抽屉中的所有内容已使用reactiveState代替vuex, 减少更改状态管理库(如vuex改pinia等)的工作量
-14. Echarts图表设计器
 
 ## TODO
 1. 详尽的文档
