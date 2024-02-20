@@ -21,7 +21,7 @@ export default [
         path: 'login',
         name: 'login',
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/Login.vue'),
-        meta: { title: 'user.login.signup' }
+        meta: { title: '登录' }
       },
       {
         path: 'register',
