@@ -5,28 +5,26 @@
     </h3>
     <a-form id="formRegister" :model="form">
       <a-form-item v-bind="validateInfos.email">
-        <a-input size="large" type="text" placeholder="邮箱" v-model:value="form.email"></a-input>
+        <a-input size="large" type="text" placeholder="邮箱" v-model:value="form.email" />
       </a-form-item>
 
-      <a-popover placement="rightTop" :trigger="['focus']" :getPopupContainer="(trigger) => trigger.parentElement"
-        v-model:value="state.passwordLevelChecked">
-        <template slot="content">
+      <a-popover placement="rightTop" :trigger="['focus']" :getPopupContainer="(trigger) => trigger.parentElement" v-model:value="state.passwordLevelChecked">
+        <template #content>
           <div :style="{ width: '240px' }">
             <div :class="['user-register', passwordLevelClass]">{{ passwordLevelName }}</div>
             <a-progress :percent="state.percent" :showInfo="false" :strokeColor="passwordLevelColor" />
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 10px">
               <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
             </div>
           </div>
         </template>
         <a-form-item v-bind="validateInfos.password">
-          <a-input-password size="large" @click="handlePasswordInputClick" placeholder="请至少输入 6 个字符。请不要使用容易被猜到的密码。"
-            v-model:value="form.password"></a-input-password>
+          <a-input-password size="large" @click="handlePasswordInputClick" placeholder="请至少输入 6 个字符。请不要使用容易被猜到的密码。" v-model:value="form.password" />
         </a-form-item>
       </a-popover>
 
       <a-form-item v-bind="validateInfos.password2">
-        <a-input-password size="large" placeholder="确认密码" v-model:value="form.password2"></a-input-password>
+        <a-input-password size="large" placeholder="确认密码" v-model:value="form.password2" />
       </a-form-item>
 
       <a-form-item v-bind="validateInfos.mobile">
@@ -54,14 +52,12 @@
           </a-form-item>
         </a-col>
         <a-col class="gutter-row" :span="8">
-          <a-button class="getCaptcha" size="large" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha">{{
-            !state.smsSendBtn || (state.time + ' s') }}</a-button>
+          <a-button class="getCaptcha" size="large" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha">{{ !state.smsSendBtn || state.time + ' s' }}</a-button>
         </a-col>
       </a-row>
 
       <a-form-item>
-        <a-button size="large" type="primary" htmlType="submit" class="register-button" :loading="registerBtn"
-          @click.stop.prevent="handleSubmit" :disabled="registerBtn">注册</a-button>
+        <a-button size="large" type="primary" htmlType="submit" class="register-button" :loading="registerBtn" @click.stop.prevent="handleSubmit" :disabled="registerBtn">注册</a-button>
         <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
       </a-form-item>
     </a-form>
@@ -134,25 +130,10 @@ const handlePhoneCheck = (rule, value) => {
   return Promise.resolve()
 }
 const rules = reactive({
-  email: [
-    { required: true, type: 'email', message: '请输入邮箱地址！' },
-    { validateTrigger: ['change', 'blur'] }
-  ],
-  password: [
-    { required: true, message: '请输入密码！' },
-    { validator: handlePasswordLevel },
-    { validateTrigger: ['change', 'blur'] }
-  ],
-  password2: [
-    { required: true, message: '请输入密码！' },
-    { validator: handlePasswordLevel },
-    { validateTrigger: ['change', 'blur'] }
-  ],
-  mobile: [
-    { required: true, message: '请输入正确的手机号', pattern: /^1[3456789]\d{9}$/ },
-    { validator: handlePhoneCheck },
-    { validateTrigger: ['change', 'blur'] }
-  ],
+  email: [{ required: true, type: 'email', message: '请输入邮箱地址！' }, { validateTrigger: ['change', 'blur'] }],
+  password: [{ required: true, message: '请输入密码！' }, { validator: handlePasswordLevel }, { validateTrigger: ['change', 'blur'] }],
+  password2: [{ required: true, message: '请输入密码！' }, { validator: handlePasswordLevel }, { validateTrigger: ['change', 'blur'] }],
+  mobile: [{ required: true, message: '请输入正确的手机号', pattern: /^1[3456789]\d{9}$/ }, { validator: handlePhoneCheck }, { validateTrigger: ['change', 'blur'] }],
   captcha: [{ required: true, message: '请输入验证码' }, { validateTrigger: 'blur' }]
 })
 const { validate, validateInfos } = useForm(form, rules)
@@ -229,7 +210,7 @@ const getCaptcha = (e) => {
 </style>
 <style lang="less" scoped>
 .user-layout-register {
-  &>h3 {
+  & > h3 {
     font-size: 16px;
     margin-bottom: 20px;
   }

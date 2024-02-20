@@ -13,15 +13,9 @@
 
             <!-- 详情 -->
             <div class="account-center-detail">
-              <p>
-                <UserAddOutlined />{{ userInfo.chineseName }}
-              </p>
-              <p>
-                <SmileOutlined />{{ userInfo.nickname }}
-              </p>
-              <p>
-                <IdcardOutlined />{{ userInfo.empPosition }}
-              </p>
+              <p><UserAddOutlined />{{ userInfo.chineseName }}</p>
+              <p><SmileOutlined />{{ userInfo.nickname }}</p>
+              <p><IdcardOutlined />{{ userInfo.empPosition }}</p>
             </div>
             <a-divider />
 
@@ -32,7 +26,7 @@
                 <a-tag v-for="tag in userInfo.skills" :key="tag">{{ tag }}</a-tag>
                 <a-tag v-for="tag in userInfo.mySkills" :key="tag">{{ tag }}</a-tag>
               </div>
-              <div class="tagsTitle" style="margin-top:10px">爱好</div>
+              <div class="tagsTitle" style="margin-top: 10px">爱好</div>
               <div>
                 <a-tag v-for="tag in userInfo.interest" :key="tag">{{ tag }}</a-tag>
                 <a-tag v-for="tag in userInfo.myInterest" :key="tag">{{ tag }}</a-tag>
@@ -69,10 +63,8 @@
           </a-card>
         </a-col>
         <a-col :md="24" :lg="17">
-          <a-card style="width:100%" :bordered="false" :tabList="tabListNoTitle" :activeTabKey="noTitleKey"
-            @tabChange="key => handleTabChange(key, 'noTitleKey')">
-            <BaseSetting :userInfo="userInfo" :allSkills="allSkills" :allInterest="allInterest" v-if="showBaseSetting"
-              @save="onSaveBaseSetting" />
+          <a-card style="width: 100%" :bordered="false" :tabList="tabListNoTitle" :activeTabKey="noTitleKey" @tabChange="(key) => handleTabChange(key, 'noTitleKey')">
+            <BaseSetting :userInfo="userInfo" :allSkills="allSkills" :allInterest="allInterest" v-if="showBaseSetting" @save="onSaveBaseSetting" />
           </a-card>
         </a-col>
       </a-row>
@@ -116,7 +108,7 @@ export default {
 
     const showBaseSetting = ref<Boolean>(false)
 
-    const getInitData: (param: Boolean) => void = async needAllAlbel => {
+    const getInitData: (param: Boolean) => void = async (needAllAlbel) => {
       loading.value = true
       const res = await getPersonDetail(needAllAlbel)
       if (needAllAlbel) {
@@ -132,7 +124,7 @@ export default {
       getInitData(true)
     })
 
-    const setavatar = async url => {
+    const setavatar = async (url) => {
       userInfo.value.avatar = url
       loading.value = true
       const res = await api.updatePersonDetail({ id: userInfo.value.id, avatar: url })
@@ -143,7 +135,7 @@ export default {
     }
 
     const { createMessage } = useMessage()
-    const onSaveBaseSetting = async data => {
+    const onSaveBaseSetting = async (data) => {
       if (!data.skills.length) {
         createMessage.error('请选择您的技能！')
         return
@@ -166,7 +158,7 @@ export default {
       loading.value = false
     }
 
-    const handleTabChange = (key, value) => { }
+    const handleTabChange = (key, value) => {}
     return {
       userInfo,
       setavatar,
@@ -194,7 +186,7 @@ export default {
     text-align: center;
     margin-bottom: 24px;
 
-    &>.avatar {
+    & > .avatar {
       margin: 0 auto;
       width: 104px;
       height: 104px;

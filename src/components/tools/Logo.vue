@@ -14,12 +14,12 @@ const props = defineProps({
   title: {
     type: String,
     default: 'Ant Design Pro',
-    required: false,
+    required: false
   },
   showTitle: {
     type: Boolean,
     default: true,
-    required: false,
-  },
+    required: false
+  }
 })
 </script>

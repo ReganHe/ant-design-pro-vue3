@@ -8,8 +8,7 @@
 
     <!-- 爱好 -->
     <a-form-item label="爱好" :required="false" :size="size">
-      <TagsSelect :tags="allInterest" :defaultValue="userInfo.interest" @change="onSelectTag" type="interest"
-        :size="size" />
+      <TagsSelect :tags="allInterest" :defaultValue="userInfo.interest" @change="onSelectTag" type="interest" :size="size" />
       <AddNewTag @success="onAddSuccess" type="interest" :defaultAdded="userInfo.myInterest" :size="size" />
     </a-form-item>
   </span>
@@ -20,12 +19,12 @@ import AddNewTag from './TagsSelect/AddNewTag.vue'
 import TagsSelect from './TagsSelect/index.vue'
 
 export default {
-  props: ['userInfo', 'size', 'allSkills', 'allInterest'],
   components: {
     AddNewTag,
-    TagsSelect,
+    TagsSelect
   },
-  setup ({ skills, interest, allSkills, allInterest }, { emit }) {
+  props: ['userInfo', 'size', 'allSkills', 'allInterest'],
+  setup({ skills, interest, allSkills, allInterest }, { emit }) {
     const onAddSuccess = (data, type) => {
       emit('success', data, type)
     }
@@ -33,9 +32,8 @@ export default {
       emit('change', value, checked)
     }
     return { onAddSuccess, onSelectTag }
-  },
+  }
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,13 +1,13 @@
-import config from '@/config/defaultSettings';
-import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
+import config from '@/config/defaultSettings'
+import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 import { setupBeforeEach, setupAfterEach } from './routerGuard'
 import generateAsyncRoutes from './generateAsyncRoutes'
 import routes from './commonRoutes'
 
 const router = createRouter({
   history: createWebHistory(),
-  routes: routes as unknown as RouteRecordRaw[],
-});
+  routes: routes as unknown as RouteRecordRaw[]
+})
 
 // 路由守卫,鉴权
 setupBeforeEach(router)
@@ -19,4 +19,4 @@ if (config.useAsyncRouter) {
   generateAsyncRoutes(router)
 }
 
-export default router;
+export default router

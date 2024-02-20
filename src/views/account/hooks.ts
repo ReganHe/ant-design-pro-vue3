@@ -2,7 +2,7 @@ import * as api from './service'
 import { ref } from 'vue'
 import { divisionStringToArray } from '@/utils/util'
 import { PersonDetailHook, UserInfo, AllLabelItem } from './types'
-export const getPersonDetail: PersonDetailHook = async needAll => {
+export const getPersonDetail: PersonDetailHook = async (needAll) => {
   let userInfo: Partial<UserInfo> = {}
   const loading = ref<Boolean>(true)
   const res: Partial<UserInfo> = await api.personDetail()

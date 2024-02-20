@@ -37,17 +37,17 @@ export default [
         path: 'recover',
         name: 'recover',
         component: undefined
-      },
+      }
     ]
   },
   {
     path: '/exception/500',
     name: 'error',
-    component: errorPage,
+    component: errorPage
   },
   {
     path: '/:path(.*)',
     name: 'NoMatch',
-    component: () => import('@/views/exception/404.vue'),
+    component: () => import('@/views/exception/404.vue')
   }
 ] as Router[]

@@ -20,12 +20,12 @@ export const personDetail: () => Promise<UserInfo> = () => {
   return baseService.get(api)
 }
 
-export const updatePersonDetail:(param: Partial<UserInfo>) => Promise<String> = param => {
+export const updatePersonDetail: (param: Partial<UserInfo>) => Promise<String> = (param) => {
   const api = baseURL + `member/user/updatePersonDetail`
   return baseService.post(api, param)
 }
 
-export const updateUserLabel: (param: Partial<UserInfo>) => Promise<String> = param => {
+export const updateUserLabel: (param: Partial<UserInfo>) => Promise<String> = (param) => {
   const api = baseURL + `member/user/updateUserLabel`
   return baseService.post(api, param)
 }

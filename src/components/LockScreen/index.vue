@@ -1,7 +1,6 @@
 <template>
   <section class="LockScreen" v-if="lockScreen" :class="afterUnlock">
-    <div v-if="lockImg" class="bg" :class="isClickedUnlockBtn ? 'unlockClicked' : ''"
-      :style="{ backgroundImage: `url(${lockImg})` }"></div>
+    <div v-if="lockImg" class="bg" :class="isClickedUnlockBtn ? 'unlockClicked' : ''" :style="{ backgroundImage: `url(${lockImg})` }"></div>
     <div class="content">
       <!-- 点击解锁后出现输入框 -->
       <div class="iptPassword" v-if="isClickedUnlockBtn">
@@ -58,24 +57,17 @@ import { systemConfig } from '@/store/reactiveState'
 import useSiteSettings from '@/store/useSiteSettings'
 import { SET_LOCK_SCREEN } from '@/store/mutation-types'
 import indexdb from '@/utils/indexDB'
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 import { getWeek } from '@/utils/util'
 import { useBattery, useNetwork } from '@vueuse/core'
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import {
-  SearchOutlined,
-  UnlockOutlined,
-  LockOutlined,
-  ArrowRightOutlined,
-  UserOutlined
-} from '@ant-design/icons-vue'
+import { SearchOutlined, UnlockOutlined, LockOutlined, ArrowRightOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { USER_INFO } from '@/store/mutation-types'
 import ls from '@/utils/Storage'
 import * as api from './service'
 
 const userinfo = ls.get(USER_INFO)
-const initBg =
-  'https://desk-fd.zol-img.com.cn/t_s1920x1080c5/g6/M00/03/0B/ChMkKWECB-OIKeSVAFU590PRoH0AASPhQB7J0oAVToP393.jpg'
+const initBg = 'https://desk-fd.zol-img.com.cn/t_s1920x1080c5/g6/M00/03/0B/ChMkKWECB-OIKeSVAFU590PRoH0AASPhQB7J0oAVToP393.jpg'
 
 const isClickedUnlockBtn = ref(false)
 const { lockScreen } = useSiteSettings()
@@ -133,7 +125,7 @@ const isWrongPwd = ref(false)
 const afterUnlock = ref()
 
 const onUnlockScreen = () => {
-  api.userLogin({ username: userinfo.username, password: password.value }).then((res:any) => {
+  api.userLogin({ username: userinfo.username, password: password.value }).then((res: any) => {
     if (!password.value) {
       isWrongPwd.value = true
       return false

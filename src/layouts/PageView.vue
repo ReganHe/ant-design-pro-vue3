@@ -5,10 +5,16 @@
       <slot slot="action" name="action">222</slot>
       <slot slot="content" name="headerContent">111</slot>
       <div slot="content" v-if="!$slots.headerContent && state.description">
-        <p style="font-size: 14px;color: rgba(0,0,0,.65)">{{ state.description }}</p>
+        <p style="font-size: 14px; color: rgba(0, 0, 0, 0.65)">{{ state.description }}</p>
         <div class="link">
           <template v-for="(link, index) in state.linkList" :key="index">
-            <a @click="() => { link.callback && link.callback() }">
+            <a
+              @click="
+                () => {
+                  link.callback && link.callback()
+                }
+              "
+            >
               <!-- <a-icon :type="link.icon" /> -->
               <span>{{ link.title }}</span>
             </a>
@@ -22,12 +28,12 @@
       </slot>
       <div slot="pageMenu">
         <div class="page-menu-search" v-if="state.search">
-          <a-input-search style="width: 80%; max-width: 522px;" placeholder="请输入..." size="large" enterButton="搜索" />
+          <a-input-search style="width: 80%; max-width: 522px" placeholder="请输入..." size="large" enterButton="搜索" />
         </div>
         <div class="page-menu-tabs" v-if="state.tabs?.items">
           <!-- @change="callback" :activeKey="activeKey" -->
           <a-tabs :tabBarStyle="{ margin: 0 }" :activeKey="state.tabs.active()" @change="state.tabs.callback">
-            <a-tab-pane v-for="item in state.tabs.items" :tab="item.title" :key="item.key"></a-tab-pane>
+            <a-tab-pane v-for="item in state.tabs.items" :tab="item.title" :key="item.key" />
           </a-tabs>
         </div>
       </div>
@@ -82,10 +88,7 @@ const state = reactive<any>({
 })
 const contentRef = ref()
 const getPageMeta = () => {
-  state.pageTitle =
-    typeof props.title === 'string' || !props.title
-      ? props.title
-      : router.currentRoute.value.meta.title
+  state.pageTitle = typeof props.title === 'string' || !props.title ? props.title : router.currentRoute.value.meta.title
 
   const content = contentRef.value
   if (content) {

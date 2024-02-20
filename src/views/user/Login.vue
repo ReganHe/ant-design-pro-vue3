@@ -1,12 +1,10 @@
 <template>
   <div class="main">
     <a-form id="formLogin" class="user-layout-login" @submit="handleSubmit" :model="formRef">
-      <a-tabs :activeKey="customActiveKey" :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }"
-        @change="handleTabClick">
+      <a-tabs :activeKey="customActiveKey" :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }" @change="handleTabClick">
         <!-- 账户密码登录 -->
         <a-tab-pane key="tab1" tab="账户密码登录">
-          <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px"
-            message="账户或密码错误（admin / ant.design）" />
+          <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px" message="账户或密码错误（admin / ant.design）" />
           <a-form-item v-bind="validateInfos.username">
             <a-input size="large" type="text" placeholder="账户: admin or ant.design" v-model:value="formRef.username">
               <template #prefix>
@@ -41,10 +39,7 @@
             </a-col>
             <a-col class="gutter-row" :span="8">
               <a-button class="getCaptcha" tabindex="-1" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha">
-                {{
-                  !state.smsSendBtn ||
-                  state.time + " s"
-                }}
+                {{ !state.smsSendBtn || state.time + ' s' }}
               </a-button>
             </a-col>
           </a-row>
@@ -52,16 +47,12 @@
       </a-tabs>
 
       <a-form-item v-bind="validateInfos.rememberMe">
-        <a-checkbox v-model:checked="formRef.rememberMe" style="float:left">
-          自动登录
-        </a-checkbox>
-        <router-link :to="{ name: 'recover', params: { user: 'aaa' } }" class="forge-password"
-          style="float: right">忘记密码</router-link>
+        <a-checkbox v-model:checked="formRef.rememberMe" style="float: left"> 自动登录 </a-checkbox>
+        <router-link :to="{ name: 'recover', params: { user: 'aaa' } }" class="forge-password" style="float: right">忘记密码</router-link>
       </a-form-item>
 
       <a-form-item style="margin-top: 24px">
-        <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loginBtn"
-          :disabled="state.loginBtn">登录</a-button>
+        <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loginBtn" :disabled="state.loginBtn">登录</a-button>
       </a-form-item>
 
       <div class="user-login-other">
@@ -75,9 +66,7 @@
         <a>
           <WeiboCircleOutlined />
         </a>
-        <router-link class="register" :to="{ name: 'register' }">
-          注册账户
-        </router-link>
+        <router-link class="register" :to="{ name: 'register' }"> 注册账户 </router-link>
       </div>
     </a-form>
 
@@ -97,15 +86,7 @@ import { ref, reactive, UnwrapRef, onMounted } from 'vue'
 import { Form } from 'ant-design-vue'
 import { loginSuccess, requestFailed } from './helper'
 import { useRouter } from 'vue-router'
-import {
-  MobileOutlined,
-  MailOutlined,
-  AlipayCircleOutlined,
-  TaobaoCircleOutlined,
-  WeiboCircleOutlined,
-  UserOutlined,
-  LockOutlined
-} from '@ant-design/icons-vue'
+import { MobileOutlined, MailOutlined, AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined, UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import * as api from './service'
 import { FormState } from './types'
 import config from '@/config/defaultSettings'
@@ -187,8 +168,7 @@ const isLoginError = ref(false)
 const handleSubmit = (e: Event) => {
   e.preventDefault()
   state.loginBtn = true
-  const validateFieldsKey =
-    customActiveKey.value === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
+  const validateFieldsKey = customActiveKey.value === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
 
   validate(validateFieldsKey)
     .then(async () => {

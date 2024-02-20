@@ -6,7 +6,6 @@
           <QuestionCircleOutlined />
         </span>
       </a>
-      <notice-icon class="action" />
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <a-avatar class="avatar" size="small" :src="UserInfo.avatar" />
@@ -47,23 +46,15 @@
 </template>
 
 <script lang="ts" setup name="UserMenu">
-import NoticeIcon from '@/components/NoticeIcon/index.vue'
 import { logout } from '@/views/user/service'
 import { USER_INFO } from '@/store/mutation-types'
 import { Modal } from 'ant-design-vue'
-import {
-  QuestionCircleOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-  LockOutlined,
-  UserOutlined
-} from '@ant-design/icons-vue'
+import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { systemConfig } from '@/store/reactiveState'
 import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
 import { clearUserInfo } from '@/utils/util'
 
-const props = defineProps(['theme'])
 const router = useRouter()
 const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
@@ -76,7 +67,7 @@ const handleLogout = () => {
         router.push({ path: '/user/login' })
       })
     },
-    onCancel() { }
+    onCancel() {}
   })
 }
 const showSystemSetting = () => {

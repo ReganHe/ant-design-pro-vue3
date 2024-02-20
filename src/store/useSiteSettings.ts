@@ -1,4 +1,4 @@
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { systemConfig } from '@/store/reactiveState'
 
 export default () => {
@@ -22,6 +22,22 @@ export default () => {
   const isSideMenu = () => !isTopMenu()
 
   return {
-    layoutMode, navTheme, primaryColor, colorWeak, grayMode, fixedHeader, fixSiderbar, fixSidebar, contentWidth, autoHideHeader, sidebarOpened, multiTab, device, darkMode, lockScreen, isTopMenu, isSideMenu
+    layoutMode,
+    navTheme,
+    primaryColor,
+    colorWeak,
+    grayMode,
+    fixedHeader,
+    fixSiderbar,
+    fixSidebar,
+    contentWidth,
+    autoHideHeader,
+    sidebarOpened,
+    multiTab,
+    device,
+    darkMode,
+    lockScreen,
+    isTopMenu,
+    isSideMenu
   }
 }

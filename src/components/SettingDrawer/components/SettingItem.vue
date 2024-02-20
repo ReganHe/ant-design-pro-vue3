@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts" setup name="SettingItem">
-
 defineProps({
   title: {
     type: String,
@@ -26,10 +25,9 @@ defineProps({
 
   .setting-drawer-index-title {
     font-size: 14px;
-    color: rgba(0, 0, 0, .85);
+    color: rgba(0, 0, 0, 0.85);
     line-height: 22px;
     margin-bottom: 12px;
   }
-
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
-  <a-config-provider :locale="zhCN" :theme="{
-    token: {
-      colorPrimary: systemConfig.state.color,
-      borderRadius: 2
-    }
-  }">
+  <a-config-provider
+    :locale="zhCN"
+    :theme="{
+      token: {
+        colorPrimary: systemConfig.state.color,
+        borderRadius: 2
+      }
+    }"
+  >
     <!-- algorithm: theme.darkAlgorithm,夜间主题 -->
     <router-view />
   </a-config-provider>
@@ -13,7 +16,7 @@
 
 <script lang="ts" setup name="App">
 import { onErrorCaptured, h } from 'vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setDeviceType } from '@/utils/device'
 import LockScreen from '@/components/LockScreen/index.vue'
 import emitter from '@/utils/eventBus'
@@ -45,5 +48,4 @@ onErrorCaptured((err, instance, info) => {
 })
 </script>
 
-<style>
-</style>
+<style></style>

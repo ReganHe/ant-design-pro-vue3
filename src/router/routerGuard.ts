@@ -4,8 +4,8 @@ import { ACCESS_TOKEN, PERMISSION } from '@/store/mutation-types'
 import { hasPermission } from './permission'
 import ls from '@/utils/Storage'
 import { setDocumentTitle } from '@/utils/domUtil'
-import type { Router } from 'vue-router';
-import { notification } from 'ant-design-vue';
+import type { Router } from 'vue-router'
+import { notification } from 'ant-design-vue'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -46,8 +46,8 @@ export const setupBeforeEach = (router: Router) => {
     if (window.env === 'localhost') {
       notification.error({
         message: 'Dynamic import error',
-        description: error.stack,
-      });
+        description: error.stack
+      })
     } else {
       router.push({ name: 'error', params: { errorMsg: error.stack } })
     }

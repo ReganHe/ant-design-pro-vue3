@@ -47,7 +47,6 @@ const filterParams = (menu) => {
 </script>
 <style lang="less" scoped>
 .menuName {
-
   svg,
   span {
     vertical-align: middle;

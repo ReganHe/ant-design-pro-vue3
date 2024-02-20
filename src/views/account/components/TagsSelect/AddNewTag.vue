@@ -1,18 +1,18 @@
 <template>
   <span class="AddNewTag">
-    <a-tag closable @close="onCloseTag(t)" v-for="t in tags" :key="t" :class="size">{{t}}</a-tag>
+    <a-tag closable @close="onCloseTag(t)" v-for="t in tags" :key="t" :class="size">{{ t }}</a-tag>
     <a-input
       v-if="tagInputVisible"
       ref="tagInputDomRef"
       type="text"
-      :class="size+'Ipt'"
+      :class="size + 'Ipt'"
       :value="tagInputValue"
       @change="handleInputChange"
       @blur="handleTagInputConfirm"
       @keyup.enter="handleTagInputConfirm"
     />
-    <a-tag v-if="!tagInputVisible&&tagAddVisible" @click="showTagInput" :class="[size,'addTag']">
-      <PlusOutlined/>
+    <a-tag v-if="!tagInputVisible && tagAddVisible" @click="showTagInput" :class="[size, 'addTag']">
+      <PlusOutlined />
     </a-tag>
   </span>
 </template>
@@ -23,6 +23,7 @@ import pull from 'lodash.pull'
 import { PlusOutlined } from '@ant-design/icons-vue'
 
 export default {
+  components: { PlusOutlined },
   props: {
     max: {
       type: Number,
@@ -41,7 +42,6 @@ export default {
       default: () => 'small'
     }
   },
-  components: { PlusOutlined },
   setup({ max, type, defaultAdded }, { emit }) {
     onMounted(() => {
       if (tags.value.length >= max) {

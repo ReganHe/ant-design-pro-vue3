@@ -45,5 +45,4 @@ const handleFixSiderbar = (fixed) => {
   systemConfig.commit(TOGGLE_FIXED_SIDERBAR, fixed)
 }
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

@@ -1,13 +1,6 @@
 <template>
   <span>
-    <Tag
-      :key="t"
-      v-for="t in tags"
-      @tagChange="onClickTag"
-      :name="t"
-      :defaultValue="defaultValue"
-      :class="size"
-    />
+    <Tag :key="t" v-for="t in tags" @tagChange="onClickTag" :name="t" :defaultValue="defaultValue" :class="size" />
   </span>
 </template>
 
@@ -17,13 +10,13 @@ import Tag from './Tag.vue'
 import cloneDeep from 'lodash.clonedeep'
 
 export default {
-  props: ['tags', 'defaultValue', 'type', 'size'],
   components: {
-    Tag,
+    Tag
   },
+  props: ['tags', 'defaultValue', 'type', 'size'],
   data() {
     return {
-      selectedTags: cloneDeep(this.defaultValue) || [],
+      selectedTags: cloneDeep(this.defaultValue) || []
     }
   },
   methods: {
@@ -40,8 +33,8 @@ export default {
       }
       this.selectedTags = temp
       this.$emit('change', temp, this.type)
-    },
-  },
+    }
+  }
 }
 </script>
 

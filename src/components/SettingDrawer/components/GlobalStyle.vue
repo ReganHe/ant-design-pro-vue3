@@ -50,5 +50,4 @@ const handleDarkMode = (isDark) => {
   systemConfig.commit(SET_DARK_MODE, isDark)
 }
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

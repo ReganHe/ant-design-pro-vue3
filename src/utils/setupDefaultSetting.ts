@@ -1,4 +1,4 @@
-import ls from './Storage';
+import ls from './Storage'
 import { SITE_SETTINGS, TOGGLE_THEME, SET_DARK_MODE, THEME_COLOR, TOGGLE_GRAY, TOGGLE_WEAK } from '@/store/mutation-types'
 import { systemConfig } from '@/store/reactiveState'
 import { updateTheme } from '@/components/SettingDrawer/updateTheme'
@@ -8,10 +8,10 @@ export default () => {
   const siteSettings = ls.get(SITE_SETTINGS)
 
   if (siteSettings) {
-    for (let s in siteSettings) {
+    for (const s in siteSettings) {
       // 只要设置了黑暗主题,就不设置亮暗颜色了,统一默认暗色
       if (s === TOGGLE_THEME && siteSettings[SET_DARK_MODE]) {
-        continue;
+        continue
       }
       // 有主题色就设置主题色
       if (s === THEME_COLOR && siteSettings[THEME_COLOR]) {

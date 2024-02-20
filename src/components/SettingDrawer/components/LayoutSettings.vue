@@ -6,8 +6,7 @@
         <template #actions>
           <a-tooltip>
             <template #title>该设定仅 [顶部栏导航] 时有效</template>
-            <a-select size="small" style="width: 80px" :value="contentWidth" @change="handleContentWidthChange"
-              :disabled="layoutMode === 'sidemenu'">
+            <a-select size="small" style="width: 80px" :value="contentWidth" @change="handleContentWidthChange" :disabled="layoutMode === 'sidemenu'">
               <a-select-option value="Fluid">流式</a-select-option>
               <a-select-option value="Fixed">固定</a-select-option>
             </a-select>
@@ -29,8 +28,7 @@
       <!-- 下滑时隐藏 Header -->
       <a-list-item>
         <template #actions>
-          <a-switch slot="actions" size="small" :disabled="!fixedHeader" :checked="autoHideHeader"
-            @change="handleFixedHeaderHidden" />
+          <a-switch slot="actions" size="small" :disabled="!fixedHeader" :checked="autoHideHeader" @change="handleFixedHeaderHidden" />
         </template>
         <a-list-item-meta>
           <template #title>
@@ -44,8 +42,7 @@
       <!-- 固定侧边菜单 -->
       <a-list-item>
         <template #actions>
-          <a-switch slot="actions" size="small" :disabled="layoutMode === 'topmenu'" :checked="fixSiderbar"
-            @change="handleFixSiderbar" />
+          <a-switch slot="actions" size="small" :disabled="layoutMode === 'topmenu'" :checked="fixSiderbar" @change="handleFixSiderbar" />
         </template>
         <a-list-item-meta>
           <template #title>
@@ -59,12 +56,7 @@
 </template>
 <script lang="ts" setup name="LayoutSettings">
 import { systemConfig } from '@/store/reactiveState'
-import {
-  TOGGLE_CONTENT_WIDTH,
-  TOGGLE_FIXED_HEADER,
-  TOGGLE_FIXED_HEADER_HIDDEN,
-  TOGGLE_FIXED_SIDERBAR
-} from '@/store/mutation-types'
+import { TOGGLE_CONTENT_WIDTH, TOGGLE_FIXED_HEADER, TOGGLE_FIXED_HEADER_HIDDEN, TOGGLE_FIXED_SIDERBAR } from '@/store/mutation-types'
 import useSiteSettings from '@/store/useSiteSettings'
 import SettingItem from './SettingItem.vue'
 
@@ -90,5 +82,4 @@ const handleFixSiderbar = (fixed) => {
   systemConfig.commit(TOGGLE_FIXED_SIDERBAR, fixed)
 }
 </script>
-<style lang="less">
-</style>
+<style lang="less"></style>

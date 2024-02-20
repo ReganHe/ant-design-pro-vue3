@@ -1,10 +1,8 @@
 <template>
-  <a-modal title="请选择您的技能和爱好" :open="visible" :confirm-loading="confirmLoading" @ok="onOk" :closable="false"
-    destroyOnClose :keyboard="false" width="700px">
+  <a-modal title="请选择您的技能和爱好" :open="visible" :confirm-loading="confirmLoading" @ok="onOk" :closable="false" destroyOnClose :keyboard="false" width="700px">
     <a-button slot="footer" @click="onOk" type="primary" :disabled="disabledBtn">保存并关闭</a-button>
-    <a-spin :spinning="loading"></a-spin>
-    <SelectSkillAndInterst @change="onSelectTag" @success="onAddSuccess" :userInfo="userInfo" :allSkills="allSkills"
-      :allInterest="allInterest" size="middle" />
+    <a-spin :spinning="loading" />
+    <SelectSkillAndInterst @change="onSelectTag" @success="onAddSuccess" :userInfo="userInfo" :allSkills="allSkills" :allInterest="allInterest" size="middle" />
   </a-modal>
 </template>
 
@@ -78,5 +76,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

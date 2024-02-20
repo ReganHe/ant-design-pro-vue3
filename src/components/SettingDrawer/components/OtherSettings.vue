@@ -54,5 +54,4 @@ const onMultiTab = (checked) => {
   systemConfig.commit(TOGGLE_MULTI_TAB, checked)
 }
 </script>
-<style lang="less">
-</style>
+<style lang="less"></style>

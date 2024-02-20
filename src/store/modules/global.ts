@@ -27,7 +27,7 @@ const app = {
     device: 'desktop',
     theme: 'dark',
     layout: 'sidemenu', //sidemenu topmenu
-    contentWidth: 'Fluid',  //Fixed Fluid
+    contentWidth: 'Fluid', //Fixed Fluid
     fixedHeader: false,
     fixSiderbar: false,
     autoHideHeader: false,
@@ -118,8 +118,7 @@ const app = {
       state.lockScreen = flag
       cache({ [SET_LOCK_SCREEN]: flag })
       document.getElementById('app')!.style.overflow = flag ? 'hidden' : 'visible'
-    },
-
+    }
   }
 }
 
@@ -133,10 +132,10 @@ function menuIconColorPatch(color) {
       .SysMenu .ant-menu-light .ant-menu-item-selected .ant-menu-item-icon{
         color: ${color} !important;
       }`
-  var style = document.createElement("style");
-  style.appendChild(document.createTextNode(menuIconColor));
-  var head = document.getElementsByTagName("head")[0];
-  head.appendChild(style);
+  const style = document.createElement('style')
+  style.appendChild(document.createTextNode(menuIconColor))
+  const head = document.getElementsByTagName('head')[0]
+  head.appendChild(style)
 }
 
 function setDarkMode(state, isDark) {

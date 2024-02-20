@@ -9,14 +9,17 @@ interface storageOptType {
   isEncrypt?: boolean
 }
 
-const encryption = new AesEncryption({ key: encryptKeys.key, iv: encryptKeys.iv });
+const encryption = new AesEncryption({ key: encryptKeys.key, iv: encryptKeys.iv })
 
-const options = Object.assign({
-  namespace: 'ls_', // key prefix
-  storage: 'localStorage', // storage name session, local, memory
-  default_cache_time: 60 * 60 * 24 * 7,
-  isEncrypt: false
-}, config.storage)
+const options = Object.assign(
+  {
+    namespace: 'ls_', // key prefix
+    storage: 'localStorage', // storage name session, local, memory
+    default_cache_time: 60 * 60 * 24 * 7,
+    isEncrypt: false
+  },
+  config.storage
+)
 
 let hasSetStorage = false
 

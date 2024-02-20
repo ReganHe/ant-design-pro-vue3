@@ -2,7 +2,7 @@
 export const getSvgFiles = () => {
   const svgs = import.meta.glob('/src/assets/icons/**/*.svg')
   const components = {}
-  for (let s in svgs) {
+  for (const s in svgs) {
     components[genFileName(s)] = svgs[s]
   }
   return components

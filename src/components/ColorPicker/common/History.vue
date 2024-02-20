@@ -1,8 +1,7 @@
 <template>
   <div class="bee-colorPicker__record">
     <div class="color-list">
-      <div class="color-item transparent" :class="{ 'color-item__round': round }" v-for="(v, i) in colorList" :key="i"
-        @click="onClickRecord(v)">
+      <div class="color-item transparent" :class="{ 'color-item__round': round }" v-for="(v, i) in colorList" :key="i" @click="onClickRecord(v)">
         <div class="color-item__display" :style="{ backgroundColor: v }"></div>
       </div>
     </div>
@@ -10,12 +9,12 @@
 </template>
 
 <script lang="ts" setup name="History">
-import { PropType } from "vue";
+import { PropType } from 'vue'
 const props = defineProps({
   colorList: {
     type: Array as PropType<string[]>,
     default: () => {
-      return [];
+      return []
     }
   },
   round: {
@@ -23,10 +22,10 @@ const props = defineProps({
     default: true
   }
 })
-const emit = defineEmits(["change"])
+const emit = defineEmits(['change'])
 const onClickRecord = (color: string) => {
-  emit("change", color);
-};
+  emit('change', color)
+}
 </script>
 
 <style lang="scss" scoped>

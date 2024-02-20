@@ -34,9 +34,9 @@ const colorList = [
   }
 ]
 
-const updateDarkMode = isDark => {
+const updateDarkMode = (isDark) => {
   let styleTag = document.getElementById('themeCss')
-  let appTag = document.getElementById('html')
+  const appTag = document.getElementById('html')
   if (!styleTag) {
     styleTag = document.createElement('link')
     styleTag.setAttribute('id', 'themeCss')
@@ -45,18 +45,18 @@ const updateDarkMode = isDark => {
   if (isDark) {
     styleTag.setAttribute('href', '/themes/dark.css')
     appTag!.className = 'darkMode'
-  }else{
+  } else {
     styleTag.setAttribute('href', '')
     appTag!.className = ''
   }
 }
 
-const updateColorWeak = isColorWeak => {
+const updateColorWeak = (isColorWeak) => {
   const app = document.getElementById('html')
   isColorWeak ? app!.classList.add('colorWeak') : app!.classList.remove('colorWeak')
 }
 
-const updateGrayMode = isGrayMode => {
+const updateGrayMode = (isGrayMode) => {
   const app = document.getElementById('html')
   isGrayMode ? app!.classList.add('grayMode') : app!.classList.remove('grayMode')
 }

@@ -1,6 +1,6 @@
 import ls from '@/utils/Storage'
 import { ACCESS_TOKEN, PERMISSION, USER_INFO, MENU_NAV } from '@/store/mutation-types'
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
@@ -24,8 +24,8 @@ export function timeFix() {
 export const encryptKeys = {
   // key最少4位,否则报错
   key: '1111',
-  iv: '1',
-};
+  iv: '1'
+}
 
 export const getQueryParameters = (options) => {
   const url = options.url
@@ -33,10 +33,7 @@ export const getQueryParameters = (options) => {
   if (!search) {
     return {}
   }
-  return JSON.parse('{"' + decodeURIComponent(search)
-    .replace(/"/g, '\\"')
-    .replace(/&/g, '","')
-    .replace(/=/g, '":"') + '"}')
+  return JSON.parse('{"' + decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"') + '"}')
 }
 
 export const getBody = (options) => {
@@ -64,8 +61,8 @@ export function scorePassword(pass) {
   }
 
   let variationCount = 0
-  for (var check in variations) {
-    variationCount += (variations[check] === true) ? 1 : 0
+  for (const check in variations) {
+    variationCount += variations[check] === true ? 1 : 0
   }
   score += (variationCount - 1) * 10
 
@@ -73,12 +70,12 @@ export function scorePassword(pass) {
 }
 
 export const firstLetterIsUpperCase = function (str) {
-  var reg = /^[A-Z][A-z0-9]*$/;
-  return reg.test(str);
-};
-
-export const divisionStringToArray = (str, separator = ';') => {
-  return str ? str.split(separator) : []
+  const reg = /^[A-Z][A-z0-9]*$/
+  return reg.test(str)
+}
+export const separator = ';'
+export const divisionStringToArray = (str, customSeparator = separator) => {
+  return str ? str.split(customSeparator) : []
 }
 
 export const getWeek = (week: number, useZhou) => {
@@ -115,12 +112,12 @@ export const isDev = import.meta.env.DEV
 export const baseURL = isDev ? '/api/' : '生产地址'
 
 export function toLocalTimeStr({ date, format = 'YYYY-MM-DD HH:mm:ss' }) {
-  if (!date) return null;
+  if (!date) return null
   return dayjs(date).format(format)
 }
 
 export function objToArr(obj) {
-  let arr: any = []
+  const arr: any = []
   for (const o in obj) {
     arr.push({ label: o, txt: obj[o] })
   }
@@ -134,11 +131,11 @@ export function clearObj(obj) {
 }
 
 export function delArrItem(arr, item) {
-  const index = arr.indexOf(item);
-  arr.splice(index, 1);
+  const index = arr.indexOf(item)
+  arr.splice(index, 1)
 }
 
-export const useImageUrl = (name: string, type: string = 'png'): string => {
+export const useImageUrl = (name: string, type = 'png'): string => {
   /**
    * @method vite动态引入图片
    * @params folder 文件夹名称 name 文件名称 type 文件格式 一般为png/jpg/webp/gif等...
@@ -148,15 +145,15 @@ export const useImageUrl = (name: string, type: string = 'png'): string => {
 }
 
 export const batchDispatch = (dispatch, arr) => {
-  arr.forEach(item => {
+  arr.forEach((item) => {
     dispatch(item)
-  });
+  })
 }
 
 export const createFormData = (formDatas, file) => {
   const formData = new FormData()
   if (file.length) {
-    file.map(item => {
+    file.map((item) => {
       formData.append('file', item)
     })
   } else {

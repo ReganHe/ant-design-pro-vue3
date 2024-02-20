@@ -1,27 +1,24 @@
 <template>
   <a-layout :class="['layout', device]">
     <!-- SideMenu -->
-    <a-drawer v-if="isMobile" placement="left" :class="`drawer-sider ${navTheme}`" :closable="false" :open="collapsed"
-      @close="drawerClose" width="256px">
-      <side-menu mode="inline" :menus="menus" :theme="navTheme" :collapsed="false" :collapsible="true"
-        @menuSelect="menuSelect"></side-menu>
+    <a-drawer v-if="isMobile" placement="left" :class="`drawer-sider ${navTheme}`" :closable="false" :open="collapsed" @close="drawerClose" width="256px">
+      <side-menu mode="inline" :menus="menus" :theme="navTheme" :collapsed="false" :collapsible="true" @menuSelect="menuSelect" />
     </a-drawer>
 
-    <side-menu v-else-if="isSideMenu()" mode="inline" :menus="menus" :theme="navTheme" :collapsed="collapsed"
-      :collapsible="true"></side-menu>
-    <a-layout :class="[layoutMode, `content-width-${contentWidth}`]"
-      :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }">
+    <side-menu v-else-if="isSideMenu()" mode="inline" :menus="menus" :theme="navTheme" :collapsed="collapsed" :collapsible="true" />
+    <a-layout :class="[layoutMode, `content-width-${contentWidth}`]" :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }">
       <!-- layout header -->
-      <global-header :mode="layoutMode" :menus="menus" :theme="navTheme" :collapsed="collapsed" :device="device"
-        @toggle="toggle" @refresh="onRefresh" />
+      <global-header :mode="layoutMode" :menus="menus" :theme="navTheme" :collapsed="collapsed" :device="device" @toggle="toggle" @refresh="onRefresh" />
 
       <!-- layout content -->
-      <a-layout-content :style="{
-        height: '100%',
-        margin: '24px 24px 0',
-        paddingTop: fixedHeader ? '64px' : '0',
-      }">
-        <multi-tab v-if="multiTab"></multi-tab>
+      <a-layout-content
+        :style="{
+          height: '100%',
+          margin: '24px 24px 0',
+          paddingTop: fixedHeader ? '64px' : '0'
+        }"
+      >
+        <multi-tab v-if="multiTab" />
         <transition name="page-transition">
           <section>
             <route-view v-if="showRouter" />
@@ -33,7 +30,7 @@
       <a-layout-footer>
         <global-footer />
       </a-layout-footer>
-      <setting-drawer></setting-drawer>
+      <setting-drawer />
     </a-layout>
   </a-layout>
 </template>
@@ -115,7 +112,7 @@ const paddingCalc = () => {
   }
   return left
 }
-const menuSelect = () => { }
+const menuSelect = () => {}
 const drawerClose = () => {
   collapsed.value = false
 }

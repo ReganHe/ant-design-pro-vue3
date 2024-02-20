@@ -3,9 +3,9 @@ export type Crypt = (key: string, iv: string, data: string) => string
 export interface ResponseBody {
   _status?: number
   _headers?: Object
-  message: string,
-  timestamp: number,
-  result,
+  message: string
+  timestamp: number
+  result
   code: number
 }
 

@@ -18,14 +18,14 @@ function reduceArr(o, arr, cb) {
       }
       return total[val]
     }
-    return (total[val] || (total[val] = {}))
+    return total[val] || (total[val] = {})
   }, o)
 }
 
 export const getRoutePages = () => {
   const pages = import.meta.glob('/src/views/**/*.vue', { import: 'default', eager: true })
   const files = {}
-  for (let p in pages) {
+  for (const p in pages) {
     const name = getFileName(p)
     if (name) {
       files[name] = pages[p]
@@ -57,14 +57,14 @@ const getFileName = (path: string) => {
 
 export function genStore() {
   const module = import.meta.glob('/src/**/*.store.ts', { eager: true })
-  const obj = {};
+  const obj = {}
   Object.keys(module).forEach((item) => {
     const name = item.match(/(?<=\/)[a-zA-Z]+(?=\.)/g)![0]
-    const content: StoreFile = module[item].default;
+    const content: StoreFile = module[item].default
     if (!content) {
       throw new Error('Please export default in ' + item)
     }
     Object.assign(obj, { [name]: content })
-  });
-  return obj;
+  })
+  return obj
 }

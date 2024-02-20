@@ -1,5 +1,5 @@
 <template>
-  <a-checkable-tag :checked="checked" @change="onClickTag($event,name)">{{ name }}</a-checkable-tag>
+  <a-checkable-tag :checked="checked" @change="onClickTag($event, name)">{{ name }}</a-checkable-tag>
 </template>
 
 <script>

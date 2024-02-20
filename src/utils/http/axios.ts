@@ -24,7 +24,7 @@ const baseService = axios.create({
 
 // request interceptor
 baseService.interceptors.request.use(
-  config => {
+  (config) => {
     globalLoading.value = true
     const token = ls.get(ACCESS_TOKEN)
     const userinfo = ls.get(USER_INFO)
@@ -37,7 +37,7 @@ baseService.interceptors.request.use(
     config.headers['Content-Type'] = ContentType[config.data instanceof FormData ? 'formData' : 'json']
     return config
   },
-  error => {
+  (error) => {
     globalLoading.value = false
     return Promise.reject(error)
   }
@@ -68,7 +68,7 @@ baseService.interceptors.response.use(
     }
     // return res
   },
-  error => {
+  (error) => {
     console.log(error)
     globalLoading.value = false
     const msg = error.message

@@ -71,7 +71,6 @@ declare module '@vue/runtime-core' {
     Menu: typeof import('./src/components/Menu/Menu.vue')['default']
     MultiTab: typeof import('./src/components/MultiTab/index.vue')['default']
     NavigationMode: typeof import('./src/components/SettingDrawer/components/NavigationMode.vue')['default']
-    NoticeIcon: typeof import('./src/components/NoticeIcon/index.vue')['default']
     OtherSettings: typeof import('./src/components/SettingDrawer/components/OtherSettings.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader/index.vue')['default']
     RenderSubMenu: typeof import('./src/components/Menu/RenderSubMenu.vue')['default']

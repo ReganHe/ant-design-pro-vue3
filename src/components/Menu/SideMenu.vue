@@ -1,8 +1,13 @@
 <template>
-  <a-layout-sider :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
-    width="256px" :collapsible="collapsible" v-model:collapsed="sideMenuCollapsed" :trigger="null">
+  <a-layout-sider
+    :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
+    width="256px"
+    :collapsible="collapsible"
+    v-model:collapsed="sideMenuCollapsed"
+    :trigger="null"
+  >
     <logo />
-    <Menu :collapsed="collapsed" :menu="menus" :theme="theme" :mode="mode" @select="onSelect"></Menu>
+    <Menu :collapsed="collapsed" :menu="menus" :theme="theme" :mode="mode" @select="onSelect" />
   </a-layout-sider>
 </template>
 
@@ -49,7 +54,7 @@ watch(
   {
     immediate: true
   }
-);
+)
 
 const emit = defineEmits(['menuSelect'])
 const onSelect = (obj) => {

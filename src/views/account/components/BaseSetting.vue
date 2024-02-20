@@ -1,9 +1,9 @@
 <template>
   <div class="account-settings-info-view">
     <a-row :gutter="16">
-      <a-col :span="24" style="margin-bottom:15px">
+      <a-col :span="24" style="margin-bottom: 15px">
         <a-form layout="inline">
-          <a-form-item label="工号" style="margin-right:40px">
+          <a-form-item label="工号" style="margin-right: 40px">
             <span>{{ userInfo.employeeId }}</span>
           </a-form-item>
           <a-form-item label="邮箱">
@@ -12,7 +12,6 @@
         </a-form>
       </a-col>
       <a-col :md="24" :lg="18">
-
         <!-- 更新表单 -->
         <a-form layout="vertical">
           <a-form-item label="昵称">
@@ -23,15 +22,13 @@
           </a-form-item>
 
           <!-- 技能,爱好 -->
-          <SelectSkillAndInterst @change="onSelectTag" @success="onAddSuccess" :userInfo="userInfo" :allSkills="allSkills"
-            :allInterest="allInterest" size="middle" />
+          <SelectSkillAndInterst @change="onSelectTag" @success="onAddSuccess" :userInfo="userInfo" :allSkills="allSkills" :allInterest="allInterest" size="middle" />
 
           <!-- 保存按钮 -->
           <a-form-item>
             <a-button type="primary" @click="onUpdatePersonDetail">更新基本信息</a-button>
           </a-form-item>
         </a-form>
-
       </a-col>
     </a-row>
   </div>
@@ -43,10 +40,10 @@ import { ref } from 'vue'
 import { UserInfo } from '../types'
 
 export default {
-  props: ['userInfo', 'allSkills', 'allInterest'],
   components: {
     SelectSkillAndInterst
   },
+  props: ['userInfo', 'allSkills', 'allInterest'],
   setup(props, { emit }) {
     const userInfo: Partial<UserInfo> = props.userInfo
     const nickname = ref<String>(userInfo.nickname || '')

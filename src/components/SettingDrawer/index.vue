@@ -17,17 +17,14 @@
       <div :style="{ marginBottom: '24px' }">
         <a-button @click="doCopy" block>
           <template #icon>
-            <span>
-              <CopyOutlined style="margin-right:5px" /> 拷贝设置
-            </span>
+            <span> <CopyOutlined style="margin-right: 5px" /> 拷贝设置 </span>
           </template>
         </a-button>
         <a-alert type="warning" :style="{ marginTop: '24px' }" v-if="isDev">
           <template #message>
             <span>
               配置的设置可以复制到defaultSettings.ts中作为项目的默认设置。修改配置文件后，需要清空本地缓存和LocalStorage
-              <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/src/config/defaultSettings.ts"
-                target="_blank">src/config/defaultSettings.ts</a>
+              <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/src/config/defaultSettings.ts" target="_blank">src/config/defaultSettings.ts</a>
             </span>
           </template>
         </a-alert>
