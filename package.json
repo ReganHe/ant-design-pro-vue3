@@ -13,7 +13,8 @@
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "format": "prettier --write src/",
     "clean-dev": "vite --force",
-    "report": "rimraf dist && cross-env vite build"
+    "report": "rimraf dist && cross-env vite build",
+    "swagger": "swagger-parser -f && npm run lint:eslint"
   },
   "dependencies": {
     "@aesoper/normal-utils": "0.1.5",
@@ -43,6 +44,7 @@
     "vuex": "4.1.0"
   },
   "devDependencies": {
+    "@polarwin/swagger-parser": "3.1.16",
     "@rushstack/eslint-patch": "1.2.0",
     "@types/jsdom": "21.1.0",
     "@types/node": "18.15.3",
