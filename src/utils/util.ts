@@ -69,7 +69,7 @@ export function scorePassword(pass) {
   }
   score += (variationCount - 1) * 10
 
-  return parseInt(score)
+  return parseInt(score.toString())
 }
 
 export const firstLetterIsUpperCase = function (str) {
@@ -77,10 +77,8 @@ export const firstLetterIsUpperCase = function (str) {
   return reg.test(str);
 };
 
-export const separator = ';'
-
-export const divisionStringToArray = (string, customSeparator) => {
-  return string ? string.split(customSeparator || separator) : []
+export const divisionStringToArray = (str, separator = ';') => {
+  return str ? str.split(separator) : []
 }
 
 export const getWeek = (week: number, useZhou) => {
@@ -113,7 +111,6 @@ export const getWeek = (week: number, useZhou) => {
   return useZhou ? '周' : '星期' + txt
 }
 
-const sitUrl = 'xxxxx'
 export const isDev = import.meta.env.DEV
 export const baseURL = isDev ? '/api/' : '生产地址'
 

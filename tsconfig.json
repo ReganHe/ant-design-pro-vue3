@@ -1,17 +1,22 @@
 {
+  // "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
+    // "types/env.d.ts",
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
+    "vite.config.ts"
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "src/**/__tests__/*",
   ],
   "compilerOptions": {
+    "composite": true,
     "jsx": "preserve",
     "target": "esnext",
     "module": "esnext",
@@ -50,17 +55,5 @@
         "types/*"
       ]
     }
-  },
-  // "files": [],
-  // "references": [
-  //   {
-  //     "path": "./tsconfig.node.json"
-  //   },
-  //   {
-  //     "path": "./tsconfig.app.json"
-  //   },
-  //   {
-  //     "path": "./tsconfig.vitest.json"
-  //   }
-  // ]
+  }
 }
