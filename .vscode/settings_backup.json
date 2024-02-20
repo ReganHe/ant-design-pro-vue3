@@ -96,20 +96,6 @@
     "plugins": ["html", "vue", "javascript", "jsx", "typescript"],
     "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
   },
-  "vetur.experimental.templateInterpolationService": true,
-  "vetur.format.options.tabSize": 2,
-  "vetur.format.defaultFormatter.html": "prettyhtml",
-  "vetur.format.defaultFormatter.scss": "prettier",
-  "vetur.format.defaultFormatter.css": "prettier",
-  "vetur.format.defaultFormatter.ts": "prettier-tslint",
-  "vetur.format.defaultFormatter.js": "prettier",
-  "vetur.languageFeatures.codeActions": false,
-  "vetur.format.defaultFormatterOptions": {
-    "js-beautify-html": {
-      "wrap_attributes": "force",
-      "wrap_line_length": 100
-    }
-  },
   "javascript.updateImportsOnFileMove.enabled": "never",
   "terminal.integrated.rendererType": "dom",
   "telemetry.enableCrashReporter": false,

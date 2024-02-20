@@ -1,6 +1,6 @@
 import cloneDeep from 'lodash.clonedeep'
 import ls from '@/utils/Storage'
-import { BasicLayout, RouteView, BlankLayout } from '@/layouts'//, BlankLayout, PageView, RouteView
+import { BasicLayout, RouteView, BlankLayout } from '@/layouts'
 import { getRoutePages } from '@/utils/batchImportFiles'
 import { MENU_NAV } from '@/store/mutation-types'
 

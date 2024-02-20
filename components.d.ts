@@ -59,8 +59,6 @@ declare module '@vue/runtime-core' {
     Breadcrumb: typeof import('./src/components/tools/Breadcrumb.vue')['default']
     ColorPicker: typeof import('./src/components/ColorPicker/index.vue')['default']
     DescriptionList: typeof import('./src/components/DescriptionList/DescriptionList.vue')['default']
-    FastDevelopBall: typeof import('./src/components/FastDevelopBall/index.vue')['default']
-    FastDevelopModal: typeof import('./src/components/FastDevelopBall/FastDevelopModal.vue')['default']
     GlobalFooter: typeof import('./src/components/GlobalFooter/index.vue')['default']
     GlobalHeader: typeof import('./src/components/GlobalHeader/index.vue')['default']
     GlobalStyle: typeof import('./src/components/SettingDrawer/components/GlobalStyle.vue')['default']

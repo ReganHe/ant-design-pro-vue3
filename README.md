@@ -61,21 +61,6 @@ yarn build
 
 - 布局没有采用新版pro-layout插件,因为二次封装不利于个性化定制,而且pro-layout全是用jsx写的,所以还是使用了ant-pro 2.0的代码去修改
 
-新增页面
-----
-
-- 项目结构采用了类似ant design pro(react版本)的模块化结构,这样其他项目使用时直接复制文件夹即可,省去了在不同文件加分别找文件的痛苦了
-- 模板在template文件夹中
-    <template>
-    ├helper.ts                工具文件,等同于utils
-    ├Index.vue				  页面文件
-    ├service.ts   			  用于存放接口内容
-    ├types.ts				  声明ts类型使用
-    ├<lang>                   国际化文件
-    │  ├cn.ts					 中文
-    │  └en.ts					 英文
-   <!--使用时复制文件夹到所以在的位置(components,views等)即可-->
-
 和服务端进行交互
 ----
 

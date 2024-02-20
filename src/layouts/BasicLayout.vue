@@ -33,7 +33,6 @@
       <a-layout-footer>
         <global-footer />
       </a-layout-footer>
-      <FastDevelopBall />
       <setting-drawer></setting-drawer>
     </a-layout>
   </a-layout>
@@ -57,7 +56,6 @@ import ls from '@/utils/Storage'
 import { systemConfig } from '@/store/reactiveState'
 import { useRouter } from 'vue-router'
 import emitter from '@/utils/eventBus'
-import FastDevelopBall from '@/components/FastDevelopBall/index.vue'
 
 const router = useRouter()
 const collapsed = ref(false)
