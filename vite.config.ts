@@ -80,10 +80,6 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: 'vue-i18n',
-        replacement: 'vue-i18n/dist/vue-i18n.cjs.js',
-      },
-      {
         find: '@',
         replacement: fileURLToPath(new URL('./src', import.meta.url))
       }

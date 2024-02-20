@@ -25,19 +25,6 @@ module.exports = {
     return responseBody
   },
   userNav: [
-    // dashboard
-    {
-      'name': 'dashboard',
-      'parentId': 0,
-      'id': 1,
-      'meta': {
-        'icon': 'bx-analyse',
-        'title': '仪表盘',
-        'show': true,
-      },
-      'component': 'RouteView',
-      'redirect': '/dashboard/workplace'
-    },
     {
       'name': 'workplace',
       'parentId': 1,
@@ -59,17 +46,6 @@ module.exports = {
         'target': 'http://www.baidu.com',
         'blank': true
       }
-    },
-    {
-      'name': 'Analysis',
-      'parentId': 1,
-      'id': 2,
-      'meta': {
-        'title': '分析页',
-        'show': true
-      },
-      'component': 'Home',
-      'path': '/dashboard/analysis'
     },
     {
       'name': 'tests',

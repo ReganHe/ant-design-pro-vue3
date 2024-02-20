@@ -4,12 +4,11 @@
       <a-tabs :activeKey="customActiveKey" :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }"
         @change="handleTabClick">
         <!-- 账户密码登录 -->
-        <a-tab-pane key="tab1" :tab="$t('user.login.tab-login-credentials')">
+        <a-tab-pane key="tab1" tab="账户密码登录">
           <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px"
-            :message="$t('user.login.message-invalid-credentials')" />
+            message="账户或密码错误（admin / ant.design）" />
           <a-form-item v-bind="validateInfos.username">
-            <a-input size="large" type="text" :placeholder="$t('user.login.username.placeholder')"
-              v-model:value="formRef.username">
+            <a-input size="large" type="text" placeholder="账户: admin or ant.design" v-model:value="formRef.username">
               <template #prefix>
                 <UserOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
               </template>
@@ -17,8 +16,7 @@
           </a-form-item>
 
           <a-form-item v-bind="validateInfos.password">
-            <a-input-password size="large" :placeholder="$t('user.login.password.placeholder')"
-              v-model:value="formRef.password">
+            <a-input-password size="large" placeholder="密码: 随意" v-model:value="formRef.password">
               <template #prefix>
                 <LockOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
               </template>
@@ -26,10 +24,9 @@
           </a-form-item>
         </a-tab-pane>
         <!-- 手机号登录 -->
-        <a-tab-pane key="tab2" :tab="$t('user.login.tab-login-mobile')">
+        <a-tab-pane key="tab2" tab="手机号登录">
           <a-form-item v-bind="validateInfos.mobile">
-            <a-input size="large" type="text" :placeholder="$t('user.login.mobile.placeholder')"
-              v-model:value="formRef.mobile">
+            <a-input size="large" type="text" placeholder="手机号" v-model:value="formRef.mobile">
               <MobileOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
             </a-input>
           </a-form-item>
@@ -37,8 +34,7 @@
           <a-row :gutter="16">
             <a-col class="gutter-row" :span="16">
               <a-form-item v-bind="validateInfos.captcha">
-                <a-input size="large" type="text" :placeholder="$t('user.login.mobile.verification-code.placeholder')"
-                  v-model:value="formRef.captcha">
+                <a-input size="large" type="text" placeholder="验证码" v-model:value="formRef.captcha">
                   <MailOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
                 </a-input>
               </a-form-item>
@@ -46,7 +42,7 @@
             <a-col class="gutter-row" :span="8">
               <a-button class="getCaptcha" tabindex="-1" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha">
                 {{
-                  (!state.smsSendBtn && $t("user.register.get-verification-code")) ||
+                  !state.smsSendBtn ||
                   state.time + " s"
                 }}
               </a-button>
@@ -57,21 +53,19 @@
 
       <a-form-item v-bind="validateInfos.rememberMe">
         <a-checkbox v-model:checked="formRef.rememberMe" style="float:left">
-          {{
-            $t("user.login.remember-me")
-          }}
+          自动登录
         </a-checkbox>
-        <router-link :to="{ name: 'recover', params: { user: 'aaa' } }" class="forge-password" style="float: right">{{
-          $t("user.login.forgot-password") }}</router-link>
+        <router-link :to="{ name: 'recover', params: { user: 'aaa' } }" class="forge-password"
+          style="float: right">忘记密码</router-link>
       </a-form-item>
 
       <a-form-item style="margin-top: 24px">
         <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loginBtn"
-          :disabled="state.loginBtn">{{ $t("user.login.login") }}</a-button>
+          :disabled="state.loginBtn">登录</a-button>
       </a-form-item>
 
       <div class="user-login-other">
-        <span>{{ $t("user.login.sign-in-with") }}</span>
+        <span>其他登录方式</span>
         <a>
           <AlipayCircleOutlined />
         </a>
@@ -82,9 +76,7 @@
           <WeiboCircleOutlined />
         </a>
         <router-link class="register" :to="{ name: 'register' }">
-          {{
-            $t("user.login.signup")
-          }}
+          注册账户
         </router-link>
       </div>
     </a-form>
@@ -102,7 +94,6 @@
 // import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha.vue';
 import { encryptByMd5 } from '@/utils/encrypt'
 import { ref, reactive, UnwrapRef, onMounted } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { Form } from 'ant-design-vue'
 import { loginSuccess, requestFailed } from './helper'
 import { useRouter } from 'vue-router'
@@ -122,7 +113,6 @@ import generateAsyncRoutes from '@/router/generateAsyncRoutes'
 import { useGetCaptcha } from './helper'
 
 const useForm = Form.useForm
-const { t } = useI18n()
 const router = useRouter()
 
 onMounted(() => {
@@ -168,26 +158,26 @@ const rulesRef = reactive({
   username: [
     {
       required: true,
-      message: t('user.username.required')
+      message: '请输入帐户名或邮箱地址'
     },
     {
       validator: handleUsernameOrEmail,
       trigger: 'change'
     }
   ],
-  password: [{ required: true, message: t('user.password.required') }, {}],
+  password: [{ required: true, message: '请输入密码！' }, {}],
   mobile: [
     {
       required: true,
       pattern: /^1[34578]\d{9}$/,
-      message: t('user.login.mobile.placeholder'),
+      message: '手机号',
       validateTrigger: 'change'
     }
   ],
   captcha: [
     {
       required: true,
-      message: t('user.verification-code.required'),
+      message: '请输入验证码！',
       validateTrigger: 'blur'
     }
   ]
@@ -255,7 +245,7 @@ const stepCaptchaCancel = () => {
     stepCaptchaVisible.value = false
   })
 }
-    //#endregion
+//#endregion
 </script>
 
 <style lang="less" scoped>

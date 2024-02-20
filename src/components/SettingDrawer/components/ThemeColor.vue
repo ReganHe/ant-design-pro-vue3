@@ -1,5 +1,5 @@
 <template>
-  <SettingItem :title="$t('settingDrawer.theme')">
+  <SettingItem title="主题色">
     <div style="height: 20px">
       <a-tooltip class="setting-drawer-theme-color-colorBlock" v-for="(item, index) in colorList" :key="index">
         <template #title>{{ item.key }}</template>
@@ -33,13 +33,13 @@ import ColorPicker from '@/components/ColorPicker/index.vue'
 const { primaryColor } = useSiteSettings()
 
 const changeColor = (color) => {
-    systemConfig.commit(THEME_COLOR, color)
-    updateTheme(color)
+  systemConfig.commit(THEME_COLOR, color)
+  updateTheme(color)
 }
 
 const colorArr = colorList.map((item) => item.color)
 const isCustomColor = computed(() => {
-  return !colorArr.includes(systemConfig.state.color+'')
+  return !colorArr.includes(systemConfig.state.color + '')
 })
 </script>
 <style lang="less" scoped>

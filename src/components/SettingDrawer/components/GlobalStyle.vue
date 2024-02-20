@@ -1,8 +1,8 @@
 <template>
-  <SettingItem :title="$t('settingDrawer.globalStyleSetting')">
+  <SettingItem title="整体风格设置">
     <div class="setting-drawer-index-blockChecbox">
       <a-tooltip>
-        <template #title>{{ $t('settingDrawer.darkStyle') }}</template>
+        <template #title>暗色菜单风格</template>
         <div class="setting-drawer-index-item" @click="handleMenuTheme('dark')">
           <img src="../icons/darkMenu.svg" alt="dark" />
           <div class="setting-drawer-index-selectIcon" v-if="navTheme === 'dark' && !darkMode">
@@ -12,7 +12,7 @@
       </a-tooltip>
 
       <a-tooltip>
-        <template #title>{{ $t('settingDrawer.lightStyle') }}</template>
+        <template #title>亮色菜单风格</template>
         <div class="setting-drawer-index-item" @click="handleMenuTheme('light')">
           <img src="../icons/lightMenu.svg" alt="light" />
           <div class="setting-drawer-index-selectIcon" v-if="navTheme === 'light'">
@@ -22,7 +22,7 @@
       </a-tooltip>
 
       <a-tooltip>
-        <template #title>{{ $t('settingDrawer.darkMode') }}</template>
+        <template #title>黑夜模式</template>
         <div class="setting-drawer-index-item" @click="handleDarkMode(true)">
           <img src="../icons/darkTheme.svg" alt="dark theme" />
           <div class="setting-drawer-index-selectIcon" v-if="darkMode">

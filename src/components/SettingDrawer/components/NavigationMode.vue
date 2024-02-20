@@ -1,8 +1,8 @@
 <template>
-  <SettingItem :title="$t('settingDrawer.navigationMode')">
+  <SettingItem title="导航模式">
     <div class="setting-drawer-index-blockChecbox">
       <a-tooltip>
-        <template #title>{{ $t('settingDrawer.sidebarNavigater') }}</template>
+        <template #title>侧边栏导航</template>
         <div class="setting-drawer-index-item" @click="handleLayout('sidemenu')">
           <img src="../icons/sideMenu.svg" alt="sidemenu" />
           <div class="setting-drawer-index-selectIcon" v-if="layoutMode === 'sidemenu'">
@@ -12,7 +12,7 @@
       </a-tooltip>
 
       <a-tooltip>
-        <template #title>{{ $t('settingDrawer.topNavigater') }}</template>
+        <template #title>顶部栏导航</template>
         <div class="setting-drawer-index-item" @click="handleLayout('topmenu')">
           <img src="../icons/topMenu.svg" alt="topmenu" />
           <div class="setting-drawer-index-selectIcon" v-if="layoutMode !== 'sidemenu'">

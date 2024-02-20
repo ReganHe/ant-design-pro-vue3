@@ -29,32 +29,25 @@
             <a-menu-item key="4" @click="showSystemSetting">
               <a>
                 <SettingOutlined />
-                <span>{{ $t('tools.userMenu.systemConfig') }}</span>
+                <span>系统设置</span>
               </a>
             </a-menu-item>
             <a-menu-item key="5" @click="onLockScreen">
               <a>
                 <LockOutlined />
-                <span>{{ $t('tools.userMenu.lockScreen') }}</span>
+                <span>锁定屏幕</span>
               </a>
             </a-menu-item>
-            <!-- <a-menu-item key="2" disabled>
-              <SettingOutlined />
-              <span>{{ $t('tools.userMenu.test') }}</span>
-            </a-menu-item>-->
             <a-menu-divider />
             <a-menu-item key="3">
               <a href="javascript:;" @click="handleLogout">
                 <LogoutOutlined />
-                <span>{{ $t('tools.userMenu.logout') }}</span>
+                <span>退出登录</span>
               </a>
             </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
-      <span style="overflow: hidden;display: inline-block;">
-        <SelectLang :class="theme" class="action" />
-      </span>
     </div>
   </div>
 </template>
@@ -70,22 +63,18 @@ import {
   LogoutOutlined,
   LockOutlined
 } from '@ant-design/icons-vue'
-import { useI18n } from 'vue-i18n'
 import { systemConfig } from '@/store/reactiveState'
-import SelectLang from '@/components/SelectLang'
 import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
 import { clearUserInfo } from '@/utils/util'
 
-
 const props = defineProps(['theme'])
-const { t } = useI18n()
 const router = useRouter()
 const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
   Modal.confirm({
-    title: t('tools.userMenu.tip'),
-    content: t('tools.userMenu.checkLogout'),
+    title: '提示',
+    content: '真的要注销登录吗 ?',
     onOk: () => {
       logout().then((res) => {
         clearUserInfo()

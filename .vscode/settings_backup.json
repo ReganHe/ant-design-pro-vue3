@@ -2,9 +2,6 @@
   "typescript.tsdk": "./node_modules/typescript/lib",
   "volar.tsPlugin": true,
   "volar.tsPluginStatus": false,
-  //===========================================
-  //============= Editor ======================
-  //===========================================
   "explorer.openEditors.visible": 0,
   "editor.minimap.renderCharacters": false,
   "editor.minimap.maxColumn": 300,
@@ -23,14 +20,8 @@
     "comments": true,
     "strings": true
   },
-  //===========================================
-  //============= Other =======================
-  //===========================================
   "breadcrumbs.enabled": true,
   "open-in-browser.default": "chrome",
-  //===========================================
-  //============= emmet =======================
-  //===========================================
   "emmet.triggerExpansionOnTab": true,
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showExpandedAbbreviation": "always",
@@ -45,9 +36,6 @@
   "emmet.includeLanguages": {
     "jsx-sublime-babel-tags": "javascriptreact"
   },
-  //===========================================
-  //============= files =======================
-  //===========================================
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -86,7 +74,6 @@
     "**/.DS_Store": true
   },
   "files.watcherExclude": {
-    // 文件监视排除
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.vscode/**": true,
@@ -105,32 +92,10 @@
   "css.validate": true,
   "less.validate": true,
   "scss.validate": true,
-  // ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-  // ===========================================
-  // ================ Eslint ===================
-  // ===========================================
-  // "eslint.enable": true,
   "eslint.options": {
-    // 配置
-    "plugins": [
-      "html",
-      "vue",
-      "javascript",
-      "jsx",
-      "typescript"
-    ],
-    "extensions": [
-      ".js",
-      ".jsx",
-      ".ts",
-      ".tsx",
-      ".vue"
-    ]
+    "plugins": ["html", "vue", "javascript", "jsx", "typescript"],
+    "extensions": [".js", ".jsx", ".ts", ".tsx", ".vue"]
   },
-  // "eslint.autoFixOnSave": true,
-  // ===========================================
-  // ================ Vetur ====================
-  // ===========================================
   "vetur.experimental.templateInterpolationService": true,
   "vetur.format.options.tabSize": 2,
   "vetur.format.defaultFormatter.html": "prettyhtml",
@@ -141,18 +106,9 @@
   "vetur.languageFeatures.codeActions": false,
   "vetur.format.defaultFormatterOptions": {
     "js-beautify-html": {
-      // [auto|force|force-aligned|force-expand-multiline]
       "wrap_attributes": "force",
-      "wrap_line_length": 100,
-    },
-    // "prettier": {
-    //   "eslintIntegration": true,
-    //   "arrowParens": "always",
-    //   // 去掉末尾空格
-    //   "semi": false,
-    //   "singleQuote": true,
-    //   "trailingComma": "none"
-    // }
+      "wrap_line_length": 100
+    }
   },
   "javascript.updateImportsOnFileMove.enabled": "never",
   "terminal.integrated.rendererType": "dom",
@@ -192,21 +148,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "i18n-ally.localesPaths": [
-    "src/locales/lang"
-  ],
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.sortKeys": true,
-  "i18n-ally.namespace": true,
-  "i18n-ally.pathMatcher": "{locale}/{namespaces}.{ext}",
-  "i18n-ally.enabledParsers": [
-    "ts"
-  ],
-  "i18n-ally.sourceLanguage": "zh",
-  "i18n-ally.enabledFrameworks": [
-    "vue",
-    "react"
-  ],
   "better-comments.tags": [
     {
       "tag": "todo",
@@ -270,7 +211,7 @@
       "backgroundColor": "transparent",
       "bold": false,
       "italic": false
-    },
+    }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[vue]": {
@@ -282,52 +223,19 @@
   "editor.tabSize": 2,
   "vue.codeActions.enabled": true,
   "prettier.eslintIntegration": true,
-  // "better-comments.highlightPlainText": true
-
-  // 新增内容
   "liveServer.settings.donotShowInfoMsg": true,
   "git.openRepositoryInParentFolders": "always",
   "editor.fontSize": 16,
   "eslint.alwaysShowStatus": true,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescriptreact",
-    "html",
-    "vue",
-    "typescript"
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescriptreact", "html", "vue", "typescript"],
   "files.eol": "\n",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "vetur.completion.scaffoldSnippetSources": {
-    "workspace": "💼",
-    "user": "🗒️",
-    "vetur": "✌"
-  },
-  "vetur.format.defaultFormatter.js": "vscode-typescript",
-  "vetur.format.defaultFormatter.less": "none",
-  "vetur.format.defaultFormatter.ts": "vscode-typescript",
-  "vetur.format.defaultFormatter.html": "prettyhtml",
-  "vetur.format.defaultFormatterOptions": {
-    // "js-beautify-html": {
-    //     "wrap_attributes": "force"
-    // },
-    "prettyhtml": {
-      "printWidth": 100,
-      "singleQuote": false,
-      "wrapAttributes": false,
-      "sortAttributes": false
-    }
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "editor.wordWrap": "on",
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "files.autoSave": "afterDelay",
   "search.followSymlinks": false,
   "npm.autoDetect": "off",
@@ -335,6 +243,5 @@
   "debug.javascript.codelens.npmScripts": "never",
   "npm.scriptHover": false,
   "editor.formatOnSave": true,
-  "workbench.colorTheme": "Default Dark+",
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "workbench.colorTheme": "Default Dark+"
 }

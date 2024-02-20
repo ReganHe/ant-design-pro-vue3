@@ -18,7 +18,6 @@ const state = reactive<any>({ name: '', breadList: [] })
 const getBreadcrumb = () => {
   const route = router.currentRoute.value
   state.breadList = []
-  // this.breadList.push({name: 'index', path: '/dashboard/', meta: {title: '首页'}})
 
   state.name = route.name
   route.matched.forEach((item) => {

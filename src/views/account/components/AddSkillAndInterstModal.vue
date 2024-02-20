@@ -1,29 +1,10 @@
 <template>
-  <a-modal
-    :title="$t('account.selectSkillAndInterst')"
-    :open="visible"
-    :confirm-loading="confirmLoading"
-    @ok="onOk"
-    :closable="false"
-    destroyOnClose
-    :keyboard="false"
-    width="700px"
-  >
-    <a-button
-      slot="footer"
-      @click="onOk"
-      type="primary"
-      :disabled="disabledBtn"
-    >{{$t('account.saveAndClose')}}</a-button>
+  <a-modal title="请选择您的技能和爱好" :open="visible" :confirm-loading="confirmLoading" @ok="onOk" :closable="false"
+    destroyOnClose :keyboard="false" width="700px">
+    <a-button slot="footer" @click="onOk" type="primary" :disabled="disabledBtn">保存并关闭</a-button>
     <a-spin :spinning="loading"></a-spin>
-    <SelectSkillAndInterst
-      @change="onSelectTag"
-      @success="onAddSuccess"
-      :userInfo="userInfo"
-      :allSkills="allSkills"
-      :allInterest="allInterest"
-      size="middle"
-    />
+    <SelectSkillAndInterst @change="onSelectTag" @success="onAddSuccess" :userInfo="userInfo" :allSkills="allSkills"
+      :allInterest="allInterest" size="middle" />
   </a-modal>
 </template>
 
@@ -67,7 +48,7 @@ export default {
         interest: savedData.interest && savedData.interest.join(separator),
         myInterest: savedData.myInterest && savedData.myInterest?.join(separator),
         mySkills: savedData.mySkills && savedData.mySkills?.join(separator),
-        skills: savedData.skills.join(separator)
+        skills: savedData?.skills?.join(separator)
       }
 
       disabledBtn.value = !!data.interest
@@ -75,7 +56,7 @@ export default {
       const res = await api.updateUserLabel(data)
       if (res) {
         const { createMessage } = useMessage()
-        createMessage.success(window.i18n.tc('common.saveSuccess'))
+        createMessage.success('操作成功')
         visible.value = false
       }
       loading.value = false

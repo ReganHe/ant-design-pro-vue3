@@ -4,7 +4,7 @@
     <page-header v-if="true" :title="state.pageTitle" :logo="logo" :avatar="avatar">
       <slot slot="action" name="action">222</slot>
       <slot slot="content" name="headerContent">111</slot>
-      <div slot="content" v-if="!this.$slots.headerContent && state.description">
+      <div slot="content" v-if="!$slots.headerContent && state.description">
         <p style="font-size: 14px;color: rgba(0,0,0,.65)">{{ state.description }}</p>
         <div class="link">
           <template v-for="(link, index) in state.linkList" :key="index">

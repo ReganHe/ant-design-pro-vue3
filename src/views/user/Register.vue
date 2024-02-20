@@ -1,38 +1,36 @@
 <template>
   <div class="main user-layout-register">
     <h3>
-      <span>{{ $t('user.register.register') }}</span>
+      <span>注册</span>
     </h3>
     <a-form id="formRegister" :model="form">
       <a-form-item v-bind="validateInfos.email">
-        <a-input size="large" type="text" :placeholder="$t('user.register.email.placeholder')"
-          v-model:value="form.email"></a-input>
+        <a-input size="large" type="text" placeholder="邮箱" v-model:value="form.email"></a-input>
       </a-form-item>
 
       <a-popover placement="rightTop" :trigger="['focus']" :getPopupContainer="(trigger) => trigger.parentElement"
         v-model:value="state.passwordLevelChecked">
         <template slot="content">
           <div :style="{ width: '240px' }">
-            <div :class="['user-register', passwordLevelClass]">{{ $t(passwordLevelName) }}</div>
+            <div :class="['user-register', passwordLevelClass]">{{ passwordLevelName }}</div>
             <a-progress :percent="state.percent" :showInfo="false" :strokeColor="passwordLevelColor" />
             <div style="margin-top: 10px;">
-              <span>{{ $t('user.register.password.popover-message') }}</span>
+              <span>请至少输入 6 个字符。请不要使用容易被猜到的密码。</span>
             </div>
           </div>
         </template>
         <a-form-item v-bind="validateInfos.password">
-          <a-input-password size="large" @click="handlePasswordInputClick"
-            :placeholder="$t('user.register.password.placeholder')" v-model:value="form.password"></a-input-password>
+          <a-input-password size="large" @click="handlePasswordInputClick" placeholder="请至少输入 6 个字符。请不要使用容易被猜到的密码。"
+            v-model:value="form.password"></a-input-password>
         </a-form-item>
       </a-popover>
 
       <a-form-item v-bind="validateInfos.password2">
-        <a-input-password size="large" :placeholder="$t('user.register.confirm-password.placeholder')"
-          v-model:value="form.password2"></a-input-password>
+        <a-input-password size="large" placeholder="确认密码" v-model:value="form.password2"></a-input-password>
       </a-form-item>
 
       <a-form-item v-bind="validateInfos.mobile">
-        <a-input size="large" :placeholder="$t('user.login.mobile.placeholder')" v-model:value="form.mobile">
+        <a-input size="large" placeholder="手机号" v-model:value="form.mobile">
           <a-select slot="addonBefore" size="large" defaultValue="+86">
             <a-select-option value="+86">+86</a-select-option>
             <a-select-option value="+87">+87</a-select-option>
@@ -50,23 +48,21 @@
       <a-row :gutter="16">
         <a-col class="gutter-row" :span="16">
           <a-form-item v-bind="validateInfos.captcha">
-            <a-input size="large" type="text" :placeholder="$t('user.login.mobile.verification-code.placeholder')"
-              v-model:value="form.captcha">
+            <a-input size="large" type="text" placeholder="验证码" v-model:value="form.captcha">
               <MailOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
             </a-input>
           </a-form-item>
         </a-col>
         <a-col class="gutter-row" :span="8">
-          <a-button class="getCaptcha" size="large" :disabled="state.smsSendBtn"
-            @click.stop.prevent="getCaptcha">{{ !state.smsSendBtn &&
-              $t('user.register.get-verification-code') || (state.time + ' s') }}</a-button>
+          <a-button class="getCaptcha" size="large" :disabled="state.smsSendBtn" @click.stop.prevent="getCaptcha">{{
+            !state.smsSendBtn || (state.time + ' s') }}</a-button>
         </a-col>
       </a-row>
 
       <a-form-item>
         <a-button size="large" type="primary" htmlType="submit" class="register-button" :loading="registerBtn"
-          @click.stop.prevent="handleSubmit" :disabled="registerBtn">{{ $t('user.register.register') }}</a-button>
-        <router-link class="login" :to="{ name: 'login' }">{{ $t('user.register.sign-in') }}</router-link>
+          @click.stop.prevent="handleSubmit" :disabled="registerBtn">注册</a-button>
+        <router-link class="login" :to="{ name: 'login' }">使用已有账户登录</router-link>
       </a-form-item>
     </a-form>
   </div>
@@ -75,7 +71,6 @@
 <script lang="ts" setup name="Register">
 import { ref, reactive, computed } from 'vue'
 import { Form } from 'ant-design-vue'
-import { useI18n } from 'vue-i18n'
 import { scorePassword } from '@/utils/util'
 import { MailOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
@@ -83,10 +78,10 @@ import { isMobile } from '@/utils/device'
 import { useGetCaptcha } from './helper'
 
 const levelNames = {
-  0: 'user.password.strength.short',
-  1: 'user.password.strength.low',
-  2: 'user.password.strength.medium',
-  3: 'user.password.strength.strong'
+  0: '强度：太短',
+  1: '强度：低',
+  2: '强度：中',
+  3: '强度：强'
 }
 const levelClass = {
   0: 'error',
@@ -100,7 +95,6 @@ const levelColor = {
   2: '#ff7e05',
   3: '#52c41a'
 }
-const { t } = useI18n()
 const router = useRouter()
 const useForm = Form.useForm
 
@@ -109,7 +103,8 @@ const form = reactive({
   email: '',
   password: '',
   password2: '',
-  mobile: ''
+  mobile: '',
+  captcha: ''
 })
 const handlePasswordLevel = (rule, value) => {
   if (value === '') {
@@ -128,7 +123,7 @@ const handlePasswordLevel = (rule, value) => {
     }
   } else {
     state.level = 0
-    return Promise.reject(new Error(t('user.password.strength.msg')))
+    return Promise.reject(new Error('密码强度不够！'))
   }
   state.passwordLevel = state.level
   state.percent = state.level * 33
@@ -140,21 +135,21 @@ const handlePhoneCheck = (rule, value) => {
 }
 const rules = reactive({
   email: [
-    { required: true, type: 'email', message: t('user.email.required') },
+    { required: true, type: 'email', message: '请输入邮箱地址！' },
     { validateTrigger: ['change', 'blur'] }
   ],
   password: [
-    { required: true, message: t('user.password.required') },
+    { required: true, message: '请输入密码！' },
     { validator: handlePasswordLevel },
     { validateTrigger: ['change', 'blur'] }
   ],
   password2: [
-    { required: true, message: t('user.password.required') },
+    { required: true, message: '请输入密码！' },
     { validator: handlePasswordLevel },
     { validateTrigger: ['change', 'blur'] }
   ],
   mobile: [
-    { required: true, message: t('user.phone-number.required'), pattern: /^1[3456789]\d{9}$/ },
+    { required: true, message: '请输入正确的手机号', pattern: /^1[3456789]\d{9}$/ },
     { validator: handlePhoneCheck },
     { validateTrigger: ['change', 'blur'] }
   ],
@@ -192,10 +187,10 @@ const passwordLevelColor = computed(() => {
 const handlePasswordCheck = (rule, value) => {
   const password = form.password
   if (value === undefined) {
-    return Promise.reject(new Error(t('user.password.required')))
+    return Promise.reject(new Error('请输入密码！'))
   }
   if (value && password && value.trim() !== password.trim()) {
-    return Promise.reject(new Error(t('user.password.twice.msg')))
+    return Promise.reject(new Error('两次输入的密码不匹配!'))
   }
   return Promise.resolve()
 }

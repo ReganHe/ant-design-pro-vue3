@@ -6,15 +6,15 @@
         <a-tab-pane v-for="page in pages" :key="page.fullPath" :closable="pages.length > 1" style="height: 0">
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
-              <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || $t(page.meta.title) }}</span>
+              <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || page.meta.title }}</span>
               <template #overlay>
                 <a-menu @click="({ key, item, domEvent }) => {
                   closeMenuClick(key, page.fullPath);
                 }">
-                  <a-menu-item key="closeSelf">{{ $t('multiTab.closeCurrent') }}</a-menu-item>
-                  <a-menu-item key="closeRight">{{ $t('multiTab.closeRight') }}</a-menu-item>
-                  <a-menu-item key="closeLeft">{{ $t('multiTab.closeLeft') }}</a-menu-item>
-                  <a-menu-item key="closeAll">{{ $t('multiTab.closeAll') }}</a-menu-item>
+                  <a-menu-item key="closeSelf">关闭当前标签</a-menu-item>
+                  <a-menu-item key="closeRight">关闭右侧</a-menu-item>
+                  <a-menu-item key="closeLeft">关闭左侧</a-menu-item>
+                  <a-menu-item key="closeAll">关闭全部</a-menu-item>
                 </a-menu>
               </template>
             </a-dropdown>
@@ -29,14 +29,12 @@ import { ref, reactive, watch, getCurrentInstance } from 'vue'
 import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
 import events from '@/utils/eventBus'
 import { message } from 'ant-design-vue'
-import { useI18n } from 'vue-i18n'
 import './index.less'
 
 let fullPathList: Array<string> = []
 const pages = reactive<Array<RouteLocationNormalizedLoaded>>([])
 const activeKey = ref('')
 const router = useRouter()
-const { t } = useI18n()
 const { proxy } = getCurrentInstance()
 
 const selectedLastPath = () => {
@@ -77,8 +75,8 @@ const selectedLastPath = () => {
   })()
 
 const onEdit = (targetKey, action) => {
-    //proxy[action](targetKey)
-    remove(targetKey)
+  //proxy[action](targetKey)
+  remove(targetKey)
 }
 const remove = (targetKey) => {
   const temp = pages.filter((page) => page.fullPath !== targetKey)
@@ -97,7 +95,7 @@ const closeSelf = (e) => {
   if (fullPathList.length > 1) {
     remove(e)
   } else {
-    message.info(t('multiTab.cannotCloseLast'))
+    message.info('这是最后一个标签了, 无法被关闭')
   }
 }
 const closeLeft = (e) => {
@@ -109,7 +107,7 @@ const closeLeft = (e) => {
       }
     })
   } else {
-    message.info(t('multiTab.noLeft'))
+    message.info('左侧没有标签')
   }
 }
 const closeRight = (e) => {
@@ -121,7 +119,7 @@ const closeRight = (e) => {
       }
     })
   } else {
-    message.info(t('multiTab.noRight'))
+    message.info('右侧没有标签')
   }
 }
 const closeAll = (e) => {
@@ -174,14 +172,11 @@ watch(activeKey, (newPathKey) => {
       border-radius: 0px;
       border-top: 0px;
       height: 40px;
-      .anticon-close {
-        // display: none;
-      }
     }
 
     .ant-tabs-tab-active {
-    //   padding-bottom: 0px;
-    //   background-color: rgba(0, 0, 0, 0.1);
+      //   padding-bottom: 0px;
+      //   background-color: rgba(0, 0, 0, 0.1);
       height: 38px;
       border-bottom-color: transparent;
 

@@ -1,5 +1,4 @@
 import config from '@/config/defaultSettings'
-import i18n from '@/locales/useI18n'
 
 export const setDocumentTitle = function (to) {
   if (config.dynamicBrowserTab) {
@@ -29,7 +28,7 @@ export const setDocumentTitle = function (to) {
 }
 
 export const setDocumentTitleForLangChange = () => {
-  document.title = (window.pagetitle ? i18n.global.t(window.pagetitle) + ' - ' : '') + config.title
+  document.title = (window.pagetitle ? window.pagetitle + ' - ' : '') + config.title
 }
 
 export const domTitle = config.title

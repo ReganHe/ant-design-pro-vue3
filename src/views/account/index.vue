@@ -2,95 +2,64 @@
   <a-spin :spinning="loading">
     <div class="page-header-index-wide page-header-wrapper-grid-content-main">
       <a-row :gutter="24">
-        <a-col
-          :md="24"
-          :lg="7"
-        >
+        <a-col :md="24" :lg="7">
           <a-card :bordered="false">
             <div class="account-center-avatarHolder">
               <!-- 上传头像 -->
-              <UploadAvatar
-                @ok="setavatar"
-                :defaultAvatar="userInfo.avatar"
-                v-if="showBaseSetting"
-              />
-              <div class="username">{{userInfo.adAccount}}</div>
-              <div class="bio">{{userInfo.bio}}</div>
+              <UploadAvatar @ok="setavatar" :defaultAvatar="userInfo.avatar" v-if="showBaseSetting" />
+              <div class="username">{{ userInfo.adAccount }}</div>
+              <div class="bio">{{ userInfo.bio }}</div>
             </div>
 
             <!-- 详情 -->
             <div class="account-center-detail">
               <p>
-                <UserAddOutlined />{{userInfo.chineseName}}
+                <UserAddOutlined />{{ userInfo.chineseName }}
               </p>
               <p>
-                <SmileOutlined />{{userInfo.nickname}}
+                <SmileOutlined />{{ userInfo.nickname }}
               </p>
               <p>
-                <IdcardOutlined />{{userInfo.empPosition}}
+                <IdcardOutlined />{{ userInfo.empPosition }}
               </p>
             </div>
             <a-divider />
 
             <!-- 技能 -->
             <div class="account-center-tags">
-              <div class="tagsTitle">{{$t('account.skills')}}</div>
+              <div class="tagsTitle">技能</div>
               <div>
-                <a-tag
-                  v-for="tag in userInfo.skills"
-                  :key="tag"
-                >{{ tag }}</a-tag>
-                <a-tag
-                  v-for="tag in userInfo.mySkills"
-                  :key="tag"
-                >{{ tag }}</a-tag>
+                <a-tag v-for="tag in userInfo.skills" :key="tag">{{ tag }}</a-tag>
+                <a-tag v-for="tag in userInfo.mySkills" :key="tag">{{ tag }}</a-tag>
               </div>
-              <div
-                class="tagsTitle"
-                style="margin-top:10px"
-              >{{$t('account.interest')}}</div>
+              <div class="tagsTitle" style="margin-top:10px">爱好</div>
               <div>
-                <a-tag
-                  v-for="tag in userInfo.interest"
-                  :key="tag"
-                >{{ tag }}</a-tag>
-                <a-tag
-                  v-for="tag in userInfo.myInterest"
-                  :key="tag"
-                >{{ tag }}</a-tag>
+                <a-tag v-for="tag in userInfo.interest" :key="tag">{{ tag }}</a-tag>
+                <a-tag v-for="tag in userInfo.myInterest" :key="tag">{{ tag }}</a-tag>
               </div>
             </div>
             <a-divider :dashed="true" />
 
             <!-- 团队 -->
             <div class="account-center-team">
-              <div class="teamTitle">{{$t('account.team')}}</div>
+              <div class="teamTitle">团队</div>
               <div class="members">
                 <a-row>
                   <a-col :span="12">
                     <a>
-                      <a-avatar
-                        size="small"
-                        src="/account/levelOneDept.png"
-                      />
+                      <a-avatar size="small" src="/account/levelOneDept.png" />
                       <span class="member">{{ userInfo.levelOneDept }}</span>
                     </a>
                   </a-col>
                   <a-col :span="12">
                     <a>
-                      <a-avatar
-                        size="small"
-                        src="/account/levelTwoDept.png"
-                      />
+                      <a-avatar size="small" src="/account/levelTwoDept.png" />
                       <span class="member">{{ userInfo.levelTwoDept }}</span>
                     </a>
                   </a-col>
                   <a-col :span="24">
                     <a>
-                      <a-avatar
-                        size="small"
-                        src="/account/levelThreeDept.png"
-                      />
+                      <a-avatar size="small" src="/account/levelThreeDept.png" />
                       <span class="member">{{ userInfo.levelThreeDept }}</span>
                     </a>
                   </a-col>
@@ -99,24 +68,11 @@
             </div>
           </a-card>
         </a-col>
-        <a-col
-          :md="24"
-          :lg="17"
-        >
-          <a-card
-            style="width:100%"
-            :bordered="false"
-            :tabList="tabListNoTitle"
-            :activeTabKey="noTitleKey"
-            @tabChange="key => handleTabChange(key, 'noTitleKey')"
-          >
-            <BaseSetting
-              :userInfo="userInfo"
-              :allSkills="allSkills"
-              :allInterest="allInterest"
-              v-if="showBaseSetting"
-              @save="onSaveBaseSetting"
-            />
+        <a-col :md="24" :lg="17">
+          <a-card style="width:100%" :bordered="false" :tabList="tabListNoTitle" :activeTabKey="noTitleKey"
+            @tabChange="key => handleTabChange(key, 'noTitleKey')">
+            <BaseSetting :userInfo="userInfo" :allSkills="allSkills" :allInterest="allInterest" v-if="showBaseSetting"
+              @save="onSaveBaseSetting" />
           </a-card>
         </a-col>
       </a-row>
@@ -126,15 +82,14 @@
 
 <script lang="ts">
 import BaseSetting from './components/BaseSetting.vue'
-import { ref, reactive, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useMessage } from '@/hooks/useMessage'
 import * as api from './service'
 import UploadAvatar from './components/UploadAvatar.vue'
-import { divisionStringToArray, separator } from '@/utils/util'
+import { separator } from '@/utils/util'
 import { getPersonDetail } from './hooks'
-import { UpdateUserLabel, UserInfo } from './types'
-import { UserAddOutlined ,SmileOutlined,IdcardOutlined} from '@ant-design/icons-vue'
-import { useI18n } from 'vue-i18n'
+import { UserInfo } from './types'
+import { UserAddOutlined, SmileOutlined, IdcardOutlined } from '@ant-design/icons-vue'
 
 export default {
   components: {
@@ -145,12 +100,10 @@ export default {
     IdcardOutlined
   },
   setup() {
-    const { t } = useI18n()
-
     const tabListNoTitle = [
       {
         key: 'baseInfo',
-        tab: t('account.baseInfo')
+        tab: '基本信息'
       }
     ]
     const noTitleKey = 'baseInfo'
@@ -184,7 +137,7 @@ export default {
       loading.value = true
       const res = await api.updatePersonDetail({ id: userInfo.value.id, avatar: url })
       if (res) {
-        createMessage.success(t('common.uploadSuccess'))
+        createMessage.success('上传成功！')
       }
       loading.value = false
     }
@@ -192,7 +145,7 @@ export default {
     const { createMessage } = useMessage()
     const onSaveBaseSetting = async data => {
       if (!data.skills.length) {
-        createMessage.error(t('account.needSkills'))
+        createMessage.error('请选择您的技能！')
         return
       }
       loading.value = true
@@ -213,7 +166,7 @@ export default {
       loading.value = false
     }
 
-    const handleTabChange = (key, type) => {}
+    const handleTabChange = (key, value) => { }
     return {
       userInfo,
       setavatar,
@@ -241,13 +194,14 @@ export default {
     text-align: center;
     margin-bottom: 24px;
 
-    & > .avatar {
+    &>.avatar {
       margin: 0 auto;
       width: 104px;
       height: 104px;
       margin-bottom: 20px;
       border-radius: 50%;
       overflow: hidden;
+
       img {
         height: 100%;
         width: 100%;
@@ -283,9 +237,11 @@ export default {
     .title {
       background-position: 0 0;
     }
+
     .group {
       background-position: 0 -22px;
     }
+
     .address {
       background-position: 0 -44px;
     }
@@ -304,6 +260,7 @@ export default {
         margin: 12px 0;
         line-height: 24px;
         height: 24px;
+
         .member {
           font-size: 14px;
           color: rgba(0, 0, 0, 0.65);
@@ -314,6 +271,7 @@ export default {
           transition: all 0.3s;
           display: inline-block;
         }
+
         &:hover {
           span {
             color: #1890ff;
@@ -354,6 +312,7 @@ export default {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
+
   .mask {
     opacity: 0;
     position: absolute;

@@ -2,7 +2,7 @@
   <a-result status="500" title="500">
     <template #subTitle>
       <pre>
-        {{ errorMsg || $t(title) }}
+        {{ errorMsg || title }}
       </pre>
     </template>
     <template #extra>

@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash.clonedeep'
-import i18n from '@/locales/useI18n'
 import ls from '@/utils/Storage'
 import { BasicLayout, RouteView, BlankLayout } from '@/layouts'//, BlankLayout, PageView, RouteView
 import { getRoutePages } from '@/utils/batchImportFiles'
@@ -70,7 +69,7 @@ export const menuToRouter = (routerMap, parent?) => {
   return routerMap.map(item => {
     const { title, show, hideChildren, hiddenHeaderContent, target, icon } = item.meta || {}
     const currentRouter: any = {
-      // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/workplace
+      // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /account
       path: item.path || `${(parent && parent.path) || ''}/${item.key}`,
       // 路由名称，建议唯一
       name: item.name || item.key || '',
@@ -81,7 +80,7 @@ export const menuToRouter = (routerMap, parent?) => {
       // component: (() => import(`@/views/${item.component}`)),
       // meta: 页面标题, 菜单图标, 页面权限(供指令权限用，可去掉)
       meta: {
-        title: i18n.global.t(title),
+        title: title,
         icon: icon || undefined,
         // PageView用的,控制PageHeader的,暂时没用上
         hiddenHeaderContent,

@@ -100,11 +100,6 @@ yarn build
 
   ***注意:svg文件的<svg> 标签上必须有 fill="currentColor" 字段,这样才能从外部的span等标签修改颜色,否则颜色不可变***
 
-国际化
-----
-
-- 国际化使用了i18n 9的版本,由于该版本不识别.组成的key,所以程序用为了兼用使用replaceDot方法进行了一层循环,影响项目性能,并且禁止写成 'a':'xx','a.b':'xxxx'这种形式,因为无法生成对象,因此国际化不推荐写成 'list.search-list.articles': '搜索列表（文章）',推荐写成{a:{b:{c:'xxx'} } }
-
 更换主题
 ----
 
@@ -182,8 +177,8 @@ yarn build
 
 ## TODO
 1. 详尽的文档
-2. 项目中的 i18n.global.t 全部删除掉,只在 hooks 中使用 i18n
-3. antv4.0版本 夜间模式适配
+2. antv4.0版本 夜间模式适配
+
 ## 浏览器兼容
 
 Edge Chrome 等现代浏览器,目前只测试过Chrome,没有Mac所以Safari没有测试

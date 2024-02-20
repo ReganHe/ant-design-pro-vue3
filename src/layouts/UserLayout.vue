@@ -1,9 +1,6 @@
 <template>
   <div id="userLayout" :class="['user-layout-wrapper', isMobile && 'mobile']">
     <div class="container">
-      <div class="user-layout-lang">
-        <select-lang class="select-lang-trigger" />
-      </div>
       <div class="user-layout-content">
         <div class="top">
           <div class="header">
@@ -12,7 +9,7 @@
               <span class="title">Ant Design</span>
             </a>
           </div>
-          <div class="desc">{{ $t('layouts.userLayout.title') }}</div>
+          <div class="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
         </div>
 
         <router-view />
@@ -31,7 +28,6 @@
 </template>
 
 <script lang="ts" setup name="UserLayout">
-import SelectLang from '@/components/SelectLang';
 import { isMobile } from '@/utils/device';
 import { onMounted, onBeforeUnmount } from 'vue';
 
@@ -63,24 +59,6 @@ onBeforeUnmount(() => {
     background-size: 100%;
     //padding: 50px 0 84px;
     position: relative;
-
-    .user-layout-lang {
-      width: 100%;
-      height: 40px;
-      line-height: 44px;
-      text-align: right;
-
-      ::v-deep(.select-lang-trigger) {
-        cursor: pointer;
-        padding: 12px;
-        margin-right: 16px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        vertical-align: middle;
-      }
-    }
 
     .user-layout-content {
       padding: 32px 0 24px;

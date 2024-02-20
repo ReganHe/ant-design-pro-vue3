@@ -1,20 +1,20 @@
 <template>
-  <SettingItem :title="$t('settingDrawer.layoutSettings')">
+  <SettingItem title="布局设置">
     <a-list :split="false">
       <!-- 内容区域宽度 -->
       <a-list-item>
         <template #actions>
           <a-tooltip>
-            <template #title>{{ $t('settingDrawer.onlyValid') }}</template>
+            <template #title>该设定仅 [顶部栏导航] 时有效</template>
             <a-select size="small" style="width: 80px" :value="contentWidth" @change="handleContentWidthChange"
               :disabled="layoutMode === 'sidemenu'">
-              <a-select-option value="Fluid">{{ $t('settingDrawer.fluid') }}</a-select-option>
-              <a-select-option value="Fixed">{{ $t('settingDrawer.fixation') }}</a-select-option>
+              <a-select-option value="Fluid">流式</a-select-option>
+              <a-select-option value="Fixed">固定</a-select-option>
             </a-select>
           </a-tooltip>
         </template>
         <a-list-item-meta>
-          <template #title>{{ $t('settingDrawer.contentWidth') }}</template>
+          <template #title>内容区域宽度</template>
         </a-list-item-meta>
       </a-list-item>
       <!-- 固定 Header -->
@@ -23,7 +23,7 @@
           <a-switch size="small" :checked="fixedHeader" @change="handleFixedHeader" />
         </template>
         <a-list-item-meta>
-          <template #title>{{ $t('settingDrawer.fixHeader') }}</template>
+          <template #title>固定 Header</template>
         </a-list-item-meta>
       </a-list-item>
       <!-- 下滑时隐藏 Header -->
@@ -35,8 +35,8 @@
         <a-list-item-meta>
           <template #title>
             <a-tooltip placement="left">
-              <template #title>{{ $t('settingDrawer.configurableWhenFixingHeaders') }}</template>
-              <div :style="{ opacity: !fixedHeader ? '0.5' : '1' }">{{ $t('settingDrawer.hideHeaders') }}</div>
+              <template #title>固定 Header 时可配置</template>
+              <div :style="{ opacity: !fixedHeader ? '0.5' : '1' }">下滑时隐藏 Header</div>
             </a-tooltip>
           </template>
         </a-list-item-meta>
@@ -48,10 +48,10 @@
             @change="handleFixSiderbar" />
         </template>
         <a-list-item-meta>
-          <template #title >
+          <template #title>
             <!-- { textDecoration: layoutMode === 'topmenu' ? 'line-through' : 'unset' } -->
-            <div :style="{ opacity: layoutMode === 'topmenu' ? '0.5' : '1' }">{{$t('settingDrawer.fixedSideMenu') }}</div>
-            </template>
+            <div :style="{ opacity: layoutMode === 'topmenu' ? '0.5' : '1' }">固定侧边菜单</div>
+          </template>
         </a-list-item-meta>
       </a-list-item>
     </a-list>
@@ -66,7 +66,6 @@ import {
   TOGGLE_FIXED_SIDERBAR
 } from '@/store/mutation-types'
 import useSiteSettings from '@/store/useSiteSettings'
-import { CheckOutlined } from '@ant-design/icons-vue'
 import SettingItem from './SettingItem.vue'
 
 const { contentWidth, layoutMode, fixedHeader, autoHideHeader, fixSiderbar } = useSiteSettings()
