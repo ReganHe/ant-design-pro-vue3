@@ -24,28 +24,6 @@ export const example: Router = {
         }
       ]
     },
-    // profile
-    {
-      path: '/profile',
-      name: 'profile',
-      component: RouteView,
-      redirect: '/profile/basic',
-      meta: { title: '详情页', icon: 'bx-analyse' },
-      children: [
-        {
-          path: '/profile/basic',
-          name: 'ProfileBasic',
-          component: () => import('@/views/Home.vue'),
-          meta: { title: '基础详情页' }
-        },
-        {
-          path: '/profile/advanced',
-          name: 'ProfileAdvanced',
-          component: () => import('@/views/Home.vue'),
-          meta: { title: '高级详情页' }
-        }
-      ]
-    },
     // exception
     {
       path: '/exception',
