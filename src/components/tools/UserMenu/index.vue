@@ -14,32 +14,26 @@
         </span>
         <template #overlay>
           <a-menu class="user-dropdown-menu-wrapper">
-            <!-- <a-menu-item key="0">
-            <router-link :to="{ name: 'center' }">
-              <a-icon type="user" />
-              <span>个人中心</span>
-            </router-link>
-            </a-menu-item>-->
-            <!-- <a-menu-item key="1">
-            <router-link :to="{ name: 'settings' }">
-              <a-icon type="setting" />
-              <span>账户设置</span>
-            </router-link>
-            </a-menu-item>-->
-            <a-menu-item key="4" @click="showSystemSetting">
+            <a-menu-item key="1">
+              <router-link :to="{ path: '/account/center' }">
+                <UserOutlined />
+                <span>个人中心</span>
+              </router-link>
+            </a-menu-item>
+            <a-menu-item key="2" @click="showSystemSetting">
               <a>
                 <SettingOutlined />
                 <span>系统设置</span>
               </a>
             </a-menu-item>
-            <a-menu-item key="5" @click="onLockScreen">
+            <a-menu-item key="3" @click="onLockScreen">
               <a>
                 <LockOutlined />
                 <span>锁定屏幕</span>
               </a>
             </a-menu-item>
             <a-menu-divider />
-            <a-menu-item key="3">
+            <a-menu-item key="11">
               <a href="javascript:;" @click="handleLogout">
                 <LogoutOutlined />
                 <span>退出登录</span>
@@ -61,7 +55,8 @@ import {
   QuestionCircleOutlined,
   SettingOutlined,
   LogoutOutlined,
-  LockOutlined
+  LockOutlined,
+  UserOutlined
 } from '@ant-design/icons-vue'
 import { systemConfig } from '@/store/reactiveState'
 import ls from '@/utils/Storage'

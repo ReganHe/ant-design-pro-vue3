@@ -71,8 +71,6 @@ yarn build
 
 - 图标除了 Ant Design Vue 自带的图标以外还使用了 vite-plugin-svg-icons 插件缓存 svg,所有图标都放在 src/assets/icons 中
 
--
-
 - 想使用 antv 自带的图标请拷贝 node_modules\@ant-design\icons-svg\inline-svg 到图标文件夹,会自动引入,名称为 文件夹名-文件名 例如 a 下的 b.svg,SvgIcon 组件传入 name="a-b"即可: <SvgIcon name="a-b" color="#fff"/>
 
   想获取所有已添加的 icon:

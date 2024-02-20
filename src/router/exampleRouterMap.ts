@@ -15,6 +15,7 @@ export const example: Router = {
       redirect: '/account/center',
       name: 'account',
       meta: { title: '个人页', icon: 'bx-analyse', keepAlive: true },
+      hidden: true,
       children: [
         {
           path: '/account/center',
