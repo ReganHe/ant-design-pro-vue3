@@ -1,7 +1,7 @@
 import { UserLayout } from '@/layouts'
 import { Router } from './types'
 import { example } from './exampleRouterMap'
-import errorPage from '@/views/Exception/500.vue'
+import errorPage from '@/views/exception/500.vue'
 
 // info:todo:1.如果使用服务端获取路由,path: '/',这块路由再写就会被覆盖
 // 2.router.addRoute(parent, routeObj),添加parent,它就会自动加上/parent/xxx,直接写parent即可,就算嵌套多层也没事,自动变成/xxxx/xxxx/parent/xxxxx
@@ -23,21 +23,6 @@ export default [
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/Login.vue'),
         meta: { title: '登录' }
       },
-      {
-        path: 'register',
-        name: 'register',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Register.vue')
-      },
-      {
-        path: 'registerResult',
-        name: 'registerResult',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult.vue')
-      },
-      {
-        path: 'recover',
-        name: 'recover',
-        component: undefined
-      }
     ]
   },
   {

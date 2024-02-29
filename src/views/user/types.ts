@@ -33,9 +33,7 @@ export interface Logout extends Response {
 }
 
 export namespace API {
-  export type _Get2Step = () => Promise<Get2Step>
   export type _Login = (data: { captcha?: string; mobile?: string; password?: string; rememberMe?: boolean; username?: string }) => Promise<Login>
-  export type _GetSmsCaptcha = (data: { mobile: string }) => Promise<GetSmsCaptcha>
   export type _Logout = () => Promise<Logout>
 }
 
@@ -43,6 +41,4 @@ export interface FormState {
   rememberMe: boolean
   username: string
   password: string
-  mobile: string
-  captcha: string
 }
