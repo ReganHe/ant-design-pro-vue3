@@ -1,5 +1,5 @@
-import store from '@/store'
-import { TOGGLE_DEVICE, DEVICE_TYPE } from '@/store/mutation-types'
+import { useAppStore } from '@/store/modules/app';
+import { DEVICE_TYPE } from '@/store/mutation-types'
 import { useBreakpoints, breakpointsAntDesign } from '@vueuse/core'
 // { "xs": 480, "sm": 576, "md": 768, "lg": 992, "xl": 1200, "xxl": 1600 }
 const breakpoints = useBreakpoints(breakpointsAntDesign)
@@ -20,18 +20,19 @@ export function triggerWindowResizeEvent() {
 // clear:解决window.onresize会触发两次
 let clear
 export const setDeviceType = () => {
+  const appStore = useAppStore();
   if (clear) {
     clearTimeout(clear)
   }
   clear = setTimeout(function () {
     if (isMobile.value) {
-      store.commit(TOGGLE_DEVICE, DEVICE_TYPE.MOBILE)
+      appStore.setDevice(DEVICE_TYPE.MOBILE);
     }
     if (isTablet.value) {
-      store.commit(TOGGLE_DEVICE, DEVICE_TYPE.TABLET)
+      appStore.setDevice(DEVICE_TYPE.TABLET);
     }
     if (isDesktop.value) {
-      store.commit(TOGGLE_DEVICE, DEVICE_TYPE.DESKTOP)
+      appStore.setDevice(DEVICE_TYPE.DESKTOP);
     }
   })
 }

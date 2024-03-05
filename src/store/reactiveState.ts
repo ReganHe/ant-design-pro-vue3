@@ -47,7 +47,7 @@ export const systemConfig = {
         systemConfig.state.sidebar = type
         cache({ [SET_SIDEBAR_TYPE]: type })
       },
-      [CLOSE_SIDEBAR]: (state) => {
+      [CLOSE_SIDEBAR]: () => {
         cache({ [CLOSE_SIDEBAR]: true })
         systemConfig.state.sidebar = false
       },
@@ -129,18 +129,6 @@ export const systemConfig = {
 
 function cache(o) {
   ls.setObj(SITE_SETTINGS, o)
-}
-
-function menuIconColorPatch(color) {
-  const menuIconColor = `
-      .SysMenu .ant-menu-light .ant-menu-submenu-selected .ant-menu-item-icon,
-      .SysMenu .ant-menu-light .ant-menu-item-selected .ant-menu-item-icon{
-        color: ${color} !important;
-      }`
-  const style = document.createElement('style')
-  style.appendChild(document.createTextNode(menuIconColor))
-  const head = document.getElementsByTagName('head')[0]
-  head.appendChild(style)
 }
 
 function setDarkMode(isDark) {

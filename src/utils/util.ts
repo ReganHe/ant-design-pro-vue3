@@ -69,10 +69,6 @@ export function scorePassword(pass) {
   return parseInt(score.toString())
 }
 
-export const firstLetterIsUpperCase = function (str) {
-  const reg = /^[A-Z][A-z0-9]*$/
-  return reg.test(str)
-}
 export const separator = ';'
 export const divisionStringToArray = (str, customSeparator = separator) => {
   return str ? str.split(customSeparator) : []

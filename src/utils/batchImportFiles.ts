@@ -1,26 +1,4 @@
 import { StoreFile } from './types'
-import { firstLetterIsUpperCase } from './util'
-
-// 数组生成obj,可递归
-function reduceArr(o, arr, cb) {
-  arr.reduce((total, val, index) => {
-    // 如字母如果是大写,则表示他是一个组件的文件夹名,需要变成小写
-    if (firstLetterIsUpperCase(val)) {
-      val = val.replace(val[0], val[0].toLowerCase())
-    }
-    if (index === arr.length - 1) {
-      try {
-        total[val] = cb
-      } catch (error) {
-        const all = arr.join('.')
-        arr.pop()
-        console.error(arr.join('.') + ' 本身不应该存在或者 ' + all + ' 不应该存在')
-      }
-      return total[val]
-    }
-    return total[val] || (total[val] = {})
-  }, o)
-}
 
 export const getRoutePages = () => {
   const pages = import.meta.glob('/src/views/**/*.vue', { import: 'default', eager: true })
