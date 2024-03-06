@@ -1,23 +1,18 @@
 import { ref, reactive } from 'vue'
 import ls from '@/utils/Storage'
-import { updateDarkMode } from '@/components/SettingDrawer/settingConfig'
 import {
   SITE_SETTINGS,
   SET_SIDEBAR_TYPE,
   TOGGLE_DEVICE,
   TOGGLE_FIXED_HEADER,
   TOGGLE_CONTENT_WIDTH,
-  THEME_COLOR,
   TOGGLE_WEAK,
   TOGGLE_MULTI_TAB,
   SET_SETTING_DRAWER,
   TOGGLE_FIXED_SIDERBAR,
   TOGGLE_FIXED_HEADER_HIDDEN,
   TOGGLE_GRAY,
-  TOGGLE_THEME,
-  TOGGLE_LAYOUT_MODE,
   CLOSE_SIDEBAR,
-  SET_DARK_MODE,
   SET_LOCK_SCREEN
 } from '@/store/mutation-types'
 
@@ -54,32 +49,6 @@ export const systemConfig = {
       [TOGGLE_DEVICE]: (device) => {
         systemConfig.state.device = device
       },
-      // 深浅主题
-      [TOGGLE_THEME]: (theme) => {
-        cache({ [TOGGLE_THEME]: theme })
-        systemConfig.state.theme = theme
-
-        // 开启深浅主题时关闭黑夜模式
-        if (systemConfig.state.darkMode) {
-          setDarkMode(false)
-        }
-      },
-      [SET_DARK_MODE]: (isDark) => {
-        setDarkMode(isDark)
-        // 开启黑夜模式时设置主题为黑色
-        if (isDark) {
-          systemConfig.state.theme = 'dark'
-        }
-      },
-      [TOGGLE_LAYOUT_MODE]: (layout) => {
-        // 左侧菜单的话就用流式布局
-        if (layout === 'sidemenu') {
-          systemConfig.state.contentWidth = 'Fluid'
-          cache({ [TOGGLE_CONTENT_WIDTH]: 'Fluid' })
-        }
-        cache({ [TOGGLE_LAYOUT_MODE]: layout })
-        systemConfig.state.layout = layout
-      },
       [TOGGLE_FIXED_HEADER]: (fixed) => {
         cache({ [TOGGLE_FIXED_HEADER]: fixed })
         systemConfig.state.fixedHeader = fixed
@@ -95,12 +64,6 @@ export const systemConfig = {
       [TOGGLE_CONTENT_WIDTH]: (type) => {
         cache({ [TOGGLE_CONTENT_WIDTH]: type })
         systemConfig.state.contentWidth = type
-      },
-      [THEME_COLOR]: (color) => {
-        cache({ [THEME_COLOR]: color })
-        systemConfig.state.color = color
-
-        // menuIconColorPatch(color)
       },
       [TOGGLE_WEAK]: (flag) => {
         cache({ [TOGGLE_WEAK]: flag })
@@ -129,10 +92,4 @@ export const systemConfig = {
 
 function cache(o) {
   ls.setObj(SITE_SETTINGS, o)
-}
-
-function setDarkMode(isDark) {
-  cache({ [SET_DARK_MODE]: isDark })
-  updateDarkMode(isDark)
-  systemConfig.state.darkMode = isDark
 }

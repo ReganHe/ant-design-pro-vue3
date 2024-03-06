@@ -9,6 +9,7 @@
       </a-tooltip>
       <!-- 自定义颜色 -->
       <a-popover title="自定义" overlayClassName="themeColorCustomColor" placement="bottomRight">
+
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
@@ -19,29 +20,37 @@
     </div>
   </SettingItem>
 </template>
+
 <script lang="ts" setup name="ThemeColor">
 import { computed } from 'vue'
-import { systemConfig } from '@/store/reactiveState'
-import { THEME_COLOR } from '@/store/mutation-types'
+import { ConfigProvider } from 'ant-design-vue'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { colorList } from '../settingConfig'
-import { updateTheme } from '../updateTheme'
 import useSiteSettings from '@/store/useSiteSettings'
 import SettingItem from './SettingItem.vue'
 import ColorPicker from '@/components/ColorPicker/index.vue'
+import { useSettingsStore } from '@/store/modules/settings'
 
+const settingsStore = useSettingsStore();
 const { primaryColor } = useSiteSettings()
 
-const changeColor = (color) => {
-  systemConfig.commit(THEME_COLOR, color)
-  updateTheme(color)
+const changeColor = (color: string) => {
+  console.log('changeColor', color, settingsStore);
+  settingsStore.setValue('color', color);
+  console.log('changeColor result', settingsStore.color)
+  ConfigProvider.config({
+    theme: {
+      primaryColor: color
+    }
+  })
 }
 
 const colorArr = colorList.map((item) => item.color)
 const isCustomColor = computed(() => {
-  return !colorArr.includes(systemConfig.state.color + '')
+  return !colorArr.includes(settingsStore.color + '')
 })
 </script>
+
 <style lang="less" scoped>
 .setting-drawer-theme-color-colorBlock {
   width: 20px;
