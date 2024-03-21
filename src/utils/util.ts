@@ -20,13 +20,6 @@ export function timeFix() {
   return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
 }
 
-// aes encryption key
-export const encryptKeys = {
-  // key最少4位,否则报错
-  key: '1111',
-  iv: '1'
-}
-
 export const getQueryParameters = (options) => {
   const url = options.url
   const search = url.split('?')[1]

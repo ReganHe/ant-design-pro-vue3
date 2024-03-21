@@ -8,8 +8,12 @@
 </template>
 <script lang="ts" setup name="RouteView">
 import { ref, watch } from 'vue'
-import { systemConfig } from '@/store/reactiveState'
 import { useRouter } from 'vue-router'
+import { useSettingsStore } from '@/store/modules/settings';
+
+const settingsStore = useSettingsStore();
+const router = useRouter()
+const isKeep = ref(false)
 
 const props = defineProps({
   keepAlive: {
@@ -17,8 +21,7 @@ const props = defineProps({
     default: false
   }
 })
-const router = useRouter()
-const isKeep = ref(false)
+
 
 watch(
   () => router.currentRoute.value,
@@ -27,7 +30,7 @@ watch(
     // 应当全部组件皆缓存，否则会导致切换页面后页面还原成原始状态
     // 若确实不需要，可改为 return meta.keepAlive ? isKeep : notKeep
     const routeKeepAlive = router.currentRoute.value.meta.keepAlive
-    if (!systemConfig.state.multiTab && !routeKeepAlive && !props.keepAlive) {
+    if (!settingsStore.multiTab && !routeKeepAlive && !props.keepAlive) {
       isKeep.value = false
     } else {
       isKeep.value = true

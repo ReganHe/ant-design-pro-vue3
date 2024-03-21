@@ -8,13 +8,10 @@
         <p style="font-size: 14px; color: rgba(0, 0, 0, 0.65)">{{ state.description }}</p>
         <div class="link">
           <template v-for="(link, index) in state.linkList" :key="index">
-            <a
-              @click="
-                () => {
-                  link.callback && link.callback()
-                }
-              "
-            >
+            <a @click="() => {
+                link.callback && link.callback()
+              }
+              ">
               <!-- <a-icon :type="link.icon" /> -->
               <span>{{ link.title }}</span>
             </a>
@@ -42,7 +39,7 @@
       <div class="page-header-index-wide">
         <slot>
           <!-- keep-alive  -->
-          <keep-alive v-if="multiTab">
+          <keep-alive v-if="settingsStore.multiTab">
             <router-view ref="contentRef" />
           </keep-alive>
           <router-view v-else ref="contentRef" />
@@ -53,10 +50,12 @@
 </template>
 
 <script lang="ts" setup name="PageView">
-import { reactive, onMounted, onUpdated, toRefs, ref } from 'vue'
+import { reactive, onMounted, onUpdated, ref } from 'vue'
 import PageHeader from '@/components/PageHeader/index.vue'
-import useSiteSettings from '@/store/useSiteSettings'
 import { useRouter } from 'vue-router'
+import { useSettingsStore } from '@/store/modules/settings'
+
+const settingsStore = useSettingsStore();
 // info:todo:用处不大,尚未完成
 const props = defineProps({
   avatar: {
@@ -77,7 +76,6 @@ const props = defineProps({
   }
 })
 const router = useRouter()
-const { multiTab } = useSiteSettings()
 const state = reactive<any>({
   pageTitle: null,
   description: null,

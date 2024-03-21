@@ -4,7 +4,7 @@
       <a-tooltip class="setting-drawer-theme-color-colorBlock" v-for="(item, index) in colorList" :key="index">
         <template #title>{{ item.key }}</template>
         <a-tag :color="item.color" @click="changeColor(item.color)">
-          <CheckOutlined v-if="item.color === primaryColor" />
+          <CheckOutlined v-if="item.color === settingsStore.color" />
         </a-tag>
       </a-tooltip>
       <!-- 自定义颜色 -->
@@ -13,8 +13,8 @@
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
-        <a-tag :color="isCustomColor ? primaryColor : ''" class="setting-drawer-theme-color-colorBlock">
-          <CheckOutlined v-if="isCustomColor" />
+        <a-tag :color="isCustomColorRef ? settingsStore.color : ''" class="setting-drawer-theme-color-colorBlock">
+          <CheckOutlined v-if="isCustomColorRef" />
         </a-tag>
       </a-popover>
     </div>
@@ -26,13 +26,11 @@ import { computed } from 'vue'
 import { ConfigProvider } from 'ant-design-vue'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import { colorList } from '../settingConfig'
-import useSiteSettings from '@/store/useSiteSettings'
 import SettingItem from './SettingItem.vue'
 import ColorPicker from '@/components/ColorPicker/index.vue'
 import { useSettingsStore } from '@/store/modules/settings'
 
 const settingsStore = useSettingsStore();
-const { primaryColor } = useSiteSettings()
 
 const changeColor = (color: string) => {
   console.log('changeColor', color, settingsStore);
@@ -45,8 +43,8 @@ const changeColor = (color: string) => {
   })
 }
 
-const colorArr = colorList.map((item) => item.color)
-const isCustomColor = computed(() => {
+const isCustomColorRef = computed(() => {
+  const colorArr = colorList.map((item) => item.color)
   return !colorArr.includes(settingsStore.color + '')
 })
 </script>

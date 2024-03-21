@@ -1,13 +1,10 @@
 <template>
-  <a-config-provider
-    :locale="zhCN"
-    :theme="{
-      token: {
-        colorPrimary: systemConfig.state.color,
-        borderRadius: 2
-      }
-    }"
-  >
+  <a-config-provider :locale="zhCN" :theme="{
+    token: {
+      colorPrimary: settingsStore.color,
+      borderRadius: 2
+    }
+  }">
     <!-- algorithm: theme.darkAlgorithm,夜间主题 -->
     <router-view />
   </a-config-provider>
@@ -22,8 +19,9 @@ import LockScreen from '@/components/LockScreen/index.vue'
 import emitter from '@/utils/eventBus'
 import { useRouter } from 'vue-router'
 import { Modal } from 'ant-design-vue'
-import { systemConfig } from '@/store/reactiveState'
-// import { theme } from 'ant-design-vue';
+import { useSettingsStore } from '@/store/modules/settings';
+
+const settingsStore = useSettingsStore();
 
 window.onresize = setDeviceType
 setDeviceType()
@@ -47,5 +45,3 @@ onErrorCaptured((err, instance, info) => {
   }
 })
 </script>
-
-<style></style>

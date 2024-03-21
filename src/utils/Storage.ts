@@ -1,5 +1,4 @@
 import { AesEncryption } from './encrypt'
-import { encryptKeys } from './util'
 import config from '@/config/defaultSettings'
 
 interface storageOptType {
@@ -9,7 +8,7 @@ interface storageOptType {
   isEncrypt?: boolean
 }
 
-const encryption = new AesEncryption({ key: encryptKeys.key, iv: encryptKeys.iv })
+const encryption = new AesEncryption({ key: '1111', iv: '1' })
 
 const options = Object.assign(
   {

@@ -1,9 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'ant-design-vue'
 import { ACCESS_TOKEN, USER_INFO } from '@/store/mutation-types'
-import { baseURL } from '@/utils/util'
 import ls from '@/utils/Storage'
-import { globalLoading } from '@/store/reactiveState'
 import emitter from '@/utils/eventBus'
 
 const ContentType = {
@@ -25,7 +23,6 @@ const baseService = axios.create({
 // request interceptor
 baseService.interceptors.request.use(
   (config) => {
-    globalLoading.value = true
     const token = ls.get(ACCESS_TOKEN)
     const userinfo = ls.get(USER_INFO)
     if (token) {
@@ -38,14 +35,12 @@ baseService.interceptors.request.use(
     return config
   },
   (error) => {
-    globalLoading.value = false
     return Promise.reject(error)
   }
 )
 
 baseService.interceptors.response.use(
   (res: AxiosResponse<any>) => {
-    globalLoading.value = false
     if (res.status === 200) {
       return res.data
     } else if (res.status === 401 || res.status === 403) {
@@ -70,7 +65,6 @@ baseService.interceptors.response.use(
   },
   (error) => {
     console.log(error)
-    globalLoading.value = false
     const msg = error.message
     const result = error.response
     if (result) {

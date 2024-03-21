@@ -1,6 +1,6 @@
 <template>
   <div class="setting-drawer">
-    <a-drawer width="320" placement="right" @close="onClose" :closable="isMobile" :open="systemConfig.state.showSettings">
+    <a-drawer width="320" placement="right" @close="onClose" :closable="isMobile" :open="settingsStore.showSettings">
       <div class="setting-drawer-index-content">
         <!-- 整体风格设置 -->
         <GlobalStyle />
@@ -17,21 +17,24 @@
       <div :style="{ marginBottom: '24px' }">
         <a-button @click="doCopy" block>
           <template #icon>
-            <span> <CopyOutlined style="margin-right: 5px" /> 拷贝设置 </span>
+            <span>
+              <CopyOutlined style="margin-right: 5px" /> 拷贝设置
+            </span>
           </template>
         </a-button>
         <a-alert type="warning" :style="{ marginTop: '24px' }" v-if="isDev">
           <template #message>
             <span>
               配置的设置可以复制到defaultSettings.ts中作为项目的默认设置。修改配置文件后，需要清空本地缓存和LocalStorage
-              <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/src/config/defaultSettings.ts" target="_blank">src/config/defaultSettings.ts</a>
+              <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/src/config/defaultSettings.ts"
+                target="_blank">src/config/defaultSettings.ts</a>
             </span>
           </template>
         </a-alert>
       </div>
 
       <template #handle>
-        <div class="setting-drawer-index-handle" v-if="systemConfig.state.showSettings" @click="onClose">
+        <div class="setting-drawer-index-handle" v-if="settingsStore.showSettings" @click="onClose">
           <CloseOutlined style="color: #fff" />
         </div>
       </template>
@@ -40,9 +43,7 @@
 </template>
 
 <script lang="ts" setup name="SettingDrawer">
-import { systemConfig } from '@/store/reactiveState'
 import { CloseOutlined, CopyOutlined } from '@ant-design/icons-vue'
-import { SET_SETTING_DRAWER } from '@/store/mutation-types'
 import useClipboard from 'vue-clipboard3'
 import { message } from 'ant-design-vue'
 import { isDev } from '@/utils/util'
@@ -52,25 +53,27 @@ import NavigationMode from './components/NavigationMode.vue'
 import LayoutSettings from './components/LayoutSettings.vue'
 import OtherSettings from './components/OtherSettings.vue'
 import { isMobile } from '@/utils/device'
+import { useSettingsStore } from '@/store/modules/settings'
 
+const settingsStore = useSettingsStore();
 const { toClipboard } = useClipboard()
 
 const onClose = () => {
-  systemConfig.commit([SET_SETTING_DRAWER], false)
+  settingsStore.setValue('showSettings', false)
 }
 const doCopy = () => {
   // get current settings from mixin or this.$store.state.app, pay attention to the property name
   const text = `export default {
-  primaryColor: '${systemConfig.state.color}', // primary color of ant design
-  navTheme: '${systemConfig.state.theme}', // theme for nav menu
-  layout: '${systemConfig.state.layout}', // nav menu position: sidemenu or topmenu
-  contentWidth: '${systemConfig.state.contentWidth}', // layout of content: Fluid or Fixed, only works when layout is topmenu
-  fixedHeader: ${systemConfig.state.fixedHeader}, // sticky header
-  fixSiderbar: ${systemConfig.state.fixSiderbar}, // sticky siderbar
-  autoHideHeader: ${systemConfig.state.autoHideHeader}, //  auto hide header
-  colorWeak: ${systemConfig.state.weak},
-  grayMode: ${systemConfig.state.gray},
-  multiTab: ${systemConfig.state.multiTab},
+  primaryColor: '${settingsStore.color}', // primary color of ant design
+  navTheme: '${settingsStore.theme}', // theme for nav menu
+  layout: '${settingsStore.layout}', // nav menu position: sidemenu or topmenu
+  contentWidth: '${settingsStore.contentWidth}', // layout of content: Fluid or Fixed, only works when layout is topmenu
+  fixedHeader: ${settingsStore.fixedHeader}, // sticky header
+  fixSiderbar: ${settingsStore.fixSiderbar}, // sticky siderbar
+  autoHideHeader: ${settingsStore.autoHideHeader}, //  auto hide header
+  colorWeak: ${settingsStore.weak},
+  grayMode: ${settingsStore.gray},
+  multiTab: ${settingsStore.multiTab},
   // vue-ls options
   storage: {
     namespace: 'PRO_'

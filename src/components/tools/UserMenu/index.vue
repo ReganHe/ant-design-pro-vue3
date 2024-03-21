@@ -50,11 +50,12 @@ import { logout } from '@/views/user/service'
 import { USER_INFO } from '@/store/mutation-types'
 import { Modal } from 'ant-design-vue'
 import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { systemConfig } from '@/store/reactiveState'
 import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
 import { clearUserInfo } from '@/utils/util'
+import { useSettingsStore } from '@/store/modules/settings'
 
+const settingsStore = useSettingsStore();
 const router = useRouter()
 const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
@@ -67,15 +68,15 @@ const handleLogout = () => {
         router.push({ path: '/user/login' })
       })
     },
-    onCancel() {}
+    onCancel() { }
   })
 }
 const showSystemSetting = () => {
-  systemConfig.commit('SET_SETTING_DRAWER', true)
+  settingsStore.setValue('showSettings', true)
 }
 
 const onLockScreen = () => {
-  systemConfig.commit('SET_LOCK_SCREEN', true)
+  settingsStore.setLockScreen(true)
 }
 </script>
 <style lang="less">

@@ -42,6 +42,11 @@ export const useSettingsStore = defineStore('settings', {
       localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))
       updateDarkMode(isDark)
     },
+    setLockScreen(flag) {
+      this.lockScreen = flag
+      localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))
+      document.getElementById('app')!.style.overflow = flag ? 'hidden' : 'visible'
+    },
     setValue(propertyName, propertyValue) {
       this[propertyName] = propertyValue
       localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))

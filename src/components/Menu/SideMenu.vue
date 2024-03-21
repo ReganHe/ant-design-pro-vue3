@@ -1,13 +1,9 @@
 <template>
   <a-layout-sider
-    :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
-    width="256px"
-    :collapsible="collapsible"
-    v-model:collapsed="sideMenuCollapsed"
-    :trigger="null"
-  >
+    :class="['sider', isDesktop ? null : 'shadow', props.theme, settingsStore.fixSiderbar ? 'ant-fixed-sidemenu' : null]"
+    width="256px" :collapsible="props.collapsible" v-model:collapsed="sideMenuCollapsedRef" :trigger="null">
     <logo />
-    <Menu :collapsed="collapsed" :menu="menus" :theme="theme" :mode="mode" @select="onSelect" />
+    <Menu :collapsed="props.collapsed" :menu="props.menus" :theme="props.theme" :mode="props.mode" @select="onSelect" />
   </a-layout-sider>
 </template>
 
@@ -16,7 +12,9 @@ import { watch, ref } from 'vue'
 import Logo from '@/components/tools/Logo.vue'
 import Menu from './Menu.vue'
 import { isDesktop } from '@/utils/device'
-import useSiteSettings from '@/store/useSiteSettings'
+import { useSettingsStore } from '@/store/modules/settings'
+
+const settingsStore = useSettingsStore();
 
 const props = defineProps({
   mode: {
@@ -45,11 +43,11 @@ const props = defineProps({
   }
 })
 
-const sideMenuCollapsed = ref(false)
+const sideMenuCollapsedRef = ref(false)
 watch(
   () => props.collapsed,
   (newVal) => {
-    sideMenuCollapsed.value = newVal
+    sideMenuCollapsedRef.value = newVal
   },
   {
     immediate: true
@@ -60,5 +58,4 @@ const emit = defineEmits(['menuSelect'])
 const onSelect = (obj) => {
   emit('menuSelect', obj)
 }
-const { fixSiderbar } = useSiteSettings()
 </script>
