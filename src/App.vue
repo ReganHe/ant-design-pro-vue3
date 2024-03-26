@@ -8,14 +8,12 @@
     <!-- algorithm: theme.darkAlgorithm,夜间主题 -->
     <router-view />
   </a-config-provider>
-  <LockScreen />
 </template>
 
 <script lang="ts" setup name="App">
 import { onErrorCaptured, h } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setDeviceType } from '@/utils/device'
-import LockScreen from '@/components/LockScreen/index.vue'
 import emitter from '@/utils/eventBus'
 import { useRouter } from 'vue-router'
 import { Modal } from 'ant-design-vue'
@@ -33,7 +31,7 @@ emitter.once('axios_goto_login', () => {
 
 //全局错误处理
 onErrorCaptured((err, instance, info) => {
-  if (window.env !== 'localhost') {
+  if (window.env !== 'development') {
     // debugger
     console.log(err, instance, info)
     Modal.error({

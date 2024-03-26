@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env vite --mode localhost",
-    "debug-vite": "cross-env vite --mode localhost --debug",
+    "dev": "cross-env vite --mode development",
+    "debug-vite": "cross-env vite --mode development --debug",
     "build:test": "cross-env vite build --mode test",
     "build:prod": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
@@ -24,7 +24,7 @@
     "@logicflow/extension": "^1.2.1",
     "@vueuse/core": "^9.13.0",
     "ant-design-vue": "^4.0.0",
-    "axios": "^1.3.4",
+    "axios": "^0.24.0",
     "crypto-js": "4.1.1",
     "dayjs": "1.11.9",
     "less": "4.1.3",
@@ -42,7 +42,9 @@
     "vue-router": "4.1.3",
     "vuedraggable": "^4.1.0",
     "vuex": "4.1.0",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "qs": "^6.10.1",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@polarwin/swagger-parser": "3.1.16",

@@ -62,7 +62,6 @@ const generateAsyncRoutes = (router, menu?: Array<unknown>) => {
   // 当前addRoute方法只能add一个object,之前的算法返回的是包含一个object的数组,因此,取[0]
   router.addRoute(routers[0])
   // 原理:vue-router的children其实自动递归children,然后生成/a/b/c等,所以addRoute第一个参数只不过是在路由上加上前置的string地址而已
-  // TOOD:如果有服务端路由,commonRoutes的path:'/'就不要写了
 }
 
 export const menuToRouter = (routerMap, parent?) => {

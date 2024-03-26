@@ -1,4 +1,6 @@
+import { RoleEnum } from '@/enums/roleEnum'
 import { defineComponent } from 'vue'
+import type { RouteMeta } from 'vue-router'
 
 export type Component<T extends any = any> = ReturnType<typeof defineComponent> | (() => Promise<typeof import('*.vue')>) | (() => Promise<T>)
 
@@ -23,4 +25,35 @@ export interface Router {
   children?: Router[]
   hidden?: boolean
   hideChildrenInMenu?: boolean
+}
+
+export interface MenuTag {
+  type?: 'primary' | 'error' | 'warn' | 'success'
+  content?: string
+  dot?: boolean
+}
+
+export interface Menu {
+  name: string
+
+  icon?: string
+
+  path: string
+
+  // path contains param, auto assignment.
+  paramPath?: string
+
+  disabled?: boolean
+
+  children?: Menu[]
+
+  orderNo?: number
+
+  roles?: RoleEnum[]
+
+  meta?: Partial<RouteMeta>
+
+  tag?: MenuTag
+
+  hideMenu?: boolean
 }

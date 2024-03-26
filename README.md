@@ -54,7 +54,6 @@ yarn build
 - 路由文件 通过约定的语法根据在 router.ts 中配置路由,
   - 后端路由:通过 defaultSettings.ts 中的 useAsyncRouter 来设置是否启用,后端路由的格式在 mockUtils.ts 的 userNav 中。
   - 后端路由对应的 component 自动引入逻辑在 batchImportFiles,会自动引入 view 下面的,vue 文件作为页面
-  - 普通路由参照 exampleRouterMap
 - 菜单生成根据路由配置来生成菜单。菜单项名称，嵌套路径与路由高度耦合,具体配置内容参照
   [Ant Design Pro Vue](https://pro.antdv.com/docs/router-and-nav) 即可
 - 菜单跳转第三方网址的写法 meta: { title: '登录', icon: 'account-book', target: 'http://www.baidu.com', blank: false }如果不想在新窗口打卡,请写明 blank: false 否则 blank 不写或者任意值均表示 true

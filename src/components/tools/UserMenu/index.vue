@@ -25,12 +25,6 @@
                 <span>系统设置</span>
               </a>
             </a-menu-item>
-            <a-menu-item key="3" @click="onLockScreen">
-              <a>
-                <LockOutlined />
-                <span>锁定屏幕</span>
-              </a>
-            </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="11">
               <a href="javascript:;" @click="handleLogout">
@@ -46,27 +40,25 @@
 </template>
 
 <script lang="ts" setup name="UserMenu">
-import { logout } from '@/views/user/service'
 import { USER_INFO } from '@/store/mutation-types'
 import { Modal } from 'ant-design-vue'
 import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
 import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
-import { clearUserInfo } from '@/utils/util'
 import { useSettingsStore } from '@/store/modules/settings'
+import { useUserStore } from '@/store/modules/user'
 
 const settingsStore = useSettingsStore();
+const userStore = useUserStore();
 const router = useRouter()
 const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
   Modal.confirm({
     title: '提示',
     content: '真的要注销登录吗 ?',
-    onOk: () => {
-      logout().then((res) => {
-        clearUserInfo()
-        router.push({ path: '/user/login' })
-      })
+    onOk: async () => {
+      await userStore.logout();
+      router.push({ path: '/user/login' })
     },
     onCancel() { }
   })
@@ -75,9 +67,6 @@ const showSystemSetting = () => {
   settingsStore.setValue('showSettings', true)
 }
 
-const onLockScreen = () => {
-  settingsStore.setLockScreen(true)
-}
 </script>
 <style lang="less">
 .user-dropdown-menu-wrapper {

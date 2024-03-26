@@ -65,7 +65,6 @@ declare module '@vue/runtime-core' {
     History: typeof import('./src/components/ColorPicker/common/History.vue')['default']
     Hue: typeof import('./src/components/ColorPicker/common/Hue.vue')['default']
     LayoutSettings: typeof import('./src/components/SettingDrawer/components/LayoutSettings.vue')['default']
-    LockScreen: typeof import('./src/components/LockScreen/index.vue')['default']
     Logo: typeof import('./src/components/tools/Logo.vue')['default']
     Manual: typeof import('./src/components/SvgIcon/manual.vue')['default']
     Menu: typeof import('./src/components/Menu/Menu.vue')['default']

@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import { store } from './store'
 import '@/style/global.less'
 import 'virtual:svg-icons-register'

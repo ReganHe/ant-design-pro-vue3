@@ -1,20 +1,14 @@
-import { defHttp } from '/@/utils/http/axios';
-import { AxiosRequestConfig } from 'axios';
+import { defHttp } from '@/utils/http/axios'
+import { AxiosRequestConfig } from 'axios'
 
-export const createRequest = <TReq, TResp = any>(
-  _: string,
-  requestConfigCreator: (args: TReq) => AxiosRequestConfig
-) => {
+export const createRequest = <TReq, TResp = any>(_: string, requestConfigCreator: (args: TReq) => AxiosRequestConfig) => {
   return (args: TReq) => {
-    return defHttp.request<TResp>(requestConfigCreator(args));
-  };
-};
+    return defHttp.request<TResp>(requestConfigCreator(args))
+  }
+}
 
-export const createNoParamsRequest = <TResp = any>(
-  _: string,
-  requestConfigCreator: () => AxiosRequestConfig
-) => {
+export const createNoParamsRequest = <TResp = any>(_: string, requestConfigCreator: () => AxiosRequestConfig) => {
   return () => {
-    return defHttp.request<TResp>(requestConfigCreator());
-  };
-};
+    return defHttp.request<TResp>(requestConfigCreator())
+  }
+}

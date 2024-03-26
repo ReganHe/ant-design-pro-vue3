@@ -1,22 +1,22 @@
-import config from '@/config/defaultSettings'
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 import { setupBeforeEach, setupAfterEach } from './routerGuard'
-import generateAsyncRoutes from './generateAsyncRoutes'
-import routes from './commonRoutes'
+import { CONSTANT_ROUTES } from './basicRoutes'
 
-const router = createRouter({
+const modules = import.meta.glob('./modules/**/*.ts', { eager: true, import: 'default' })
+const routeModuleList: RouteRecordRaw[] = []
+Object.keys(modules).forEach((key) => {
+  const routeModule = modules[key] || {}
+  const moduleRoutes = Array.isArray(routeModule) ? [...routeModule] : [routeModule]
+  routeModuleList.push(...moduleRoutes)
+})
+
+export const asyncRoutes = routeModuleList
+
+export const router = createRouter({
   history: createWebHistory(),
-  routes: routes as unknown as RouteRecordRaw[]
+  routes: CONSTANT_ROUTES as unknown as RouteRecordRaw[]
 })
 
 // 路由守卫,鉴权
 setupBeforeEach(router)
-
 setupAfterEach(router)
-
-if (config.useAsyncRouter) {
-  // 初次路由login时获取,然后存在ls,之后刷新页面时从本地获取,直接在初始化路由时就添加
-  generateAsyncRoutes(router)
-}
-
-export default router

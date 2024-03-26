@@ -1,18 +1,9 @@
-import ls from '@/utils/Storage'
-import { ACCESS_TOKEN, PERMISSION, USER_INFO, MENU_NAV } from '@/store/mutation-types'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
-
-export function clearUserInfo() {
-  ls.remove(ACCESS_TOKEN)
-  ls.remove(PERMISSION)
-  ls.remove(USER_INFO)
-  ls.remove(MENU_NAV)
-}
 
 export function timeFix() {
   const time = new Date()
