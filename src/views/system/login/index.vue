@@ -30,13 +30,12 @@
 </template>
 
 <script lang="ts" setup name="Login">
-import { reactive, UnwrapRef } from 'vue'
+import { reactive } from 'vue'
 import { Form, notification } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { timeFix } from '@/utils/util'
-import { FormState } from '@/views/user/types'
 import { getAppEnvConfig } from '@/utils/env'
 
 const userStore = useUserStore();
@@ -49,7 +48,7 @@ const state = reactive({
 })
 
 // #region 表单相关
-const formRef: UnwrapRef<FormState> = reactive({
+const formRef = reactive({
   rememberMe: false,
   username: '',
   password: '',
@@ -79,9 +78,8 @@ const handleSubmit = async (e: Event) => {
       password: formRef.password,
       applicationId: parseInt(VITE_GLOB_APP_ID),
       deviceId: parseInt(VITE_GLOB_DEVICE_ID),
-      mode: 'none', //不要默认的错误提示
     })
-    router.replace('/')
+    router.replace('/profile/center')
     // 延迟 1 秒显示欢迎信息
     setTimeout(() => {
       notification.success({

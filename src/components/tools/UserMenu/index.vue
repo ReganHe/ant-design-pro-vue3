@@ -8,8 +8,8 @@
       </a>
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
-          <a-avatar class="avatar" size="small" :src="UserInfo.avatar" />
-          <span class="nickname">{{ UserInfo.name }}</span>
+          <a-avatar class="avatar" size="small" :src="UserInfo?.avatar" />
+          <span class="nickname">{{ UserInfo?.name }}</span>
         </span>
         <template #overlay>
           <a-menu class="user-dropdown-menu-wrapper">

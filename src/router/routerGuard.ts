@@ -24,25 +24,37 @@ export const setupBeforeEach = (router: Router) => {
         next({ path: '/' })
         NProgress.done()
       } else {
-        try {
-          const { roles, menuPerms } = await userStore.getCurrentUserInfo()
-          const roleCodes = (roles || []).map((r) => r.code)
-          const menuUrls = (menuPerms || []).map((r) => r.menuUrl)
-          // generate accessible routes map based on roles
-          const accessRoutes = await permissionStore.generateRoutes({ roleCodes, menuUrls })
-          // dynamically add accessible routes
-          accessRoutes.forEach((route) => {
-            router.addRoute(route)
-          })
-          router.addRoute(PAGE_NOT_FOUND_ROUTE)
-          // hack method to ensure that addRoutes is complete
-          // set the replace: true, so the navigation will not leave a history record
-          next({ ...to, replace: true })
-        } catch (error) {
-          // remove token and go to login page to re-login
-          await userStore.resetToken()
-          next(`/login?redirect=${to.path}`)
-          NProgress.done()
+        // determine whether the user has obtained his permission roles through getInfo
+        const hasRoles = userStore.roles && userStore.roles.length > 0
+        if (hasRoles) {
+          if (to.matched && to.matched.length) {
+            next()
+          } else {
+            next({ path: '/404' })
+            NProgress.done()
+          }
+        } else {
+          try {
+            const { roles, menuPerms } = await userStore.getCurrentUserInfo()
+            const roleCodes = (roles || []).map((r) => r.code)
+            const menuUrls = (menuPerms || []).map((r) => r.menuUrl)
+            // generate accessible routes map based on roles
+            const accessRoutes = await permissionStore.generateRoutes({ roleCodes, menuUrls })
+            // dynamically add accessible routes
+            accessRoutes.forEach((route) => {
+              router.addRoute(route)
+            })
+            router.addRoute(PAGE_NOT_FOUND_ROUTE)
+            // hack method to ensure that addRoutes is complete
+            // set the replace: true, so the navigation will not leave a history record
+            // next({ ...to, replace: true })
+            next({ path: '/profile/center' })
+          } catch (error) {
+            // remove token and go to login page to re-login
+            await userStore.resetToken()
+            next(`/login?redirect=${to.path}`)
+            NProgress.done()
+          }
         }
       }
     } else {

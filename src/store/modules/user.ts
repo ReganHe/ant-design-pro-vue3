@@ -25,7 +25,7 @@ export const useUserStore = defineStore({
     async login(params) {
       try {
         // 1. 获取正式令牌
-        const refreshTokenRes = await accountService.accountLogin4Frontend(params)
+        const refreshTokenRes = await accountService.accountLogin4Direct(params)
         console.log('refreshTokenRes', refreshTokenRes)
         // 2.获取访问令牌
         const accessTokenRes = await accountService.exchangeAccessToken({
@@ -40,25 +40,30 @@ export const useUserStore = defineStore({
       }
     },
     async getCurrentUserInfo() {
-      const userPermissionRes = await userService.getCurrentLoginUserInfo()
-      if (!userPermissionRes) {
-        throw Error('身份认证失败, 请重新登陆.')
-      }
+      try {
+        const userPermissionRes = await userService.getCurrentLoginUserInfo()
+        if (!userPermissionRes) {
+          throw Error('身份认证失败, 请重新登陆.')
+        }
 
-      if (!userPermissionRes.roles || userPermissionRes.roles.length <= 0) {
-        throw Error('角色不能为空')
-      }
+        if (!userPermissionRes.roles || userPermissionRes.roles.length <= 0) {
+          throw Error('角色不能为空')
+        }
 
-      this.roles = userPermissionRes.roles
-      this.menuPerms = userPermissionRes.menuPerms
-      const userBasicRes = await userCustomService.getUserByUserId({ userId: userPermissionRes.id })
-      if (!userBasicRes) {
-        throw Error('获取用户基本信息失败, 请重新登陆.')
-      }
+        this.roles = userPermissionRes.roles
+        this.menuPerms = userPermissionRes.menuPerms
+        const userBasicRes = await userCustomService.getUserByUserId({ userId: userPermissionRes.id })
+        if (!userBasicRes) {
+          throw Error('获取用户基本信息失败, 请重新登陆.')
+        }
 
-      this.info = userBasicRes
-      this.lastUpdateTime = new Date().getTime()
-      return userPermissionRes
+        this.info = userBasicRes
+        this.lastUpdateTime = new Date().getTime()
+        return userPermissionRes
+      } catch (error) {
+        debugger
+        return Promise.reject(error)
+      }
     },
     async logout() {
       if (this.token) {
