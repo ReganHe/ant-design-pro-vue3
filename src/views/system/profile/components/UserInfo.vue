@@ -1,13 +1,9 @@
 <template>
-  <div class="user-info">
-    <div class="user-profile">
-      <div class="box-center">
-        <img v-if="user.avatar" :src="user.avatar" :style="{ height: '100px', width: '100px' }" />
-      </div>
-      <div class="box-center">
-        <div class="user-name text-center">{{ user.userName }}</div>
-        <div class="user-role text-center text-muted">{{ (user.roles || []).join(',') }}</div>
-      </div>
+  <div class="component-user-info">
+    <div class="user-avatar-info">
+      <img v-if="user.avatar" :src="user.avatar" :style="{ height: '100px', width: '100px' }" />
+      <div class="user-name text-center">{{ user.userName }}</div>
+      <div class="user-role text-center text-muted">{{ (user.roles || []).join(',') }}</div>
     </div>
     <div class="user-bio">
       <div class="user-skills user-bio-section">
@@ -41,7 +37,7 @@ import { reactive } from 'vue';
 import { SolutionOutlined } from '@ant-design/icons-vue';
 
 import { useUserStore } from '@/store/modules/user';
-import headerImg from '@/assets/images/header.jpg';
+import headerImg from '@/assets/header.jpg';
 
 const userStore = useUserStore();
 const user = reactive({
@@ -54,37 +50,22 @@ const user = reactive({
 </script>
 
 <style lang="scss" scoped>
-.user-info {
-  .box-center {
-    margin: 0 auto;
-    display: table;
-  }
+.component-user-info {
+  .user-avatar-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  .user-profile {
     .user-name {
+      margin-top: 10px;
       font-weight: bold;
     }
 
-    .box-center {
-      padding-top: 10px;
-    }
-
     .user-role {
-      padding-top: 10px;
+      margin-top: 10px;
       font-weight: 400;
       font-size: 14px;
-    }
-
-    .box-social {
-      padding-top: 30px;
-
-      .el-table {
-        border-top: 1px solid #dfe6ec;
-      }
-    }
-
-    .user-follow {
-      padding-top: 20px;
     }
   }
 
@@ -122,7 +103,7 @@ const user = reactive({
 
             .label {
               float: left;
-              width: 100px;
+              width: 80px;
               font-weight: bold;
               text-align: right;
             }
