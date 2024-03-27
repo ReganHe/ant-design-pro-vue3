@@ -6,21 +6,21 @@ export const example: Router = {
   name: 'index',
   component: BasicLayout,
   meta: { title: 'menu.home' },
-  redirect: '/account',
+  redirect: '/profile',
   children: [
-    // account
+    // profile
     {
-      path: '/account',
+      path: '/profile',
       component: RouteView,
-      redirect: '/account/center',
-      name: 'account',
+      redirect: '/profile/center',
+      name: 'profile',
       meta: { title: '个人页', icon: 'bx-analyse', keepAlive: true },
       hidden: true,
       children: [
         {
-          path: '/account/center',
+          path: '/profile/center',
           name: 'center',
-          component: () => import('@/views/account/index.vue'),
+          component: () => import('@/views/system/profile/index.vue'),
           meta: { title: '个人中心', keepAlive: true }
         }
       ]

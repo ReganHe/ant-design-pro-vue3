@@ -14,7 +14,7 @@
         <template #overlay>
           <a-menu class="user-dropdown-menu-wrapper">
             <a-menu-item key="1">
-              <router-link :to="{ path: '/account/center' }">
+              <router-link :to="{ path: '/profile/center' }">
                 <UserOutlined />
                 <span>个人中心</span>
               </router-link>

@@ -112,7 +112,7 @@ module.exports = {
         'icon': 'user',
         'show': true
       },
-      'redirect': '/account/center',
+      'redirect': '/profile/center',
       'component': 'RouteView'
     },
     {
