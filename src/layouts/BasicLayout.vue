@@ -51,7 +51,6 @@ import { convertRoutes } from '@/router/generateAsyncRoutes'
 import { filteRouterPermission } from '@/router/permission'
 import { PERMISSION } from '@/store/mutation-types'
 import cloneDeep from 'lodash.clonedeep'
-import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
 import emitter from '@/utils/eventBus'
 import { useSettingsStore } from '@/store/modules/settings'
@@ -84,7 +83,7 @@ watch(
 // created()
 // bug:TODO:克隆时报警告[Vue warn]: Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead.目前还不知道解决方案
 const mainMenu = cloneDeep(router.getRoutes())
-const orginRoutes = filteRouterPermission(mainMenu, ls.get(PERMISSION))
+const orginRoutes = filteRouterPermission(mainMenu, localStorage.getItem(PERMISSION))
 // 相对路径转绝对路径
 // 系统菜单以/为第一级,/外面的都不显示在菜单中,但是可以跳转到该路由
 const routes = convertRoutes(orginRoutes.find((item) => item.path === '/'))

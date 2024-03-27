@@ -8,8 +8,8 @@
       </a>
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
-          <a-avatar class="avatar" size="small" :src="UserInfo?.avatar" />
-          <span class="nickname">{{ UserInfo?.name }}</span>
+          <a-avatar class="avatar" size="small" :src="userStore.avatar" />
+          <span class="nickname">{{ userStore.info.userName }}</span>
         </span>
         <template #overlay>
           <a-menu class="user-dropdown-menu-wrapper">
@@ -40,10 +40,8 @@
 </template>
 
 <script lang="ts" setup name="UserMenu">
-import { USER_INFO } from '@/store/mutation-types'
 import { Modal } from 'ant-design-vue'
 import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import ls from '@/utils/Storage'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useUserStore } from '@/store/modules/user'
@@ -51,7 +49,6 @@ import { useUserStore } from '@/store/modules/user'
 const settingsStore = useSettingsStore();
 const userStore = useUserStore();
 const router = useRouter()
-const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
   Modal.confirm({
     title: '提示',

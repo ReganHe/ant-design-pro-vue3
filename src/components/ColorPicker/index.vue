@@ -1,10 +1,13 @@
 <template>
   <div class="bee-ele-colorPicker">
     <div class="bee-ele-row">
-      <saturation class="bee-ele-saturation" :hidden="true" :saturation="currentColor.hsv.s" :hue="currentColor.hsv.h" :value="currentColor.hsv.v" @change="onSaturationChange" />
-      <hue class="bee-ele-hue" :vertical="true" size="small" :hue="currentColor.hsv.h" @change="onHueChange" v-if="!disableHue" />
+      <saturation class="bee-ele-saturation" :hidden="true" :saturation="currentColor.hsv.s" :hue="currentColor.hsv.h"
+        :value="currentColor.hsv.v" @change="onSaturationChange" />
+      <hue class="bee-ele-hue" :vertical="true" size="small" :hue="currentColor.hsv.h" @change="onHueChange"
+        v-if="!disableHue" />
     </div>
-    <alpha style="width: 257px" :color="currentColor.hex8" @change="onAlphaChange" :alpha="currentColor.alpha" v-if="!disableAlpha" />
+    <alpha style="width: 257px" :color="currentColor.hex8" @change="onAlphaChange" :alpha="currentColor.alpha"
+      v-if="!disableAlpha" />
 
     <v-color-input style="width: 257px" :color="currentColor" @change="onInputChange" />
 
@@ -20,7 +23,6 @@ import Alpha from './common/Alpha.vue'
 import History from './common/History.vue'
 import VColorInput from './common/VColorInput.vue'
 import { Color, ColorAttrs, ColorFormat, ColorInput, debounceFn, MAX_STORAGE_LENGTH, STORAGE_COLOR_KEY } from './color'
-import ls from '@/utils/Storage'
 
 const props = defineProps({
   color: {
@@ -54,11 +56,11 @@ const onStorageColor = () => {
     storageColorList.value.shift()
   }
   storageColorList.value.push(currentColor.value.hex8)
-  ls.set(STORAGE_COLOR_KEY, storageColorList.value)
+  localStorage.setItem(STORAGE_COLOR_KEY, JSON.stringify(storageColorList.value))
 }
 
 const onInitColorList = () => {
-  storageColorList.value = ls.get(STORAGE_COLOR_KEY) || []
+  storageColorList.value = JSON.parse(localStorage.getItem(STORAGE_COLOR_KEY) || '[]')
 }
 
 const doOnChange = (data: any, oldHue?: number): void => {

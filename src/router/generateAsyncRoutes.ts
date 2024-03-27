@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash.clonedeep'
-import ls from '@/utils/Storage'
 import { BasicLayout, RouteView, BlankLayout } from '@/layouts'
 import { getRoutePages } from '@/utils/batchImportFiles'
 import { MENU_NAV } from '@/store/mutation-types'
@@ -42,7 +41,7 @@ const generateAsyncRoutes = (router, menu?: Array<unknown>) => {
   let menuNav: Array<any> = []
   const childrenNav: Array<unknown> = []
   // 后端数据, 根级树数组,  根级 PID
-  const menuData = ls.get(MENU_NAV)
+  const menuData = JSON.parse(localStorage.getItem(MENU_NAV) || '[]')
   if (!menuData && !menu) return
   // 若有缓存,则从缓存取菜单内容,然后直接生成路由
   if (menuData) {
@@ -55,7 +54,7 @@ const generateAsyncRoutes = (router, menu?: Array<unknown>) => {
     menuNav.push(rootRouter)
     // 让 path: '/',永远重定向到第一个子菜单
     menuNav[0].redirect = '/' + menuNav[0].children[0].key
-    ls.set(MENU_NAV, menuNav)
+    localStorage.setItem(MENU_NAV, JSON.stringify(menuNav))
   }
   const routers = menuToRouter(menuNav)
   // routers.push(notFoundRouter);
