@@ -5,16 +5,20 @@ import { store } from './store'
 import '@/style/global.less'
 import 'virtual:svg-icons-register'
 import setupDefaultSetting from '@/utils/setupDefaultSetting'
-
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
-
 import '@/utils/default-passive-events'
+import { CaCommonQuery } from '@/components/CaCommonQuery'
+import { CaCommonTable } from '@/components/CaCommonTable'
+import { CaCommonForm } from '@/components/CaCommonForm'
 
 const app = createApp(App)
 app.use(Antd)
 app.use(router)
 app.use(store)
+app.component('CaCommonQuery', CaCommonQuery)
+app.component('CaCommonTable', CaCommonTable)
+app.component('CaCommonForm', CaCommonForm)
 app.mount('#app')
 
 setupDefaultSetting()

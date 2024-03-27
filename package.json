@@ -44,7 +44,8 @@
     "vuex": "4.1.0",
     "pinia": "^2.1.7",
     "qs": "^6.10.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "scroll-into-view-if-needed": "^2.2.25"
   },
   "devDependencies": {
     "@polarwin/swagger-parser": "3.1.16",
