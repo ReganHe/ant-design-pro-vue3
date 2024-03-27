@@ -10,13 +10,16 @@ Object.keys(modules).forEach((key) => {
   routeModuleList.push(...moduleRoutes)
 })
 
-export const asyncRoutes = routeModuleList
+const asyncRoutes = routeModuleList
 
-export const router = createRouter({
-  history: createWebHistory(),
-  routes: CONSTANT_ROUTES as unknown as RouteRecordRaw[]
+const router = createRouter({
+  history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
+  routes: CONSTANT_ROUTES as unknown as RouteRecordRaw[],
+  strict: true,
+  scrollBehavior: () => ({ left: 0, top: 0 })
 })
 
 // 路由守卫,鉴权
 setupBeforeEach(router)
 setupAfterEach(router)
+export { router, asyncRoutes }

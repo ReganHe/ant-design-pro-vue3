@@ -11,6 +11,7 @@ import '@/utils/default-passive-events'
 import { CaCommonQuery } from '@/components/CaCommonQuery'
 import { CaCommonTable } from '@/components/CaCommonTable'
 import { CaCommonForm } from '@/components/CaCommonForm'
+import { registerAntIcon } from '@/icons'
 
 const app = createApp(App)
 app.use(Antd)
@@ -19,6 +20,7 @@ app.use(store)
 app.component('CaCommonQuery', CaCommonQuery)
 app.component('CaCommonTable', CaCommonTable)
 app.component('CaCommonForm', CaCommonForm)
+registerAntIcon(app)
 app.mount('#app')
 
 setupDefaultSetting()

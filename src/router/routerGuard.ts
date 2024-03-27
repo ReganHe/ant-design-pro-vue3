@@ -47,8 +47,8 @@ export const setupBeforeEach = (router: Router) => {
             router.addRoute(PAGE_NOT_FOUND_ROUTE)
             // hack method to ensure that addRoutes is complete
             // set the replace: true, so the navigation will not leave a history record
-            // next({ ...to, replace: true })
-            next({ path: '/profile/center' })
+            next({ ...to, replace: true })
+            // next({ path: '/profile/center' })
           } catch (error) {
             // remove token and go to login page to re-login
             await userStore.resetToken()

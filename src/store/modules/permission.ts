@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
+import { RouteRecordRaw } from 'vue-router'
 import { store } from '@/store'
 import { asyncRoutes } from '@/router'
-import { RouteRecordRaw } from 'vue-router'
+import { CONSTANT_ROUTES } from '@/router/basicRoutes'
 
 export const usePermissionStore = defineStore({
   id: 'permission',
   state: () => ({
-    addRoutes: [] as Array<Object>
+    routes: [] as Array<RouteRecordRaw>,
+    addRoutes: [] as Array<RouteRecordRaw>
   }),
   getters: {},
   actions: {
@@ -47,6 +49,7 @@ export const usePermissionStore = defineStore({
           accessedRoutes = this.filterAsyncRoutes(asyncRoutes, menuUrls)
         }
         this.addRoutes = accessedRoutes
+        this.routes = CONSTANT_ROUTES.concat(accessedRoutes)
         resolve(accessedRoutes)
       })
     }

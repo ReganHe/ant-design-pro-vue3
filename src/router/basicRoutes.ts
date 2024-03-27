@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
-import { Router } from './types'
-import { BasicLayout, RouteView } from '@/layouts'
+import BasicLayout from '@/layouts/BasicLayout.vue'
+import { RouteView } from '@/layouts/index'
 
-export const CONSTANT_ROUTES = [
+export const CONSTANT_ROUTES: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'index',
@@ -15,8 +15,7 @@ export const CONSTANT_ROUTES = [
         component: RouteView,
         redirect: '/profile/center',
         name: 'profile',
-        meta: { title: '个人页', icon: 'bx-analyse', keepAlive: true },
-        hidden: true,
+        meta: { title: '个人页', icon: 'bx-analyse', keepAlive: true, hidden: true },
         children: [
           {
             path: '/profile/center',
@@ -63,7 +62,7 @@ export const CONSTANT_ROUTES = [
       title: '登录'
     }
   }
-] as Router[]
+]
 
 export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:path(.*)*',
