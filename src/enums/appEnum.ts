@@ -8,6 +8,12 @@ export enum ContentEnum {
   FIXED = 'fixed'
 }
 
+export enum DeviceTypeEnum {
+  DESKTOP = 'desktop',
+  TABLET = 'tablet',
+  MOBILE = 'mobile'
+}
+
 // menu theme enum
 export enum ThemeEnum {
   DARK = 'dark',

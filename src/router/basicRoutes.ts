@@ -6,7 +6,7 @@ export const CONSTANT_ROUTES: RouteRecordRaw[] = [
     path: '/',
     name: 'index',
     component: UserLayout,
-    meta: { title: 'menu.home' },
+    meta: { title: '系统' },
     redirect: '/demo',
     children: [
       {
@@ -50,16 +50,16 @@ export const CONSTANT_ROUTES: RouteRecordRaw[] = [
             meta: { title: '500' }
           }
         ]
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/system/login/index.vue'),
+        meta: {
+          title: '登录'
+        }
       }
     ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/system/login/index.vue'),
-    meta: {
-      title: '登录'
-    }
   }
 ]
 
