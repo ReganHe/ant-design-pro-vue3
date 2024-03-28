@@ -32,7 +32,6 @@ emitter.once('axios_goto_login', () => {
 //全局错误处理
 onErrorCaptured((err, instance, info) => {
   if (window.env !== 'development') {
-    // debugger
     console.log(err, instance, info)
     Modal.error({
       title: 'System Error',

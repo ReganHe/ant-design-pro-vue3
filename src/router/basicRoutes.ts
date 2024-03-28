@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import { RouteView, UserLayout } from '@/layouts/index'
+import { RouteView } from '@/layouts/index'
 
 const BasicLayout = () => import('@/layouts/BasicLayout.vue')
 
@@ -7,19 +7,18 @@ export const CONSTANT_ROUTES: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'index',
-    component: UserLayout,
-    meta: { title: '系统' },
-    redirect: '/demo',
-    children: [
-      {
-        path: '/login',
-        name: 'Login',
-        component: () => import('@/views/system/login/index.vue'),
-        meta: {
-          title: '登录'
-        }
-      }
-    ]
+    meta: { title: '系统', icon: 'bx-analyse', hidden: true },
+    redirect: '/demo'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/system/login/index.vue'),
+    meta: {
+      title: '登录',
+      icon: 'bx-analyse',
+      hidden: true
+    }
   },
   {
     path: '/profile',
@@ -41,19 +40,13 @@ export const CONSTANT_ROUTES: RouteRecordRaw[] = [
     name: 'exception',
     component: RouteView,
     redirect: '/exception/403',
-    meta: { title: '异常页', icon: 'bx-analyse' },
+    meta: { title: '异常页', icon: 'bx-analyse', hidden: true },
     children: [
       {
         path: '/exception/403',
         name: '403',
         component: () => import(/* webpackChunkName: "fail" */ '@/views/system/exception/403.vue'),
         meta: { title: '403' }
-      },
-      {
-        path: '/exception/404',
-        name: '404',
-        component: () => import(/* webpackChunkName: "fail" */ '@/views/system/exception/404.vue'),
-        meta: { title: '404' }
       },
       {
         path: '/exception/500',
@@ -72,6 +65,6 @@ export const PAGE_NOT_FOUND_ROUTE: RouteRecordRaw = {
   meta: {
     title: 'ErrorPage',
     hideBreadcrumb: true,
-    hideMenu: true
+    hidden: true
   }
 }

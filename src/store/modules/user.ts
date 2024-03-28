@@ -61,7 +61,6 @@ export const useUserStore = defineStore({
         this.lastUpdateTime = new Date().getTime()
         return userPermissionRes
       } catch (error) {
-        debugger
         return Promise.reject(error)
       }
     },

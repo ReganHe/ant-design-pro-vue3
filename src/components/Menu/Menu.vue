@@ -1,18 +1,19 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange" @click="onSelect" class="SysMenu">
+  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange"
+    @click="onSelect" class="SysMenu">
     <template v-for="m in menu" :key="m.path">
-      <RenderSubMenu :menu="m" v-if="!m.hidden" />
+      <RenderSubMenu :menu="m" v-if="!m.meta?.hidden" />
     </template>
   </a-menu>
 </template>
 <script lang="ts" setup name="Menu">
 import { reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
-import { useRouter } from 'vue-router'
+import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
 
 const props = defineProps({
   menu: {
-    type: Array,
+    type: Array<RouteRecordRaw>,
     required: true
   },
   theme: {
@@ -103,4 +104,5 @@ const updateMenu = () => {
   props.collapsed ? (cachedOpenKeys.value = openKeysArr) : (openKeys.value = openKeysArr)
 }
 </script>
-<style lang="less"></style>
+<style lang="less">
+</style>

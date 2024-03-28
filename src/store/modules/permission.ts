@@ -10,7 +10,6 @@ export const usePermissionStore = defineStore({
     routes: [] as Array<RouteRecordRaw>,
     addRoutes: [] as Array<RouteRecordRaw>
   }),
-  getters: {},
   actions: {
     /**
      * Use meta.role to determine if the current user has permission

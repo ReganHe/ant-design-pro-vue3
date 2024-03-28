@@ -55,5 +55,5 @@ export interface Menu {
 
   tag?: MenuTag
 
-  hideMenu?: boolean
+  hidden?: boolean
 }

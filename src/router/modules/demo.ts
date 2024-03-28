@@ -4,14 +4,14 @@ import { RouteRecordRaw } from 'vue-router'
 
 const demo: RouteRecordRaw = {
   path: '/demo',
-  name: 'Demo',
   component: BasicLayout,
   redirect: '/demo/common-table',
+  name: 'Demo',
   meta: {
     orderNo: 0,
-    icon: 'ion:paper-plane-outline',
+    icon: 'bx-analyse',
     title: 'Demo',
-    hideMenu: !isDevMode()
+    hidden: !isDevMode()
   },
   children: [
     {
