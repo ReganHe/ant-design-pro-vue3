@@ -22,7 +22,7 @@
           <div class="header-index-wide">
             <div class="header-index-left">
               <logo class="top-nav-header" :show-title="appStore.device !== 'mobile'" />
-              <s-menu v-if="appStore.device !== 'mobile'" mode="horizontal" :menu="props.menus" :theme="props.theme" />
+              <s-menu v-if="appStore.device !== 'mobile'" mode="horizontal" :menus="props.menus" :theme="props.theme" />
               <span v-else @click="toggle">
                 <MenuFoldOutlined v-if="!props.collapsed" class="trigger" />
                 <MenuUnfoldOutlined v-else class="trigger" />

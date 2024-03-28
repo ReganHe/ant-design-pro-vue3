@@ -1,8 +1,8 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange"
-    @click="onSelect" class="SysMenu">
-    <template v-for="m in menu" :key="m.path">
-      <RenderSubMenu :menu="m" v-if="!m.meta?.hidden" />
+  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeysRef"
+    @openChange="onOpenChange" @click="onSelect" class="SysMenu">
+    <template v-for="menu in menus" :key="menu.path">
+      <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
   </a-menu>
 </template>
@@ -12,7 +12,7 @@ import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
 
 const props = defineProps({
-  menu: {
+  menus: {
     type: Array<RouteRecordRaw>,
     required: true
   },
@@ -34,14 +34,12 @@ const props = defineProps({
 })
 const router = useRouter()
 const route = router.currentRoute
+
 const openKeys = reactive<any>({ value: [] })
-const selectedKeys = ref<any>([])
 const cachedOpenKeys = reactive<any>({ value: [] })
-const rootSubmenuKeys: ComputedRef<string[]> = computed(() => {
-  const keys: string[] = []
-  props.menu.forEach((item: any) => keys.push(item.path))
-  return keys
-})
+const selectedKeysRef = ref<any>([])
+const rootSubmenuKeysRef = computed(() => props.menus.map(r => r.path))
+
 onMounted(() => {
   updateMenu()
 })
@@ -74,7 +72,7 @@ const onOpenChange = (openKeysParams) => {
   }
   // 非水平模式时
   const latestOpenKey: string = openKeysParams.find((key) => /*去掉这个!则可以全部打开菜单(目前只能打开一个菜单)*/ !openKeys.value.includes(key))
-  if (!rootSubmenuKeys.value.includes(latestOpenKey)) {
+  if (!rootSubmenuKeysRef.value.includes(latestOpenKey)) {
     openKeys.value = openKeysParams
   } else {
     openKeys.value = latestOpenKey ? [latestOpenKey] : []
@@ -83,17 +81,17 @@ const onOpenChange = (openKeysParams) => {
 
 const emit = defineEmits(['menuSelect'])
 const onSelect = ({ item, key, selectedKeys: selectedKeysParams }) => {
-  selectedKeys.value = selectedKeysParams
-  emit('menuSelect', { item, key, selectedKeys })
+  selectedKeysRef.value = selectedKeysParams
+  emit('menuSelect', { item, key, selectedKeys: selectedKeysRef })
 }
 const updateMenu = () => {
   const routes = route.value.matched.concat()
   const { hidden } = route.value.meta
   if (routes.length >= 3 && hidden) {
     routes.pop()
-    selectedKeys.value = [routes[routes.length - 1].path]
+    selectedKeysRef.value = [routes[routes.length - 1].path]
   } else {
-    selectedKeys.value = [routes.pop()!.path]
+    selectedKeysRef.value = [routes.pop()!.path]
   }
   const openKeysArr: any = []
   if (props.mode === 'inline') {
@@ -104,5 +102,3 @@ const updateMenu = () => {
   props.collapsed ? (cachedOpenKeys.value = openKeysArr) : (openKeys.value = openKeysArr)
 }
 </script>
-<style lang="less">
-</style>

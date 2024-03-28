@@ -3,7 +3,7 @@
     :class="['sider', isDesktop ? null : 'shadow', props.theme, settingsStore.fixSiderbar ? 'ant-fixed-sidemenu' : null]"
     width="256px" :collapsible="props.collapsible" v-model:collapsed="sideMenuCollapsedRef" :trigger="null">
     <logo />
-    <Menu :collapsed="props.collapsed" :menu="props.menus" :theme="props.theme" :mode="props.mode" @select="onSelect" />
+    <Menu :collapsed="props.collapsed" :menus="props.menus" :theme="props.theme" :mode="props.mode" @select="onSelect" />
   </a-layout-sider>
 </template>
 
