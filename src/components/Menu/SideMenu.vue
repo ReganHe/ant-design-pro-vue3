@@ -13,6 +13,7 @@ import Logo from '@/components/tools/Logo.vue'
 import Menu from './Menu.vue'
 import { isDesktop } from '@/utils/device'
 import { useSettingsStore } from '@/store/modules/settings'
+import { RouteRecordRaw } from 'vue-router'
 
 const settingsStore = useSettingsStore();
 
@@ -38,7 +39,7 @@ const props = defineProps({
     default: false
   },
   menus: {
-    type: Array,
+    type: Array<RouteRecordRaw>,
     required: true
   }
 })
