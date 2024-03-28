@@ -1,14 +1,13 @@
 import { RouteRecordRaw } from 'vue-router'
-import BasicLayout from '@/layouts/BasicLayout.vue'
-import { RouteView } from '@/layouts/index'
+import { RouteView, UserLayout } from '@/layouts/index'
 
 export const CONSTANT_ROUTES: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'index',
-    component: BasicLayout,
+    component: UserLayout,
     meta: { title: 'menu.home' },
-    redirect: '/profile',
+    redirect: '/demo',
     children: [
       {
         path: '/profile',

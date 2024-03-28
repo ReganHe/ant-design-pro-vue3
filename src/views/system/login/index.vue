@@ -79,7 +79,7 @@ const handleSubmit = async (e: Event) => {
       applicationId: parseInt(VITE_GLOB_APP_ID),
       deviceId: parseInt(VITE_GLOB_DEVICE_ID),
     })
-    router.replace('/profile/center')
+    router.replace('/')
     // 延迟 1 秒显示欢迎信息
     setTimeout(() => {
       notification.success({

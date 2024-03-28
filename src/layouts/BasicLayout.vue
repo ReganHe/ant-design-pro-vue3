@@ -3,17 +3,17 @@
     <!-- SideMenu -->
     <a-drawer v-if="isMobile" placement="left" :class="`drawer-sider ${settingsStore.theme}`" :closable="false"
       :open="collapsed" @close="drawerClose" width="256px">
-      <side-menu mode="inline" :menus="menus" :theme="settingsStore.theme" :collapsed="false" :collapsible="true"
-        @menuSelect="menuSelect" />
+      <side-menu mode="inline" :menus="permissionStore.routes" :theme="settingsStore.theme" :collapsed="false"
+        :collapsible="true" @menuSelect="menuSelect" />
     </a-drawer>
 
-    <side-menu v-else-if="settingsStore.layout !== 'topmenu'" mode="inline" :menus="menus" :theme="settingsStore.theme"
-      :collapsed="collapsed" :collapsible="true" />
+    <side-menu v-else-if="settingsStore.layout !== 'topmenu'" mode="inline" :menus="permissionStore.routes"
+      :theme="settingsStore.theme" :collapsed="collapsed" :collapsible="true" />
     <a-layout :class="[settingsStore.layout, `content-width-${settingsStore.contentWidth}`]"
       :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }">
       <!-- layout header -->
-      <global-header :mode="settingsStore.layout" :menus="menus" :theme="settingsStore.theme" :collapsed="collapsed"
-        @toggle="toggle" @refresh="onRefresh" />
+      <global-header :mode="settingsStore.layout" :menus="permissionStore.routes" :theme="settingsStore.theme"
+        :collapsed="collapsed" @toggle="toggle" @refresh="onRefresh" />
 
       <!-- layout content -->
       <a-layout-content :style="{
@@ -55,13 +55,15 @@ import { useRouter } from 'vue-router'
 import emitter from '@/utils/eventBus'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useAppStore } from '@/store/modules/app'
+import { usePermissionStore } from '@/store/modules/permission'
 
 const settingsStore = useSettingsStore();
 const appStore = useAppStore();
+const permissionStore = usePermissionStore();
 
 const router = useRouter()
 const collapsed = ref(false)
-const menus = ref([])
+const menus = ref([] as any[])
 
 const contentPaddingLeft = computed(() => {
   if (!settingsStore.fixSiderbar || isMobile.value) {
@@ -79,6 +81,7 @@ watch(
     collapsed.value = !val
   }
 )
+
 
 // created()
 // bug:TODO:克隆时报警告[Vue warn]: Avoid app logic that relies on enumerating keys on a component instance. The keys will be empty in production mode to avoid performance overhead.目前还不知道解决方案
