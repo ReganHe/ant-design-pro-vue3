@@ -7,7 +7,7 @@
   </a-menu>
 </template>
 <script lang="ts" setup name="Menu">
-import { reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
+import { reactive, computed, onMounted, watch, ref } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
 
