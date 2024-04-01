@@ -40,7 +40,6 @@
 
   // 修复VITE_PLUGIN_THEME style生成的样式问题(viteThemePlugin)
   .ant-btn-primary {
-
     &:active,
     &:hover,
     &:focus {
@@ -58,17 +57,10 @@
 
   // 系统菜单颜色
   .SysMenu {
-
-    // 统一设置
-    .ant-menu-item-icon {
-      width: 14px;
-      height: 14px;
-    }
-
     // 深色菜单
     &.ant-menu-dark {
       .ant-menu-item-icon {
-        color: @dark-deactive-font-color  !important;
+        color: @dark-deactive-font-color !important;
       }
 
       .ant-menu-submenu-selected {
@@ -120,8 +112,6 @@
       height: 14px;
     }
   }
-
-
 }
 
 .ant-menu-inline-collapsed-tooltip {
@@ -134,7 +124,7 @@
 
 // 内容区域宽度为固定时的样式
 .content-width-Fixed {
-  &>main {
+  & > main {
     width: 1200px;
     margin: 24px auto !important;
   }
@@ -167,7 +157,6 @@
     }
 
     .topmenu {
-
       /* 必须为 topmenu  才能启用流式布局 */
       &.content-width-Fluid {
         .header-index-wide {
@@ -180,7 +169,6 @@
   &.mobile {
     .sidemenu {
       .ant-header-fixedHeader {
-
         &.ant-header-side-opened,
         &.ant-header-side-closed {
           width: 100%;
@@ -376,12 +364,11 @@
   }
 
   &.tablet {
-
     // overflow: hidden; text-overflow:ellipsis; white-space: nowrap;
     .top-nav-header-index {
       .header-index-wide {
         .header-index-left {
-          .logo>a {
+          .logo > a {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -555,7 +542,7 @@
     overflow: hidden;
     line-height: 64px;
     background: #002140;
-    transition: all .3s;
+    transition: all 0.3s;
 
     img,
     svg,
@@ -613,9 +600,9 @@
     width: 160px;
   }
 
-  .ant-dropdown-menu-item>.anticon:first-child,
-  .ant-dropdown-menu-item>.ant-dropdown-menu-title-content>a>.anticon:first-child,
-  .ant-dropdown-menu-submenu-title>.anticon:first-child .ant-dropdown-menu-submenu-title>a>.anticon:first-child {
+  .ant-dropdown-menu-item > .anticon:first-child,
+  .ant-dropdown-menu-item > .ant-dropdown-menu-title-content > a > .anticon:first-child,
+  .ant-dropdown-menu-submenu-title > .anticon:first-child .ant-dropdown-menu-submenu-title > a > .anticon:first-child {
     min-width: 12px;
     margin-right: 8px;
   }
@@ -639,7 +626,7 @@
         vertical-align: middle;
       }
 
-      >.ant-form-item-label {
+      > .ant-form-item-label {
         line-height: 32px;
         padding-right: 8px;
         width: auto;

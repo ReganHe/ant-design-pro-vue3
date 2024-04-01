@@ -8,7 +8,7 @@ const config: RouteRecordRaw = {
   redirect: '/config/user',
   meta: {
     orderNo: 160,
-    icon: 'settings-outline',
+    icon: 'StarOutlined',
     title: '系统配置'
   },
   children: [
