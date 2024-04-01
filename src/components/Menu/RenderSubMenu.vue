@@ -1,7 +1,7 @@
 <template>
   <a-sub-menu v-if="props.menu.children" :key="props.menu.path" popupClassName="popupSubMenu">
     <template #icon>
-      <SvgIcon v-if="props.menu.meta?.icon" :name="props.menu.meta?.icon" />
+      <SvgIcon v-if="props.menu.meta?.icon" :name="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <template #title>{{ props.menu.meta?.title }}</template>
     <template v-for="sub in props.menu.children">
@@ -12,7 +12,7 @@
   <!-- renderMenuItem -->
   <a-menu-item :key="props.menu.path" v-if="!props.menu.children && !props.menu.meta?.hidden">
     <template #icon>
-      <SvgIcon :name="props.menu.meta?.icon" v-if="props.menu.meta?.icon" />
+      <SvgIcon :name="props.menu.meta?.icon" v-if="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <!-- 外部链接 -->
     <a v-if="props.menu.meta?.target" :href="props.menu.meta?.target"

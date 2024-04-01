@@ -8,12 +8,12 @@
         " type="primary" :disabled="addCommand.disableValidator && addCommand.disableValidator()"
         v-bind="addCommand.elementProps" @click="handleEmit(addCommand.command)">
         <template #icon>
-          <ant-icon icon="PlusOutlined" />
+          <svg-icon name="PlusOutlined" width="14px" />
         </template>
         {{ addCommand.text }}
       </Button>
       <ButtonGroup v-if="customCommands && customCommands.length" class="table-custom-commands">
-        <Button v-for="(item, index) of customCommands" v-show="!item.visibleValidator || item.visibleValidator()"
+        <Button v-for="( item, index ) of  customCommands " v-show="!item.visibleValidator || item.visibleValidator()"
           :key="index" :disabled="item.disableValidator && item.disableValidator()" v-bind="item.elementProps"
           @click="handleEmit(item.command)">{{ item.text }}
         </Button>
@@ -21,8 +21,9 @@
     </div>
   </div>
   <Table :row-key="rowKey" :loading="loading" :dataSource="dataSource" :columns="antColumns" :scroll="{
-    x: '100%',
-  }"
+      x: '100%',
+    }
+    "
     :pagination="pagination === false ? false : { showSizeChanger: true, showTotal: (total: number) => `共 ${total} 条`, ...pagination }"
     v-bind="elementProps" :sticky="tableSticky" />
 </template>

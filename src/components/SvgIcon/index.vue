@@ -1,8 +1,8 @@
 <template>
-  <svg v-if="isLocalSvgFile" aria-hidden="true" :width="width" :height="height" :style="{ color }">
+  <svg v-if="isLocalSvgFile" aria-hidden="true" :width="fontSize" :height="fontSize" :style="{ color }">
     <use :xlink:href="symbolIdRef" />
   </svg>
-  <component v-else :is="icons[antvIconNameRef]" :style="{ fontSize: width }" v-bind="$attrs">
+  <component v-else :is="icons[antvIconNameRef]" :style="{ fontSize: fontSize }" v-bind="$attrs">
   </component>
 </template>
 
@@ -24,13 +24,9 @@ const props = defineProps({
     type: String,
     default: ''
   },
-  width: {
+  fontSize: {
     type: String,
-    default: '18px'
-  },
-  height: {
-    type: String,
-    default: '18px'
+    default: '14px'
   }
 })
 const svgs = import.meta.glob('/src/assets/icons/**/*.svg')

@@ -8,19 +8,19 @@ import setupDefaultSetting from '@/utils/setupDefaultSetting'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 import '@/utils/default-passive-events'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 import { CaCommonQuery } from '@/components/CaCommonQuery'
 import { CaCommonTable } from '@/components/CaCommonTable'
 import { CaCommonForm } from '@/components/CaCommonForm'
-import { registerAntIcon } from '@/icons'
 
 const app = createApp(App)
 app.use(Antd)
 app.use(router)
 app.use(store)
+app.component('SvgIcon', SvgIcon)
 app.component('CaCommonQuery', CaCommonQuery)
 app.component('CaCommonTable', CaCommonTable)
 app.component('CaCommonForm', CaCommonForm)
-registerAntIcon(app)
 app.mount('#app')
 
 setupDefaultSetting()
