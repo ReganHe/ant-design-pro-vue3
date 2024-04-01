@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <router-link :to="{ name: 'profile' }">
-      <SvgIcon name="logo" />
+      <svg-icon name="logo" />
       <h1 v-if="props.showTitle">{{ props.title }}</h1>
     </router-link>
   </div>
