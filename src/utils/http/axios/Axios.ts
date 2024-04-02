@@ -67,7 +67,7 @@ export class VAxios {
     if (!transform) {
       return
     }
-    const { requestInterceptors, requestInterceptorsCatch, responseInterceptors, responseInterceptorsCatch } = transform
+    const { requestInterceptors, responseInterceptors, responseInterceptorsCatch } = transform
 
     const axiosCanceler = new AxiosCanceler()
 
@@ -87,9 +87,6 @@ export class VAxios {
       }
       return config
     }, undefined)
-
-    // Request interceptor error capture
-    requestInterceptorsCatch && isFunction(requestInterceptorsCatch) && this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch)
 
     // Response result interceptor processing
     this.axiosInstance.interceptors.response.use((res: AxiosResponse<any>) => {

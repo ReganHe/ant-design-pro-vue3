@@ -9,6 +9,7 @@ Object.keys(modules).forEach((key) => {
   const moduleRoutes = Array.isArray(routeModule) ? [...routeModule] : [routeModule]
   routeModuleList.push(...moduleRoutes)
 })
+routeModuleList.sort((a, b) => (a.meta?.orderNo || 0) - (b.meta?.orderNo || 0))
 
 const asyncRoutes = routeModuleList
 

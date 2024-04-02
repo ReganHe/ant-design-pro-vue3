@@ -20,11 +20,8 @@ export const useAppStore = defineStore('app', {
      * @type {string}
      */
     title: '',
-    /**
-     * 是否显示全局消息
-     * @type {boolean}
-     */
-    globalMessageShowing: true
+    // show global message
+    globalMessageShowing: false
   }),
   getters: {},
   actions: {

@@ -1,22 +1,20 @@
 // axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
 // The axios configuration can be changed according to the project, just change the file, other files can be left unchanged
 
-import type { AxiosResponse } from 'axios'
 import qs from 'qs'
-
+import type { AxiosResponse } from 'axios'
 import type { ErrorMessageMode, RequestOptions, Result } from '#/axios'
+import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform'
+import { Recordable } from '#/global'
 import { useMessage } from '@/hooks/web/useMessage'
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum'
-import { isString } from '@/utils/is'
 import { setObjToUrlParams, deepMerge } from '@/utils'
-import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
+import { isString } from '@/utils/is'
+import { getAppEnvConfig } from '@/utils/env'
 import { useUserStore, useUserStoreWithOut } from '@/store/modules/user'
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { VAxios } from './Axios'
-import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform'
 import { joinTimestamp, formatRequestDate } from './helper'
-import { getAppEnvConfig } from '@/utils/env'
-import { Recordable } from '#/global'
 
 const { VITE_GLOB_API_URL_PREFIX, VITE_GLOB_API_URL } = getAppEnvConfig()
 const urlPrefix = VITE_GLOB_API_URL_PREFIX
@@ -36,11 +34,13 @@ const transform: AxiosTransform = {
     if (isReturnNativeResponse) {
       return res
     }
+
     // 不进行任何处理，直接返回
     // 用于页面代码可能需要直接获取code，data，message这些信息时开启
     if (!isTransformResponse) {
       return res.data
     }
+
     // 错误的时候返回
     if (!res.data) {
       throw new Error('请求出错，请稍后重试！')
@@ -50,6 +50,7 @@ const transform: AxiosTransform = {
     if (status === ResultEnum.SUCCESS) {
       return data
     }
+
     // 返回blob格式，文件下载
     if (res.data instanceof Blob) {
       return {
@@ -58,6 +59,7 @@ const transform: AxiosTransform = {
         name: decodeURIComponent(res.headers['content-disposition'].substring(res.headers['content-disposition'].indexOf('=') + 1))
       }
     }
+
     // 在此处根据自己项目的实际情况对不同的code执行不同的操作
     // 如果不希望中断当前请求，请return数据，否则直接抛出异常即可
     let errMsg = ''
@@ -144,7 +146,6 @@ const transform: AxiosTransform = {
    * @description: 系统错误处理
    */
   responseInterceptorsCatch: (error: any) => {
-    const errorLogStore = useErrorLogStoreWithOut()
     const { response, code, message, config } = error || {}
     const errorMessageMode = config?.requestOptions?.errorMessageMode || 'none'
     const msg: string = response?.data?.error?.message ?? ''
@@ -307,4 +308,5 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
     )
   )
 }
+
 export const defHttp = createAxios()

@@ -81,7 +81,6 @@ declare module '@vue/runtime-core' {
     SideMenu: typeof import('./src/components/Menu/SideMenu.vue')['default']
     SvgIcon: typeof import('./src/components/SvgIcon/index.vue')['default']
     ThemeColor: typeof import('./src/components/SettingDrawer/components/ThemeColor.vue')['default']
-    TwoStepCaptcha: typeof import('./src/components/tools/TwoStepCaptcha.vue')['default']
     UserMenu: typeof import('./src/components/tools/UserMenu/index.vue')['default']
     VColorInput: typeof import('./src/components/ColorPicker/common/VColorInput.vue')['default']
   }
