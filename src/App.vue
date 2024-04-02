@@ -1,20 +1,15 @@
 <template>
-  <a-config-provider :locale="zhCN" :theme="{
-    token: {
-      colorPrimary: settingsStore.color,
-      borderRadius: 2
-    }
-  }">
+  <a-config-provider :locale="zhCN" :theme="settingsStore.themeConfig
+    ">
     <!-- algorithm: theme.darkAlgorithm,夜间主题 -->
     <router-view />
   </a-config-provider>
 </template>
 
 <script lang="ts" setup name="App">
-import { onErrorCaptured, h } from 'vue'
+import { onErrorCaptured, h, onMounted } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setDeviceType } from '@/utils/device'
-import { useRouter } from 'vue-router'
 import { Modal } from 'ant-design-vue'
 import { useSettingsStore } from '@/store/modules/settings';
 
@@ -23,7 +18,16 @@ const settingsStore = useSettingsStore();
 window.onresize = setDeviceType
 setDeviceType()
 
-const router = useRouter()
+// 初始化的时候
+onMounted(() => {
+  // 设置主题
+  const themeName = settingsStore.themeName
+  document.documentElement.setAttribute('data-theme', themeName)
+  // 设置dark
+  document.documentElement.setAttribute('data-dark', settingsStore.darkMode ? 'dark' : 'light')
+
+})
+
 //全局错误处理
 onErrorCaptured((err, instance, info) => {
   if (window.env !== 'development') {

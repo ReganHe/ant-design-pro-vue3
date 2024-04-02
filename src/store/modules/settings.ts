@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
+import { theme } from 'ant-design-vue'
 import { updateDarkMode } from '@/components/SettingDrawer/settingConfig'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => {
     const cachedState = JSON.parse(localStorage.getItem(`pinia-settings`.toUpperCase()) || '{}')
     return {
+      //主题配置
+      themeName: cachedState.themeName || 'default',
       color: cachedState.color || '#1677ff', //主题颜色
       theme: cachedState.theme || 'dark',
       darkMode: cachedState.darkMode || false,
@@ -20,6 +23,19 @@ export const useSettingsStore = defineStore('settings', {
       showSettings: cachedState.showSettings || false,
       lockScreen: cachedState.lockScreen || false
     }
+  },
+  getters: {
+    themeConfig: (state) => ({
+      token: {
+        colorPrimary: state.color,
+        colorSuccess: '#1dc779',
+        colorWarning: '#ffb302',
+        colorError: '#cf4444',
+        colorInfo: state.color,
+        wireframe: true
+      },
+      algorithm: state.darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm
+    })
   },
   actions: {
     /**
@@ -39,8 +55,19 @@ export const useSettingsStore = defineStore('settings', {
       if (isDark) {
         this.theme = 'dark'
       }
+      document.documentElement.setAttribute('data-dark', isDark ? 'dark' : 'light')
       localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))
       updateDarkMode(isDark)
+    },
+    /**
+     * 颜色主题模式
+     * @param themeName 主题名称
+     */
+    setThemeName(themeName: string) {
+      console.log(themeName)
+      this.themeName = themeName
+      document.documentElement.setAttribute('data-theme', themeName)
+      localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))
     },
     setValue(propertyName, propertyValue) {
       this[propertyName] = propertyValue

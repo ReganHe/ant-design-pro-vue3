@@ -22,6 +22,14 @@ const demo: RouteRecordRaw = {
         title: '通用页面'
       }
     },
+    // {
+    //   path: '/demo/test-theme',
+    //   name: 'TestTheme',
+    //   component: () => import('@/views/demo/test-theme/index.vue'),
+    //   meta: {
+    //     title: '主题测试'
+    //   }
+    // },
     {
       path: '/demo/common-table',
       name: 'CommonTable',
