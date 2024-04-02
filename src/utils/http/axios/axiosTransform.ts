@@ -36,10 +36,6 @@ export abstract class AxiosTransform {
    */
   responseInterceptors?: (res: AxiosResponse<any>) => AxiosResponse<any>
 
-  /**
-   * @description: 请求之前的拦截器错误处理
-   */
-  requestInterceptorsCatch?: (error: Error) => void
 
   /**
    * @description: 请求之后的拦截器错误处理
