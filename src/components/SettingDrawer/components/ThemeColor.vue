@@ -3,7 +3,7 @@
     <div style="height: 20px">
       <a-tooltip class="setting-drawer-theme-color-colorBlock" v-for="(item, index) in colorList" :key="index">
         <template #title>{{ item.key }}</template>
-        <a-tag :color="item.color" @click="changeColor(item.color)">
+        <a-tag :color="item.color" @click="changeColor(item.color, item.key)">
           <CheckOutlined v-if="item.color === settingsStore.color" />
         </a-tag>
       </a-tooltip>
@@ -32,9 +32,12 @@ import { useSettingsStore } from '@/store/modules/settings'
 
 const settingsStore = useSettingsStore();
 
-const changeColor = (color: string) => {
-  console.log('changeColor', color, settingsStore);
+const changeColor = (color: string, key: string) => {
+  console.log('changeColor', color, settingsStore, key);
+  const themeName = key ? key : (isCustomColorRef.value ? 'custom' : 'default');
   settingsStore.setValue('color', color);
+  settingsStore.setValue('themeName', themeName);
+  document.documentElement.setAttribute('data-theme', themeName)
   console.log('changeColor result', settingsStore.color)
   ConfigProvider.config({
     theme: {
