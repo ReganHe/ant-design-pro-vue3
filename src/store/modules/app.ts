@@ -6,7 +6,7 @@ export const useAppStore = defineStore('app', {
     device: 'desktop',
     title: '',
     // show global message
-    globalMessageShowing: true
+    globalMessageShowing: false
   }),
   getters: {},
   actions: {
