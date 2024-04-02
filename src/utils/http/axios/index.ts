@@ -9,7 +9,6 @@ import { useMessage } from '@/hooks/web/useMessage'
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum'
 import { isString } from '@/utils/is'
 import { setObjToUrlParams, deepMerge } from '@/utils'
-import { useErrorLogStoreWithOut } from '@/store/modules/errorLog'
 import { useUserStore, useUserStoreWithOut } from '@/store/modules/user'
 import { useAppStoreWithOut } from '@/store/modules/app'
 import { VAxios } from './Axios'
@@ -144,7 +143,6 @@ const transform: AxiosTransform = {
    * @description: 系统错误处理
    */
   responseInterceptorsCatch: (error: any) => {
-    const errorLogStore = useErrorLogStoreWithOut()
     const { response, code, message, config } = error || {}
     const errorMessageMode = config?.requestOptions?.errorMessageMode || 'none'
     const msg: string = response?.data?.error?.message ?? ''
