@@ -14,7 +14,6 @@
 import { onErrorCaptured, h } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setDeviceType } from '@/utils/device'
-import emitter from '@/utils/eventBus'
 import { useRouter } from 'vue-router'
 import { Modal } from 'ant-design-vue'
 import { useSettingsStore } from '@/store/modules/settings';
@@ -25,10 +24,6 @@ window.onresize = setDeviceType
 setDeviceType()
 
 const router = useRouter()
-emitter.once('axios_goto_login', () => {
-  router.push({ name: 'login' })
-})
-
 //全局错误处理
 onErrorCaptured((err, instance, info) => {
   if (window.env !== 'development') {
