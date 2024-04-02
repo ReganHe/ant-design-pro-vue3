@@ -28,7 +28,7 @@
 <script lang="ts" setup name="MultiTab">
 import { ref, reactive, watch, getCurrentInstance, ComponentInternalInstance } from 'vue'
 import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
-import events from '@/utils/eventBus'
+import emitter from '@/utils/eventBus'
 import { message } from 'ant-design-vue'
 import './index.less'
 
@@ -45,20 +45,20 @@ const selectedLastPath = () => {
   ; (function created() {
     // 全局的事件绑定用于页面内控制tab标签,暂时用不上
     // #region
-    events.once('multiTab.open', (val) => {
+    emitter.once('multiTab.open', (val) => {
       if (!val) {
         throw new Error(`multi-tab: open tab ${val} err`)
       }
       activeKey.value = val
     })
-    events.once('multiTab.close', (val) => {
+    emitter.once('multiTab.close', (val) => {
       if (!val) {
         closeSelf(activeKey.value)
         return
       }
       closeSelf(val)
     })
-    events.once('multiTab.rename', ({ key, name }) => {
+    emitter.once('multiTab.rename', ({ key, name }) => {
       console.log('rename', key, name)
       try {
         const item = pages.find((item) => item.path === key)
