@@ -3,6 +3,7 @@ import { useAppStoreWithOut } from '@/store/modules/app'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import { useMessage } from '@/hooks/web/useMessage'
 import { ResultEnum } from '@/enums/httpEnum'
+import { BlobResp, Result } from '#/axios'
 
 const appStore = useAppStoreWithOut()
 const { createErrorModal } = useMessage()
@@ -34,14 +35,14 @@ function showGlobalMessage(message: string, callback?: () => void) {
 }
 
 export default {
-  onFulfilled: async (res: AxiosResponse) => {
+  onFulfilled: async (res: AxiosResponse<Result>) => {
     if (res.data.status === ResultEnum.SUCCESS) {
       return res.data.data
     }
 
     // 返回blob格式，文件下载
     if (res.data instanceof Blob) {
-      return {
+      return <BlobResp>{
         data: res.data,
         type: res.headers['content-type'],
         name: decodeURIComponent(res.headers['content-disposition'].substring(res.headers['content-disposition'].indexOf('=') + 1))
@@ -61,7 +62,6 @@ export default {
         const userStore = useUserStoreWithOut()
         userStore.resetToken()
         location.reload()
-        return
       })
     } else if ([-40102].indexOf(res.data.status) > -1) {
       // -40102: 身份认证失败，错误的登录信息
