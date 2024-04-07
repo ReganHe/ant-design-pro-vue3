@@ -9,10 +9,10 @@
       </div>
       <div class="common-table-container">
         <ca-common-table v-bind="{
-          ...table,
-          emitRegister,
-          elementProps: { ...table.elementProps, onChange: onTableChange },
-        }" />
+        ...table,
+        emitRegister,
+        elementProps: { ...table.elementProps, onChange: onTableChange },
+      }" />
       </div>
     </div>
     <Modal v-model:open="form.visible" :title="form.title" width="500px" :footer="null"
@@ -263,8 +263,14 @@ onBeforeMount(async () => {
       flex: 1;
       background: white;
       margin-top: 12px;
-      padding: 2px 12px 0 12px;
+      padding: 12px;
     }
+  }
+}
+
+html[data-dark='dark'] {
+  .config-user-tree {
+    background: #141414;
   }
 }
 </style>

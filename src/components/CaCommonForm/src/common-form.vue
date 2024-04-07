@@ -2,18 +2,18 @@
   <div class="content" :style="(extendProps || {}).contentStyle">
     <a-spin :spinning="loading">
       <div id="common-form">
-        <Form ref="formRef" :model="model" v-bind="elementProps" :style="{
-          overflow: 'hidden',
-          padding: '0 16px 0 12px',
-          background: 'white',
-          ...elementProps.style,
-        }" :scrollToFirstError="true">
+        <Form ref="formRef" :model="model" v-bind="elementProps" class="common-form-container" :style="{
+    overflow: 'hidden',
+    padding: '0 16px 0 12px',
+    ...elementProps.style,
+  }" :scrollToFirstError="true">
           <FormCtrl v-for="(field, index) in fields.filter(
-            (r) => (r.extendProps || {}).showInFooter !== true
-          )" :key="index" :operate-type="operateType" :default-model="model"
-            :width="(100 / rowFieldsCount) * (field.columnSpan || 1) + '%'" :layout="elementProps.layout || 'horizontal'"
-            :customComponents="customComponents" :handleEmit="handleEmit" :validateInfos="validateInfos" v-bind="field"
-            :element-props="field.elementProps || {}" :extend-props="field.extendProps || {}" />
+    (r) => (r.extendProps || {}).showInFooter !== true
+  )" :key="index" :operate-type="operateType" :default-model="model"
+            :width="(100 / rowFieldsCount) * (field.columnSpan || 1) + '%'"
+            :layout="elementProps.layout || 'horizontal'" :customComponents="customComponents" :handleEmit="handleEmit"
+            :validateInfos="validateInfos" v-bind="field" :element-props="field.elementProps || {}"
+            :extend-props="field.extendProps || {}" />
         </Form>
       </div>
     </a-spin>
@@ -26,10 +26,10 @@
     " :style="{ background: 'white', ...(extendProps || {}).footerStyle }">
     <div class="status" :style="{ overflow: 'hidden' }">
       <FormCtrl v-for="(field, index) in fields.filter((r) => (r.extendProps || {}).showInFooter === true)" :key="index"
-        :operate-type="operateType" :default-model="model" :width="(100 / rowFieldsCount) * (field.columnSpan || 1) + '%'"
-        :layout="elementProps.layout || 'horizontal'" :customComponents="customComponents" :handleEmit="handleEmit"
-        :validateInfos="validateInfos" v-bind="field" :element-props="field.elementProps || {}"
-        :extend-props="field.extendProps || {}" />
+        :operate-type="operateType" :default-model="model"
+        :width="(100 / rowFieldsCount) * (field.columnSpan || 1) + '%'" :layout="elementProps.layout || 'horizontal'"
+        :customComponents="customComponents" :handleEmit="handleEmit" :validateInfos="validateInfos" v-bind="field"
+        :element-props="field.elementProps || {}" :extend-props="field.extendProps || {}" />
     </div>
     <div class="commands">
       <Button v-for="(item, index) of commands" :key="index"

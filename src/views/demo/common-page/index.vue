@@ -270,17 +270,16 @@ const emitRegister = {
 
 getList();
 </script>
-<style lang="scss" scoped>
+<style lang="less" scoped>
 .common-page {
   .common-query-container {
     background: white;
-    margin: 12px;
+    margin-bottom: 12px;
     padding: 12px;
   }
 
   .common-table-container {
     background: white;
-    margin: 12px;
     padding: 2px 12px 0 12px;
   }
 }

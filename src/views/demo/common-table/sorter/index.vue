@@ -180,7 +180,6 @@ getList();
 <style lang="scss" scoped>
 .common-table-container {
   background: white;
-  margin: 12px;
-  padding: 2px 12px 0 12px;
+  padding: 12px;
 }
 </style>
