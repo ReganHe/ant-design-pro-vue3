@@ -49,34 +49,32 @@ export default {
       }
     }
 
-    let dataErrMsg = res.data.message || 'Error'
-    if ([-40104, -40105, -40107, -40108].indexOf(res.data.status) > -1) {
-      // -40108: 未携带令牌
-      // -40104: 令牌不存在（当前用户在它处登录）
-      // -40105: 令牌过期处理
-      // -40107: 密钥错误
-      if ([-40105, -40107].indexOf(res.data.status) > -1) {
-        dataErrMsg = '用户密钥已过期，请重新登录'
-      }
-      await showGlobalMessage(dataErrMsg, async () => {
-        const userStore = useUserStoreWithOut()
-        userStore.resetToken()
-        location.reload()
-      })
-    } else if ([-40102].indexOf(res.data.status) > -1) {
-      // -40102: 身份认证失败，错误的登录信息
-      return Promise.reject(new Error('用户名或密码错误'))
+    let dataErrMsg = res.data.message || '请求出错，请稍侯再试...'
+    switch (res.data.status) {
+      case ResultEnum.TOKEN_NOT_EXIST:
+      case ResultEnum.TOKEN_TIMEOUT:
+      case ResultEnum.TOKEN_ERROR:
+      case ResultEnum.NO_TOKEN:
+        dataErrMsg = [ResultEnum.TOKEN_TIMEOUT, ResultEnum.TOKEN_ERROR].includes(res.data.status) ? '用户密钥已过期，请重新登录' : res.data.message
+        showGlobalMessage(dataErrMsg, async () => {
+          const userStore = useUserStoreWithOut()
+          userStore.resetToken()
+          location.reload()
+        })
+        break
+      case ResultEnum.USER_INFO_ERROR:
+        return Promise.reject(new Error('用户名或密码错误'))
+      default:
+        showGlobalMessage(dataErrMsg)
+        return Promise.reject(new Error(dataErrMsg))
     }
-
-    await showGlobalMessage(dataErrMsg)
-    return Promise.reject(new Error(dataErrMsg))
   },
   onRejected: async (error: any) => {
     let errMsg = error.message || (error.response && error.response.data.message) || '网络开小差了...'
     if (errMsg.indexOf('timeout') > -1) {
       errMsg = '请求超时，请稍侯再试...'
     }
-    await showGlobalMessage(errMsg)
+    showGlobalMessage(errMsg)
     return Promise.reject(error)
   }
 }
