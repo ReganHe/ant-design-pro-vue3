@@ -5,7 +5,7 @@ declare type Indexable<T = any> = {
 }
 declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
-declare interface ViteEnv {
+export interface ViteEnv {
   VITE_PORT: number
   VITE_USE_MOCK: boolean
   VITE_USE_PWA: boolean
@@ -20,9 +20,4 @@ declare interface ViteEnv {
   VITE_LEGACY: boolean
   VITE_USE_IMAGEMIN: boolean
   VITE_GENERATE_UI: string
-}
-export interface Response {
-  message: string
-  timestamp: Date
-  code: number
 }

@@ -17,7 +17,7 @@ function showGlobalMessage(message: string, callback?: () => void) {
   if (!appStore.globalMessageShowing) {
     appStore.setGlobalMessageShowing(true)
     createErrorModal({
-      title: '错误提示2',
+      title: '错误提示',
       content: message,
       onCancel: () => {
         setTimeout(() => appStore.setGlobalMessageShowing(false), 1000)
