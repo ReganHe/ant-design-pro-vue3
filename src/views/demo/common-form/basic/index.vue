@@ -222,7 +222,8 @@ const form = reactive<CommonForm>({
     labelCol: { style: { width: '80px' } },
     wrapperCol: { style: { flex: 1 } },
     style: {
-      margin: '0 12px 12px 12px',
+      // margin: '0 12px 12px 12px',
+      "margin-bottom": '12px'
     },
   },
   extendProps: {

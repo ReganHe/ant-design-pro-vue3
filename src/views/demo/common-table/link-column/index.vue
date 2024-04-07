@@ -23,7 +23,7 @@ const columns = computed<Array<TableField>>(() => {
       label: '编号',
       dataField: 'code',
       elementProps: {
-        width: '60px',
+        width: '100px',
         align: 'center',
       },
       extendProps: {
@@ -103,7 +103,6 @@ getList();
 <style lang="scss" scoped>
 .common-table-container {
   background: white;
-  margin: 12px;
-  padding: 2px 12px 0 12px;
+  padding: 12px;
 }
 </style>

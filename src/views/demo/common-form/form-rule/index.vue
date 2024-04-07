@@ -227,7 +227,6 @@ const form = reactive<CommonForm>({
     wrapperCol: { style: { flex: 1 } },
     scrollToFirstError: true,
     style: {
-      margin: '0 12px 12px 12px',
     },
   },
   extendProps: {

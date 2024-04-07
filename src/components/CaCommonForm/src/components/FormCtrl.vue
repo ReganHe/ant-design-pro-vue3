@@ -1,57 +1,57 @@
 <template>
-  <div v-if="type === 'space'" :style="{
+  <div v-if="type === 'space'" class="form-item-space" :style="{
     float: 'left',
     width: 'calc(100% + 28px)',
     height: '12px',
     margin: '0 -16px 0 -12px',
     background: '#f0f2f5',
     ...elementProps.style,
-  }"></div>
+  }" />
   <FormItem v-else-if="!visibleValidator || visibleValidator({ model, operateType })" :label="label" :name="dataField"
     :rules="rules" v-bind="{ ...extendProps.formItemProps, ...validateInfos[dataField] }" :style="{
-      float: 'left',
-      width: `calc(${width} - ${layout === 'vertical' ? '16px' : '0px'})`,
-      marginLeft: `${layout === 'vertical' ? '8px' : '0'}`,
-      marginRight: `${layout === 'vertical' ? '8px' : '0'}`,
-      marginBottom:
-        ['groupTitle', 'custom', 'space'].includes(type) || validateInfos[dataField]?.help
-          ? '0'
-          : 'inherit',
-      ...extendProps.formItemStyle,
-    }">
+    float: 'left',
+    width: `calc(${width} - ${layout === 'vertical' ? '16px' : '0px'})`,
+    marginLeft: `${layout === 'vertical' ? '8px' : '0'}`,
+    marginRight: `${layout === 'vertical' ? '8px' : '0'}`,
+    marginBottom:
+      ['groupTitle', 'custom', 'space'].includes(type) || validateInfos[dataField]?.help
+        ? '0'
+        : 'inherit',
+    ...extendProps.formItemStyle,
+  }">
     <Select v-if="type === 'select'" v-model:value="model[dataField]" placeholder="请选择" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <AutoComplete v-else-if="type === 'autocomplete'" v-model:value="model[dataField]" placeholder="请选择" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <DatePicker v-else-if="type === 'date'" v-model:value="model[dataField]" placeholder="请选择" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <RangePicker v-else-if="type === 'dateRange'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <TimePicker v-else-if="type === 'time'" v-model:value="model[dataField]" placeholder="请选择" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <TimeRangePicker v-else-if="type === 'timeRange'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <span v-else-if="type === 'text'" v-bind="elementProps"
       :style="{ width: '100%', whiteSpace: 'pre-line', ...elementProps.style }">
       {{
-        `${model[dataField] || (elementProps?.suffix ? ' - ' : '暂无')}${elementProps?.suffix || ''
-          }`
-      }}
+    `${model[dataField] || (elementProps?.suffix ? ' - ' : '暂无')}${elementProps?.suffix || ''
+    }`
+  }}
     </span>
     <Textarea v-else-if="type === 'textArea'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <div v-else-if="type === 'groupTitle'" v-bind="elementProps" :style="{
-      overflow: 'hidden',
-      width: '100%',
-      fontSize: '16px',
-      fontWeight: 'bold',
-      ...elementProps.style,
-    }">
+    overflow: 'hidden',
+    width: '100%',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    ...elementProps.style,
+  }">
       <div style="float: left">
         {{ extendProps.groupTitle }}
         <span style="margin-left: 36px; font-size: 14px; color: #999; font-weight: normal">{{
-          extendProps.subTitle
-        }}</span>
+    extendProps.subTitle
+  }}</span>
       </div>
       <div v-if="extendProps.groupCommands" :style="{ float: 'right' }">
         <Button v-for="(item, index) of extendProps.groupCommands"
@@ -62,31 +62,32 @@
       </div>
     </div>
     <CheckboxGroup v-else-if="type === 'checkboxGroup'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <RadioGroup v-else-if="type === 'radioGroup'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
-    <component v-else-if="type === 'custom' && extendProps.componentKey" :is="customComponents[extendProps.componentKey]"
-      v-model:component-data="model[dataField]" :model="model" :operate-type="operateType" v-bind="elementProps" />
+    " v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    <component v-else-if="type === 'custom' && extendProps.componentKey"
+      :is="customComponents[extendProps.componentKey]" v-model:component-data="model[dataField]" :model="model"
+      :operate-type="operateType" v-bind="elementProps" />
     <UploadDrag v-else-if="type === 'upload'" :model="model" :operateType="operateType" :dataField="dataField"
       :disableValidator="disableValidator" :elementProps="elementProps" :extendProps="extendProps" />
     <span v-else-if="type === 'status'" v-bind="elementProps" :style="{
-      width: '100%',
-      ...elementProps.style,
-      color: (
-        (extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {}
-      ).color,
-    }">
+    width: '100%',
+    ...elementProps.style,
+    color: (
+      (extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {}
+    ).color,
+  }">
       {{
-        ((extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {})
-          .label
-      }}
+    ((extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {})
+      .label
+  }}
     </span>
     <InputNumber v-else-if="type === 'inputNumber'" v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
+    " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }" />
     <Switch v-else-if="type === 'switch'" v-model:checked="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " v-bind="elementProps" :style="elementProps.style" />
+    " v-bind="elementProps" :style="elementProps.style" />
     <Input v-else v-model:value="model[dataField]" :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
-      " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }">
+    " placeholder="请输入" v-bind="elementProps" :style="{ width: '100%', ...elementProps.style }">
     <template v-if="extendProps && extendProps.beforeText" #addonBefore>
       <span>{{ extendProps.beforeText }}</span>
     </template>

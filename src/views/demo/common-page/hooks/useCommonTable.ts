@@ -17,7 +17,7 @@ export default function useCommonTable() {
         label: '编号',
         dataField: 'code',
         elementProps: {
-          width: '60px',
+          width: '120px',
           align: 'center'
         },
         extendProps: {

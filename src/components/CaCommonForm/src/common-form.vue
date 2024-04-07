@@ -2,10 +2,9 @@
   <div class="content" :style="(extendProps || {}).contentStyle">
     <a-spin :spinning="loading">
       <div id="common-form">
-        <Form ref="formRef" :model="model" v-bind="elementProps" :style="{
+        <Form ref="formRef" :model="model" v-bind="elementProps" class="common-form-container" :style="{
           overflow: 'hidden',
           padding: '0 16px 0 12px',
-          background: 'white',
           ...elementProps.style,
         }" :scrollToFirstError="true">
           <FormCtrl v-for="(field, index) in fields.filter(
