@@ -18,9 +18,8 @@ export const addAttachment = base.createRequest<
  *
  * **TAG:** 附件服务； &nbsp;&nbsp; **PATH:** /1.0/attachment/download_attachment；
  */
-export const downloadAttachment = base.createRequest<
-  Attachment.downloadAttachment.Options,
-  Attachment.downloadAttachment.Returns['data']
+export const downloadAttachment = base.createBlobRequest<
+  Attachment.downloadAttachment.Options
 >(s + 'downloadAttachment', (params) => ({
   url: `/1.0/attachment/download_attachment`,
   method: 'GET',

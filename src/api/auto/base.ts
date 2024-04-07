@@ -1,7 +1,7 @@
-import jsonRequest from '@/utils/axios/clients/json'
-import blobRequest from '@/utils/axios/clients/blob'
 import { AxiosRequestConfig } from 'axios'
 import { BlobResp } from '#/axios'
+import jsonRequest from '@/utils/axios/clients/json'
+import blobRequest from '@/utils/axios/clients/blob'
 
 export const createRequest = <TReq, TResp = any>(_: string, requestConfigCreator: (args: TReq) => AxiosRequestConfig) => {
   return (args: TReq) => <Promise<TResp>>jsonRequest(requestConfigCreator(args))

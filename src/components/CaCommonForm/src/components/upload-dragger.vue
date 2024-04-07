@@ -45,12 +45,14 @@ import { Button, UploadDragger, Upload, Progress } from 'ant-design-vue';
 import type { UploadChangeParam, UploadFile } from 'ant-design-vue';
 import { InboxOutlined } from '@ant-design/icons-vue';
 
+import { BlobResp } from '#/axios';
 import { FormFieldExtendProps } from '#/castor-antd';
 import { getAppEnvConfig } from '@/utils/env';
 import { downloadByData } from '@/utils/file/download';
 import { useUserStore } from '@/store/modules/user';
 import { useMessage } from '@/hooks/web/useMessage';
-import { removeAttachment, downAttachments } from '@/api/common/index';
+import * as attachmentService from '@/api/auto/ApiAttachment'
+
 
 const props = defineProps({
   operateType: {
@@ -124,7 +126,7 @@ const handleRemove = (file) => {
         title: '提示',
         content: '是否确认删除此附件？',
         onOk: async () => {
-          removeAttachment(file.id).then(() => {
+          attachmentService.removeAttachment(file.id).then(() => {
             msg.success('附件删除成功！');
             model.value[props.dataField] = model.value[props.dataField].filter(
               (item: UploadFile) => item.uid !== file.uid
@@ -147,7 +149,7 @@ const handleRemove = (file) => {
 const handleDownload = (file) => {
   const key = 'down';
   msg.loading({ content: '文件下载中，请稍后...', key, duration: 0 });
-  downAttachments(file.id).then((res: any) => {
+ attachmentService.downloadAttachment(file.id).then((res: BlobResp) => {
     msg.success({ content: '下载已准备好！', key });
     downloadByData(res, file.fileName || file.name, res.type);
   });
