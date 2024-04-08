@@ -19,7 +19,6 @@
   "dependencies": {
     "@aesoper/normal-utils": "0.1.5",
     "@ant-design/icons-vue": "^6.1.0",
-    "@antv/g2plot": "^2.4.26",
     "@logicflow/core": "^1.2.1",
     "@logicflow/extension": "^1.2.1",
     "@vueuse/core": "^9.13.0",
