@@ -1,6 +1,7 @@
 {
   "name": "vue3-antv-template",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "cross-env vite --mode development",
