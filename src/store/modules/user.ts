@@ -26,12 +26,10 @@ export const useUserStore = defineStore({
       try {
         // 1. 获取正式令牌
         const refreshTokenRes = await accountService.accountLogin4Direct(params)
-        console.log('refreshTokenRes', refreshTokenRes)
         // 2.获取访问令牌
         const accessTokenRes = await accountService.exchangeAccessToken({
           refreshToken: refreshTokenRes.token
         })
-        console.log('accessTokenRes', accessTokenRes)
         // 3. 保存访问令牌
         this.token = accessTokenRes.token
         localStorage.setItem('token', accessTokenRes.token)

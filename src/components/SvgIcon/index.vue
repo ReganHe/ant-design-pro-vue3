@@ -33,7 +33,6 @@ const svgs = import.meta.glob('/src/assets/icons/**/*.svg')
 const symbolIdRef = computed(() => `#${props.prefix}-${props.name}`)
 /** 判断是否是本地svg文件 */
 const isLocalSvgFile = computed(() => {
-  console.log('svgs', Object.keys(svgs))
   return Object.keys(svgs).includes(`/src/assets/icons/${props.name}.svg`);
 })
 
