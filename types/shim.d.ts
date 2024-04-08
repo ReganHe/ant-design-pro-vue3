@@ -7,5 +7,4 @@ declare module '*.vue' {
 // 扩展window对象
 declare interface Window {
   env: string
-  pagetitle: string
 }
