@@ -9,7 +9,7 @@
 <script lang="ts" setup name="App">
 import { onErrorCaptured, h, onMounted } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import { setDeviceType } from '@/utils/device'
+import { setDeviceType } from '@/utils/device-type'
 import { Modal } from 'ant-design-vue'
 import { useSettingsStore } from '@/store/modules/settings';
 

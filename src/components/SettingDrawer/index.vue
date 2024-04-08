@@ -29,7 +29,7 @@ import ThemeColor from './components/ThemeColor.vue'
 import NavigationMode from './components/NavigationMode.vue'
 import LayoutSettings from './components/LayoutSettings.vue'
 import OtherSettings from './components/OtherSettings.vue'
-import { isMobile } from '@/utils/device'
+import { isMobile } from '@/utils/device-type'
 import { useSettingsStore } from '@/store/modules/settings'
 
 const settingsStore = useSettingsStore();

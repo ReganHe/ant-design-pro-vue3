@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import Antd from 'ant-design-vue'
-import setupDefaultSetting from '@/utils/setupDefaultSetting'
+import setupDefaultSetting from '@/utils/default-setting'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { CaCommonQuery } from '@/components/CaCommonQuery'
 import { CaCommonTable } from '@/components/CaCommonTable'

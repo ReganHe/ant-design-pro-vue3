@@ -48,11 +48,10 @@ import { InboxOutlined } from '@ant-design/icons-vue';
 import { BlobResp } from '#/axios';
 import { FormFieldExtendProps } from '#/castor-antd';
 import { getAppEnvConfig } from '@/utils/env';
-import { downloadByData } from '@/utils/file/download';
+import { downloadByData } from '@/utils/download';
 import { useUserStore } from '@/store/modules/user';
 import { useMessage } from '@/hooks/web/useMessage';
 import * as attachmentService from '@/api/auto/ApiAttachment'
-
 
 const props = defineProps({
   operateType: {
@@ -149,7 +148,7 @@ const handleRemove = (file) => {
 const handleDownload = (file) => {
   const key = 'down';
   msg.loading({ content: '文件下载中，请稍后...', key, duration: 0 });
- attachmentService.downloadAttachment(file.id).then((res: BlobResp) => {
+  attachmentService.downloadAttachment(file.id).then((res: BlobResp) => {
     msg.success({ content: '下载已准备好！', key });
     downloadByData(res, file.fileName || file.name, res.type);
   });

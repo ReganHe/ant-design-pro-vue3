@@ -28,7 +28,7 @@
 <script lang="ts" setup name="MultiTab">
 import { ref, reactive, watch, getCurrentInstance, ComponentInternalInstance } from 'vue'
 import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
-import emitter from '@/utils/eventBus'
+import emitter from '@/utils/emitter'
 import { message } from 'ant-design-vue'
 import './index.less'
 

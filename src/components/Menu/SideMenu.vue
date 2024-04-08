@@ -11,7 +11,7 @@
 import { watch, ref } from 'vue'
 import Logo from '@/components/tools/Logo.vue'
 import Menu from './Menu.vue'
-import { isDesktop } from '@/utils/device'
+import { isDesktop } from '@/utils/device-type'
 import { useSettingsStore } from '@/store/modules/settings'
 import { RouteRecordRaw } from 'vue-router'
 

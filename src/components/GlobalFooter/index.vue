@@ -18,7 +18,7 @@
 
 <script lang="ts" setup name="GlobalFooter">
 import { CopyrightOutlined, GithubOutlined } from '@ant-design/icons-vue'
-import { isMobile } from '@/utils/device'
+import { isMobile } from '@/utils/device-type'
 </script>
 
 <style lang="less" scoped>

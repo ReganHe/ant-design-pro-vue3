@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup name="UserLayout">
-import { isMobile } from '@/utils/device'
+import { isMobile } from '@/utils/device-type'
 import { onMounted, onBeforeUnmount } from 'vue'
 
 onMounted(() => {

@@ -40,8 +40,8 @@
 
 <script lang="ts" setup name="BasicLayout">
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
-import { triggerWindowResizeEvent, isMobile } from '@/utils/device'
-import emitter from '@/utils/eventBus'
+import { triggerWindowResizeEvent, isMobile } from '@/utils/device-type'
+import emitter from '@/utils/emitter'
 import RouteView from './RouteView.vue'
 import MultiTab from '@/components/MultiTab/index.vue'
 import SideMenu from '@/components/Menu/SideMenu.vue'
