@@ -1,17 +1,18 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-import { router } from './router'
-import { store } from './store'
-import '@/style/global.less'
-import 'virtual:svg-icons-register'
-import setupDefaultSetting from '@/utils/setupDefaultSetting'
 import Antd from 'ant-design-vue'
-import 'ant-design-vue/dist/reset.css'
-import '@/utils/passive-events'
+import setupDefaultSetting from '@/utils/setupDefaultSetting'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { CaCommonQuery } from '@/components/CaCommonQuery'
 import { CaCommonTable } from '@/components/CaCommonTable'
 import { CaCommonForm } from '@/components/CaCommonForm'
+import App from '@/App.vue'
+import { router } from '@/router'
+import { store } from '@/store'
+import dayjsWrapper from '@/utils/dayjs'
+import 'ant-design-vue/dist/reset.css'
+import '@/style/global.less'
+import 'virtual:svg-icons-register'
+import '@/utils/passive-events'
 
 const app = createApp(App)
 app.use(Antd)
@@ -21,6 +22,12 @@ app.component('SvgIcon', SvgIcon)
 app.component('CaCommonQuery', CaCommonQuery)
 app.component('CaCommonTable', CaCommonTable)
 app.component('CaCommonForm', CaCommonForm)
+
+/** 挂载全局变量 dayjs */
+app.config.globalProperties.$dayjs = dayjsWrapper
+console.log('app.config.globalProperties', app.config.globalProperties)
+console.log('dayjsWrapper', dayjsWrapper().format('YYYY-MM-DD HH:mm:ss'))
+
 app.mount('#app')
 
 setupDefaultSetting()

@@ -35,7 +35,6 @@ import { Form, notification } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { timeFix } from '@/utils/util'
 import { getAppEnvConfig } from '@/utils/env'
 
 const userStore = useUserStore();
@@ -65,6 +64,12 @@ const rulesRef = reactive({
   password: [{ required: true, message: '请输入密码！' }, {}],
 })
 const { validate, validateInfos } = useForm(formRef, rulesRef)
+
+const timeFix = () => {
+  const time = new Date()
+  const hour = time.getHours()
+  return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
+}
 
 const handleSubmit = async (e: Event) => {
   e.preventDefault()

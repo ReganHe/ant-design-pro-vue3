@@ -23,3 +23,31 @@
 // 此处使用的是`src/assets/icons/logo.svg`
 <svg-icon name="logo" />
 ```
+
+## 日期时间
+
+统一使用 dayjs，模块已实现如下功能：
+
+- 时区统一使用东八区，而非用户本机时区
+- 本地化统一使用中文
+- 模板已将 dayjs 挂载到全局变量
+
+### 使用方式
+
+#### 1. 在代码中使用变更（Setup 方式）
+
+```html
+<script setup>
+  import { getCurrentInstance } from 'vue'
+  const { proxy } = getCurrentInstance()
+  console.log(proxy.$dayjs)
+</script>
+```
+
+#### 2.在模板中使用变量
+
+```html
+<template>
+  <div>{{ $dayjs().format('YYYY-MM-DD HH:mm:ss') }}</div>
+</template>
+```
