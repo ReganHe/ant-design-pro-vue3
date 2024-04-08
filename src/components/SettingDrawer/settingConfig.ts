@@ -1,4 +1,3 @@
-import config from '@/config/defaultSettings'
 import variables from '@/style/variables.module.less'
 const colorList = Object.entries(variables).map(([key, color]) => {
   return { key, color }
