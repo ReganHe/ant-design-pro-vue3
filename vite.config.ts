@@ -20,25 +20,17 @@ import { createProxy } from './build/vite/proxy'
 const lifecycle = process.env.npm_lifecycle_event
 
 // https://vitejs.dev/config/
-export default ({ command, mode }: ConfigEnv): UserConfig => {
+export default ({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env)
-  const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv
-
+  const { VITE_PORT, VITE_PROXY } = viteEnv
   return {
     esbuild: {
       drop: []
     },
-    // 向import.meta.env注入变量,无法注入全局windows,只能注入import.meta.env中
-    // 'import.meta.env.ENV_VARIABLE': JSON.stringify(process.env.ENV_VARIABLE)
-    // https://cn.vitejs.dev/config/shared-options.html#envprefix
-    define: {
-      'import.meta.env.APP_VERSION': JSON.stringify('2.0.0')
-    },
     server: {
-      // Listening on all local IPs
       host: true,
       port: VITE_PORT,
       // Load proxy configuration from .env
@@ -89,8 +81,6 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       //   resolvers: [AntDesignVueResolver()],
       //   include: [/\.vue$/, /\.tsx$/],
       // }),
-      // PkgConfig(),
-      // OptimizationPersist(),
       vueSetupExtend(),
       lifecycle === 'report' ? visualizer({ gzipSize: true, open: true, brotliSize: true, filename: 'report.html' }) : null
     ],
