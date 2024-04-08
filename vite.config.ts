@@ -9,8 +9,8 @@ import { vite2Ext } from 'apite'
 // 自动动态引入antv组件,测试结果发现全部引入也不大,所以注了
 // import Components from 'unplugin-vue-components/vite';
 // import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-import OptimizationPersist from 'vite-plugin-optimize-persist'
-import PkgConfig from 'vite-plugin-package-config'
+// import OptimizationPersist from 'vite-plugin-optimize-persist'
+// import PkgConfig from 'vite-plugin-package-config'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -89,8 +89,8 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       //   resolvers: [AntDesignVueResolver()],
       //   include: [/\.vue$/, /\.tsx$/],
       // }),
-      PkgConfig(),
-      OptimizationPersist(),
+      // PkgConfig(),
+      // OptimizationPersist(),
       vueSetupExtend(),
       lifecycle === 'report' ? visualizer({ gzipSize: true, open: true, brotliSize: true, filename: 'report.html' }) : null
     ],

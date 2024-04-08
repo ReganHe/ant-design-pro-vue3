@@ -15,7 +15,7 @@
       <ca-common-form v-bind="form" />
     </Drawer>
     <Drawer v-model:open="dictItemForm.visible" :title="dictItemForm.title" width="800px" placement="right"
-      @after-visible-change="onAfterDictItemFormVisibleChange">
+      @after-open-change="onAfterDictItemFormVisibleChange">
       <ca-common-form v-bind="dictItemForm" />
     </Drawer>
   </div>
