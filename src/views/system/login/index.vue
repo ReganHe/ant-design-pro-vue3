@@ -203,6 +203,18 @@ const handleSubmit = async (e: Event) => {
   }
 }
 
+html[data-dark='dark'] {
+  .login {
+    .bg-banner {
+      background: radial-gradient(circle at center, @g-bg-dark, @g-container-bg-dark);
+    }
+
+    #login-box {
+      background-color: @g-container-bg-dark;
+    }
+  }
+}
+
 @media (max-width: 1024px) {
   .login {
     #login-box {

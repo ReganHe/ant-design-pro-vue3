@@ -23,7 +23,7 @@
   <Table :row-key="rowKey" :loading="loading" :dataSource="dataSource" :columns="antColumns" :scroll="{
     x: '100%',
   }
-    "
+    " size="small"
     :pagination="pagination === false ? false : { showSizeChanger: true, showTotal: (total: number) => `共 ${total} 条`, ...pagination }"
     v-bind="elementProps" :sticky="tableSticky" />
 </template>

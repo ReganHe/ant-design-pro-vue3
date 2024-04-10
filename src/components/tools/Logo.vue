@@ -13,7 +13,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 const props = defineProps({
   title: {
     type: String,
-    default: 'Ant Design Pro',
+    default: 'Castor Admin',
     required: false
   },
   showTitle: {
