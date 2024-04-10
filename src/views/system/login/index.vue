@@ -59,7 +59,7 @@ const router = useRouter()
 const state = reactive({
   loading: false,
 })
-const title = import.meta.env.VITE_APP_TITLE
+const title = import.meta.env.VITE_GLOB_APP_TITLE
 
 
 // #region 表单相关

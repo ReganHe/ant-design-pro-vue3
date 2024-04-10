@@ -7,7 +7,6 @@ declare type Nullable<T> = T | null
 declare type Recordable<T = any> = Record<string, T>
 export interface ViteEnv {
   VITE_PORT: number
-  VITE_USE_MOCK: boolean
   VITE_USE_PWA: boolean
   VITE_PUBLIC_PATH: string
   VITE_PROXY: [string, string][]
