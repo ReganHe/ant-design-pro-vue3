@@ -1,33 +1,25 @@
 import { fileURLToPath, URL } from 'node:url'
-import type { UserConfig, ConfigEnv } from 'vite'
-import { loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { vite2Ext } from 'apite'
-// vite.config.ts
 import UnoCSS from 'unocss/vite'
-// 自动动态引入antv组件,测试结果发现全部引入也不大,所以注了
-// import Components from 'unplugin-vue-components/vite';
-// import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
-// import OptimizationPersist from 'vite-plugin-optimize-persist'
-// import PkgConfig from 'vite-plugin-package-config'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
-
 import { wrapperEnv } from './build/utils'
-import { createProxy } from './build/vite/proxy'
 
 const lifecycle = process.env.npm_lifecycle_event
 
-// https://vitejs.dev/config/
-export default ({ mode }: ConfigEnv): UserConfig => {
+export default defineConfig(({ mode }) => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
+  console.log(env)
+
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env)
-  const { VITE_PORT, VITE_PROXY } = viteEnv
+  const { VITE_PORT } = viteEnv
   return {
     esbuild: {
       drop: []
@@ -35,8 +27,13 @@ export default ({ mode }: ConfigEnv): UserConfig => {
     server: {
       host: true,
       port: VITE_PORT,
-      // Load proxy configuration from .env
-      proxy: createProxy(VITE_PROXY)
+      proxy: {
+        '^/basic-api': {
+          target: 'http://portenergy.demo.polarwin.cn/basic-api',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/basic-api/, '')
+        }
+      }
     },
     build: {
       sourcemap: true,
@@ -104,4 +101,4 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       }
     }
   }
-}
+})
