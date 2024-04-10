@@ -1,31 +1,43 @@
 <template>
-  <div class="main">
-    <a-form id="formLogin" class="user-layout-login" @submit="handleSubmit" :model="formRef">
-      <a-form-item v-bind="validateInfos.username">
-        <a-input size="large" type="text" placeholder="账户: admin or ant.design" v-model:value="formRef.username">
-          <template #prefix>
-            <UserOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
-          </template>
-        </a-input>
-      </a-form-item>
-
-      <a-form-item v-bind="validateInfos.password">
-        <a-input-password size="large" placeholder="密码: 随意" v-model:value="formRef.password">
-          <template #prefix>
-            <LockOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
-          </template>
-        </a-input-password>
-      </a-form-item>
-
-      <a-form-item v-bind="validateInfos.rememberMe">
-        <a-checkbox v-model:checked="formRef.rememberMe" style="float: left"> 自动登录 </a-checkbox>
-      </a-form-item>
-
-      <a-form-item style="margin-top: 24px">
-        <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loading"
-          :disabled="state.loading">登录</a-button>
-      </a-form-item>
-    </a-form>
+  <div class="login">
+    <div class="bg-banner" />
+    <div id="login-box">
+      <div class="login-banner">
+        <img src="../../../assets/logo.png" class="logo">
+        <img src="../../../assets/login-box-bg.svg" class="banner">
+      </div>
+      <a-form id="formLogin" class="login-form" @submit="handleSubmit" :model="formRef">
+        <div class="title-container">
+          <h3 class="title">
+            {{ title }}
+          </h3>
+        </div>
+        <a-form-item v-bind="validateInfos.username">
+          <a-input size="large" type="text" placeholder="用户名" v-model:value="formRef.username">
+            <template #prefix>
+              <UserOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
+            </template>
+          </a-input>
+        </a-form-item>
+        <a-form-item v-bind="validateInfos.password">
+          <a-input-password size="large" placeholder="密码" v-model:value="formRef.password">
+            <template #prefix>
+              <LockOutlined :style="{ color: 'rgba(0,0,0,.25)' }" />
+            </template>
+          </a-input-password>
+        </a-form-item>
+        <a-form-item v-bind="validateInfos.rememberMe">
+          <a-checkbox v-model:checked="formRef.rememberMe" style="float: left"> 自动登录 </a-checkbox>
+        </a-form-item>
+        <a-form-item style="margin-top: 24px">
+          <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loading"
+            :disabled="state.loading">登录</a-button>
+        </a-form-item>
+      </a-form>
+    </div>
+    <div class="footer">
+      <global-footer />
+    </div>
   </div>
 </template>
 
@@ -36,6 +48,8 @@ import { useRouter } from 'vue-router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import { getAppEnvConfig } from '@/utils/env'
+import GlobalFooter from '@/components/GlobalFooter/index.vue'
+
 
 const userStore = useUserStore();
 
@@ -45,6 +59,8 @@ const router = useRouter()
 const state = reactive({
   loading: false,
 })
+const title = import.meta.env.VITE_APP_TITLE
+
 
 // #region 表单相关
 const formRef = reactive({
@@ -102,36 +118,132 @@ const handleSubmit = async (e: Event) => {
 </script>
 
 <style lang="less" scoped>
-@import '@/style/index.less';
+@import '@/style/global.less';
 
-.user-layout-login {
-  label {
-    font-size: 14px;
-  }
-
-  button.login-button {
-    padding: 0 15px;
-    font-size: 16px;
-    height: 40px;
+.login {
+  .bg-banner {
+    position: fixed;
+    z-index: 0;
     width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, @g-bg, @g-container-bg);
   }
 
-  .user-login-other {
-    text-align: left;
-    margin-top: 24px;
-    line-height: 22px;
+  #login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    background-color: @g-container-bg;
+    border-radius: 10px;
+    box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+    transform: translateX(-50%) translateY(-50%);
 
-    .anticon {
-      font-size: 24px;
-      color: rgba(0, 0, 0, 0.2);
-      margin-left: 16px;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: color 0.3s;
+    .login-banner {
+      position: relative;
+      width: 450px;
+      overflow: hidden;
+      // background-color: @g-bg;
+      background: linear-gradient(to bottom, #18233b, #012879);
 
-      &:hover {
-        color: @primary-color;
+      .banner {
+        width: 100%;
+        padding: 0 20%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
       }
+
+      .logo {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        height: 30px;
+        border-radius: 4px;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
+      }
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 500px;
+      min-height: 700px;
+      padding: 50px;
+      overflow: hidden;
+
+      .title-container {
+        position: relative;
+
+        .title {
+          margin: 0 auto 30px;
+          font-size: 1.8em;
+          font-weight: bold;
+        }
+      }
+
+      button.login-button {
+        padding: 0 15px;
+        font-size: 16px;
+        height: 40px;
+        width: 100%;
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .login {
+    #login-box {
+      position: relative;
+      top: inherit;
+      left: inherit;
+      flex-direction: column;
+      justify-content: start;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      box-shadow: none;
+      transform: translateX(0) translateY(0);
+
+      .login-banner {
+        width: 100%;
+        min-height: 300px;
+        padding: 20px 0;
+
+        .banner {
+          position: relative;
+          top: inherit;
+          right: inherit;
+          display: inherit;
+          width: 100%;
+          max-width: 375px;
+          padding: 30px 0;
+          margin: 0 auto;
+          transform: translateY(0);
+        }
+      }
+
+      .login-form {
+        width: 100%;
+        min-height: auto;
+        padding: 30px;
+      }
+    }
+
+    .copyright {
+      position: relative;
     }
   }
 }
