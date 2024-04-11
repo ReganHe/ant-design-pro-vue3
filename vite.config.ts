@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import path from 'path'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import { vite2Ext } from 'apite'
 import UnoCSS from 'unocss/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -68,9 +67,6 @@ export default defineConfig(({ mode }) => {
         // 指定symbolId格式
         symbolId: 'icon-[dir]-[name]'
       }),
-      vite2Ext({
-        dir: 'mock'
-      }) as any,
       // Components({
       //   dts: true,
       //   resolvers: [AntDesignVueResolver()],

@@ -5,32 +5,34 @@ An out-of-box UI solution for enterprise applications as a Vue boilerplate. base
 
 基于 [Vite4 Vue3 Ant-Design-of-Vue2 TS](https://github.com/bailihuiyue/ant-design-pro-vue3) 实现的 [Ant Design Pro Vue](https://pro.antdv.com/docs/router-and-nav)
 
-码云地址: https://gitee.com/Onces/ant-design-pro-vue3
+码云地址: <https://gitee.com/Onces/ant-design-pro-vue3>
 
 ## 预览图
 
-#### 首页
+### 首页
 
 ![dashboard](https://i.imgtg.com/2023/03/22/9tUVs.png)
 个人中心
 ![dashboard](https://i.imgtg.com/2023/03/22/9tBbg.png)
 
-#### 夜间模式
+### 夜间模式
 
 ![dashboard](https://i.imgtg.com/2023/03/22/9tTmB.png)
 
-#### 锁屏界面
+### 锁屏界面
 
 可点击右下角锁头按钮进行解锁
 ![dashboard](https://i.imgtg.com/2023/03/22/9thiC.png)
 
-#### 流程图
+### 流程图
 
 ![dashboard](https://i.imgtg.com/2023/03/22/9tbqK.png)
 
-#### 手机预览(最低支持 iphone4)
+### 手机预览(最低支持 iphone4)
 
-<img src="https://i.imgtg.com/2023/03/22/9tq2l.png"  width=250 /><img src="https://i.imgtg.com/2023/03/22/9taiP.png"  width=250/><img src="https://i.imgtg.com/2023/03/22/9to4b.png"  width=250 />
+![dashboard](https://i.imgtg.com/2023/03/22/9tq2l.png)
+![dashboard](https://i.imgtg.com/2023/03/22/9taiP.png)
+![dashboard](https://i.imgtg.com/2023/03/22/9to4b.png)
 
 ## 项目下载和运行
 
@@ -49,14 +51,14 @@ yarn build
 
 ## 路由和菜单
 
-#### 基本结构
+### 基本结构
 
 - 路由文件 通过约定的语法根据在 router.ts 中配置路由,
   - 后端路由:通过 defaultSettings.ts 中的 useAsyncRouter 来设置是否启用,后端路由的格式在 mockUtils.ts 的 userNav 中。
   - 后端路由对应的 component 自动引入逻辑在 batchImportFiles,会自动引入 view 下面的,vue 文件作为页面
 - 菜单生成根据路由配置来生成菜单。菜单项名称，嵌套路径与路由高度耦合,具体配置内容参照
   [Ant Design Pro Vue](https://pro.antdv.com/docs/router-and-nav) 即可
-- 菜单跳转第三方网址的写法 meta: { title: '登录', icon: 'account-book', target: 'http://www.baidu.com', blank: false }如果不想在新窗口打卡,请写明 blank: false 否则 blank 不写或者任意值均表示 true
+- 菜单跳转第三方网址的写法 meta: { title: '登录', icon: 'account-book', target: '<http://www.baidu.com>', blank: false }如果不想在新窗口打卡,请写明 blank: false 否则 blank 不写或者任意值均表示 true
 
 ## 布局
 
@@ -88,21 +90,23 @@ yarn build
 - 目前可以支持自动切换主题,包括生产模式,
 - 通过调研,发现 antv(element 有官方支持)目前主流切换主题有两种模式,并且都需要 webpack/vite 插件:
 
-1.  提前传入需要改变的颜色变量和值入例如:@primary-color:[#0094ff,#fff,#000 等...],然后正在 webpack 编译时读取这些变量,然后静态生成这些 css 文件,
-    - 优点,1.切换主题时只是加载不同的 css 文件,节约性能,
-    - 缺点:1.耗费服务端空间,2.只能订制提前定义好的几种主题 3.需要动态写入要修改的变量名入,@primary-color,@success-colo 等,替换不完全
-2.  第二种方案,基于 vite-plugin-theme 插件,
+1. 提前传入需要改变的颜色变量和值入例如:@primary-color:[#0094ff,#fff,#000 等...],然后正在 webpack 编译时读取这些变量,然后静态生成这些 css 文件,
+   - 优点,1.切换主题时只是加载不同的 css 文件,节约性能,
+   - 缺点:1.耗费服务端空间,2.只能订制提前定义好的几种主题 3.需要动态写入要修改的变量名入,@primary-color,@success-colo 等,替换不完全
+2. 第二种方案,基于 vite-plugin-theme 插件,
 
 - 优点
 
-      	1. 可以任意在生产环境下选择主题颜色;
+1. 可以任意在生产环境下选择主题颜色;
 
-      	2. 没有上一中法案的问题3,主题更改比较全面
+2. 没有上一中法案的问题 3,主题更改比较全面
 
-        - 缺点:
-          1. 由于是动态生成主题颜色,会有性能损耗
-          2. 必须先找到antv主颜色的色号,否则替换主题功能失效,所以当antv主色更改时,需要代码中跟着一起更改,建议锁定antv版本,避免该问题;
-          - 猜测原理,根据该插件说明和代码运行现象猜测,是以主颜色生成几个临近颜色然后对应找到整个项目中包含这些颜色的css样式然后对比替换比如原来是[a,b,c,d],现在是[1,2,3,4],那么a变成1,b变成2这样对应着替换,然后把提换完成的css写入到body底部,完成主题切换,不需要根据@primary-color这种定义去查找,这样靠颜色替换比较完整
+- 缺点:
+
+  1. 由于是动态生成主题颜色,会有性能损耗
+  2. 必须先找到 antv 主颜色的色号,否则替换主题功能失效,所以当 antv 主色更改时,需要代码中跟着一起更改,建议锁定 antv 版本,避免该问题;
+
+  - 猜测原理,根据该插件说明和代码运行现象猜测,是以主颜色生成几个临近颜色然后对应找到整个项目中包含这些颜色的 css 样式然后对比替换比如原来是[a,b,c,d],现在是[1,2,3,4],那么 a 变成 1,b 变成 2 这样对应着替换,然后把提换完成的 css 写入到 body 底部,完成主题切换,不需要根据@primary-color 这种定义去查找,这样靠颜色替换比较完整
 
   **_黑夜模式目前使用了 antv 官网的黑夜 css,采用动态添加 link 完成,不能适配所有页面,因此在 darkModePatch.less 写下一些兼容样式_**
 
@@ -135,7 +139,7 @@ yarn build
   warn:todo: 可能有 bug
   ques:todo: 疑问
   只有大写的'TODO'才表示未完成的功能,小写的 todo 只是为了方便搜索而已
-  (如果插件在 vue 文件中没有颜色变化可参考 https://blog.csdn.net/weixin_47872719/article/details/126743867
+  (如果插件在 vue 文件中没有颜色变化可参考 <https://blog.csdn.net/weixin_47872719/article/details/126743867>
   具体步骤: 1.打开 C:\Users\Admin\\.vscode\extensions\bttter-comments 2.打开配置文件 aaron-bond.better-comments-3.0.2/out/parser.js
   3.setDelimiter(languageCode)方法中 case 的最后)
 
@@ -240,10 +244,4 @@ rules: {
 // 3.https://www.cnblogs.com/hongzhending/p/17336133.html
 ```
 
-5. vscode 配置可以参考项目根目录.vscode/settings_backup.json
-
-##### 落魄前端,在线要饭
-
-<img src="https://i.imgtg.com/2023/03/22/9tzCN.jpg" width=200/>
-
-下次一定?给个 Star 也行啊
+5.vscode 配置可以参考项目根目录.vscode/settings_backup.json
