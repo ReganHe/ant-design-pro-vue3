@@ -22,10 +22,10 @@ export default defineConfig(({ mode }) => {
       host: true,
       port: Number(env.VITE_PORT),
       proxy: {
-        '^/basic-api': {
-          target: 'http://portenergy.demo.polarwin.cn/basic-api',
+        '^/api': {
+          target: 'http://portenergy.demo.polarwin.cn',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/basic-api/, '')
+          rewrite: (path) => path.replace(/^\/api/, '/basic-api')
         }
       }
     },
@@ -52,6 +52,8 @@ export default defineConfig(({ mode }) => {
             // node包插件打包在一起
             if (id.includes('node_modules')) {
               return 'vendors'
+            } else {
+              return 'common'
             }
           }
         }
