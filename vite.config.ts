@@ -8,7 +8,6 @@ import { vite2Ext } from 'apite'
 import UnoCSS from 'unocss/vite'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { wrapperEnv } from './build/utils'
 
 const lifecycle = process.env.npm_lifecycle_event
 
@@ -16,17 +15,13 @@ export default defineConfig(({ mode }) => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
   console.log(env)
-
-  // The boolean type read by loadEnv is a string. This function can be converted to boolean type
-  const viteEnv = wrapperEnv(env)
-  const { VITE_PORT } = viteEnv
   return {
     esbuild: {
       drop: []
     },
     server: {
       host: true,
-      port: VITE_PORT,
+      port: Number(env.VITE_PORT),
       proxy: {
         '^/basic-api': {
           target: 'http://portenergy.demo.polarwin.cn/basic-api',
