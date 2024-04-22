@@ -1,18 +1,25 @@
 {
-  // "extends": "@vue/tsconfig/tsconfig.web.json",
   "compilerOptions": {
-    "composite": true,
-    "jsx": "preserve",
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": false,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "allowJs": true,
     "sourceMap": true,
-    "outDir": "./dist",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "esModuleInterop": true,
     "resolveJsonModule": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "esnext"
+    ],
     "types": [
       "vite/client"
     ],
@@ -20,17 +27,8 @@
       "./node_modules/@types/",
       "./types"
     ],
-    "strict": true,
-    "noUnusedLocals": false,
-    "noImplicitReturns": true,
-    "esModuleInterop": true,
     "noImplicitAny": false,
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
-    "baseUrl": ".",
+    "skipLibCheck": true,
     "paths": {
       "@/*": [
         "src/*"
@@ -41,20 +39,17 @@
     }
   },
   "include": [
-    "types/global.d.ts",
     "src/**/*.ts",
-    "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "types/**/*.d.ts",
     "types/**/*.ts",
     "build/**/*.ts",
-    "build/**/*.d.ts",
     "vite.config.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.js"
-  ],
+  ]
 }
