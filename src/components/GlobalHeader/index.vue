@@ -7,15 +7,15 @@
         <div v-if="props.mode === 'sidemenu'" class="header">
           <span @click="toggle">
             <template v-if="appStore.device === 'mobile'">
-              <MenuFoldOutlined v-if="props.collapsed" class="trigger" />
-              <MenuUnfoldOutlined v-else class="trigger" />
+              <MenuFoldOutlined v-if="props.collapsed" class="trigger header-action" />
+              <MenuUnfoldOutlined v-else class="trigger header-action" />
             </template>
             <template v-else>
-              <MenuUnfoldOutlined v-if="props.collapsed" class="trigger" />
-              <MenuFoldOutlined v-else class="trigger" />
+              <MenuUnfoldOutlined v-if="props.collapsed" class="trigger header-action" />
+              <MenuFoldOutlined v-else class="trigger header-action" />
             </template>
           </span>
-          <ReloadOutlined class="trigger" style="" @click="refreshPage" />
+          <ReloadOutlined class="trigger header-action" style="" @click="refreshPage" />
           <user-menu :theme="props.theme" />
         </div>
         <div v-else :class="['top-nav-header-index', props.theme]">
@@ -133,5 +133,15 @@ const refreshPage = () => {
 .showHeader-enter,
 .showHeader-leave-to {
   opacity: 0;
+}
+
+.header-animat {
+  .header {
+    .trigger.header-action {
+      height: 100%;
+      padding: 0 16px;
+      font-size: 16px;
+    }
+  }
 }
 </style>
