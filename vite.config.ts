@@ -10,13 +10,19 @@ import { visualizer } from 'rollup-plugin-visualizer'
 
 const lifecycle = process.env.npm_lifecycle_event
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ command, mode }) => {
   const root = process.cwd()
   const env = loadEnv(mode, root)
   console.log(env)
   return {
-    esbuild: {
-      drop: []
+    base: env.VITE_PUBLIC_PATH,
+    resolve: {
+      alias: [
+        {
+          find: '@',
+          replacement: fileURLToPath(new URL('./src', import.meta.url))
+        }
+      ]
     },
     server: {
       host: true,
@@ -30,34 +36,17 @@ export default defineConfig(({ mode }) => {
       }
     },
     build: {
-      sourcemap: true,
-      // terserOptions: {
-      //   compress: {
-      //     drop_console: false,
-      //     drop_debugger: false,
-      //   },
-      // },
-      chunkSizeWarningLimit: 5000,
-      rollupOptions: {
-        output: {
-          // manualChunks: {
-          //   vendor
-          // },
-          chunkFileNames: 'js/[name]-[hash].js',
-          entryFileNames: 'js/[name]-[hash].js',
-          assetFileNames: '[ext]/[name]-[hash].[ext]',
-          manualChunks(id) {
-            //静态资源分拆打包
-            // 可参考https://www.cnblogs.com/jyk/p/16029074.html
-            // node包插件打包在一起
-            if (id.includes('node_modules')) {
-              return 'vendors'
-            } else {
-              return 'common'
-            }
-          }
+      target: 'es2015',
+      terserOptions: {
+        compress: {
+          drop_console: false,
+          drop_debugger: false
         }
-      }
+      },
+      minify: 'terser',
+      // Turning off brotliSize display can slightly reduce packaging time
+      brotliSize: false,
+      chunkSizeWarningLimit: 2000
     },
     plugins: [
       vue(),
@@ -75,16 +64,8 @@ export default defineConfig(({ mode }) => {
       //   include: [/\.vue$/, /\.tsx$/],
       // }),
       vueSetupExtend(),
-      lifecycle === 'report' ? visualizer({ gzipSize: true, open: true, brotliSize: true, filename: 'report.html' }) : null
+      lifecycle === 'report' ? (visualizer({ gzipSize: true, open: true, brotliSize: true, filename: 'report.html' }) as Plugin) : []
     ],
-    resolve: {
-      alias: [
-        {
-          find: '@',
-          replacement: fileURLToPath(new URL('./src', import.meta.url))
-        }
-      ]
-    },
     css: {
       preprocessorOptions: {
         less: {
