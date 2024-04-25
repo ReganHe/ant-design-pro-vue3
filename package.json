@@ -10,7 +10,7 @@
     "build:prod": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "type-check": "vue-tsc --noEmit",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
     "format": "prettier --write src/",
     "clean-dev": "vite --force",
