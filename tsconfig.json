@@ -13,6 +13,41 @@
     "module": "esnext",
     /**
      * 编译过程中需要引入的库文件的列表
+     * 可能的值为：
+     * ► ES5
+     * ► ES6
+     * ► ES2015
+     * ► ES7
+     * ► ES2016
+     * ► ES2017
+     * ► ES2018
+     * ► ESNext
+     * ► DOM
+     * ► DOM.Iterable
+     * ► WebWorker
+     * ► ScriptHost
+     * ► ES2015.Core
+     * ► ES2015.Collection
+     * ► ES2015.Generator
+     * ► ES2015.Iterable
+     * ► ES2015.Promise
+     * ► ES2015.Proxy
+     * ► ES2015.Reflect
+     * ► ES2015.Symbol
+     * ► ES2015.Symbol.WellKnown
+     * ► ES2016.Array.Include
+     * ► ES2017.object
+     * ► ES2017.Intl
+     * ► ES2017.SharedMemory
+     * ► ES2017.String
+     * ► ES2017.TypedArrays
+     * ► ES2018.Intl
+     * ► ES2018.Promise
+     * ► ES2018.RegExp
+     * ► ESNext.AsyncIterable
+     * ► ESNext.Array
+     * ► ESNext.Intl
+     * ► ESNext.Symbol
      * 如果--lib没有指定默认注入的库的列表。默认注入的库为：
      * ► 针对于--target ES5：DOM，ES5，ScriptHost
      * ► 针对于--target ES6：DOM，ES6，DOM.Iterable，ScriptHost
@@ -57,7 +92,17 @@
      * 如果指定了typeRoots，只有typeRoots下面的包才会被包含进来
      */
     "typeRoots": ["./node_modules/@types/", "./types"],
-    "esModuleInterop": true, // 通过创建命名空间实现 CommonJS 兼容性
+    /**
+     * 允许使用 import 导入 CommonJS 模块
+     * 通过创建命名空间实现 CommonJS 兼容性
+     */
+    "esModuleInterop": true,
+    /**
+     * 模块解析策略
+     * "node": 使用Node.js的模块解析策略。这是默认值。
+     * "classic": 使用TypeScript早期的模块解析策略，已废弃。
+     * "bundler": TypeScript在版本4.5中新增的一个模块解析策略。
+     */
     "moduleResolution": "node", // 模块解析策略
     "resolveJsonModule": true, // 自动解析JSON文件
     "allowSyntheticDefaultImports": true // 允许从没有设置默认导出的模块中默认导入。这并不影响代码的输出，仅为了类型检查
