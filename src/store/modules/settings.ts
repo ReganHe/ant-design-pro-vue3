@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { theme } from 'ant-design-vue'
-import { updateDarkMode } from '@/components/SettingDrawer/settingConfig'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => {
@@ -57,7 +56,6 @@ export const useSettingsStore = defineStore('settings', {
       }
       document.documentElement.setAttribute('data-dark', isDark ? 'dark' : 'light')
       localStorage.setItem(`pinia-settings`.toUpperCase(), JSON.stringify(this.$state))
-      updateDarkMode(isDark)
     },
     /**
      * 颜色主题模式

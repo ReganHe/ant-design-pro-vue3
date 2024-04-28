@@ -44,6 +44,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useAppStore } from '@/store/modules/app'
+import { RouteRecordRaw } from 'vue-router'
 
 const settingsStore = useSettingsStore();
 const appStore = useAppStore();
@@ -58,7 +59,7 @@ const props = defineProps({
     default: 'sidemenu'
   },
   menus: {
-    type: Array,
+    type: Array<RouteRecordRaw>,
     required: true
   },
   theme: {

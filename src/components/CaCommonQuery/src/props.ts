@@ -1,4 +1,5 @@
 import { CommonCommand, QueryField } from '#/castor-antd'
+import { PropType } from 'vue'
 
 export const commonQueryProps = {
   formId: {

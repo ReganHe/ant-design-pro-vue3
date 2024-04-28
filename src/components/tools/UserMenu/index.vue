@@ -41,7 +41,7 @@
 
 <script lang="ts" setup name="UserMenu">
 import { Modal } from 'ant-design-vue'
-import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useUserStore } from '@/store/modules/user'

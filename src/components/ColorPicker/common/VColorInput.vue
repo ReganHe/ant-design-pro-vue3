@@ -90,7 +90,6 @@
 <script lang="ts" setup name="VColorInput">
 import { PropType, ref, toRaw, watch } from 'vue'
 import { Color, ColorAttrs, ColorInput } from '../color'
-import { ArrayUtils } from '@aesoper/normal-utils'
 
 const formatList = ['hex', 'hsl', 'rgb', 'hsv']
 
@@ -106,12 +105,6 @@ const colorClass = new Color()
 
 const currentFormat = ref(formatList[0])
 const currentColor = ref<ColorAttrs>(colorClass.parseColor(props.color))
-
-const onChangeFormat = () => {
-  const index = ArrayUtils.findIndex(formatList, (val: string) => val == currentFormat.value)
-
-  currentFormat.value = formatList[(index + 1) % formatList.length]
-}
 
 watch(
   () => props.color,

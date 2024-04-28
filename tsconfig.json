@@ -55,6 +55,7 @@
     "lib": ["dom", "esnext"],
     "allowJs": true, // 是否允许编译javascript文件
     "checkJs": true, // 是否在 JS 文件中报告错误
+    "jsx": "preserve", // 在 .tsx 文件里支持 JSX: 'preserve', 'react-native', or 'react'
     "sourceMap": true, // 生成相应的 .map文件
 
     /* 二. 类型检查 */
@@ -63,6 +64,7 @@
      * 启用--strict相当于启用--noImplicitAny,--noImplicitThis,--alwaysStrict,--strictNullChecks,--strictFunctionTypes和--strictPropertyInitialization
      */
     "strict": true,
+    "noImplicitAny": false, // 不允许隐式的 any 类型
     "noUnusedLocals": true, // 若有未使用的局部变量则抛错
     "noUnusedParameters": true, // 若有未使用的参数则抛错
     "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用

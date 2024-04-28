@@ -58,7 +58,7 @@ watch(
 // 主要作用:使用router.push跳转页面时更左侧新菜单选中项
 watch(
   () => route.value,
-  (val) => {
+  () => {
     updateMenu()
   }
 )

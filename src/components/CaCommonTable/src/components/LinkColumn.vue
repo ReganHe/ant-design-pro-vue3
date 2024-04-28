@@ -10,6 +10,7 @@
 
 <script lang="ts" setup>
   import { Button } from 'ant-design-vue';
+import { PropType } from 'vue';
 
   defineProps({
     command: {

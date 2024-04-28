@@ -96,7 +96,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { PropType, computed } from 'vue';
 import {
   FormItem,
   Input,

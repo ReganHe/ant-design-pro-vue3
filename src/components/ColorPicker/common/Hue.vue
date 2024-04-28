@@ -120,14 +120,6 @@ const handleDrag = (event: MouseEvent) => {
   }
 }
 
-const handleClick = (event: MouseEvent) => {
-  const target = event.target
-
-  if (target !== barHandle.value) {
-    handleDrag(event)
-  }
-}
-
 watch(
   () => props.hue,
   (hue: number) => {

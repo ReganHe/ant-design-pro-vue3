@@ -8,7 +8,7 @@
             <a-dropdown :trigger="['contextmenu']">
               <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || page.meta.title }}</span>
               <template #overlay>
-                <a-menu @click="({ key, item, domEvent }) => {
+                <a-menu @click="({ key }) => {
                   closeMenuClick(key, page.fullPath)
                 }
                   ">
@@ -75,7 +75,7 @@ const selectedLastPath = () => {
     selectedLastPath()
   })()
 
-const onEdit = (targetKey, action) => {
+const onEdit = (targetKey) => {
   //proxy[action](targetKey)
   remove(targetKey)
 }
@@ -91,7 +91,7 @@ const remove = (targetKey) => {
 }
 
 // content menu
-const closeSelf = (e) => {
+const closeSelf = (e: string) => {
   // 判断是否为最后一个标签页，如果是最后一个，则无法被关闭
   if (fullPathList.length > 1) {
     remove(e)
@@ -99,7 +99,7 @@ const closeSelf = (e) => {
     message.info('这是最后一个标签了, 无法被关闭')
   }
 }
-const closeLeft = (e) => {
+const closeLeft = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   if (currentIndex > 0) {
     fullPathList.forEach((item, index) => {
@@ -111,7 +111,7 @@ const closeLeft = (e) => {
     message.info('左侧没有标签')
   }
 }
-const closeRight = (e) => {
+const closeRight = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   if (currentIndex < fullPathList.length - 1) {
     fullPathList.forEach((item, index) => {
@@ -123,7 +123,7 @@ const closeRight = (e) => {
     message.info('右侧没有标签')
   }
 }
-const closeAll = (e) => {
+const closeAll = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   fullPathList.forEach((item, index) => {
     if (index !== currentIndex) {
@@ -131,7 +131,7 @@ const closeAll = (e) => {
     }
   })
 }
-const closeMenuClick = (key: string, route) => {
+const closeMenuClick = (key: string, route: string) => {
   const allFun = { closeAll, closeRight, closeLeft, closeSelf }
   allFun[key](route)
 }

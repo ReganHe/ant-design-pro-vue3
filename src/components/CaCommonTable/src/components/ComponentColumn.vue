@@ -9,6 +9,8 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
+
   defineProps({
     customComponents: {
       type: Object,

@@ -44,7 +44,6 @@ import variables from '@/style/variables.module.less'
 
 // store
 import { useThemesStore } from '@/store/modules/themes';
-import { useSettingsStore } from '@/store/modules/settings';
 
 const themesStore = useThemesStore();
 
