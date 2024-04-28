@@ -131,7 +131,7 @@ const closeAll = (e: string) => {
     }
   })
 }
-const closeMenuClick = (key: string, route: string) => {
+const closeMenuClick = (key: string | number, route: string) => {
   const allFun = { closeAll, closeRight, closeLeft, closeSelf }
   allFun[key](route)
 }

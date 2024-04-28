@@ -1,15 +1,16 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeysRef"
-    @openChange="onOpenChange" @click="onSelect" class="SysMenu">
+  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" @openChange="onOpenChange" class="SysMenu">
     <template v-for="menu in menus" :key="menu.path">
       <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
   </a-menu>
 </template>
 <script lang="ts" setup name="Menu">
-import { reactive, computed, onMounted, watch, ref } from 'vue'
+import { reactive, computed, onMounted, watch } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
+import { MenuMode, MenuTheme } from 'ant-design-vue';
+import { PropType } from 'vue'
 
 const props = defineProps({
   menus: {
@@ -17,12 +18,12 @@ const props = defineProps({
     required: true
   },
   theme: {
-    type: String,
+    type: String as PropType<MenuTheme>,
     required: false,
     default: 'dark'
   },
   mode: {
-    type: String,
+    type: String as PropType<MenuMode>,
     required: false,
     default: 'inline'
   },
@@ -37,7 +38,6 @@ const route = router.currentRoute
 
 const openKeys = reactive<any>({ value: [] })
 const cachedOpenKeys = reactive<any>({ value: [] })
-const selectedKeysRef = ref<any>([])
 const rootSubmenuKeysRef = computed(() => props.menus.map(r => r.path))
 
 onMounted(() => {
@@ -79,19 +79,11 @@ const onOpenChange = (openKeysParams) => {
   }
 }
 
-const emit = defineEmits(['menuSelect'])
-const onSelect = ({ item, key, selectedKeys: selectedKeysParams }) => {
-  selectedKeysRef.value = selectedKeysParams
-  emit('menuSelect', { item, key, selectedKeys: selectedKeysRef })
-}
 const updateMenu = () => {
   const routes = route.value.matched.concat()
   const { hidden } = route.value.meta
   if (routes.length >= 3 && hidden) {
     routes.pop()
-    selectedKeysRef.value = [routes[routes.length - 1].path]
-  } else {
-    selectedKeysRef.value = [routes.pop()!.path]
   }
   const openKeysArr: any = []
   if (props.mode === 'inline') {

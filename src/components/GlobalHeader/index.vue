@@ -42,11 +42,12 @@ import UserMenu from '../tools/UserMenu/index.vue'
 import SMenu from '../Menu/Menu.vue'
 import Logo from '../tools/Logo.vue'
 import Breadcrumb from '../Breadcrumb/index.vue'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue'
+import { ref, onMounted, onBeforeUnmount, PropType } from 'vue'
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useAppStore } from '@/store/modules/app'
 import { RouteRecordRaw } from 'vue-router'
+import { MenuTheme } from 'ant-design-vue'
 
 const settingsStore = useSettingsStore();
 const appStore = useAppStore();
@@ -65,7 +66,7 @@ const props = defineProps({
     required: true
   },
   theme: {
-    type: String,
+    type: String as PropType<MenuTheme>,
     required: false,
     default: 'dark'
   },
@@ -111,10 +112,6 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.body.removeEventListener('scroll', handleScroll, true)
 })
-
-const refreshPage = () => {
-  emit('refresh')
-}
 </script>
 
 <style lang="less">
