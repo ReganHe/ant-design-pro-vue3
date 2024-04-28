@@ -15,7 +15,8 @@
               <MenuFoldOutlined v-else class="trigger header-action" />
             </template>
           </span>
-          <ReloadOutlined class="trigger header-action" style="" @click="refreshPage" />
+          <Breadcrumb />
+          <!-- <ReloadOutlined class="trigger header-action" style="" @click="refreshPage" /> -->
           <user-menu :theme="props.theme" />
         </div>
         <div v-else :class="['top-nav-header-index', props.theme]">
@@ -40,6 +41,7 @@
 import UserMenu from '../tools/UserMenu/index.vue'
 import SMenu from '../Menu/Menu.vue'
 import Logo from '../tools/Logo.vue'
+import Breadcrumb from '../Breadcrumb/index.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { MenuFoldOutlined, MenuUnfoldOutlined, ReloadOutlined } from '@ant-design/icons-vue'
 import { useSettingsStore } from '@/store/modules/settings'
