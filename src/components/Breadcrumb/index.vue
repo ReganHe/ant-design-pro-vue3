@@ -27,13 +27,8 @@
 //库
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-// hooks
-
-
-//api
-//component
 //#endregion
+
 // #region 初始化
 const route = useRoute()
 // 生成数组数据
