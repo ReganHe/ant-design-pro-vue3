@@ -5,7 +5,6 @@ import legacy from '@vitejs/plugin-legacy'
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { configCompressPlugin } from './compress'
 import { configVisualizerConfig } from './visualizer'
-import { configImageminPlugin } from './imagemin'
 import { configSvgIconsPlugin } from './svgSprite'
 
 export function createVitePlugins(env: any, isBuild: boolean) {
@@ -35,9 +34,6 @@ export function createVitePlugins(env: any, isBuild: boolean) {
 
   // The following plugins only work in the production environment
   if (isBuild) {
-    //vite-plugin-imagemin
-    env.VITE_USE_IMAGEMIN === 'true' && vitePlugins.push(configImageminPlugin())
-
     // rollup-plugin-gzip
     vitePlugins.push(configCompressPlugin(env.VITE_BUILD_COMPRESS, env.VITE_BUILD_COMPRESS_DELETE_ORIGIN_FILE === 'true'))
   }
