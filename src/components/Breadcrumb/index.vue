@@ -32,13 +32,11 @@ import { useRoute, useRouter } from 'vue-router'
 // #region 初始化
 const route = useRoute()
 // 生成数组数据
-const breadcrumbData = ref([])
+const breadcrumbData = ref([] as any)
 const getBreadcrumbData = () => {
   breadcrumbData.value = route.matched.filter(
     item => item.meta && item.meta.title
   )
-
-  console.log(breadcrumbData.value)
 }
 // 监听路由变化时触发
 watch(
@@ -54,7 +52,6 @@ watch(
 // 处理点击事件
 const router = useRouter()
 const onLinkClick = item => {
-  // console.log(item)
   router.push(item.path)
 }
 
