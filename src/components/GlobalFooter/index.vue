@@ -13,7 +13,7 @@
 import { CopyrightOutlined } from '@ant-design/icons-vue'
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .footer {
   padding: 0 16px;
   margin: 48px 0 24px;
@@ -31,14 +31,6 @@ import { CopyrightOutlined } from '@ant-design/icons-vue'
 
       &:not(:last-child) {
         margin-right: 40px;
-      }
-    }
-
-    &.lessMargin {
-      a {
-        &:not(:last-child) {
-          margin-right: 20px;
-        }
       }
     }
   }

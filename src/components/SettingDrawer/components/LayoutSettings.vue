@@ -84,5 +84,5 @@ const handleFixSiderbar = (fixed) => {
   settingsStore.setValue('fixSiderbar', fixed);
 }
 </script>
-<style lang="less">
+<style lang="scss">
 </style>

@@ -1,6 +1,6 @@
-@import './index.less';
-@import './darkModePatch.less';
-@import './castorPatch.less';
+@import './index.scss';
+@import './darkModePatch.scss';
+@import './castorPatch.scss';
 
 ::-webkit-scrollbar {
   width: 6px;
@@ -57,7 +57,7 @@
     // 深色菜单
     &.ant-menu-dark {
       .ant-menu-item-icon {
-        color: @dark-deactive-font-color !important;
+        color: $dark-deactive-font-color !important;
       }
 
       .ant-menu-submenu-selected {
@@ -83,14 +83,14 @@
     //   .ant-menu-submenu-active,
     //   .ant-menu-submenu-selected {
     //     .ant-menu-item-icon {
-    //       color: @primary-color  !important;
+    //       color: $primary-color  !important;
     //     }
     //   }
 
     //   .ant-menu-item-active,
     //   .ant-menu-item-selected {
     //     .ant-menu-item-icon {
-    //       color: @primary-color  !important;
+    //       color: $primary-color  !important;
     //     }
     //   }
     // }
@@ -285,7 +285,7 @@
 
         .avatar {
           margin: 20px 8px 20px 0;
-          color: @primary-color;
+          color: $primary-color;
           background: hsla(0, 0%, 100%, 0.85);
           vertical-align: middle;
         }
@@ -383,7 +383,9 @@
   .top-nav-header-index {
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     position: relative;
-    transition: background 0.3s, width 0.2s;
+    transition:
+      background 0.3s,
+      width 0.2s;
 
     .header-index-wide {
       max-width: 1200px;
@@ -516,7 +518,7 @@
 .sider {
   box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
   position: relative;
-  z-index: @ant-global-sider-zindex;
+  z-index: $ant-global-sider-zindex;
   min-height: 100vh;
 
   .ant-layout-sider-children {
@@ -558,7 +560,12 @@
       color: #fff;
       font-size: 20px;
       margin: 0 0 0 12px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+      font-family:
+        Avenir,
+        Helvetica Neue,
+        Arial,
+        Helvetica,
+        sans-serif;
       font-weight: 600;
       vertical-align: middle;
     }

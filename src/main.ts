@@ -10,7 +10,7 @@ import { router } from '@/router'
 import { store } from '@/store'
 import dayjsWrapper from '@/utils/dayjs'
 import 'ant-design-vue/dist/reset.css'
-import '@/style/global.less'
+import '@/style/global.scss'
 import 'virtual:svg-icons-register'
 import '@/utils/passive-events'
 
@@ -30,5 +30,3 @@ console.log('app.config.globalProperties', app.config.globalProperties)
 app.mount('#app')
 
 setupDefaultSetting()
-
-console.log('import.meta.env', import.meta.env)

@@ -52,5 +52,5 @@ const onMultiTab = (checked) => {
   settingsStore.setValue('multiTab', checked);
 }
 </script>
-<style lang="less">
+<style lang="scss">
 </style>

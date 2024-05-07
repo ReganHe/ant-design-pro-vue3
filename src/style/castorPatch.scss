@@ -1,4 +1,4 @@
-@import './index.less';
+@import './index.scss';
 // general
 .common-form-container {
   background: #fff;
@@ -14,29 +14,29 @@
 html[data-dark='dark'] {
   // table
   .common-table-container {
-    background: @dark-sub-bg !important;
+    background: $dark-sub-bg !important;
     .table-title {
-      color: @dark-active-font-color;
+      color: $dark-active-font-color;
     }
   }
   // query
   .common-query-container {
-    background: @dark-sub-bg !important;
+    background: $dark-sub-bg !important;
   }
   // form
   .common-form-container {
-    background: @dark-sub-bg !important;
+    background: $dark-sub-bg !important;
     .form-item-space {
       background: #000 !important;
     }
     .footer {
-      border-top: 1px solid @dark-border-color-base;
-      background: @dark-sub-bg !important;
+      border-top: 1px solid $dark-border-color-base;
+      background: $dark-sub-bg !important;
     }
   }
 
   // sidebar
   .ant-layout .ant-layout-sider {
-    background: @dark-bg;
+    background: $dark-bg;
   }
 }

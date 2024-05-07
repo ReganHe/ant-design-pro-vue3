@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { theme } from 'ant-design-vue'
-import variables from '@/style/variables.module.less'
+import variables from '@/style/variables.module.scss'
 
 /**
  * app 配置 开启持久化

@@ -65,7 +65,7 @@ const showSystemSetting = () => {
 }
 
 </script>
-<style lang="less">
+<style lang="scss">
 .user-dropdown-menu-wrapper {
   .ant-dropdown-menu-item {
     width: 100% !important;

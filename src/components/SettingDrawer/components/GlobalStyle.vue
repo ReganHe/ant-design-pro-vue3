@@ -52,5 +52,5 @@ const handleDarkMode = (isDark) => {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 </style>

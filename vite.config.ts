@@ -43,7 +43,7 @@ export default defineConfig(({ command, mode }) => {
     },
     css: {
       preprocessorOptions: {
-        less: {
+        scss: {
           javascriptEnabled: true
         }
       }

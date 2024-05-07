@@ -37,7 +37,7 @@ const props = defineProps({
   }
 })
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .menuName {
 
   svg,

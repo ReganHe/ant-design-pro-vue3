@@ -270,7 +270,7 @@ const emitRegister = {
 
 getList();
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .common-page {
   .common-query-container {
     background: white;

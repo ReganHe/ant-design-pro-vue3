@@ -24,7 +24,7 @@ const Item = {
       type: Number
     }
   },
-  render() {
+  render () {
     return (
       <Col {...{ props: responsive[this.col] }}>
         <div class="term">{this.$props.term}</div>
@@ -47,7 +47,7 @@ export default {
   components: {
     Col
   },
-  provide() {
+  provide () {
     return {
       col: this.col > 4 ? 4 : this.col
     }
@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .description-list {
   .title {
     color: rgba(0, 0, 0, 0.85);
@@ -109,6 +109,7 @@ export default {
     line-height: 22px;
     padding-bottom: 16px;
     width: 100%;
+
     &:empty {
       content: ' ';
       height: 38px;
@@ -123,6 +124,7 @@ export default {
       font-weight: normal;
       margin-bottom: 12px;
     }
+
     /deep/ .term,
     .content {
       padding-bottom: 8px;
@@ -130,6 +132,7 @@ export default {
   }
 
   &.large {
+
     /deep/ .term,
     .content {
       padding-bottom: 16px;
@@ -144,6 +147,7 @@ export default {
     .term {
       padding-bottom: 8px;
     }
+
     /deep/ .term,
     .content {
       display: block;

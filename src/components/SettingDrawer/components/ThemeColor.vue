@@ -52,7 +52,7 @@ const isCustomColorRef = computed(() => {
 })
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .setting-drawer-theme-color-colorBlock {
   width: 20px;
   height: 20px;

@@ -30,7 +30,7 @@ import { ref, reactive, watch, getCurrentInstance, ComponentInternalInstance } f
 import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
 import emitter from '@/utils/emitter'
 import { message } from 'ant-design-vue'
-import './index.less'
+import './index.scss'
 
 let fullPathList: Array<string> = []
 const pages = reactive<Array<RouteLocationNormalizedLoaded>>([])
@@ -151,8 +151,10 @@ watch(activeKey, (newPathKey) => {
   router.push({ path: newPathKey })
 })
 </script>
-<style lang="less">
-.tab_style() {
+<style lang="scss">
+.ant-pro-multi-tab-wrapper {
+  min-height: 42px;
+
   .ant-tabs-card {
     padding-left: 0;
 
@@ -196,10 +198,5 @@ watch(activeKey, (newPathKey) => {
       }
     }
   }
-}
-
-.ant-pro-multi-tab-wrapper {
-  min-height: 42px;
-  .tab_style() !important;
 }
 </style>

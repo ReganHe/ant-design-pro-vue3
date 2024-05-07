@@ -1,7 +1,7 @@
 import NProgress from 'nprogress' // progress bar
 import type { Router } from 'vue-router'
 import { notification } from 'ant-design-vue'
-import '@/components/NProgress/nprogress.less' // progress bar custom style
+import '@/components/NProgress/nprogress.scss' // progress bar custom style
 import { usePermissionStore } from '@/store/modules/permission'
 import { useUserStore } from '@/store/modules/user'
 import { PageEnum } from '@/enums/pageEnum'

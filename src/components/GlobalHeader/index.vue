@@ -114,12 +114,12 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style lang="less">
-@import '../../style/index.less';
+<style lang="scss">
+@import '../../style/index.scss';
 
 .header-animat {
   position: relative;
-  z-index: @ant-global-header-zindex;
+  z-index: $ant-global-header-zindex;
 }
 
 .showHeader-enter-active {

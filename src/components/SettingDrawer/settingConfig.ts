@@ -1,4 +1,4 @@
-import variables from '@/style/variables.module.less'
+import variables from '@/style/variables.module.scss'
 const colorList = Object.entries(variables).map(([key, color]) => {
   return { key, color }
 })

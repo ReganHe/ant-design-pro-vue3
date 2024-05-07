@@ -40,7 +40,7 @@ import { resetForm, setFormValue } from '@/hooks/component/useModal';
 import useCommonTable from './hooks/useCommonTable';
 import useCommonQuery from './hooks/useCommonQuery';
 import useCommonForm from './hooks/useCommonForm';
-import variables from '@/style/variables.module.less'
+import variables from '@/style/variables.module.scss'
 
 // store
 import { useThemesStore } from '@/store/modules/themes';

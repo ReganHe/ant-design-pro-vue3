@@ -40,8 +40,8 @@ const onClose = () => {
 
 </script>
 
-<style lang="less" scoped>
-@import '../../style/index.less';
+<style lang="scss" scoped>
+@import '../../style/index.scss';
 
 .setting-drawer-index-content {
   ::v-deep(.setting-drawer-index-blockChecbox) {
@@ -65,7 +65,7 @@ const onClose = () => {
         padding-top: 15px;
         padding-left: 24px;
         height: 100%;
-        color: @primary-color;
+        color: $primary-color;
         font-size: 14px;
         font-weight: 700;
       }
@@ -76,7 +76,7 @@ const onClose = () => {
 .setting-drawer-index-handle {
   position: absolute;
   top: 240px;
-  background: @primary-color;
+  background: $primary-color;
   width: 48px;
   height: 48px;
   right: 320px;

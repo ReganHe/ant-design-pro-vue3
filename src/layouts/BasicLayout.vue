@@ -104,7 +104,7 @@ const onRefresh = () => {
 }
 </script>
 
-<style lang="less">
+<style lang="scss">
 /*
  * The following styles are auto-applied to elements with
  * transition="page-transition" when their visibility is toggled

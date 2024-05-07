@@ -115,8 +115,8 @@ const handleSubmit = async (e: Event) => {
 
 </script>
 
-<style lang="less" scoped>
-@import '@/style/global.less';
+<style lang="scss" scoped>
+@import '@/style/global.scss';
 
 .login {
   .bg-banner {
@@ -124,7 +124,7 @@ const handleSubmit = async (e: Event) => {
     z-index: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, @g-bg, @g-container-bg);
+    background: radial-gradient(circle at center, $g-bg, $g-container-bg);
   }
 
   #login-box {
@@ -134,7 +134,7 @@ const handleSubmit = async (e: Event) => {
     display: flex;
     justify-content: space-between;
     overflow: hidden;
-    background-color: @g-container-bg;
+    background-color: $g-container-bg;
     border-radius: 10px;
     box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
     transform: translateX(-50%) translateY(-50%);
@@ -143,7 +143,7 @@ const handleSubmit = async (e: Event) => {
       position: relative;
       width: 450px;
       overflow: hidden;
-      // background-color: @g-bg;
+      // background-color: $g-bg;
       background: linear-gradient(to bottom, #18233b, #012879);
 
       .banner {
@@ -204,11 +204,11 @@ const handleSubmit = async (e: Event) => {
 html[data-dark='dark'] {
   .login {
     .bg-banner {
-      background: radial-gradient(circle at center, @g-bg-dark, @g-container-bg-dark);
+      background: radial-gradient(circle at center, $g-bg-dark, $g-container-bg-dark);
     }
 
     #login-box {
-      background-color: @g-container-bg-dark;
+      background-color: $g-container-bg-dark;
     }
   }
 }
