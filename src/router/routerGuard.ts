@@ -70,7 +70,7 @@ export const setupBeforeEach = (router: Router) => {
 
   // 路由懒加载失败时的提示
   router.onError((error) => {
-    if (window.env === 'development') {
+    if (import.meta.env.DEV) {
       notification.error({
         message: 'Dynamic import error',
         description: error.stack

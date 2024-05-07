@@ -30,7 +30,7 @@ onMounted(() => {
 
 //全局错误处理
 onErrorCaptured((err, instance, info) => {
-  if (window.env !== 'development') {
+  if (!import.meta.env.DEV) {
     console.log(err, instance, info)
     Modal.error({
       title: 'System Error',

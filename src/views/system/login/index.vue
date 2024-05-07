@@ -47,7 +47,6 @@ import { Form, notification } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/modules/user'
-import { getAppEnvConfig } from '@/utils/env'
 import GlobalFooter from '@/components/GlobalFooter/index.vue'
 
 
@@ -93,12 +92,11 @@ const handleSubmit = async (e: Event) => {
   const validateFieldsKey = ['username', 'password']
   try {
     await validate(validateFieldsKey)
-    const { VITE_GLOB_APP_ID, VITE_GLOB_DEVICE_ID } = getAppEnvConfig();
     await userStore.login({
       loginName: formRef.username,
       password: formRef.password,
-      applicationId: parseInt(VITE_GLOB_APP_ID),
-      deviceId: parseInt(VITE_GLOB_DEVICE_ID),
+      applicationId: parseInt(import.meta.env.VITE_GLOB_APP_ID),
+      deviceId: parseInt(import.meta.env.VITE_GLOB_DEVICE_ID),
     })
     router.replace('/')
     // 延迟 1 秒显示欢迎信息

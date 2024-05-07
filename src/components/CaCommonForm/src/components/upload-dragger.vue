@@ -47,7 +47,6 @@ import { InboxOutlined } from '@ant-design/icons-vue';
 
 import { BlobResp } from '#/axios';
 import { FormFieldExtendProps } from '#/castor-antd';
-import { getAppEnvConfig } from '@/utils/env';
 import { downloadByData } from '@/utils/download';
 import { useUserStore } from '@/store/modules/user';
 import { useMessage } from '@/hooks/web/useMessage';
@@ -82,9 +81,7 @@ const props = defineProps({
 const { createMessage: msg, createConfirm: confirm } = useMessage();
 const model = computed(() => props.model);
 //#region file-upload
-
-const { VITE_GLOB_API_URL } = getAppEnvConfig();
-const uploadUrl = VITE_GLOB_API_URL + '/1.0/attachment/upload_file';
+const uploadUrl = import.meta.env.VITE_GLOB_API_URL + '/1.0/attachment/upload_file';
 const userStore = useUserStore();
 const headers: any = {
   authorization: userStore.token,

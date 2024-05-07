@@ -9,10 +9,10 @@
       </div>
       <div class="common-table-container">
         <ca-common-table v-bind="{
-        ...table,
-        emitRegister,
-        elementProps: { ...table.elementProps, onChange: onTableChange },
-      }" />
+          ...table,
+          emitRegister,
+          elementProps: { ...table.elementProps, onChange: onTableChange },
+        }" />
       </div>
     </div>
     <Modal v-model:open="form.visible" :title="form.title" width="500px" :footer="null"
@@ -40,7 +40,6 @@ import { getUsersPaged, removeUser } from '@/api/auto/ApiUser';
 import { findUserCenterApplication } from '@/api/auto/ApiGwsApplication';
 import useResetPwdForm from './hooks/useResetPwdForm';
 import { getLockedUserIdsByApplicationId, unlock } from '@/api/auto/ApiGwsUserInfo';
-import { getAppEnvConfig } from '@/utils/env';
 
 const optionsMap = reactive<Record<string, SelectItem[]>>({
   status: [
@@ -90,9 +89,8 @@ const getAppInfo = async () => {
 };
 
 const getLockedUsers = async () => {
-  const { VITE_GLOB_APP_ID } = getAppEnvConfig();
   pageModel.lockedUserIds = await getLockedUserIdsByApplicationId({
-    applicationId: parseInt(VITE_GLOB_APP_ID),
+    applicationId: parseInt(import.meta.env.VITE_GLOB_APP_ID),
   });
 };
 

@@ -1,5 +1,4 @@
 import { BasicLayout } from '@/layouts'
-import { isDevMode } from '@/utils/env'
 import { RouteRecordRaw } from 'vue-router'
 
 const demo: RouteRecordRaw = {
@@ -11,7 +10,7 @@ const demo: RouteRecordRaw = {
     orderNo: 0,
     icon: 'bx-analyse',
     title: 'Demo',
-    hidden: !isDevMode()
+    hidden: !import.meta.env.DEV
   },
   children: [
     {
