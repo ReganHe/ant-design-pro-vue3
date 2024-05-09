@@ -460,32 +460,6 @@
         ]
       }
     },
-    "/account/get_current_login_user_info": {
-      "get": {
-        "tags": [
-          "03.个人信息"
-        ],
-        "summary": "获取当前登录用户信息",
-        "operationId": "getCurrentLoginUserInfo",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseUserInfoResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/account/{applicationId}/locked_user_ids": {
       "get": {
         "tags": [
@@ -512,6 +486,32 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseListLong"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/account/get_current_login_user_info": {
+      "get": {
+        "tags": [
+          "03.个人信息"
+        ],
+        "summary": "获取当前登录用户信息",
+        "operationId": "getCurrentLoginUserInfo",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUserInfoResponse"
                 }
               }
             }
@@ -636,6 +636,42 @@
         ]
       }
     },
+    "/mgr/role/save_refs_menu_perm_api": {
+      "post": {
+        "tags": [
+          "07.角色管理服务"
+        ],
+        "summary": "新增/更新角色配置的所有菜单&功能点&数据接口",
+        "operationId": "saveRoleRefsMenuPermApi",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleRefsMenuPermApiRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/mgr/role/add": {
       "post": {
         "tags": [
@@ -672,30 +708,32 @@
         ]
       }
     },
-    "/mgr/role/save_refs_menu_perm_api": {
-      "post": {
+    "/mgr/role/get_refs_menu_perm_api_list/{id}": {
+      "get": {
         "tags": [
           "07.角色管理服务"
         ],
-        "summary": "新增/更新角色配置的所有菜单&功能点&数据接口",
-        "operationId": "saveRoleRefsMenuPermApi",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RoleRefsMenuPermApiRequest"
-              }
+        "summary": "获取角色已配置的所有菜单&功能点&数据接口",
+        "operationId": "findAllRoleRefsMenuPermApi",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "角色编号",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
-          },
-          "required": true
-        },
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/Response"
+                  "$ref": "#/components/schemas/ResponseRoleRefsMenuPermApiResponse"
                 }
               }
             }
@@ -853,44 +891,6 @@
         ]
       }
     },
-    "/mgr/role/get_refs_menu_perm_api_list/{id}": {
-      "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
-        "summary": "获取角色已配置的所有菜单&功能点&数据接口",
-        "operationId": "findAllRoleRefsMenuPermApi",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "角色编号",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseRoleRefsMenuPermApiResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/mgr/role/get_api_list_paged": {
       "get": {
         "tags": [
@@ -1013,48 +1013,13 @@
         ]
       }
     },
-    "/mgr/application_user/add_ext": {
-      "post": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
-        "operationId": "addUser_1",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserAddExtRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseUserAddExtResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/mgr/application_user/add": {
       "post": {
         "tags": [
           "12.应用用户管理服务"
         ],
         "summary": "新增应用用户",
-        "operationId": "addUser_2",
+        "operationId": "addUser_1",
         "requestBody": {
           "content": {
             "application/json": {
@@ -1072,6 +1037,41 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseUserAddResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/mgr/application_user/add_ext": {
+      "post": {
+        "tags": [
+          "12.应用用户管理服务"
+        ],
+        "operationId": "addUser_2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAddExtRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseUserAddExtResponse"
                 }
               }
             }
@@ -1170,17 +1170,18 @@
         ]
       }
     },
-    "/mgr/application_user/modify_ext": {
+    "/mgr/application_user/modify": {
       "put": {
         "tags": [
           "12.应用用户管理服务"
         ],
+        "summary": "修改应用用户",
         "operationId": "modifyUser_1",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserModifyExtRequest"
+                "$ref": "#/components/schemas/UserModifyRequest"
               }
             }
           },
@@ -1205,18 +1206,17 @@
         ]
       }
     },
-    "/mgr/application_user/modify": {
+    "/mgr/application_user/modify_ext": {
       "put": {
         "tags": [
           "12.应用用户管理服务"
         ],
-        "summary": "修改应用用户",
         "operationId": "modifyUser_2",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserModifyRequest"
+                "$ref": "#/components/schemas/UserModifyExtRequest"
               }
             }
           },
@@ -1267,6 +1267,43 @@
               "*/*": {
                 "schema": {
                   "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/lu/init_data": {
+      "get": {
+        "tags": [
+          "LNG加气站卸车记录服务"
+        ],
+        "summary": "初始化LNG加气站卸车记录",
+        "operationId": "initDayInspectData_1",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseLngUnloadQueryResponse"
                 }
               }
             }
@@ -1358,6 +1395,16 @@
             }
           },
           {
+            "name": "weighNumber",
+            "in": "query",
+            "description": "磅单编号",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "磅单编号"
+            }
+          },
+          {
             "name": "beginDate",
             "in": "query",
             "description": "开始卸车日期",
@@ -1403,43 +1450,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSimplePageInfoLngUnloadQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/lu/init_data": {
-      "get": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
-        "summary": "初始化LNG加气站卸车记录",
-        "operationId": "initDayInspectData_1",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseLngUnloadQueryResponse"
                 }
               }
             }
@@ -1897,207 +1907,6 @@
         ]
       }
     },
-    "/1.0/sc/export_excel": {
-      "get": {
-        "tags": [
-          "安全检查服务"
-        ],
-        "summary": "导出Excel",
-        "operationId": "exportExcel",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "orderNo",
-            "in": "query",
-            "description": "检查单编号",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查单编号"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "description": "状态 1-检查中 2-检查完成",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "状态 1-检查中 2-检查完成",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "checkResult",
-            "in": "query",
-            "description": "检查结果 1-正常 2-异常",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "检查结果 1-正常 2-异常",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "checkDate",
-            "in": "query",
-            "description": "检查日期/年月",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查日期/年月"
-            }
-          },
-          {
-            "name": "checkStartDate",
-            "in": "query",
-            "description": "检查开始日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查开始日期"
-            }
-          },
-          {
-            "name": "checkEndDate",
-            "in": "query",
-            "description": "检查结束日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查结束日期"
-            }
-          },
-          {
-            "name": "submitStartDate",
-            "in": "query",
-            "description": "提交开始日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "提交开始日期"
-            }
-          },
-          {
-            "name": "submitEndDate",
-            "in": "query",
-            "description": "提交结束日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "提交结束日期"
-            }
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "description": "类型 1-日 2-月",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "类型 1-日 2-月",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/sc/init_day_inspect": {
-      "get": {
-        "tags": [
-          "安全检查服务"
-        ],
-        "summary": "初始化安全检查（日）检查单",
-        "operationId": "initDayInspectData",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseDayInspectQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/sc/get_day_one": {
-      "get": {
-        "tags": [
-          "安全检查服务"
-        ],
-        "summary": "查询安全检查（日）详细",
-        "operationId": "getDayOne",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "description": "主键",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "description": "主键",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseDayInspectQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/sc/get_day_paged": {
       "get": {
         "tags": [
@@ -2425,6 +2234,207 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSimplePageInfoSecurityCheckQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/sc/export_excel": {
+      "get": {
+        "tags": [
+          "安全检查服务"
+        ],
+        "summary": "导出Excel",
+        "operationId": "exportExcel",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "orderNo",
+            "in": "query",
+            "description": "检查单编号",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查单编号"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态 1-检查中 2-检查完成",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "状态 1-检查中 2-检查完成",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "checkResult",
+            "in": "query",
+            "description": "检查结果 1-正常 2-异常",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "检查结果 1-正常 2-异常",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "checkDate",
+            "in": "query",
+            "description": "检查日期/年月",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查日期/年月"
+            }
+          },
+          {
+            "name": "checkStartDate",
+            "in": "query",
+            "description": "检查开始日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查开始日期"
+            }
+          },
+          {
+            "name": "checkEndDate",
+            "in": "query",
+            "description": "检查结束日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查结束日期"
+            }
+          },
+          {
+            "name": "submitStartDate",
+            "in": "query",
+            "description": "提交开始日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "提交开始日期"
+            }
+          },
+          {
+            "name": "submitEndDate",
+            "in": "query",
+            "description": "提交结束日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "提交结束日期"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "类型 1-日 2-月",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "类型 1-日 2-月",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/sc/get_day_one": {
+      "get": {
+        "tags": [
+          "安全检查服务"
+        ],
+        "summary": "查询安全检查（日）详细",
+        "operationId": "getDayOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "主键",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDayInspectQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/sc/init_day_inspect": {
+      "get": {
+        "tags": [
+          "安全检查服务"
+        ],
+        "summary": "初始化安全检查（日）检查单",
+        "operationId": "initDayInspectData",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseDayInspectQueryResponse"
                 }
               }
             }
@@ -3312,110 +3322,6 @@
         ]
       }
     },
-    "/1.0/vehicle_manage/external/get_one/{id}": {
-      "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
-        "summary": "主键查询外部车辆信息记录",
-        "operationId": "getExternalOne",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseExternalVehicleDetailResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/vehicle_manage/external/get_paged": {
-      "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
-        "summary": "分页查询外部车辆信息记录",
-        "operationId": "getExternalPaged",
-        "parameters": [
-          {
-            "name": "licenseNum",
-            "in": "query",
-            "description": "车牌号",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "车牌号"
-            }
-          },
-          {
-            "name": "orgId",
-            "in": "query",
-            "description": "关联站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "关联站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "pageNum",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseSimplePageInfoExternalVehicleResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/vehicle_manage/internal/get_one/{id}": {
       "get": {
         "tags": [
@@ -3509,30 +3415,97 @@
         ]
       }
     },
-    "/1.0/vehicle_manage/external/edit": {
-      "put": {
+    "/1.0/vehicle_manage/external/get_one/{id}": {
+      "get": {
         "tags": [
           "车辆信息管理"
         ],
-        "summary": "编辑外部车辆信息记录",
-        "operationId": "editExternal",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ExternalVehicleEditRequest"
-              }
+        "summary": "主键查询外部车辆信息记录",
+        "operationId": "getExternalOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
-          },
-          "required": true
-        },
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Response"
+                  "$ref": "#/components/schemas/ResponseExternalVehicleDetailResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/vehicle_manage/external/get_paged": {
+      "get": {
+        "tags": [
+          "车辆信息管理"
+        ],
+        "summary": "分页查询外部车辆信息记录",
+        "operationId": "getExternalPaged",
+        "parameters": [
+          {
+            "name": "licenseNum",
+            "in": "query",
+            "description": "车牌号",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "车牌号"
+            }
+          },
+          {
+            "name": "orgNames",
+            "in": "query",
+            "description": "关联站点",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "关联站点"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSimplePageInfoExternalVehicleResponse"
                 }
               }
             }
@@ -3557,6 +3530,42 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/InternalVehicleEditRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/vehicle_manage/external/edit": {
+      "put": {
+        "tags": [
+          "车辆信息管理"
+        ],
+        "summary": "编辑外部车辆信息记录",
+        "operationId": "editExternal",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExternalVehicleEditRequest"
               }
             }
           },
@@ -3714,43 +3723,6 @@
         ]
       }
     },
-    "/1.0/attachment/get_attachment_by_id": {
-      "get": {
-        "tags": [
-          "附件服务"
-        ],
-        "summary": "主键查询附件明细",
-        "operationId": "getAttachmentById",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseAttachmentDetailResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/attachment/download_tag": {
       "get": {
         "tags": [
@@ -3785,6 +3757,43 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/attachment/get_attachment_by_id": {
+      "get": {
+        "tags": [
+          "附件服务"
+        ],
+        "summary": "主键查询附件明细",
+        "operationId": "getAttachmentById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAttachmentDetailResponse"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -4221,6 +4230,45 @@
         ]
       }
     },
+    "/1.0/cf/get_one_record": {
+      "get": {
+        "tags": [
+          "加液及充装检查记录"
+        ],
+        "summary": "主键查询加液及充装检查记录明细",
+        "operationId": "getOneRecord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "主键",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "主键",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseFillCheckRecordsData"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/cf/get_one": {
       "get": {
         "tags": [
@@ -4335,45 +4383,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSimplePageInfoFillCheckQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/cf/get_one_record": {
-      "get": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
-        "summary": "主键查询加液及充装检查记录明细",
-        "operationId": "getOneRecord",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "description": "主键",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "description": "主键",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseFillCheckRecordsData"
                 }
               }
             }
@@ -4907,6 +4916,117 @@
         ]
       }
     },
+    "/1.0/report/export_excel": {
+      "get": {
+        "tags": [
+          "进销存报表服务"
+        ],
+        "summary": "导出Excel",
+        "operationId": "exportExcel_5",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "所属站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "所属站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "beginDate",
+            "in": "query",
+            "description": "开始时间",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "开始时间"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "结束时间",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "结束时间"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/report/get_sale_inventory_unload": {
+      "get": {
+        "tags": [
+          "进销存报表服务"
+        ],
+        "summary": "查询卸液记录报表",
+        "operationId": "queryInventoryUnload",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "所属站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "所属站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "beginDate",
+            "in": "query",
+            "description": "开始时间",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "开始时间"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "结束时间",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "结束时间"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSaleInventoryUnloadResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/report/get_sale_inventory_report": {
       "get": {
         "tags": [
@@ -4929,21 +5049,21 @@
           {
             "name": "beginDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "开始时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "开始时间"
             }
           },
           {
             "name": "endDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "结束时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "结束时间"
             }
           }
         ],
@@ -4988,21 +5108,21 @@
           {
             "name": "beginDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "开始时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "开始时间"
             }
           },
           {
             "name": "endDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "结束时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "结束时间"
             }
           }
         ],
@@ -5013,117 +5133,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSaleDateReportResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/report/export_excel": {
-      "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
-        "summary": "导出Excel",
-        "operationId": "exportExcel_5",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "所属站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "所属站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "beginDate",
-            "in": "query",
-            "description": "所属站点id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "所属站点id"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "所属站点id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "所属站点id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/report/get_sale_inventory_unload": {
-      "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
-        "summary": "查询卸液记录报表",
-        "operationId": "queryInventoryUnload",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "所属站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "所属站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "beginDate",
-            "in": "query",
-            "description": "所属站点id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "所属站点id"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "所属站点id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "description": "所属站点id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseSaleInventoryUnloadResponse"
                 }
               }
             }
@@ -5158,21 +5167,21 @@
           {
             "name": "beginDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "开始时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "开始时间"
             }
           },
           {
             "name": "endDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "结束时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "结束时间"
             }
           }
         ],
@@ -5210,21 +5219,21 @@
           {
             "name": "beginDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "开始时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "开始时间"
             }
           },
           {
             "name": "endDate",
             "in": "query",
-            "description": "所属站点id",
+            "description": "结束时间",
             "required": true,
             "schema": {
               "type": "string",
-              "description": "所属站点id"
+              "description": "结束时间"
             }
           }
         ],
@@ -5668,6 +5677,157 @@
         ]
       }
     },
+    "/1.0/sec/export_excel": {
+      "get": {
+        "tags": [
+          "特种设备检查服务"
+        ],
+        "summary": "导出Excel",
+        "operationId": "exportExcel_4",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "orderNo",
+            "in": "query",
+            "description": "检查单编号",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查单编号"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态 1-检查中 2-检查完成",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "状态 1-检查中 2-检查完成",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "checkResult",
+            "in": "query",
+            "description": "检查结果 1-正常 2-异常",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "检查结果 1-正常 2-异常",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "checkDate",
+            "in": "query",
+            "description": "检查日期/年月",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查日期/年月"
+            }
+          },
+          {
+            "name": "checkStartDate",
+            "in": "query",
+            "description": "检查开始日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查开始日期"
+            }
+          },
+          {
+            "name": "checkEndDate",
+            "in": "query",
+            "description": "检查结束日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "检查结束日期"
+            }
+          },
+          {
+            "name": "submitStartDate",
+            "in": "query",
+            "description": "提交开始日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "提交开始日期"
+            }
+          },
+          {
+            "name": "submitEndDate",
+            "in": "query",
+            "description": "提交结束日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "提交结束日期"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/sec/init_data": {
+      "get": {
+        "tags": [
+          "特种设备检查服务"
+        ],
+        "summary": "初始化特种设备检查单",
+        "operationId": "initData",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSeCheckContentQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/sec/get_one": {
       "get": {
         "tags": [
@@ -5846,157 +6006,6 @@
         ]
       }
     },
-    "/1.0/sec/export_excel": {
-      "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
-        "summary": "导出Excel",
-        "operationId": "exportExcel_4",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "orderNo",
-            "in": "query",
-            "description": "检查单编号",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查单编号"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "description": "状态 1-检查中 2-检查完成",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "状态 1-检查中 2-检查完成",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "checkResult",
-            "in": "query",
-            "description": "检查结果 1-正常 2-异常",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "检查结果 1-正常 2-异常",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "checkDate",
-            "in": "query",
-            "description": "检查日期/年月",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查日期/年月"
-            }
-          },
-          {
-            "name": "checkStartDate",
-            "in": "query",
-            "description": "检查开始日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查开始日期"
-            }
-          },
-          {
-            "name": "checkEndDate",
-            "in": "query",
-            "description": "检查结束日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "检查结束日期"
-            }
-          },
-          {
-            "name": "submitStartDate",
-            "in": "query",
-            "description": "提交开始日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "提交开始日期"
-            }
-          },
-          {
-            "name": "submitEndDate",
-            "in": "query",
-            "description": "提交结束日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "提交结束日期"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/sec/init_data": {
-      "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
-        "summary": "初始化特种设备检查单",
-        "operationId": "initData",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseSeCheckContentQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/sec/persist": {
       "put": {
         "tags": [
@@ -6090,6 +6099,105 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/wo/export_excel": {
+      "get": {
+        "tags": [
+          "维修报告服务"
+        ],
+        "summary": "导出Excel",
+        "operationId": "exportExcel_2",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "orderNo",
+            "in": "query",
+            "description": "工单编号",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "工单编号"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nature",
+            "in": "query",
+            "description": "维修性质 1-上门维修 2-急抢修",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "维修性质 1-上门维修 2-急抢修",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "beginDate",
+            "in": "query",
+            "description": "开始报修日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "开始报修日期"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "结束报修日期",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "结束报修日期"
+            }
+          },
+          {
+            "name": "idList",
+            "in": "query",
+            "description": "主键集合",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "主键集合",
+              "items": {
+                "type": "integer",
+                "description": "主键集合",
+                "format": "int64"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         },
         "security": [
@@ -6262,105 +6370,6 @@
         ]
       }
     },
-    "/1.0/wo/export_excel": {
-      "get": {
-        "tags": [
-          "维修报告服务"
-        ],
-        "summary": "导出Excel",
-        "operationId": "exportExcel_2",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "站点id",
-              "format": "int64"
-            }
-          },
-          {
-            "name": "orderNo",
-            "in": "query",
-            "description": "工单编号",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "工单编号"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "description": "状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "nature",
-            "in": "query",
-            "description": "维修性质 1-上门维修 2-急抢修",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "维修性质 1-上门维修 2-急抢修",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "beginDate",
-            "in": "query",
-            "description": "开始报修日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "开始报修日期"
-            }
-          },
-          {
-            "name": "endDate",
-            "in": "query",
-            "description": "结束报修日期",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "结束报修日期"
-            }
-          },
-          {
-            "name": "idList",
-            "in": "query",
-            "description": "主键集合",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "description": "主键集合",
-              "items": {
-                "type": "integer",
-                "description": "主键集合",
-                "format": "int64"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/wo/edit": {
       "put": {
         "tags": [
@@ -6418,6 +6427,42 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/sales_data/add": {
+      "post": {
+        "tags": [
+          "销售数据服务"
+        ],
+        "summary": "接收销售系统推送数据",
+        "operationId": "addSales",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddSalesDetailRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -6736,35 +6781,6 @@
         ]
       }
     },
-    "/1.0/pip/discard": {
-      "put": {
-        "tags": [
-          "压力管道服务"
-        ],
-        "summary": "废弃压力管道",
-        "operationId": "discard",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PkRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/pip/edit": {
       "put": {
         "tags": [
@@ -6801,6 +6817,35 @@
         ]
       }
     },
+    "/1.0/pip/discard": {
+      "put": {
+        "tags": [
+          "压力管道服务"
+        ],
+        "summary": "废弃压力管道",
+        "operationId": "discard",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/pv/add": {
       "post": {
         "tags": [
@@ -6828,6 +6873,59 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/pv/export_excel": {
+      "get": {
+        "tags": [
+          "压力容器服务"
+        ],
+        "summary": "导出Excel",
+        "operationId": "exportExcel_3",
+        "parameters": [
+          {
+            "name": "stationId",
+            "in": "query",
+            "description": "站点id",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "站点id",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "设备名称",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "设备名称"
+            }
+          },
+          {
+            "name": "manufacturer",
+            "in": "query",
+            "description": "生产厂家",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "description": "生产厂家",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         },
         "security": [
@@ -7028,50 +7126,33 @@
         ]
       }
     },
-    "/1.0/pv/export_excel": {
-      "get": {
+    "/1.0/pv/edit": {
+      "put": {
         "tags": [
           "压力容器服务"
         ],
-        "summary": "导出Excel",
-        "operationId": "exportExcel_3",
-        "parameters": [
-          {
-            "name": "stationId",
-            "in": "query",
-            "description": "站点id",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "站点id",
-              "format": "int64"
+        "summary": "编辑压力容器",
+        "operationId": "edit_8",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PressureVesselEditRequest"
+              }
             }
           },
-          {
-            "name": "name",
-            "in": "query",
-            "description": "设备名称",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "设备名称"
-            }
-          },
-          {
-            "name": "manufacturer",
-            "in": "query",
-            "description": "生产厂家",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "description": "生产厂家",
-              "format": "int64"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -7101,42 +7182,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/pv/edit": {
-      "put": {
-        "tags": [
-          "压力容器服务"
-        ],
-        "summary": "编辑压力容器",
-        "operationId": "edit_8",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PressureVesselEditRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -7872,6 +7917,175 @@
         ]
       }
     },
+    "/1.0/org_manage/org/get_org_extra_info/{id}": {
+      "get": {
+        "tags": [
+          "站点管理服务"
+        ],
+        "summary": "按主键查询站点机构额外信息",
+        "operationId": "getOrgExtraInfoOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOrgInfoExtraQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/org_manage/worker/attachment/get_list": {
+      "get": {
+        "tags": [
+          "站点管理服务"
+        ],
+        "summary": "查询员工资质证书",
+        "operationId": "getWorkerAttachmentList",
+        "parameters": [
+          {
+            "name": "workerId",
+            "in": "query",
+            "description": "员工id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "description": "员工id",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseQueryWorkerAttachmentListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/org_manage/org/get_org_info_paged": {
+      "get": {
+        "tags": [
+          "站点管理服务"
+        ],
+        "summary": "站点机构分页查询",
+        "operationId": "getOrgInfoPaged",
+        "parameters": [
+          {
+            "name": "queryKey",
+            "in": "query",
+            "description": "查询关键字",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "查询关键字"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSimplePageInfoOrgInfoQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
+    "/1.0/org_manage/org/get_org_info/{id}": {
+      "get": {
+        "tags": [
+          "站点管理服务"
+        ],
+        "summary": "按主键查询站点机构信息",
+        "operationId": "getOrgInfoOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOrgInfoQueryResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/org_manage/worker/get/{id}": {
       "get": {
         "tags": [
@@ -7980,14 +8194,14 @@
           {
             "name": "jobTypeList",
             "in": "query",
-            "description": "职务list",
+            "description": "岗位list",
             "required": false,
             "schema": {
               "type": "array",
-              "description": "职务list",
+              "description": "岗位list",
               "items": {
                 "type": "string",
-                "description": "职务list"
+                "description": "岗位list"
               }
             }
           },
@@ -8022,163 +8236,30 @@
         ]
       }
     },
-    "/1.0/org_manage/org/get_org_info_paged": {
-      "get": {
+    "/1.0/org_manage/org/modify_extra": {
+      "put": {
         "tags": [
           "站点管理服务"
         ],
-        "summary": "站点机构分页查询",
-        "operationId": "getOrgInfoPaged",
-        "parameters": [
-          {
-            "name": "queryKey",
-            "in": "query",
-            "description": "查询关键字",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "查询关键字"
+        "summary": "修改站点额外信息",
+        "operationId": "modifyOrgExtraInfo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModifyOrgExtraRequest"
+              }
             }
           },
-          {
-            "name": "pageNum",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseSimplePageInfoOrgInfoQueryResponse"
-                }
-              }
-            }
-          }
+          "required": true
         },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/org_manage/org/get_org_info/{id}": {
-      "get": {
-        "tags": [
-          "站点管理服务"
-        ],
-        "summary": "按主键查询站点机构信息",
-        "operationId": "getOrgInfoOne",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseOrgInfoQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/org_manage/org/get_org_extra_info/{id}": {
-      "get": {
-        "tags": [
-          "站点管理服务"
-        ],
-        "summary": "按主键查询站点机构额外信息",
-        "operationId": "getOrgExtraInfoOne",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseOrgInfoExtraQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/org_manage/worker/attachment/get_list": {
-      "get": {
-        "tags": [
-          "站点管理服务"
-        ],
-        "summary": "查询员工资质证书",
-        "operationId": "getWorkerAttachmentList",
-        "parameters": [
-          {
-            "name": "workerId",
-            "in": "query",
-            "description": "员工id",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "description": "员工id",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseQueryWorkerAttachmentListResponse"
+                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
@@ -8263,42 +8344,6 @@
         ]
       }
     },
-    "/1.0/org_manage/org/modify_extra": {
-      "put": {
-        "tags": [
-          "站点管理服务"
-        ],
-        "summary": "修改站点额外信息",
-        "operationId": "modifyOrgExtraInfo",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ModifyOrgExtraRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/org_manage/worker/attachment/modify_batch": {
       "put": {
         "tags": [
@@ -8335,13 +8380,13 @@
         ]
       }
     },
-    "/1.0/org_manage/worker/remove/{id}": {
+    "/1.0/org_manage/worker/attachment/remove/{id}": {
       "delete": {
         "tags": [
           "站点管理服务"
         ],
-        "summary": "删除员工",
-        "operationId": "removeWorker",
+        "summary": "删除员工资质文件",
+        "operationId": "removeWorkerAttachment",
         "parameters": [
           {
             "name": "id",
@@ -8372,13 +8417,13 @@
         ]
       }
     },
-    "/1.0/org_manage/worker/attachment/remove/{id}": {
+    "/1.0/org_manage/worker/remove/{id}": {
       "delete": {
         "tags": [
           "站点管理服务"
         ],
-        "summary": "删除员工资质文件",
-        "operationId": "removeWorkerAttachment",
+        "summary": "删除员工",
+        "operationId": "removeWorker",
         "parameters": [
           {
             "name": "id",
@@ -8595,6 +8640,42 @@
         ]
       }
     },
+    "/1.0/mro/auto": {
+      "get": {
+        "tags": [
+          "中修工单服务"
+        ],
+        "summary": "手动触发中修派单",
+        "operationId": "automaticDispatch",
+        "parameters": [
+          {
+            "name": "dispatchDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/1.0/mro/get_one": {
       "get": {
         "tags": [
@@ -8745,42 +8826,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResponseSimplePageInfoMediumRepairOrderQueryResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/1.0/mro/auto": {
-      "get": {
-        "tags": [
-          "中修工单服务"
-        ],
-        "summary": "手动触发中修派单",
-        "operationId": "automaticDispatch",
-        "parameters": [
-          {
-            "name": "dispatchDate",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
                 }
               }
             }
@@ -9251,60 +9296,6 @@
         ]
       }
     },
-    "/1.0/dict/type/get_list_paged": {
-      "get": {
-        "tags": [
-          "字典服务"
-        ],
-        "summary": "查询数据字典类型",
-        "operationId": "getTypes",
-        "parameters": [
-          {
-            "name": "typeKey",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pageNum",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseSimplePageInfoDictTypeResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
     "/1.0/dict/value/get_list_paged": {
       "get": {
         "tags": [
@@ -9360,6 +9351,60 @@
         ]
       }
     },
+    "/1.0/dict/type/get_list_paged": {
+      "get": {
+        "tags": [
+          "字典服务"
+        ],
+        "summary": "查询数据字典类型",
+        "operationId": "getTypes",
+        "parameters": [
+          {
+            "name": "typeKey",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageNum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseSimplePageInfoDictTypeResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/gisc/dict/value/get_list_bytypekey": {
       "get": {
         "tags": [
@@ -9396,18 +9441,18 @@
         ]
       }
     },
-    "/1.0/dict/type/modify": {
+    "/1.0/dict/value/modify": {
       "put": {
         "tags": [
           "字典服务"
         ],
-        "summary": "修改数据字典类型",
-        "operationId": "modifyType",
+        "summary": "修改数据字典子项",
+        "operationId": "modifyValue",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DictTypeRequest"
+                "$ref": "#/components/schemas/DictValueRequest"
               }
             }
           },
@@ -9432,18 +9477,18 @@
         ]
       }
     },
-    "/1.0/dict/value/modify": {
+    "/1.0/dict/type/modify": {
       "put": {
         "tags": [
           "字典服务"
         ],
-        "summary": "修改数据字典子项",
-        "operationId": "modifyValue",
+        "summary": "修改数据字典类型",
+        "operationId": "modifyType",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/DictValueRequest"
+                "$ref": "#/components/schemas/DictTypeRequest"
               }
             }
           },
@@ -9559,43 +9604,6 @@
           },
           "required": true
         },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseOrgResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JwtAuth": []
-          }
-        ]
-      }
-    },
-    "/gisc/org/get_one/{id}": {
-      "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
-        "summary": "使用id查询组织机构",
-        "operationId": "getOrgOne",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -10135,6 +10143,43 @@
         ]
       }
     },
+    "/gisc/org/get_one/{id}": {
+      "get": {
+        "tags": [
+          "组织机构管理服务"
+        ],
+        "summary": "使用id查询组织机构",
+        "operationId": "getOrgOne",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOrgResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "JwtAuth": []
+          }
+        ]
+      }
+    },
     "/gisc/org/modify": {
       "put": {
         "tags": [
@@ -10251,7 +10296,7 @@
           },
           "unitMeasure": {
             "type": "integer",
-            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项",
+            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶",
             "format": "int32"
           },
           "unitMeasureDesc": {
@@ -10382,7 +10427,7 @@
           },
           "unitMeasure": {
             "type": "integer",
-            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项",
+            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶",
             "format": "int32"
           },
           "actualQuantity": {
@@ -10451,7 +10496,7 @@
           },
           "unitMeasure": {
             "type": "integer",
-            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项",
+            "description": "计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶",
             "format": "int32"
           },
           "actualQuantity": {
@@ -10489,20 +10534,6 @@
           }
         },
         "description": "通用响应"
-      },
-      "PkRequest": {
-        "required": [
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键",
-            "format": "int64"
-          }
-        },
-        "description": "主键查询请求"
       },
       "IndustrialPipingQueryResponse": {
         "type": "object",
@@ -10807,6 +10838,20 @@
         },
         "description": "通用响应"
       },
+      "PkRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          }
+        },
+        "description": "主键查询请求"
+      },
       "IndustrialPipingAddRequest": {
         "required": [
           "code",
@@ -10938,333 +10983,6 @@
           }
         },
         "description": "通用响应"
-      },
-      "ResponseWorkerInfoResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/WorkerInfoResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "WorkerInfoResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "员工id",
-            "format": "int64"
-          },
-          "orgId": {
-            "type": "integer",
-            "description": "所属机构id",
-            "format": "int64"
-          },
-          "workerNum": {
-            "type": "string",
-            "description": "工号"
-          },
-          "name": {
-            "type": "string",
-            "description": "姓名"
-          },
-          "identityNum": {
-            "type": "string",
-            "description": "身份证号"
-          },
-          "mobile": {
-            "type": "string",
-            "description": "手机号"
-          },
-          "jobType": {
-            "type": "string",
-            "description": "职务"
-          },
-          "jobTypeDesc": {
-            "type": "string",
-            "description": "职务名称"
-          },
-          "groups": {
-            "type": "integer",
-            "description": "班别",
-            "format": "int32"
-          },
-          "groupsDesc": {
-            "type": "string",
-            "description": "班别名称"
-          },
-          "remark": {
-            "type": "string",
-            "description": "备注"
-          }
-        },
-        "description": "工作人员基本信息响应"
-      },
-      "QueryOrgWorkersResponse": {
-        "type": "object",
-        "properties": {
-          "managerList": {
-            "type": "array",
-            "description": "负责人列表",
-            "items": {
-              "$ref": "#/components/schemas/WorkerInfoResponse"
-            }
-          },
-          "safetyManagerList": {
-            "type": "array",
-            "description": "安全管理员列表",
-            "items": {
-              "$ref": "#/components/schemas/WorkerInfoResponse"
-            }
-          },
-          "ordinaryList": {
-            "type": "array",
-            "description": "工作人员列表",
-            "items": {
-              "$ref": "#/components/schemas/WorkerInfoResponse"
-            }
-          }
-        },
-        "description": "查询站点员工信息息响应"
-      },
-      "ResponseQueryOrgWorkersResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/QueryOrgWorkersResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "ResponseListWorkerInfoResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "type": "array",
-            "description": "数据负载",
-            "items": {
-              "$ref": "#/components/schemas/WorkerInfoResponse"
-            }
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "ModifyOrgRequest": {
-        "required": [
-          "orgId"
-        ],
-        "type": "object",
-        "properties": {
-          "orgId": {
-            "type": "integer",
-            "description": "机构id",
-            "format": "int64"
-          },
-          "orgArea": {
-            "type": "string",
-            "description": "机构面积"
-          },
-          "address": {
-            "type": "string",
-            "description": "地址"
-          },
-          "phoneNum": {
-            "type": "array",
-            "description": "联系方式List",
-            "items": {
-              "type": "string",
-              "description": "联系方式List"
-            }
-          }
-        },
-        "description": "修改站点基本信息请求"
-      },
-      "ResponseSimplePageInfoOrgInfoQueryResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/SimplePageInfoOrgInfoQueryResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "SimplePageInfoOrgInfoQueryResponse": {
-        "type": "object",
-        "properties": {
-          "currentPage": {
-            "type": "integer",
-            "description": "当前页",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "每页的数量",
-            "format": "int32"
-          },
-          "totalPage": {
-            "type": "integer",
-            "description": "总页数",
-            "format": "int32"
-          },
-          "totalNum": {
-            "type": "integer",
-            "description": "总记录数",
-            "format": "int64"
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OrgInfoQueryResponse"
-            }
-          }
-        },
-        "description": "通用分页信息"
-      },
-      "OrgInfoQueryResponse": {
-        "type": "object",
-        "properties": {
-          "orgId": {
-            "type": "integer",
-            "description": "机构id",
-            "format": "int64"
-          },
-          "orgName": {
-            "type": "string",
-            "description": "组织机构名称"
-          },
-          "orgShortName": {
-            "type": "string",
-            "description": "机构名称简写"
-          },
-          "orgArea": {
-            "type": "string",
-            "description": "机构面积"
-          },
-          "address": {
-            "type": "string",
-            "description": "地址"
-          },
-          "contact": {
-            "type": "string",
-            "description": "联系方式"
-          },
-          "phoneNum": {
-            "type": "array",
-            "description": "联系方式List",
-            "items": {
-              "type": "string",
-              "description": "联系方式List"
-            }
-          },
-          "manager": {
-            "type": "string",
-            "description": "负责人"
-          },
-          "workerCount": {
-            "type": "integer",
-            "description": "人数",
-            "format": "int64"
-          }
-        },
-        "description": "站点基本信息查询响应"
-      },
-      "ResponseOrgInfoQueryResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/OrgInfoQueryResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "ModifyWorkerRequest": {
-        "required": [
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "员工id",
-            "format": "int64"
-          },
-          "workerNum": {
-            "type": "string",
-            "description": "工号"
-          },
-          "name": {
-            "type": "string",
-            "description": "姓名"
-          },
-          "identityNum": {
-            "type": "string",
-            "description": "身份证号"
-          },
-          "mobile": {
-            "type": "string",
-            "description": "手机号"
-          },
-          "jobType": {
-            "type": "string",
-            "description": "职务"
-          },
-          "groups": {
-            "type": "integer",
-            "description": "班别",
-            "format": "int32"
-          },
-          "remark": {
-            "type": "string",
-            "description": "备注"
-          }
-        },
-        "description": "修改工作人员基本信息请求"
       },
       "OrgInfoExtraQueryResponse": {
         "type": "object",
@@ -11486,6 +11204,350 @@
         },
         "description": "员工资质证书信息"
       },
+      "ModifyOrgRequest": {
+        "required": [
+          "orgId"
+        ],
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "integer",
+            "description": "机构id",
+            "format": "int64"
+          },
+          "orgArea": {
+            "type": "string",
+            "description": "机构面积"
+          },
+          "address": {
+            "type": "string",
+            "description": "地址"
+          },
+          "phoneNum": {
+            "type": "array",
+            "description": "联系方式List",
+            "items": {
+              "type": "string",
+              "description": "联系方式List"
+            }
+          }
+        },
+        "description": "修改站点基本信息请求"
+      },
+      "ResponseSimplePageInfoOrgInfoQueryResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SimplePageInfoOrgInfoQueryResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "SimplePageInfoOrgInfoQueryResponse": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "description": "当前页",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页的数量",
+            "format": "int32"
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "总页数",
+            "format": "int32"
+          },
+          "totalNum": {
+            "type": "integer",
+            "description": "总记录数",
+            "format": "int64"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrgInfoQueryResponse"
+            }
+          }
+        },
+        "description": "通用分页信息"
+      },
+      "OrgInfoQueryResponse": {
+        "type": "object",
+        "properties": {
+          "orgId": {
+            "type": "integer",
+            "description": "机构id",
+            "format": "int64"
+          },
+          "orgName": {
+            "type": "string",
+            "description": "组织机构名称"
+          },
+          "orgShortName": {
+            "type": "string",
+            "description": "机构名称简写"
+          },
+          "levelId": {
+            "type": "integer",
+            "description": "组织机构等级字典id",
+            "format": "int64"
+          },
+          "orgArea": {
+            "type": "string",
+            "description": "机构面积"
+          },
+          "address": {
+            "type": "string",
+            "description": "地址"
+          },
+          "contact": {
+            "type": "string",
+            "description": "联系方式"
+          },
+          "phoneNum": {
+            "type": "array",
+            "description": "联系方式List",
+            "items": {
+              "type": "string",
+              "description": "联系方式List"
+            }
+          },
+          "manager": {
+            "type": "string",
+            "description": "负责人"
+          },
+          "workerCount": {
+            "type": "integer",
+            "description": "人数",
+            "format": "int64"
+          }
+        },
+        "description": "站点基本信息查询响应"
+      },
+      "ResponseOrgInfoQueryResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/OrgInfoQueryResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "ModifyWorkerRequest": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "员工id",
+            "format": "int64"
+          },
+          "workerNum": {
+            "type": "string",
+            "description": "工号"
+          },
+          "name": {
+            "type": "string",
+            "description": "姓名"
+          },
+          "identityNum": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "mobile": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "dept": {
+            "type": "string",
+            "description": "部门"
+          },
+          "jobType": {
+            "type": "string",
+            "description": "岗位"
+          },
+          "groups": {
+            "type": "integer",
+            "description": "班别",
+            "format": "int32"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          }
+        },
+        "description": "修改工作人员基本信息请求"
+      },
+      "ResponseWorkerInfoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/WorkerInfoResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "WorkerInfoResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "员工id",
+            "format": "int64"
+          },
+          "orgId": {
+            "type": "integer",
+            "description": "所属机构id",
+            "format": "int64"
+          },
+          "workerNum": {
+            "type": "string",
+            "description": "工号"
+          },
+          "name": {
+            "type": "string",
+            "description": "姓名"
+          },
+          "identityNum": {
+            "type": "string",
+            "description": "身份证号"
+          },
+          "mobile": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "dept": {
+            "type": "string",
+            "description": "部门"
+          },
+          "deptDesc": {
+            "type": "string",
+            "description": "部门描述"
+          },
+          "jobType": {
+            "type": "string",
+            "description": "职务"
+          },
+          "jobTypeDesc": {
+            "type": "string",
+            "description": "职务名称"
+          },
+          "groups": {
+            "type": "integer",
+            "description": "班别",
+            "format": "int32"
+          },
+          "groupsDesc": {
+            "type": "string",
+            "description": "班别名称"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          }
+        },
+        "description": "工作人员基本信息响应"
+      },
+      "QueryOrgWorkersResponse": {
+        "type": "object",
+        "properties": {
+          "managerList": {
+            "type": "array",
+            "description": "负责人列表",
+            "items": {
+              "$ref": "#/components/schemas/WorkerInfoResponse"
+            }
+          },
+          "safetyManagerList": {
+            "type": "array",
+            "description": "安全管理员列表",
+            "items": {
+              "$ref": "#/components/schemas/WorkerInfoResponse"
+            }
+          },
+          "ordinaryList": {
+            "type": "array",
+            "description": "工作人员列表",
+            "items": {
+              "$ref": "#/components/schemas/WorkerInfoResponse"
+            }
+          }
+        },
+        "description": "查询站点员工信息息响应"
+      },
+      "ResponseQueryOrgWorkersResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/QueryOrgWorkersResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "ResponseListWorkerInfoResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "type": "array",
+            "description": "数据负载",
+            "items": {
+              "$ref": "#/components/schemas/WorkerInfoResponse"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
       "WorkerAttachmentBatchRequest": {
         "required": [
           "workerAttachmentList",
@@ -11594,9 +11656,13 @@
             "type": "string",
             "description": "手机号"
           },
+          "dept": {
+            "type": "string",
+            "description": "部门"
+          },
           "jobType": {
             "type": "string",
-            "description": "职务"
+            "description": "岗位"
           },
           "groups": {
             "type": "integer",
@@ -12266,6 +12332,180 @@
           }
         }
       },
+      "InternalVehicleEditRequest": {
+        "required": [
+          "id",
+          "licenseNum"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "licenseNum": {
+            "type": "string",
+            "description": "车牌号"
+          },
+          "driverName": {
+            "type": "string",
+            "description": "驾驶员"
+          },
+          "contact": {
+            "type": "string",
+            "description": "联系方式"
+          },
+          "driverLicense": {
+            "$ref": "#/components/schemas/AttachmentUploadData"
+          },
+          "drivingLicense": {
+            "$ref": "#/components/schemas/AttachmentUploadData"
+          }
+        }
+      },
+      "ExternalVehicleEditRequest": {
+        "required": [
+          "id",
+          "licenseNum",
+          "vehicleCode"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "licenseNum": {
+            "type": "string",
+            "description": "车牌号"
+          },
+          "vehicleCode": {
+            "type": "string",
+            "description": "槽罐车编号"
+          },
+          "driverName": {
+            "type": "string",
+            "description": "驾驶员"
+          },
+          "contact": {
+            "type": "string",
+            "description": "联系方式"
+          },
+          "company": {
+            "type": "string",
+            "description": "所属公司"
+          },
+          "orgNames": {
+            "type": "string",
+            "description": "关联站点"
+          },
+          "driverLicense": {
+            "$ref": "#/components/schemas/AttachmentUploadData"
+          },
+          "drivingLicense": {
+            "$ref": "#/components/schemas/AttachmentUploadData"
+          }
+        }
+      },
+      "InternalVehicleDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键id",
+            "format": "int64"
+          },
+          "licenseNum": {
+            "type": "string",
+            "description": "车牌号"
+          },
+          "driverName": {
+            "type": "string",
+            "description": "驾驶员"
+          },
+          "contact": {
+            "type": "string",
+            "description": "驾驶员"
+          },
+          "driverLicense": {
+            "$ref": "#/components/schemas/AttachmentQueryResponse"
+          },
+          "drivingLicense": {
+            "$ref": "#/components/schemas/AttachmentQueryResponse"
+          }
+        },
+        "description": "数据负载"
+      },
+      "ResponseInternalVehicleDetailResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/InternalVehicleDetailResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "ResponseSimplePageInfoInternalVehicleResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SimplePageInfoInternalVehicleResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "SimplePageInfoInternalVehicleResponse": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "description": "当前页",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页的数量",
+            "format": "int32"
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "总页数",
+            "format": "int32"
+          },
+          "totalNum": {
+            "type": "integer",
+            "description": "总记录数",
+            "format": "int64"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InternalVehicleResponse"
+            }
+          }
+        },
+        "description": "通用分页信息"
+      },
       "ExternalVehicleDetailResponse": {
         "type": "object",
         "properties": {
@@ -12298,6 +12538,10 @@
             "type": "integer",
             "description": "关联站点id",
             "format": "int64"
+          },
+          "orgNames": {
+            "type": "string",
+            "description": "关联站点"
           },
           "orgName": {
             "type": "string",
@@ -12407,10 +12651,9 @@
             "type": "string",
             "description": "所属公司"
           },
-          "orgId": {
-            "type": "integer",
-            "description": "关联站点id",
-            "format": "int64"
+          "orgNames": {
+            "type": "string",
+            "description": "关联站点"
           },
           "driverLicense": {
             "$ref": "#/components/schemas/AttachmentUploadData"
@@ -12419,149 +12662,6 @@
             "$ref": "#/components/schemas/AttachmentUploadData"
           }
         }
-      },
-      "ExternalVehicleEditRequest": {
-        "required": [
-          "id",
-          "licenseNum",
-          "vehicleCode"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键",
-            "format": "int64"
-          },
-          "licenseNum": {
-            "type": "string",
-            "description": "车牌号"
-          },
-          "vehicleCode": {
-            "type": "string",
-            "description": "槽罐车编号"
-          },
-          "driverName": {
-            "type": "string",
-            "description": "驾驶员"
-          },
-          "contact": {
-            "type": "string",
-            "description": "联系方式"
-          },
-          "company": {
-            "type": "string",
-            "description": "所属公司"
-          },
-          "orgId": {
-            "type": "integer",
-            "description": "关联站点id",
-            "format": "int64"
-          },
-          "driverLicense": {
-            "$ref": "#/components/schemas/AttachmentUploadData"
-          },
-          "drivingLicense": {
-            "$ref": "#/components/schemas/AttachmentUploadData"
-          }
-        }
-      },
-      "InternalVehicleDetailResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键id",
-            "format": "int64"
-          },
-          "licenseNum": {
-            "type": "string",
-            "description": "车牌号"
-          },
-          "driverName": {
-            "type": "string",
-            "description": "驾驶员"
-          },
-          "contact": {
-            "type": "string",
-            "description": "驾驶员"
-          },
-          "driverLicense": {
-            "$ref": "#/components/schemas/AttachmentQueryResponse"
-          },
-          "drivingLicense": {
-            "$ref": "#/components/schemas/AttachmentQueryResponse"
-          }
-        },
-        "description": "数据负载"
-      },
-      "ResponseInternalVehicleDetailResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/InternalVehicleDetailResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "ResponseSimplePageInfoInternalVehicleResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/SimplePageInfoInternalVehicleResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "SimplePageInfoInternalVehicleResponse": {
-        "type": "object",
-        "properties": {
-          "currentPage": {
-            "type": "integer",
-            "description": "当前页",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "每页的数量",
-            "format": "int32"
-          },
-          "totalPage": {
-            "type": "integer",
-            "description": "总页数",
-            "format": "int32"
-          },
-          "totalNum": {
-            "type": "integer",
-            "description": "总记录数",
-            "format": "int64"
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InternalVehicleResponse"
-            }
-          }
-        },
-        "description": "通用分页信息"
       },
       "InternalVehicleAddRequest": {
         "required": [
@@ -12569,38 +12669,6 @@
         ],
         "type": "object",
         "properties": {
-          "licenseNum": {
-            "type": "string",
-            "description": "车牌号"
-          },
-          "driverName": {
-            "type": "string",
-            "description": "驾驶员"
-          },
-          "contact": {
-            "type": "string",
-            "description": "联系方式"
-          },
-          "driverLicense": {
-            "$ref": "#/components/schemas/AttachmentUploadData"
-          },
-          "drivingLicense": {
-            "$ref": "#/components/schemas/AttachmentUploadData"
-          }
-        }
-      },
-      "InternalVehicleEditRequest": {
-        "required": [
-          "id",
-          "licenseNum"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键",
-            "format": "int64"
-          },
           "licenseNum": {
             "type": "string",
             "description": "车牌号"
@@ -12907,53 +12975,6 @@
         },
         "description": "中修工单添加请求"
       },
-      "DictTypeRequest": {
-        "required": [
-          "typeKey"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "数据字典类型id",
-            "format": "int64"
-          },
-          "typeKey": {
-            "maxLength": 32,
-            "minLength": 0,
-            "type": "string",
-            "description": "字典编码"
-          },
-          "typeValue": {
-            "maxLength": 128,
-            "minLength": 0,
-            "type": "string",
-            "description": "字典类型值"
-          },
-          "typeDesc": {
-            "maxLength": 256,
-            "minLength": 0,
-            "type": "string",
-            "description": "字典类型描述"
-          },
-          "status": {
-            "maxLength": 1,
-            "minLength": 0,
-            "pattern": "^[0-1]$",
-            "type": "string",
-            "description": "字典类型状态 0-启用 1-禁用"
-          },
-          "createdBy": {
-            "type": "string",
-            "description": "创建人"
-          },
-          "updatedBy": {
-            "type": "string",
-            "description": "更新人"
-          }
-        },
-        "description": "字典类型请求"
-      },
       "DictValueRequest": {
         "required": [
           "dicCode",
@@ -13116,55 +13137,52 @@
         },
         "description": "通用响应"
       },
-      "ResponseSimplePageInfoDictTypeResponse": {
+      "DictTypeRequest": {
+        "required": [
+          "typeKey"
+        ],
         "type": "object",
         "properties": {
-          "status": {
+          "id": {
             "type": "integer",
-            "description": "响应状态",
+            "description": "数据字典类型id",
             "format": "int64"
           },
-          "data": {
-            "$ref": "#/components/schemas/SimplePageInfoDictTypeResponse"
-          },
-          "message": {
+          "typeKey": {
+            "maxLength": 32,
+            "minLength": 0,
             "type": "string",
-            "description": "错误信息"
+            "description": "字典编码"
+          },
+          "typeValue": {
+            "maxLength": 128,
+            "minLength": 0,
+            "type": "string",
+            "description": "字典类型值"
+          },
+          "typeDesc": {
+            "maxLength": 256,
+            "minLength": 0,
+            "type": "string",
+            "description": "字典类型描述"
+          },
+          "status": {
+            "maxLength": 1,
+            "minLength": 0,
+            "pattern": "^[0-1]$",
+            "type": "string",
+            "description": "字典类型状态 0-启用 1-禁用"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "创建人"
+          },
+          "updatedBy": {
+            "type": "string",
+            "description": "更新人"
           }
         },
-        "description": "通用响应"
-      },
-      "SimplePageInfoDictTypeResponse": {
-        "type": "object",
-        "properties": {
-          "currentPage": {
-            "type": "integer",
-            "description": "当前页",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "每页的数量",
-            "format": "int32"
-          },
-          "totalPage": {
-            "type": "integer",
-            "description": "总页数",
-            "format": "int32"
-          },
-          "totalNum": {
-            "type": "integer",
-            "description": "总记录数",
-            "format": "int64"
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DictTypeResponse"
-            }
-          }
-        },
-        "description": "通用分页信息"
+        "description": "字典类型请求"
       },
       "ResponseSimplePageInfoDictValueResponse": {
         "type": "object",
@@ -13211,6 +13229,56 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/DictValueResponse"
+            }
+          }
+        },
+        "description": "通用分页信息"
+      },
+      "ResponseSimplePageInfoDictTypeResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SimplePageInfoDictTypeResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "SimplePageInfoDictTypeResponse": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "description": "当前页",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页的数量",
+            "format": "int32"
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "总页数",
+            "format": "int32"
+          },
+          "totalNum": {
+            "type": "integer",
+            "description": "总记录数",
+            "format": "int64"
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DictTypeResponse"
             }
           }
         },
@@ -13291,113 +13359,55 @@
         },
         "description": "通用响应"
       },
-      "DayInspectQueryResponse": {
+      "ResponseSimplePageInfoSecurityCheckQueryResponse": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "description": "检查单id",
-            "format": "int64"
-          },
-          "stationId": {
-            "type": "integer",
-            "description": "站点id",
-            "format": "int64"
-          },
-          "stationName": {
-            "type": "string",
-            "description": "站点名称"
-          },
-          "inspector": {
-            "type": "string",
-            "description": "巡检人"
-          },
-          "orderNo": {
-            "type": "string",
-            "description": "单据编号"
-          },
-          "groups": {
-            "type": "integer",
-            "description": "班别 1-1班 2-2班 3-3班 4-4班",
-            "format": "int32"
-          },
-          "checkDate": {
-            "type": "string",
-            "description": "检查日期/年月"
-          },
           "status": {
             "type": "integer",
-            "description": "状态 1-检查中 2-检查完成",
-            "format": "int32"
-          },
-          "checkResult": {
-            "type": "integer",
-            "description": "检查结果 1-正常 2-异常",
-            "format": "int32"
-          },
-          "groupsDesc": {
-            "type": "string",
-            "description": "班别名称"
-          },
-          "statusDesc": {
-            "type": "string",
-            "description": "状态名称"
-          },
-          "checkResultDesc": {
-            "type": "string",
-            "description": "检查结果名称"
-          },
-          "remark": {
-            "type": "string",
-            "description": "备注"
-          },
-          "shiftType": {
-            "type": "integer",
-            "description": "班次类型 1-白班 2-夜班",
-            "format": "int32"
-          },
-          "shiftTypeDesc": {
-            "type": "string",
-            "description": "班次类型名称"
-          },
-          "vesselList": {
-            "type": "array",
-            "description": "储罐巡检列表",
-            "items": {
-              "$ref": "#/components/schemas/PressureVesselInspectData"
-            }
-          },
-          "areaList": {
-            "type": "array",
-            "description": "巡检区域内容列表",
-            "items": {
-              "$ref": "#/components/schemas/InspectAreaData"
-            }
-          }
-        },
-        "description": "安全检查单查询响应（日）"
-      },
-      "InspectAreaData": {
-        "type": "object",
-        "properties": {
-          "areaId": {
-            "type": "integer",
-            "description": "巡检区域id（对应字典类型id）",
+            "description": "响应状态",
             "format": "int64"
           },
-          "areaDesc": {
-            "type": "string",
-            "description": "巡检区域名称"
+          "data": {
+            "$ref": "#/components/schemas/SimplePageInfoSecurityCheckQueryResponse"
           },
-          "contentList": {
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "SimplePageInfoSecurityCheckQueryResponse": {
+        "type": "object",
+        "properties": {
+          "currentPage": {
+            "type": "integer",
+            "description": "当前页",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "每页的数量",
+            "format": "int32"
+          },
+          "totalPage": {
+            "type": "integer",
+            "description": "总页数",
+            "format": "int32"
+          },
+          "totalNum": {
+            "type": "integer",
+            "description": "总记录数",
+            "format": "int64"
+          },
+          "list": {
             "type": "array",
-            "description": "巡检内容列表",
             "items": {
-              "$ref": "#/components/schemas/InspectContentData"
+              "$ref": "#/components/schemas/SecurityCheckQueryResponse"
             }
           }
         },
-        "description": "巡检区域"
+        "description": "通用分页信息"
       },
       "InspectContentData": {
         "type": "object",
@@ -13477,101 +13487,6 @@
           }
         },
         "description": "储罐巡检内容"
-      },
-      "PressureVesselInspectData": {
-        "type": "object",
-        "properties": {
-          "pvId": {
-            "type": "integer",
-            "description": "压力容器id",
-            "format": "int64"
-          },
-          "shortName": {
-            "type": "string",
-            "description": "设备简称"
-          },
-          "columns": {
-            "type": "integer",
-            "description": "列表有几行",
-            "format": "int32"
-          },
-          "pvContentList": {
-            "type": "array",
-            "description": "储罐巡检内容列表",
-            "items": {
-              "$ref": "#/components/schemas/PressureVesselInspectContent"
-            }
-          }
-        },
-        "description": "储罐巡检"
-      },
-      "ResponseDayInspectQueryResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/DayInspectQueryResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "ResponseSimplePageInfoSecurityCheckQueryResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/SimplePageInfoSecurityCheckQueryResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "SimplePageInfoSecurityCheckQueryResponse": {
-        "type": "object",
-        "properties": {
-          "currentPage": {
-            "type": "integer",
-            "description": "当前页",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "description": "每页的数量",
-            "format": "int32"
-          },
-          "totalPage": {
-            "type": "integer",
-            "description": "总页数",
-            "format": "int32"
-          },
-          "totalNum": {
-            "type": "integer",
-            "description": "总记录数",
-            "format": "int64"
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SecurityCheckQueryResponse"
-            }
-          }
-        },
-        "description": "通用分页信息"
       },
       "SecurityDayPersistRequest": {
         "required": [
@@ -13817,6 +13732,159 @@
           }
         },
         "description": "持久化检查单（月）请求"
+      },
+      "DayInspectQueryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "检查单id",
+            "format": "int64"
+          },
+          "stationId": {
+            "type": "integer",
+            "description": "站点id",
+            "format": "int64"
+          },
+          "stationName": {
+            "type": "string",
+            "description": "站点名称"
+          },
+          "inspector": {
+            "type": "string",
+            "description": "巡检人"
+          },
+          "orderNo": {
+            "type": "string",
+            "description": "单据编号"
+          },
+          "groups": {
+            "type": "integer",
+            "description": "班别 1-1班 2-2班 3-3班 4-4班",
+            "format": "int32"
+          },
+          "checkDate": {
+            "type": "string",
+            "description": "检查日期/年月"
+          },
+          "status": {
+            "type": "integer",
+            "description": "状态 1-检查中 2-检查完成",
+            "format": "int32"
+          },
+          "checkResult": {
+            "type": "integer",
+            "description": "检查结果 1-正常 2-异常",
+            "format": "int32"
+          },
+          "groupsDesc": {
+            "type": "string",
+            "description": "班别名称"
+          },
+          "statusDesc": {
+            "type": "string",
+            "description": "状态名称"
+          },
+          "checkResultDesc": {
+            "type": "string",
+            "description": "检查结果名称"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "shiftType": {
+            "type": "integer",
+            "description": "班次类型 1-白班 2-夜班",
+            "format": "int32"
+          },
+          "shiftTypeDesc": {
+            "type": "string",
+            "description": "班次类型名称"
+          },
+          "vesselList": {
+            "type": "array",
+            "description": "储罐巡检列表",
+            "items": {
+              "$ref": "#/components/schemas/PressureVesselInspectData"
+            }
+          },
+          "areaList": {
+            "type": "array",
+            "description": "巡检区域内容列表",
+            "items": {
+              "$ref": "#/components/schemas/InspectAreaData"
+            }
+          }
+        },
+        "description": "安全检查单查询响应（日）"
+      },
+      "InspectAreaData": {
+        "type": "object",
+        "properties": {
+          "areaId": {
+            "type": "integer",
+            "description": "巡检区域id（对应字典类型id）",
+            "format": "int64"
+          },
+          "areaDesc": {
+            "type": "string",
+            "description": "巡检区域名称"
+          },
+          "contentList": {
+            "type": "array",
+            "description": "巡检内容列表",
+            "items": {
+              "$ref": "#/components/schemas/InspectContentData"
+            }
+          }
+        },
+        "description": "巡检区域"
+      },
+      "PressureVesselInspectData": {
+        "type": "object",
+        "properties": {
+          "pvId": {
+            "type": "integer",
+            "description": "压力容器id",
+            "format": "int64"
+          },
+          "shortName": {
+            "type": "string",
+            "description": "设备简称"
+          },
+          "columns": {
+            "type": "integer",
+            "description": "列表有几行",
+            "format": "int32"
+          },
+          "pvContentList": {
+            "type": "array",
+            "description": "储罐巡检内容列表",
+            "items": {
+              "$ref": "#/components/schemas/PressureVesselInspectContent"
+            }
+          }
+        },
+        "description": "储罐巡检"
+      },
+      "ResponseDayInspectQueryResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/DayInspectQueryResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
       },
       "ResponseUserQueryResponse": {
         "type": "object",
@@ -14180,73 +14248,6 @@
         },
         "description": "数据负载"
       },
-      "AttachmentDetailResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键",
-            "format": "int64"
-          },
-          "fileName": {
-            "type": "string",
-            "description": "文件名"
-          },
-          "createdBy": {
-            "type": "string",
-            "description": "上传者"
-          },
-          "createdTime": {
-            "type": "string",
-            "description": "上传时间",
-            "format": "date-time"
-          },
-          "effectiveDay": {
-            "type": "string",
-            "description": "生效时间",
-            "format": "date-time"
-          },
-          "expiryDay": {
-            "type": "string",
-            "description": "到期时间",
-            "format": "date-time"
-          },
-          "type": {
-            "type": "integer",
-            "description": "附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建）",
-            "format": "int32"
-          },
-          "relationKey": {
-            "type": "integer",
-            "description": "关联主键",
-            "format": "int64"
-          },
-          "expireRemind": {
-            "type": "integer",
-            "description": "是否到期提醒 0-是 1-否",
-            "format": "int32"
-          }
-        },
-        "description": "附件详细查询响应"
-      },
-      "ResponseAttachmentDetailResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/AttachmentDetailResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
       "AttachmentAddRequest": {
         "required": [
           "fileList"
@@ -14329,6 +14330,73 @@
           }
         },
         "description": "附件信息修改请求"
+      },
+      "AttachmentDetailResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "fileName": {
+            "type": "string",
+            "description": "文件名"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "上传者"
+          },
+          "createdTime": {
+            "type": "string",
+            "description": "上传时间",
+            "format": "date-time"
+          },
+          "effectiveDay": {
+            "type": "string",
+            "description": "生效时间",
+            "format": "date-time"
+          },
+          "expiryDay": {
+            "type": "string",
+            "description": "到期时间",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "integer",
+            "description": "附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建）",
+            "format": "int32"
+          },
+          "relationKey": {
+            "type": "integer",
+            "description": "关联主键",
+            "format": "int64"
+          },
+          "expireRemind": {
+            "type": "integer",
+            "description": "是否到期提醒 0-是 1-否",
+            "format": "int32"
+          }
+        },
+        "description": "附件详细查询响应"
+      },
+      "ResponseAttachmentDetailResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/AttachmentDetailResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
       },
       "ResponseListAttachmentQueryResponse": {
         "type": "object",
@@ -14866,6 +14934,61 @@
         },
         "description": "通用分页信息"
       },
+      "AddSalesDetailRequest": {
+        "required": [
+          "gasStation",
+          "gasVolume",
+          "id",
+          "recordTime"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID",
+            "format": "int64"
+          },
+          "recordTime": {
+            "type": "string",
+            "description": "记录时间"
+          },
+          "gasStation": {
+            "type": "string",
+            "description": "加气站"
+          },
+          "machineId": {
+            "type": "integer",
+            "description": "机号",
+            "format": "int32"
+          },
+          "gasVolume": {
+            "type": "number",
+            "description": "加气量"
+          },
+          "shift": {
+            "type": "integer",
+            "description": "班次",
+            "format": "int32"
+          },
+          "userCompany": {
+            "type": "string",
+            "description": "用户单位"
+          },
+          "username": {
+            "type": "string",
+            "description": "用户名"
+          },
+          "gasType": {
+            "type": "string",
+            "description": "加气类型"
+          },
+          "gasNo": {
+            "type": "integer",
+            "description": "加气编号",
+            "format": "int64"
+          }
+        }
+      },
       "LngUnloadCheckData": {
         "type": "object",
         "properties": {
@@ -14976,6 +15099,14 @@
           "equipCode": {
             "type": "string",
             "description": "设备编号"
+          },
+          "weight": {
+            "type": "number",
+            "description": "净重(kg)"
+          },
+          "subWeight": {
+            "type": "number",
+            "description": "卸车前-卸车后重量"
           },
           "situationList": {
             "type": "array",
@@ -15277,46 +15408,6 @@
         },
         "description": "安全检测计划持久化请求"
       },
-      "FillCheckQueryResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键",
-            "format": "int64"
-          },
-          "code": {
-            "type": "string",
-            "description": "编号"
-          },
-          "stationId": {
-            "type": "integer",
-            "description": "站点id",
-            "format": "int64"
-          },
-          "checkDate": {
-            "type": "string",
-            "description": "卸车日期",
-            "format": "date-time"
-          },
-          "checker": {
-            "type": "string",
-            "description": "审核人"
-          },
-          "stationName": {
-            "type": "string",
-            "description": "站点名称"
-          },
-          "dataList": {
-            "type": "array",
-            "description": "加液及充装检查记录明细",
-            "items": {
-              "$ref": "#/components/schemas/FillCheckRecordsData"
-            }
-          }
-        },
-        "description": "查询加液及充装检查记录响应"
-      },
       "FillCheckRecordsData": {
         "type": "object",
         "properties": {
@@ -15396,6 +15487,64 @@
         },
         "description": "加液及充装检查记录明细"
       },
+      "ResponseFillCheckRecordsData": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/FillCheckRecordsData"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "FillCheckQueryResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键",
+            "format": "int64"
+          },
+          "code": {
+            "type": "string",
+            "description": "编号"
+          },
+          "stationId": {
+            "type": "integer",
+            "description": "站点id",
+            "format": "int64"
+          },
+          "checkDate": {
+            "type": "string",
+            "description": "卸车日期",
+            "format": "date-time"
+          },
+          "checker": {
+            "type": "string",
+            "description": "审核人"
+          },
+          "stationName": {
+            "type": "string",
+            "description": "站点名称"
+          },
+          "dataList": {
+            "type": "array",
+            "description": "加液及充装检查记录明细",
+            "items": {
+              "$ref": "#/components/schemas/FillCheckRecordsData"
+            }
+          }
+        },
+        "description": "查询加液及充装检查记录响应"
+      },
       "ResponseFillCheckQueryResponse": {
         "type": "object",
         "properties": {
@@ -15463,24 +15612,6 @@
           }
         },
         "description": "通用分页信息"
-      },
-      "ResponseFillCheckRecordsData": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/FillCheckRecordsData"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
       },
       "FillCheckPersistRequest": {
         "type": "object",
@@ -16556,11 +16687,11 @@
           },
           "jobType": {
             "type": "string",
-            "description": "职务"
+            "description": "岗位"
           },
           "jobTypeDesc": {
             "type": "string",
-            "description": "职务名称"
+            "description": "岗位名称"
           },
           "workerNum": {
             "type": "string",
@@ -17799,6 +17930,110 @@
         },
         "description": "通用分页信息"
       },
+      "ResponseSaleInventoryUnloadResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/SaleInventoryUnloadResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "SaleInventoryUnloadData": {
+        "type": "object",
+        "properties": {
+          "dataIndex": {
+            "type": "string",
+            "description": "数据索引"
+          },
+          "date": {
+            "type": "string",
+            "description": "日期=卸车日期"
+          },
+          "unloadTime": {
+            "type": "string",
+            "description": "卸车开始时间+卸液结束时间"
+          },
+          "carNumber": {
+            "type": "string",
+            "description": "车号=槽车车牌号"
+          },
+          "weighNumber": {
+            "type": "string",
+            "description": "磅单号码=磅单编号"
+          },
+          "carBeforePressure": {
+            "type": "string",
+            "description": "槽车(卸车前)压力(MPa)"
+          },
+          "potBeforePressure": {
+            "type": "string",
+            "description": "储罐(卸车前)压力(MPa)"
+          },
+          "carAfterPressure": {
+            "type": "string",
+            "description": "槽车(卸车后)压力(MPa)"
+          },
+          "potAfterPressure": {
+            "type": "string",
+            "description": "储罐(卸车后)压力(MPa)"
+          },
+          "carBeforeWeight": {
+            "type": "string",
+            "description": "重车=槽车(卸车前)过磅重量(kg)"
+          },
+          "carAfterWeight": {
+            "type": "string",
+            "description": "空车=槽车(卸车后)过磅重量(kg)"
+          },
+          "weightIn": {
+            "type": "string",
+            "description": "装液情况：净重=重车-空车"
+          },
+          "weightOut": {
+            "type": "string",
+            "description": "卸液计量器：净重 = 净重(kg)"
+          },
+          "profitLoss": {
+            "type": "string",
+            "description": "损益（吨）=（卸液计量器：净重）-（装液情况：净重）"
+          },
+          "operator": {
+            "type": "string",
+            "description": "卸液人 = 操作人"
+          }
+        },
+        "description": "进销存报表（卸液记录）数据"
+      },
+      "SaleInventoryUnloadResponse": {
+        "type": "object",
+        "properties": {
+          "headList": {
+            "type": "array",
+            "description": "库存表头",
+            "items": {
+              "$ref": "#/components/schemas/SaleInventoryHead"
+            }
+          },
+          "dataList": {
+            "type": "array",
+            "description": "数据",
+            "items": {
+              "$ref": "#/components/schemas/SaleInventoryUnloadData"
+            }
+          }
+        },
+        "description": "进销存报表（卸液记录）响应"
+      },
       "ResponseSaleInventoryReportResponse": {
         "type": "object",
         "properties": {
@@ -17954,110 +18189,6 @@
           }
         },
         "description": "销售日报响应"
-      },
-      "ResponseSaleInventoryUnloadResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/SaleInventoryUnloadResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "SaleInventoryUnloadData": {
-        "type": "object",
-        "properties": {
-          "dataIndex": {
-            "type": "string",
-            "description": "数据索引"
-          },
-          "date": {
-            "type": "string",
-            "description": "日期=卸车日期"
-          },
-          "unloadTime": {
-            "type": "string",
-            "description": "卸车开始时间+卸液结束时间"
-          },
-          "carNumber": {
-            "type": "string",
-            "description": "车号=槽车车牌号"
-          },
-          "weighNumber": {
-            "type": "string",
-            "description": "磅单号码=磅单编号"
-          },
-          "carBeforePressure": {
-            "type": "string",
-            "description": "槽车(卸车前)压力(MPa)"
-          },
-          "potBeforePressure": {
-            "type": "string",
-            "description": "储罐(卸车前)压力(MPa)"
-          },
-          "carAfterPressure": {
-            "type": "string",
-            "description": "槽车(卸车后)压力(MPa)"
-          },
-          "potAfterPressure": {
-            "type": "string",
-            "description": "储罐(卸车后)压力(MPa)"
-          },
-          "carBeforeWeight": {
-            "type": "string",
-            "description": "重车=槽车(卸车前)过磅重量(kg)"
-          },
-          "carAfterWeight": {
-            "type": "string",
-            "description": "空车=槽车(卸车后)过磅重量(kg)"
-          },
-          "weightIn": {
-            "type": "string",
-            "description": "装液情况：净重=重车-空车"
-          },
-          "weightOut": {
-            "type": "string",
-            "description": "卸液计量器：净重 = 净重(kg)"
-          },
-          "profitLoss": {
-            "type": "string",
-            "description": "损益（吨）=（卸液计量器：净重）-（装液情况：净重）"
-          },
-          "operator": {
-            "type": "string",
-            "description": "卸液人 = 操作人"
-          }
-        },
-        "description": "进销存报表（卸液记录）数据"
-      },
-      "SaleInventoryUnloadResponse": {
-        "type": "object",
-        "properties": {
-          "headList": {
-            "type": "array",
-            "description": "库存表头",
-            "items": {
-              "$ref": "#/components/schemas/SaleInventoryHead"
-            }
-          },
-          "dataList": {
-            "type": "array",
-            "description": "数据",
-            "items": {
-              "$ref": "#/components/schemas/SaleInventoryUnloadData"
-            }
-          }
-        },
-        "description": "进销存报表（卸液记录）响应"
       },
       "OrgRequest": {
         "type": "object",
@@ -18378,82 +18509,6 @@
         },
         "description": "供应商修改请求"
       },
-      "AddUserRequest": {
-        "required": [
-          "deviceIds",
-          "loginName",
-          "password",
-          "roleIds",
-          "userName"
-        ],
-        "type": "object",
-        "properties": {
-          "loginName": {
-            "type": "string",
-            "description": "登录账号"
-          },
-          "password": {
-            "type": "string",
-            "description": "登录密码"
-          },
-          "userName": {
-            "type": "string",
-            "description": "用户昵称"
-          },
-          "avatarGroup": {
-            "type": "string",
-            "description": "用户头像组"
-          },
-          "avatar": {
-            "type": "string",
-            "description": "用户头像图片相对路径"
-          },
-          "status": {
-            "maxLength": 1,
-            "minLength": 0,
-            "pattern": "^[0-1]$",
-            "type": "string",
-            "description": "用户状态 0-启用 1-禁用"
-          },
-          "remark": {
-            "type": "string",
-            "description": "备注"
-          },
-          "orgId": {
-            "type": "integer",
-            "description": "用户所属机构id",
-            "format": "int64"
-          },
-          "path": {
-            "type": "string",
-            "description": "用户所属机构路径"
-          },
-          "supplierId": {
-            "type": "integer",
-            "description": "供应商id",
-            "format": "int64"
-          },
-          "roleIds": {
-            "type": "array",
-            "description": "用户角色id",
-            "items": {
-              "type": "integer",
-              "description": "用户角色id",
-              "format": "int64"
-            }
-          },
-          "deviceIds": {
-            "type": "array",
-            "description": "绑定的设备编号",
-            "items": {
-              "type": "integer",
-              "description": "绑定的设备编号",
-              "format": "int64"
-            }
-          }
-        },
-        "description": "添加用户请求"
-      },
       "UserAvatarRequest": {
         "required": [
           "avatar",
@@ -18578,6 +18633,82 @@
         },
         "description": "用户管理请求"
       },
+      "AddUserRequest": {
+        "required": [
+          "deviceIds",
+          "loginName",
+          "password",
+          "roleIds",
+          "userName"
+        ],
+        "type": "object",
+        "properties": {
+          "loginName": {
+            "type": "string",
+            "description": "登录账号"
+          },
+          "password": {
+            "type": "string",
+            "description": "登录密码"
+          },
+          "userName": {
+            "type": "string",
+            "description": "用户昵称"
+          },
+          "avatarGroup": {
+            "type": "string",
+            "description": "用户头像组"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "用户头像图片相对路径"
+          },
+          "status": {
+            "maxLength": 1,
+            "minLength": 0,
+            "pattern": "^[0-1]$",
+            "type": "string",
+            "description": "用户状态 0-启用 1-禁用"
+          },
+          "remark": {
+            "type": "string",
+            "description": "备注"
+          },
+          "orgId": {
+            "type": "integer",
+            "description": "用户所属机构id",
+            "format": "int64"
+          },
+          "path": {
+            "type": "string",
+            "description": "用户所属机构路径"
+          },
+          "supplierId": {
+            "type": "integer",
+            "description": "供应商id",
+            "format": "int64"
+          },
+          "roleIds": {
+            "type": "array",
+            "description": "用户角色id",
+            "items": {
+              "type": "integer",
+              "description": "用户角色id",
+              "format": "int64"
+            }
+          },
+          "deviceIds": {
+            "type": "array",
+            "description": "绑定的设备编号",
+            "items": {
+              "type": "integer",
+              "description": "绑定的设备编号",
+              "format": "int64"
+            }
+          }
+        },
+        "description": "添加用户请求"
+      },
       "ResponseSimplePageInfoUserQueryResponse": {
         "type": "object",
         "properties": {
@@ -18627,6 +18758,30 @@
           }
         },
         "description": "通用分页信息"
+      },
+      "ResponseListLong": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "type": "array",
+            "description": "数据负载",
+            "items": {
+              "type": "integer",
+              "description": "数据负载",
+              "format": "int64"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
       },
       "ShortTermTokenExchangeRequest": {
         "type": "object",
@@ -18868,50 +19023,6 @@
         },
         "description": "数据负载"
       },
-      "UserPreLoginRequest": {
-        "type": "object",
-        "properties": {
-          "loginName": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "captcha": {
-            "type": "string"
-          },
-          "bindKey": {
-            "type": "string"
-          }
-        }
-      },
-      "ResponseUserPreLoginResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/UserPreLoginResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "UserPreLoginResponse": {
-        "type": "object",
-        "properties": {
-          "token": {
-            "type": "string"
-          }
-        },
-        "description": "数据负载"
-      },
       "CaptchaResponse": {
         "type": "object",
         "properties": {
@@ -18965,7 +19076,24 @@
           }
         }
       },
-      "ResponseListLong": {
+      "UserPreLoginRequest": {
+        "type": "object",
+        "properties": {
+          "loginName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "captcha": {
+            "type": "string"
+          },
+          "bindKey": {
+            "type": "string"
+          }
+        }
+      },
+      "ResponseUserPreLoginResponse": {
         "type": "object",
         "properties": {
           "status": {
@@ -18974,13 +19102,7 @@
             "format": "int64"
           },
           "data": {
-            "type": "array",
-            "description": "数据负载",
-            "items": {
-              "type": "integer",
-              "description": "数据负载",
-              "format": "int64"
-            }
+            "$ref": "#/components/schemas/UserPreLoginResponse"
           },
           "message": {
             "type": "string",
@@ -18988,6 +19110,15 @@
           }
         },
         "description": "通用响应"
+      },
+      "UserPreLoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string"
+          }
+        },
+        "description": "数据负载"
       },
       "ResponseUserExtResponse": {
         "type": "object",
@@ -19154,9 +19285,48 @@
         },
         "description": "数据负载"
       },
-      "UserAddExtRequest": {
+      "UserModifyRequest": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "loginName": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "roleIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "deviceIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "UserModifyExtRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
           "loginName": {
             "type": "string"
           },
@@ -19176,34 +19346,6 @@
             }
           }
         }
-      },
-      "ResponseUserAddExtResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/UserAddExtResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "UserAddExtResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          }
-        },
-        "description": "数据负载"
       },
       "UserAddRequest": {
         "type": "object",
@@ -19264,13 +19406,9 @@
         },
         "description": "数据负载"
       },
-      "UserModifyExtRequest": {
+      "UserAddExtRequest": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
           "loginName": {
             "type": "string"
           },
@@ -19291,33 +19429,99 @@
           }
         }
       },
-      "UserModifyRequest": {
+      "ResponseUserAddExtResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserAddExtResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "UserAddExtResponse": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int64"
-          },
-          "loginName": {
-            "type": "string"
-          },
-          "userName": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
+          }
+        },
+        "description": "数据负载"
+      },
+      "ResponseRoleRefsMenuPermApiResponse": {
+        "type": "object",
+        "properties": {
           "status": {
-            "type": "string"
+            "type": "integer",
+            "description": "响应状态",
+            "format": "int64"
           },
-          "roleIds": {
+          "data": {
+            "$ref": "#/components/schemas/RoleRefsMenuPermApiResponse"
+          },
+          "message": {
+            "type": "string",
+            "description": "错误信息"
+          }
+        },
+        "description": "通用响应"
+      },
+      "RoleRefsMenuPermApiResponse": {
+        "type": "object",
+        "properties": {
+          "menuVids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "permVids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "apiIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "description": "数据负载"
+      },
+      "RoleRefsMenuPermApiRequest": {
+        "type": "object",
+        "properties": {
+          "roleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "menuIds": {
             "type": "array",
             "items": {
               "type": "integer",
               "format": "int64"
             }
           },
-          "deviceIds": {
+          "permIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "apiIds": {
             "type": "array",
             "items": {
               "type": "integer",
@@ -19538,79 +19742,6 @@
           }
         },
         "description": "数据负载"
-      },
-      "ResponseRoleRefsMenuPermApiResponse": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "integer",
-            "description": "响应状态",
-            "format": "int64"
-          },
-          "data": {
-            "$ref": "#/components/schemas/RoleRefsMenuPermApiResponse"
-          },
-          "message": {
-            "type": "string",
-            "description": "错误信息"
-          }
-        },
-        "description": "通用响应"
-      },
-      "RoleRefsMenuPermApiResponse": {
-        "type": "object",
-        "properties": {
-          "menuVids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "permVids": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "apiIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        },
-        "description": "数据负载"
-      },
-      "RoleRefsMenuPermApiRequest": {
-        "type": "object",
-        "properties": {
-          "roleId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "menuIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "permIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "apiIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
       },
       "RoleModifyRequest": {
         "type": "object",
@@ -19988,6 +20119,46 @@
           }
         }
       },
+      "InternalVehicleResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "主键id",
+            "format": "int64"
+          },
+          "licenseNum": {
+            "type": "string",
+            "description": "车牌号"
+          },
+          "driverName": {
+            "type": "string",
+            "description": "驾驶员"
+          },
+          "contact": {
+            "type": "string",
+            "description": "联系方式"
+          },
+          "drivingLicenseId": {
+            "type": "integer",
+            "description": "行驶证附件主键id",
+            "format": "int64"
+          },
+          "driverLicenseId": {
+            "type": "integer",
+            "description": "驾驶证附件主键id",
+            "format": "int64"
+          },
+          "drivingLicenseName": {
+            "type": "string",
+            "description": "行驶证附件文件名"
+          },
+          "driverLicenseName": {
+            "type": "string",
+            "description": "驾驶证附件文件名"
+          }
+        }
+      },
       "ExternalVehicleResponse": {
         "type": "object",
         "properties": {
@@ -20025,45 +20196,9 @@
             "type": "string",
             "description": "站点名称"
           },
-          "drivingLicenseId": {
-            "type": "integer",
-            "description": "行驶证附件主键id",
-            "format": "int64"
-          },
-          "driverLicenseId": {
-            "type": "integer",
-            "description": "驾驶证附件主键id",
-            "format": "int64"
-          },
-          "drivingLicenseName": {
+          "orgNames": {
             "type": "string",
-            "description": "行驶证附件文件名"
-          },
-          "driverLicenseName": {
-            "type": "string",
-            "description": "驾驶证附件文件名"
-          }
-        }
-      },
-      "InternalVehicleResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "主键id",
-            "format": "int64"
-          },
-          "licenseNum": {
-            "type": "string",
-            "description": "车牌号"
-          },
-          "driverName": {
-            "type": "string",
-            "description": "驾驶员"
-          },
-          "contact": {
-            "type": "string",
-            "description": "联系方式"
+            "description": "关联站点"
           },
           "drivingLicenseId": {
             "type": "integer",

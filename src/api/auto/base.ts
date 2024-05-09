@@ -14,3 +14,7 @@ export const createNoParamsRequest = <TResp = any>(_: string, requestConfigCreat
 export const createBlobRequest = <TReq>(_: string, requestConfigCreator: (args: TReq) => AxiosRequestConfig) => {
   return (args: TReq) => blobRequest(requestConfigCreator(args)) as unknown as Promise<BlobResp>
 }
+
+export const createNoParamsBlobRequest = (_: string, requestConfigCreator: () => AxiosRequestConfig) => {
+  return () => blobRequest(requestConfigCreator()) as unknown as Promise<BlobResp>
+}

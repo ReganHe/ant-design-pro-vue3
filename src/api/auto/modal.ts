@@ -161,7 +161,8 @@ export namespace GwsAccount {
   }
   export namespace accountLogout {
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -186,7 +187,8 @@ export namespace GwsUserInfo {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -209,7 +211,8 @@ export namespace GwsUserInfo {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -232,7 +235,31 @@ export namespace GwsUserInfo {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace getLockedUserIdsByApplicationId {
+    export interface Options {
+      /** 应用编号 */
+      applicationId: number;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export type ReturnsPropData = number[];
     /**
      * 通用响应
      *
@@ -260,8 +287,7 @@ export namespace GwsUserInfo {
       id: number;
       perms: string;
     }
-    export type ReturnsPropDataPropMenuPermsSubItemPropPermissions =
-      ReturnsPropDataPropMenuPermsSubItemPropPermissionsSubItem[];
+    export type ReturnsPropDataPropMenuPermsSubItemPropPermissions = ReturnsPropDataPropMenuPermsSubItemPropPermissionsSubItem[];
     export interface ReturnsPropDataPropMenuPermsSubItem {
       menuId: number;
       menuName: string;
@@ -289,29 +315,6 @@ export namespace GwsUserInfo {
     export interface Returns {
       /** 响应状态 */
       status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getLockedUserIdsByApplicationId {
-    export interface Options {
-      /** 应用编号 */
-      applicationId: number;
-    }
-    export type O = Options;
-    /** 数据负载 */
-    export type ReturnsPropData = number[];
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      /** 数据负载 */
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
@@ -455,6 +458,35 @@ export namespace GwsApplication {
   }
 }
 export namespace GwsRole {
+  export namespace saveRoleRefsMenuPermApi {
+    export type OptionsPropMenuIds = number[];
+    export type OptionsPropPermIds = number[];
+    export type OptionsPropApiIds = number[];
+    export interface Options {
+      roleId?: number;
+      menuIds?: OptionsPropMenuIds;
+      permIds?: OptionsPropPermIds;
+      apiIds?: OptionsPropApiIds;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace addRole {
     export interface Options {
       name?: string;
@@ -482,19 +514,21 @@ export namespace GwsRole {
     }
     export type R = Returns['data'];
   }
-  export namespace saveRoleRefsMenuPermApi {
-    export type OptionsPropMenuIds = number[];
-    export type OptionsPropPermIds = number[];
-    export type OptionsPropApiIds = number[];
+  export namespace findAllRoleRefsMenuPermApi {
     export interface Options {
-      roleId?: number;
-      menuIds?: OptionsPropMenuIds;
-      permIds?: OptionsPropPermIds;
-      apiIds?: OptionsPropApiIds;
+      /** 角色编号 */
+      id: number;
     }
     export type O = Options;
+    export type ReturnsPropDataPropMenuVids = string[];
+    export type ReturnsPropDataPropPermVids = string[];
+    export type ReturnsPropDataPropApiIds = number[];
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+      menuVids: ReturnsPropDataPropMenuVids;
+      permVids: ReturnsPropDataPropPermVids;
+      apiIds: ReturnsPropDataPropApiIds;
+    }
     /**
      * 通用响应
      *
@@ -503,7 +537,6 @@ export namespace GwsRole {
     export interface Returns {
       /** 响应状态 */
       status: number;
-      /** 数据负载 */
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
@@ -635,35 +668,6 @@ export namespace GwsRole {
     }
     export type R = Returns['data'];
   }
-  export namespace findAllRoleRefsMenuPermApi {
-    export interface Options {
-      /** 角色编号 */
-      id: number;
-    }
-    export type O = Options;
-    export type ReturnsPropDataPropMenuVids = string[];
-    export type ReturnsPropDataPropPermVids = string[];
-    export type ReturnsPropDataPropApiIds = number[];
-    /** 数据负载 */
-    export interface ReturnsPropData {
-      menuVids: ReturnsPropDataPropMenuVids;
-      permVids: ReturnsPropDataPropPermVids;
-      apiIds: ReturnsPropDataPropApiIds;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
   export namespace findAllApisPaged {
     export interface Options {
       /** 页码 */
@@ -719,7 +723,8 @@ export namespace GwsRole {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -742,7 +747,8 @@ export namespace GwsRole {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -842,7 +848,8 @@ export namespace GwsUser {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -865,7 +872,8 @@ export namespace GwsUser {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -883,6 +891,144 @@ export namespace GwsUser {
   }
 }
 export namespace Lu {
+  export namespace initDayInspectData {
+    export interface Options {
+      stationId?: number;
+    }
+    export type O = Options;
+    /** LNG加气站卸车情况 */
+    export interface ReturnsPropDataPropSituationListSubItem {
+      /** 主键 */
+      id: number;
+      /** 储罐(卸车前) */
+      potBefore: string;
+      /** 储罐(卸车后) */
+      potAfter: string;
+      /** 槽车(卸车前) */
+      carBefore: string;
+      /** 槽车(卸车后) */
+      carAfter: string;
+      /** 净重(kg) */
+      weight: number;
+      /** 卸车情况检查项字典id */
+      projectId: number;
+      /** 卸车情况检查项 */
+      projectDesc: string;
+    }
+    /** LNG加气站卸车情况 */
+    export type ReturnsPropDataPropSituationList = ReturnsPropDataPropSituationListSubItem[];
+    /** LNG加气站卸车检查 */
+    export interface ReturnsPropDataPropBeforeListSubItem {
+      /** 主键 */
+      id: number;
+      /** 主键 */
+      checkId: number;
+      /** 检查内容 */
+      checkDesc: string;
+      /** 检查标准 */
+      checkStandard: string;
+      /** 结果 0：未选 1：勾 -1：叉 */
+      checkResult: string;
+    }
+    /** 卸液前检查 */
+    export type ReturnsPropDataPropBeforeList = ReturnsPropDataPropBeforeListSubItem[];
+    /** LNG加气站卸车检查 */
+    export interface ReturnsPropDataPropProcessListSubItem {
+      /** 主键 */
+      id: number;
+      /** 主键 */
+      checkId: number;
+      /** 检查内容 */
+      checkDesc: string;
+      /** 检查标准 */
+      checkStandard: string;
+      /** 结果 0：未选 1：勾 -1：叉 */
+      checkResult: string;
+    }
+    /** 卸液过程检查 */
+    export type ReturnsPropDataPropProcessList = ReturnsPropDataPropProcessListSubItem[];
+    /** LNG加气站卸车检查 */
+    export interface ReturnsPropDataPropAfterListSubItem {
+      /** 主键 */
+      id: number;
+      /** 主键 */
+      checkId: number;
+      /** 检查内容 */
+      checkDesc: string;
+      /** 检查标准 */
+      checkStandard: string;
+      /** 结果 0：未选 1：勾 -1：叉 */
+      checkResult: string;
+    }
+    /** 卸液后检查 */
+    export type ReturnsPropDataPropAfterList = ReturnsPropDataPropAfterListSubItem[];
+    /** 查询LNG加气站卸车记录响应 */
+    export interface ReturnsPropData {
+      /** 主键 */
+      id: number;
+      /** 编号 */
+      code: string;
+      /** 站点id */
+      stationId: number;
+      /** 储罐id */
+      vesselId: number;
+      /** 储罐名称 */
+      vesselName: string;
+      /** 卸车日期 */
+      unloadDate: string;
+      /** 承运单位 */
+      carryCompany: string;
+      /** 槽车车牌号 */
+      carNumber: string;
+      /** 槽车挂车号 */
+      trailerNumber: string;
+      /** 装车单流号 */
+      loadingListNumber: string;
+      /** 供货单过磅单编号 */
+      weighNumber: string;
+      /** 卸车开始时间 */
+      unloadStartTime: string;
+      /** 卸车结束时间 */
+      unloadEndTime: string;
+      /** 操作人 */
+      operator: string;
+      /** 司机 */
+      driver: string;
+      /** 值班班长 */
+      shiftLeader: string;
+      /** 备注 */
+      remark: string;
+      /** 站点名称 */
+      stationName: string;
+      /** 设备编号 */
+      equipCode: string;
+      /** 净重(kg) */
+      weight: number;
+      /** 卸车前-卸车后重量 */
+      subWeight: number;
+      /** LNG加气站卸车情况 */
+      situationList: ReturnsPropDataPropSituationList;
+      /** 卸液前检查 */
+      beforeList: ReturnsPropDataPropBeforeList;
+      /** 卸液过程检查 */
+      processList: ReturnsPropDataPropProcessList;
+      /** 卸液后检查 */
+      afterList: ReturnsPropDataPropAfterList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace getOne {
     export interface Options {
       /** 主键 */
@@ -995,6 +1141,10 @@ export namespace Lu {
       stationName: string;
       /** 设备编号 */
       equipCode: string;
+      /** 净重(kg) */
+      weight: number;
+      /** 卸车前-卸车后重量 */
+      subWeight: number;
       /** LNG加气站卸车情况 */
       situationList: ReturnsPropDataPropSituationList;
       /** 卸液前检查 */
@@ -1026,6 +1176,8 @@ export namespace Lu {
       code?: string;
       /** 承运单位 */
       carryCompany?: string;
+      /** 磅单编号 */
+      weighNumber?: string;
       /** 开始卸车日期 */
       beginDate?: string;
       /** 结束卸车日期 */
@@ -1054,8 +1206,7 @@ export namespace Lu {
       projectDesc: string;
     }
     /** LNG加气站卸车情况 */
-    export type ReturnsPropDataPropListSubItemPropSituationList =
-      ReturnsPropDataPropListSubItemPropSituationListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropSituationList = ReturnsPropDataPropListSubItemPropSituationListSubItem[];
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropBeforeListSubItem {
       /** 主键 */
@@ -1070,8 +1221,7 @@ export namespace Lu {
       checkResult: string;
     }
     /** 卸液前检查 */
-    export type ReturnsPropDataPropListSubItemPropBeforeList =
-      ReturnsPropDataPropListSubItemPropBeforeListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropBeforeList = ReturnsPropDataPropListSubItemPropBeforeListSubItem[];
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropProcessListSubItem {
       /** 主键 */
@@ -1086,8 +1236,7 @@ export namespace Lu {
       checkResult: string;
     }
     /** 卸液过程检查 */
-    export type ReturnsPropDataPropListSubItemPropProcessList =
-      ReturnsPropDataPropListSubItemPropProcessListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropProcessList = ReturnsPropDataPropListSubItemPropProcessListSubItem[];
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropAfterListSubItem {
       /** 主键 */
@@ -1102,8 +1251,7 @@ export namespace Lu {
       checkResult: string;
     }
     /** 卸液后检查 */
-    export type ReturnsPropDataPropListSubItemPropAfterList =
-      ReturnsPropDataPropListSubItemPropAfterListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropAfterList = ReturnsPropDataPropListSubItemPropAfterListSubItem[];
     /** 查询LNG加气站卸车记录响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -1144,6 +1292,10 @@ export namespace Lu {
       stationName: string;
       /** 设备编号 */
       equipCode: string;
+      /** 净重(kg) */
+      weight: number;
+      /** 卸车前-卸车后重量 */
+      subWeight: number;
       /** LNG加气站卸车情况 */
       situationList: ReturnsPropDataPropListSubItemPropSituationList;
       /** 卸液前检查 */
@@ -1165,140 +1317,6 @@ export namespace Lu {
       /** 总记录数 */
       totalNum: number;
       list: ReturnsPropDataPropList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace initDayInspectData {
-    export interface Options {
-      stationId?: number;
-    }
-    export type O = Options;
-    /** LNG加气站卸车情况 */
-    export interface ReturnsPropDataPropSituationListSubItem {
-      /** 主键 */
-      id: number;
-      /** 储罐(卸车前) */
-      potBefore: string;
-      /** 储罐(卸车后) */
-      potAfter: string;
-      /** 槽车(卸车前) */
-      carBefore: string;
-      /** 槽车(卸车后) */
-      carAfter: string;
-      /** 净重(kg) */
-      weight: number;
-      /** 卸车情况检查项字典id */
-      projectId: number;
-      /** 卸车情况检查项 */
-      projectDesc: string;
-    }
-    /** LNG加气站卸车情况 */
-    export type ReturnsPropDataPropSituationList = ReturnsPropDataPropSituationListSubItem[];
-    /** LNG加气站卸车检查 */
-    export interface ReturnsPropDataPropBeforeListSubItem {
-      /** 主键 */
-      id: number;
-      /** 主键 */
-      checkId: number;
-      /** 检查内容 */
-      checkDesc: string;
-      /** 检查标准 */
-      checkStandard: string;
-      /** 结果 0：未选 1：勾 -1：叉 */
-      checkResult: string;
-    }
-    /** 卸液前检查 */
-    export type ReturnsPropDataPropBeforeList = ReturnsPropDataPropBeforeListSubItem[];
-    /** LNG加气站卸车检查 */
-    export interface ReturnsPropDataPropProcessListSubItem {
-      /** 主键 */
-      id: number;
-      /** 主键 */
-      checkId: number;
-      /** 检查内容 */
-      checkDesc: string;
-      /** 检查标准 */
-      checkStandard: string;
-      /** 结果 0：未选 1：勾 -1：叉 */
-      checkResult: string;
-    }
-    /** 卸液过程检查 */
-    export type ReturnsPropDataPropProcessList = ReturnsPropDataPropProcessListSubItem[];
-    /** LNG加气站卸车检查 */
-    export interface ReturnsPropDataPropAfterListSubItem {
-      /** 主键 */
-      id: number;
-      /** 主键 */
-      checkId: number;
-      /** 检查内容 */
-      checkDesc: string;
-      /** 检查标准 */
-      checkStandard: string;
-      /** 结果 0：未选 1：勾 -1：叉 */
-      checkResult: string;
-    }
-    /** 卸液后检查 */
-    export type ReturnsPropDataPropAfterList = ReturnsPropDataPropAfterListSubItem[];
-    /** 查询LNG加气站卸车记录响应 */
-    export interface ReturnsPropData {
-      /** 主键 */
-      id: number;
-      /** 编号 */
-      code: string;
-      /** 站点id */
-      stationId: number;
-      /** 储罐id */
-      vesselId: number;
-      /** 储罐名称 */
-      vesselName: string;
-      /** 卸车日期 */
-      unloadDate: string;
-      /** 承运单位 */
-      carryCompany: string;
-      /** 槽车车牌号 */
-      carNumber: string;
-      /** 槽车挂车号 */
-      trailerNumber: string;
-      /** 装车单流号 */
-      loadingListNumber: string;
-      /** 供货单过磅单编号 */
-      weighNumber: string;
-      /** 卸车开始时间 */
-      unloadStartTime: string;
-      /** 卸车结束时间 */
-      unloadEndTime: string;
-      /** 操作人 */
-      operator: string;
-      /** 司机 */
-      driver: string;
-      /** 值班班长 */
-      shiftLeader: string;
-      /** 备注 */
-      remark: string;
-      /** 站点名称 */
-      stationName: string;
-      /** 设备编号 */
-      equipCode: string;
-      /** LNG加气站卸车情况 */
-      situationList: ReturnsPropDataPropSituationList;
-      /** 卸液前检查 */
-      beforeList: ReturnsPropDataPropBeforeList;
-      /** 卸液过程检查 */
-      processList: ReturnsPropDataPropProcessList;
-      /** 卸液后检查 */
-      afterList: ReturnsPropDataPropAfterList;
     }
     /**
      * 通用响应
@@ -1428,7 +1446,8 @@ export namespace Lu {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -1449,7 +1468,7 @@ export namespace Lu {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -1508,7 +1527,8 @@ export namespace Sp {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -1828,7 +1848,8 @@ export namespace Spf {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -1849,283 +1870,11 @@ export namespace Spf {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
 export namespace Sc {
-  export namespace exportExcel {
-    export interface Options {
-      /** 站点id */
-      stationId?: number;
-      /** 检查单编号 */
-      orderNo?: string;
-      /** 状态 1-检查中 2-检查完成 */
-      status?: number;
-      /** 检查结果 1-正常 2-异常 */
-      checkResult?: number;
-      /** 检查日期/年月 */
-      checkDate?: string;
-      /** 检查开始日期 */
-      checkStartDate?: string;
-      /** 检查结束日期 */
-      checkEndDate?: string;
-      /** 提交开始日期 */
-      submitStartDate?: string;
-      /** 提交结束日期 */
-      submitEndDate?: string;
-      /** 类型 1-日 2-月 */
-      type?: number;
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
-  export namespace initDayInspectData {
-    export interface Options {
-      stationId?: number;
-    }
-    export type O = Options;
-    /** 储罐巡检内容 */
-    export interface ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem {
-      /** 主键 */
-      id: number;
-      /** 压力容器id */
-      pvId: number;
-      /** 巡检时间 */
-      time: string;
-      /** 压力（Mpa） */
-      pressure: string;
-      /** 饱和（Mpa） */
-      saturated: string;
-      /** 液位（mmH2O） */
-      liquidLevel: string;
-      /** 对应重量（Kg） */
-      weight: string;
-      /** 泵池温度（摄氏度） */
-      temperature: string;
-      /** 安检情况 0-正常 1-撬内是否有泄漏 2-空压机是否正常 3-是否有外来可疑人员 4-是否有外来可疑物品 */
-      result: number;
-    }
-    /** 储罐巡检内容列表 */
-    export type ReturnsPropDataPropVesselListSubItemPropPvContentList =
-      ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[];
-    /** 储罐巡检 */
-    export interface ReturnsPropDataPropVesselListSubItem {
-      /** 压力容器id */
-      pvId: number;
-      /** 设备简称 */
-      shortName: string;
-      /** 列表有几行 */
-      columns: number;
-      /** 储罐巡检内容列表 */
-      pvContentList: ReturnsPropDataPropVesselListSubItemPropPvContentList;
-    }
-    /** 储罐巡检列表 */
-    export type ReturnsPropDataPropVesselList = ReturnsPropDataPropVesselListSubItem[];
-    /** 巡检结果 0：未选 1：勾 -1：叉 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults = number[];
-    /** 巡检内容 */
-    export interface ReturnsPropDataPropAreaListSubItemPropContentListSubItem {
-      /** id */
-      id: number;
-      /** 巡检内容id（对应字典id） */
-      contentId: number;
-      /** 巡检内容 */
-      content: string;
-      /** 巡检结果 0：未选 1：勾 -1：叉 */
-      results: ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults;
-      /** 巡检次数 */
-      times: number;
-    }
-    /** 巡检内容列表 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentList =
-      ReturnsPropDataPropAreaListSubItemPropContentListSubItem[];
-    /** 巡检区域 */
-    export interface ReturnsPropDataPropAreaListSubItem {
-      /** 巡检区域id（对应字典类型id） */
-      areaId: number;
-      /** 巡检区域名称 */
-      areaDesc: string;
-      /** 巡检内容列表 */
-      contentList: ReturnsPropDataPropAreaListSubItemPropContentList;
-    }
-    /** 巡检区域内容列表 */
-    export type ReturnsPropDataPropAreaList = ReturnsPropDataPropAreaListSubItem[];
-    /** 安全检查单查询响应（日） */
-    export interface ReturnsPropData {
-      /** 检查单id */
-      id: number;
-      /** 站点id */
-      stationId: number;
-      /** 站点名称 */
-      stationName: string;
-      /** 巡检人 */
-      inspector: string;
-      /** 单据编号 */
-      orderNo: string;
-      /** 班别 1-1班 2-2班 3-3班 4-4班 */
-      groups: number;
-      /** 检查日期/年月 */
-      checkDate: string;
-      /** 状态 1-检查中 2-检查完成 */
-      status: number;
-      /** 检查结果 1-正常 2-异常 */
-      checkResult: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 状态名称 */
-      statusDesc: string;
-      /** 检查结果名称 */
-      checkResultDesc: string;
-      /** 备注 */
-      remark: string;
-      /** 班次类型 1-白班 2-夜班 */
-      shiftType: number;
-      /** 班次类型名称 */
-      shiftTypeDesc: string;
-      /** 储罐巡检列表 */
-      vesselList: ReturnsPropDataPropVesselList;
-      /** 巡检区域内容列表 */
-      areaList: ReturnsPropDataPropAreaList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getDayOne {
-    export interface Options {
-      /** 主键 */
-      id: number;
-    }
-    export type O = Options;
-    /** 储罐巡检内容 */
-    export interface ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem {
-      /** 主键 */
-      id: number;
-      /** 压力容器id */
-      pvId: number;
-      /** 巡检时间 */
-      time: string;
-      /** 压力（Mpa） */
-      pressure: string;
-      /** 饱和（Mpa） */
-      saturated: string;
-      /** 液位（mmH2O） */
-      liquidLevel: string;
-      /** 对应重量（Kg） */
-      weight: string;
-      /** 泵池温度（摄氏度） */
-      temperature: string;
-      /** 安检情况 0-正常 1-撬内是否有泄漏 2-空压机是否正常 3-是否有外来可疑人员 4-是否有外来可疑物品 */
-      result: number;
-    }
-    /** 储罐巡检内容列表 */
-    export type ReturnsPropDataPropVesselListSubItemPropPvContentList =
-      ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[];
-    /** 储罐巡检 */
-    export interface ReturnsPropDataPropVesselListSubItem {
-      /** 压力容器id */
-      pvId: number;
-      /** 设备简称 */
-      shortName: string;
-      /** 列表有几行 */
-      columns: number;
-      /** 储罐巡检内容列表 */
-      pvContentList: ReturnsPropDataPropVesselListSubItemPropPvContentList;
-    }
-    /** 储罐巡检列表 */
-    export type ReturnsPropDataPropVesselList = ReturnsPropDataPropVesselListSubItem[];
-    /** 巡检结果 0：未选 1：勾 -1：叉 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults = number[];
-    /** 巡检内容 */
-    export interface ReturnsPropDataPropAreaListSubItemPropContentListSubItem {
-      /** id */
-      id: number;
-      /** 巡检内容id（对应字典id） */
-      contentId: number;
-      /** 巡检内容 */
-      content: string;
-      /** 巡检结果 0：未选 1：勾 -1：叉 */
-      results: ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults;
-      /** 巡检次数 */
-      times: number;
-    }
-    /** 巡检内容列表 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentList =
-      ReturnsPropDataPropAreaListSubItemPropContentListSubItem[];
-    /** 巡检区域 */
-    export interface ReturnsPropDataPropAreaListSubItem {
-      /** 巡检区域id（对应字典类型id） */
-      areaId: number;
-      /** 巡检区域名称 */
-      areaDesc: string;
-      /** 巡检内容列表 */
-      contentList: ReturnsPropDataPropAreaListSubItemPropContentList;
-    }
-    /** 巡检区域内容列表 */
-    export type ReturnsPropDataPropAreaList = ReturnsPropDataPropAreaListSubItem[];
-    /** 安全检查单查询响应（日） */
-    export interface ReturnsPropData {
-      /** 检查单id */
-      id: number;
-      /** 站点id */
-      stationId: number;
-      /** 站点名称 */
-      stationName: string;
-      /** 巡检人 */
-      inspector: string;
-      /** 单据编号 */
-      orderNo: string;
-      /** 班别 1-1班 2-2班 3-3班 4-4班 */
-      groups: number;
-      /** 检查日期/年月 */
-      checkDate: string;
-      /** 状态 1-检查中 2-检查完成 */
-      status: number;
-      /** 检查结果 1-正常 2-异常 */
-      checkResult: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 状态名称 */
-      statusDesc: string;
-      /** 检查结果名称 */
-      checkResultDesc: string;
-      /** 备注 */
-      remark: string;
-      /** 班次类型 1-白班 2-夜班 */
-      shiftType: number;
-      /** 班次类型名称 */
-      shiftTypeDesc: string;
-      /** 储罐巡检列表 */
-      vesselList: ReturnsPropDataPropVesselList;
-      /** 巡检区域内容列表 */
-      areaList: ReturnsPropDataPropAreaList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
   export namespace getDayPaged {
     export interface Options {
       /** 站点id */
@@ -2240,8 +1989,7 @@ export namespace Sc {
       result: number;
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropDeviceListSubItemPropMonthList =
-      ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[];
+    export type ReturnsPropDataPropDeviceListSubItemPropMonthList = ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[];
     /** 巡检设备 */
     export interface ReturnsPropDataPropDeviceListSubItem {
       /** 巡检设备id */
@@ -2384,6 +2132,274 @@ export namespace Sc {
     }
     export type R = Returns['data'];
   }
+  export namespace exportExcel {
+    export interface Options {
+      /** 站点id */
+      stationId?: number;
+      /** 检查单编号 */
+      orderNo?: string;
+      /** 状态 1-检查中 2-检查完成 */
+      status?: number;
+      /** 检查结果 1-正常 2-异常 */
+      checkResult?: number;
+      /** 检查日期/年月 */
+      checkDate?: string;
+      /** 检查开始日期 */
+      checkStartDate?: string;
+      /** 检查结束日期 */
+      checkEndDate?: string;
+      /** 提交开始日期 */
+      submitStartDate?: string;
+      /** 提交结束日期 */
+      submitEndDate?: string;
+      /** 类型 1-日 2-月 */
+      type?: number;
+    }
+    export type O = Options;
+    export type Returns = any
+    export type R = Returns['data'];
+  }
+  export namespace getDayOne {
+    export interface Options {
+      /** 主键 */
+      id: number;
+    }
+    export type O = Options;
+    /** 储罐巡检内容 */
+    export interface ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem {
+      /** 主键 */
+      id: number;
+      /** 压力容器id */
+      pvId: number;
+      /** 巡检时间 */
+      time: string;
+      /** 压力（Mpa） */
+      pressure: string;
+      /** 饱和（Mpa） */
+      saturated: string;
+      /** 液位（mmH2O） */
+      liquidLevel: string;
+      /** 对应重量（Kg） */
+      weight: string;
+      /** 泵池温度（摄氏度） */
+      temperature: string;
+      /** 安检情况 0-正常 1-撬内是否有泄漏 2-空压机是否正常 3-是否有外来可疑人员 4-是否有外来可疑物品 */
+      result: number;
+    }
+    /** 储罐巡检内容列表 */
+    export type ReturnsPropDataPropVesselListSubItemPropPvContentList = ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[];
+    /** 储罐巡检 */
+    export interface ReturnsPropDataPropVesselListSubItem {
+      /** 压力容器id */
+      pvId: number;
+      /** 设备简称 */
+      shortName: string;
+      /** 列表有几行 */
+      columns: number;
+      /** 储罐巡检内容列表 */
+      pvContentList: ReturnsPropDataPropVesselListSubItemPropPvContentList;
+    }
+    /** 储罐巡检列表 */
+    export type ReturnsPropDataPropVesselList = ReturnsPropDataPropVesselListSubItem[];
+    /** 巡检结果 0：未选 1：勾 -1：叉 */
+    export type ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults = number[];
+    /** 巡检内容 */
+    export interface ReturnsPropDataPropAreaListSubItemPropContentListSubItem {
+      /** id */
+      id: number;
+      /** 巡检内容id（对应字典id） */
+      contentId: number;
+      /** 巡检内容 */
+      content: string;
+      /** 巡检结果 0：未选 1：勾 -1：叉 */
+      results: ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults;
+      /** 巡检次数 */
+      times: number;
+    }
+    /** 巡检内容列表 */
+    export type ReturnsPropDataPropAreaListSubItemPropContentList = ReturnsPropDataPropAreaListSubItemPropContentListSubItem[];
+    /** 巡检区域 */
+    export interface ReturnsPropDataPropAreaListSubItem {
+      /** 巡检区域id（对应字典类型id） */
+      areaId: number;
+      /** 巡检区域名称 */
+      areaDesc: string;
+      /** 巡检内容列表 */
+      contentList: ReturnsPropDataPropAreaListSubItemPropContentList;
+    }
+    /** 巡检区域内容列表 */
+    export type ReturnsPropDataPropAreaList = ReturnsPropDataPropAreaListSubItem[];
+    /** 安全检查单查询响应（日） */
+    export interface ReturnsPropData {
+      /** 检查单id */
+      id: number;
+      /** 站点id */
+      stationId: number;
+      /** 站点名称 */
+      stationName: string;
+      /** 巡检人 */
+      inspector: string;
+      /** 单据编号 */
+      orderNo: string;
+      /** 班别 1-1班 2-2班 3-3班 4-4班 */
+      groups: number;
+      /** 检查日期/年月 */
+      checkDate: string;
+      /** 状态 1-检查中 2-检查完成 */
+      status: number;
+      /** 检查结果 1-正常 2-异常 */
+      checkResult: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 状态名称 */
+      statusDesc: string;
+      /** 检查结果名称 */
+      checkResultDesc: string;
+      /** 备注 */
+      remark: string;
+      /** 班次类型 1-白班 2-夜班 */
+      shiftType: number;
+      /** 班次类型名称 */
+      shiftTypeDesc: string;
+      /** 储罐巡检列表 */
+      vesselList: ReturnsPropDataPropVesselList;
+      /** 巡检区域内容列表 */
+      areaList: ReturnsPropDataPropAreaList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace initDayInspectData {
+    export interface Options {
+      stationId?: number;
+    }
+    export type O = Options;
+    /** 储罐巡检内容 */
+    export interface ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem {
+      /** 主键 */
+      id: number;
+      /** 压力容器id */
+      pvId: number;
+      /** 巡检时间 */
+      time: string;
+      /** 压力（Mpa） */
+      pressure: string;
+      /** 饱和（Mpa） */
+      saturated: string;
+      /** 液位（mmH2O） */
+      liquidLevel: string;
+      /** 对应重量（Kg） */
+      weight: string;
+      /** 泵池温度（摄氏度） */
+      temperature: string;
+      /** 安检情况 0-正常 1-撬内是否有泄漏 2-空压机是否正常 3-是否有外来可疑人员 4-是否有外来可疑物品 */
+      result: number;
+    }
+    /** 储罐巡检内容列表 */
+    export type ReturnsPropDataPropVesselListSubItemPropPvContentList = ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[];
+    /** 储罐巡检 */
+    export interface ReturnsPropDataPropVesselListSubItem {
+      /** 压力容器id */
+      pvId: number;
+      /** 设备简称 */
+      shortName: string;
+      /** 列表有几行 */
+      columns: number;
+      /** 储罐巡检内容列表 */
+      pvContentList: ReturnsPropDataPropVesselListSubItemPropPvContentList;
+    }
+    /** 储罐巡检列表 */
+    export type ReturnsPropDataPropVesselList = ReturnsPropDataPropVesselListSubItem[];
+    /** 巡检结果 0：未选 1：勾 -1：叉 */
+    export type ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults = number[];
+    /** 巡检内容 */
+    export interface ReturnsPropDataPropAreaListSubItemPropContentListSubItem {
+      /** id */
+      id: number;
+      /** 巡检内容id（对应字典id） */
+      contentId: number;
+      /** 巡检内容 */
+      content: string;
+      /** 巡检结果 0：未选 1：勾 -1：叉 */
+      results: ReturnsPropDataPropAreaListSubItemPropContentListSubItemPropResults;
+      /** 巡检次数 */
+      times: number;
+    }
+    /** 巡检内容列表 */
+    export type ReturnsPropDataPropAreaListSubItemPropContentList = ReturnsPropDataPropAreaListSubItemPropContentListSubItem[];
+    /** 巡检区域 */
+    export interface ReturnsPropDataPropAreaListSubItem {
+      /** 巡检区域id（对应字典类型id） */
+      areaId: number;
+      /** 巡检区域名称 */
+      areaDesc: string;
+      /** 巡检内容列表 */
+      contentList: ReturnsPropDataPropAreaListSubItemPropContentList;
+    }
+    /** 巡检区域内容列表 */
+    export type ReturnsPropDataPropAreaList = ReturnsPropDataPropAreaListSubItem[];
+    /** 安全检查单查询响应（日） */
+    export interface ReturnsPropData {
+      /** 检查单id */
+      id: number;
+      /** 站点id */
+      stationId: number;
+      /** 站点名称 */
+      stationName: string;
+      /** 巡检人 */
+      inspector: string;
+      /** 单据编号 */
+      orderNo: string;
+      /** 班别 1-1班 2-2班 3-3班 4-4班 */
+      groups: number;
+      /** 检查日期/年月 */
+      checkDate: string;
+      /** 状态 1-检查中 2-检查完成 */
+      status: number;
+      /** 检查结果 1-正常 2-异常 */
+      checkResult: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 状态名称 */
+      statusDesc: string;
+      /** 检查结果名称 */
+      checkResultDesc: string;
+      /** 备注 */
+      remark: string;
+      /** 班次类型 1-白班 2-夜班 */
+      shiftType: number;
+      /** 班次类型名称 */
+      shiftTypeDesc: string;
+      /** 储罐巡检列表 */
+      vesselList: ReturnsPropDataPropVesselList;
+      /** 巡检区域内容列表 */
+      areaList: ReturnsPropDataPropAreaList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace initMonthInspectData {
     export interface Options {
       stationId?: number;
@@ -2405,8 +2421,7 @@ export namespace Sc {
       result: number;
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropDeviceListSubItemPropMonthList =
-      ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[];
+    export type ReturnsPropDataPropDeviceListSubItemPropMonthList = ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[];
     /** 巡检设备 */
     export interface ReturnsPropDataPropDeviceListSubItem {
       /** 巡检设备id */
@@ -2595,7 +2610,7 @@ export namespace Sc {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace monthRemove {
@@ -2603,7 +2618,7 @@ export namespace Sc {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -2822,7 +2837,8 @@ export namespace SafetyTraining {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -2844,7 +2860,8 @@ export namespace SafetyTraining {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -2875,7 +2892,7 @@ export namespace Device {
       manufacturer?: number;
       /** 启用日期 */
       usingDate?: string;
-      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 */
+      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶 */
       unitMeasure?: number;
       /** 实际数量 */
       actualQuantity?: number;
@@ -2924,7 +2941,7 @@ export namespace Device {
       manufacturerDesc: string;
       /** 启用日期 */
       usingDate: string;
-      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 */
+      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶 */
       unitMeasure: number;
       /** 计量单位描述 */
       unitMeasureDesc: string;
@@ -2981,7 +2998,7 @@ export namespace Device {
       manufacturerDesc: string;
       /** 启用日期 */
       usingDate: string;
-      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 */
+      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶 */
       unitMeasure: number;
       /** 计量单位描述 */
       unitMeasureDesc: string;
@@ -3036,7 +3053,7 @@ export namespace Device {
       manufacturer?: number;
       /** 启用日期 */
       usingDate?: string;
-      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 */
+      /** 计量单位 1-台 2-套 3-个 4-只 5-辆 6-项 7-把 8-桶 9-包 10-瓶 */
       unitMeasure?: number;
       /** 实际数量 */
       actualQuantity?: number;
@@ -3047,7 +3064,8 @@ export namespace Device {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -3068,7 +3086,7 @@ export namespace Device {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -3176,7 +3194,7 @@ export namespace Gsb {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -3271,8 +3289,8 @@ export namespace VehicleManage {
       contact?: string;
       /** 所属公司 */
       company?: string;
-      /** 关联站点id */
-      orgId?: number;
+      /** 关联站点 */
+      orgNames?: string;
       driverLicense?: OptionsPropDriverLicense;
       drivingLicense?: OptionsPropDrivingLicense;
     }
@@ -3356,151 +3374,6 @@ export namespace VehicleManage {
       status: number;
       /** 数据负载 */
       data: number;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getExternalOne {
-    export interface Options {
-      id: number;
-    }
-    export type O = Options;
-    /** 附件查询响应 */
-    export interface ReturnsPropDataPropDriverLicense {
-      /** 主键 */
-      id: number;
-      /** 文件名 */
-      fileName: string;
-      /** 上传者 */
-      createdBy: string;
-      /** 上传时间 */
-      createdTime: string;
-      /** 生效时间 */
-      effectiveDay: string;
-      /** 到期时间 */
-      expiryDay: string;
-      /** 有效期 */
-      period: number;
-      /** 状态 */
-      fileStatus: number;
-      /** 状态描述 */
-      fileStatusDesc: string;
-    }
-    /** 附件查询响应 */
-    export interface ReturnsPropDataPropDrivingLicense {
-      /** 主键 */
-      id: number;
-      /** 文件名 */
-      fileName: string;
-      /** 上传者 */
-      createdBy: string;
-      /** 上传时间 */
-      createdTime: string;
-      /** 生效时间 */
-      effectiveDay: string;
-      /** 到期时间 */
-      expiryDay: string;
-      /** 有效期 */
-      period: number;
-      /** 状态 */
-      fileStatus: number;
-      /** 状态描述 */
-      fileStatusDesc: string;
-    }
-    /** 数据负载 */
-    export interface ReturnsPropData {
-      /** 主键id */
-      id: number;
-      /** 车牌号 */
-      licenseNum: string;
-      /** 槽罐车编号 */
-      vehicleCode: string;
-      /** 驾驶员 */
-      driverName: string;
-      /** 驾驶员 */
-      contact: string;
-      /** 所属公司 */
-      company: string;
-      /** 关联站点id */
-      orgId: number;
-      /** 站点名称 */
-      orgName: string;
-      driverLicense: ReturnsPropDataPropDriverLicense;
-      drivingLicense: ReturnsPropDataPropDrivingLicense;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getExternalPaged {
-    export interface Options {
-      /** 车牌号 */
-      licenseNum?: string;
-      /** 关联站点id */
-      orgId?: number;
-      pageNum: number;
-      pageSize: number;
-    }
-    export type O = Options;
-    export interface ReturnsPropDataPropListSubItem {
-      /** 主键id */
-      id: number;
-      /** 车牌号 */
-      licenseNum: string;
-      /** 槽罐车编号 */
-      vehicleCode: string;
-      /** 驾驶员 */
-      driverName: string;
-      /** 联系方式 */
-      contact: string;
-      /** 所属公司 */
-      company: string;
-      /** 关联站点id */
-      orgId: number;
-      /** 站点名称 */
-      orgName: string;
-      /** 行驶证附件主键id */
-      drivingLicenseId: number;
-      /** 驾驶证附件主键id */
-      driverLicenseId: number;
-      /** 行驶证附件文件名 */
-      drivingLicenseName: string;
-      /** 驾驶证附件文件名 */
-      driverLicenseName: string;
-    }
-    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
-    /** 通用分页信息 */
-    export interface ReturnsPropData {
-      /** 当前页 */
-      currentPage: number;
-      /** 每页的数量 */
-      pageSize: number;
-      /** 总页数 */
-      totalPage: number;
-      /** 总记录数 */
-      totalNum: number;
-      list: ReturnsPropDataPropList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
       /** 错误信息 */
       message: string;
     }
@@ -3633,70 +3506,76 @@ export namespace VehicleManage {
     }
     export type R = Returns['data'];
   }
-  export namespace editExternal {
-    /** 附件上传请求 */
-    export interface OptionsPropDriverLicense {
-      /** 附件主键-主键无值则表示新增附件 */
-      id?: number;
-      /** 文件名 */
-      fileName: string;
-      /** 上传url */
-      url?: string;
-      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
-      type: number;
-      /** 关联主键 站点id 或 用户id */
-      relationKey?: number;
-      /** 生效时间 */
-      effectiveDay?: string;
-      /** 到期时间 */
-      expiryDay?: string;
-      /** 是否到期提醒 0-是 1-否 */
-      expireRemind?: number;
-      /** 异常信息 */
-      errorMsg?: string;
-    }
-    /** 附件上传请求 */
-    export interface OptionsPropDrivingLicense {
-      /** 附件主键-主键无值则表示新增附件 */
-      id?: number;
-      /** 文件名 */
-      fileName: string;
-      /** 上传url */
-      url?: string;
-      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
-      type: number;
-      /** 关联主键 站点id 或 用户id */
-      relationKey?: number;
-      /** 生效时间 */
-      effectiveDay?: string;
-      /** 到期时间 */
-      expiryDay?: string;
-      /** 是否到期提醒 0-是 1-否 */
-      expireRemind?: number;
-      /** 异常信息 */
-      errorMsg?: string;
-    }
+  export namespace getExternalOne {
     export interface Options {
+      id: number;
+    }
+    export type O = Options;
+    /** 附件查询响应 */
+    export interface ReturnsPropDataPropDriverLicense {
       /** 主键 */
+      id: number;
+      /** 文件名 */
+      fileName: string;
+      /** 上传者 */
+      createdBy: string;
+      /** 上传时间 */
+      createdTime: string;
+      /** 生效时间 */
+      effectiveDay: string;
+      /** 到期时间 */
+      expiryDay: string;
+      /** 有效期 */
+      period: number;
+      /** 状态 */
+      fileStatus: number;
+      /** 状态描述 */
+      fileStatusDesc: string;
+    }
+    /** 附件查询响应 */
+    export interface ReturnsPropDataPropDrivingLicense {
+      /** 主键 */
+      id: number;
+      /** 文件名 */
+      fileName: string;
+      /** 上传者 */
+      createdBy: string;
+      /** 上传时间 */
+      createdTime: string;
+      /** 生效时间 */
+      effectiveDay: string;
+      /** 到期时间 */
+      expiryDay: string;
+      /** 有效期 */
+      period: number;
+      /** 状态 */
+      fileStatus: number;
+      /** 状态描述 */
+      fileStatusDesc: string;
+    }
+    /** 数据负载 */
+    export interface ReturnsPropData {
+      /** 主键id */
       id: number;
       /** 车牌号 */
       licenseNum: string;
       /** 槽罐车编号 */
       vehicleCode: string;
       /** 驾驶员 */
-      driverName?: string;
-      /** 联系方式 */
-      contact?: string;
+      driverName: string;
+      /** 驾驶员 */
+      contact: string;
       /** 所属公司 */
-      company?: string;
+      company: string;
       /** 关联站点id */
-      orgId?: number;
-      driverLicense?: OptionsPropDriverLicense;
-      drivingLicense?: OptionsPropDrivingLicense;
+      orgId: number;
+      /** 关联站点 */
+      orgNames: string;
+      /** 站点名称 */
+      orgName: string;
+      driverLicense: ReturnsPropDataPropDriverLicense;
+      drivingLicense: ReturnsPropDataPropDrivingLicense;
     }
-    export type O = Options;
-    /** 数据负载 */
-    export interface ReturnsPropData {}
     /**
      * 通用响应
      *
@@ -3705,7 +3584,71 @@ export namespace VehicleManage {
     export interface Returns {
       /** 响应状态 */
       status: number;
-      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace getExternalPaged {
+    export interface Options {
+      /** 车牌号 */
+      licenseNum?: string;
+      /** 关联站点 */
+      orgNames?: string;
+      pageNum: number;
+      pageSize: number;
+    }
+    export type O = Options;
+    export interface ReturnsPropDataPropListSubItem {
+      /** 主键id */
+      id: number;
+      /** 车牌号 */
+      licenseNum: string;
+      /** 槽罐车编号 */
+      vehicleCode: string;
+      /** 驾驶员 */
+      driverName: string;
+      /** 联系方式 */
+      contact: string;
+      /** 所属公司 */
+      company: string;
+      /** 关联站点id */
+      orgId: number;
+      /** 站点名称 */
+      orgName: string;
+      /** 关联站点 */
+      orgNames: string;
+      /** 行驶证附件主键id */
+      drivingLicenseId: number;
+      /** 驾驶证附件主键id */
+      driverLicenseId: number;
+      /** 行驶证附件文件名 */
+      drivingLicenseName: string;
+      /** 驾驶证附件文件名 */
+      driverLicenseName: string;
+    }
+    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
+    /** 通用分页信息 */
+    export interface ReturnsPropData {
+      /** 当前页 */
+      currentPage: number;
+      /** 每页的数量 */
+      pageSize: number;
+      /** 总页数 */
+      totalPage: number;
+      /** 总记录数 */
+      totalNum: number;
+      list: ReturnsPropDataPropList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
@@ -3769,7 +3712,88 @@ export namespace VehicleManage {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace editExternal {
+    /** 附件上传请求 */
+    export interface OptionsPropDriverLicense {
+      /** 附件主键-主键无值则表示新增附件 */
+      id?: number;
+      /** 文件名 */
+      fileName: string;
+      /** 上传url */
+      url?: string;
+      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
+      type: number;
+      /** 关联主键 站点id 或 用户id */
+      relationKey?: number;
+      /** 生效时间 */
+      effectiveDay?: string;
+      /** 到期时间 */
+      expiryDay?: string;
+      /** 是否到期提醒 0-是 1-否 */
+      expireRemind?: number;
+      /** 异常信息 */
+      errorMsg?: string;
+    }
+    /** 附件上传请求 */
+    export interface OptionsPropDrivingLicense {
+      /** 附件主键-主键无值则表示新增附件 */
+      id?: number;
+      /** 文件名 */
+      fileName: string;
+      /** 上传url */
+      url?: string;
+      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
+      type: number;
+      /** 关联主键 站点id 或 用户id */
+      relationKey?: number;
+      /** 生效时间 */
+      effectiveDay?: string;
+      /** 到期时间 */
+      expiryDay?: string;
+      /** 是否到期提醒 0-是 1-否 */
+      expireRemind?: number;
+      /** 异常信息 */
+      errorMsg?: string;
+    }
+    export interface Options {
+      /** 主键 */
+      id: number;
+      /** 车牌号 */
+      licenseNum: string;
+      /** 槽罐车编号 */
+      vehicleCode: string;
+      /** 驾驶员 */
+      driverName?: string;
+      /** 联系方式 */
+      contact?: string;
+      /** 所属公司 */
+      company?: string;
+      /** 关联站点 */
+      orgNames?: string;
+      driverLicense?: OptionsPropDriverLicense;
+      drivingLicense?: OptionsPropDrivingLicense;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -3791,7 +3815,8 @@ export namespace VehicleManage {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -3810,7 +3835,7 @@ export namespace VehicleManage {
 }
 export namespace Img {
   export namespace getUploadFile {
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -3821,7 +3846,8 @@ export namespace Attachment {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -3905,6 +3931,17 @@ export namespace Attachment {
     }
     export type R = Returns['data'];
   }
+  export namespace downloadTag {
+    export interface Options {
+      /** 业务主键 */
+      relationKey: number;
+      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
+      type: number;
+    }
+    export type O = Options;
+    export type Returns = any
+    export type R = Returns['data'];
+  }
   export namespace getAttachmentById {
     export interface Options {
       id: number;
@@ -3943,17 +3980,6 @@ export namespace Attachment {
       /** 错误信息 */
       message: string;
     }
-    export type R = Returns['data'];
-  }
-  export namespace downloadTag {
-    export interface Options {
-      /** 业务主键 */
-      relationKey: number;
-      /** 附件类型 0-安全管理 1-报告检测 2-站点附件 3-人员证书 4-工单附件（审核） 5-中修工单附件 6-安全培训 7-驾驶证 8-行驶证 9-工单附件（新建） */
-      type: number;
-    }
-    export type O = Options;
-    export type Returns = any;
     export type R = Returns['data'];
   }
   export namespace getStationAttachments {
@@ -4073,7 +4099,7 @@ export namespace Attachment {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace editAttachment {
@@ -4098,7 +4124,8 @@ export namespace Attachment {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -4119,7 +4146,7 @@ export namespace Attachment {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -4166,7 +4193,9 @@ export namespace Org {
       identityNum?: string;
       /** 手机号 */
       mobile?: string;
-      /** 职务 */
+      /** 部门 */
+      dept?: string;
+      /** 岗位 */
       jobType?: string;
       /** 班别 */
       groups?: number;
@@ -4188,6 +4217,10 @@ export namespace Org {
       identityNum: string;
       /** 手机号 */
       mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
       /** 职务 */
       jobType: string;
       /** 职务名称 */
@@ -4198,315 +4231,6 @@ export namespace Org {
       groupsDesc: string;
       /** 备注 */
       remark: string;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getWorkerOne {
-    export interface Options {
-      id: number;
-    }
-    export type O = Options;
-    /** 工作人员基本信息响应 */
-    export interface ReturnsPropData {
-      /** 员工id */
-      id: number;
-      /** 所属机构id */
-      orgId: number;
-      /** 工号 */
-      workerNum: string;
-      /** 姓名 */
-      name: string;
-      /** 身份证号 */
-      identityNum: string;
-      /** 手机号 */
-      mobile: string;
-      /** 职务 */
-      jobType: string;
-      /** 职务名称 */
-      jobTypeDesc: string;
-      /** 班别 */
-      groups: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 备注 */
-      remark: string;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getOrgWorkers {
-    export interface Options {
-      /** 站点id */
-      orgId?: number;
-    }
-    export type O = Options;
-    /** 工作人员基本信息响应 */
-    export interface ReturnsPropDataPropManagerListSubItem {
-      /** 员工id */
-      id: number;
-      /** 所属机构id */
-      orgId: number;
-      /** 工号 */
-      workerNum: string;
-      /** 姓名 */
-      name: string;
-      /** 身份证号 */
-      identityNum: string;
-      /** 手机号 */
-      mobile: string;
-      /** 职务 */
-      jobType: string;
-      /** 职务名称 */
-      jobTypeDesc: string;
-      /** 班别 */
-      groups: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 备注 */
-      remark: string;
-    }
-    /** 负责人列表 */
-    export type ReturnsPropDataPropManagerList = ReturnsPropDataPropManagerListSubItem[];
-    /** 工作人员基本信息响应 */
-    export interface ReturnsPropDataPropSafetyManagerListSubItem {
-      /** 员工id */
-      id: number;
-      /** 所属机构id */
-      orgId: number;
-      /** 工号 */
-      workerNum: string;
-      /** 姓名 */
-      name: string;
-      /** 身份证号 */
-      identityNum: string;
-      /** 手机号 */
-      mobile: string;
-      /** 职务 */
-      jobType: string;
-      /** 职务名称 */
-      jobTypeDesc: string;
-      /** 班别 */
-      groups: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 备注 */
-      remark: string;
-    }
-    /** 安全管理员列表 */
-    export type ReturnsPropDataPropSafetyManagerList =
-      ReturnsPropDataPropSafetyManagerListSubItem[];
-    /** 工作人员基本信息响应 */
-    export interface ReturnsPropDataPropOrdinaryListSubItem {
-      /** 员工id */
-      id: number;
-      /** 所属机构id */
-      orgId: number;
-      /** 工号 */
-      workerNum: string;
-      /** 姓名 */
-      name: string;
-      /** 身份证号 */
-      identityNum: string;
-      /** 手机号 */
-      mobile: string;
-      /** 职务 */
-      jobType: string;
-      /** 职务名称 */
-      jobTypeDesc: string;
-      /** 班别 */
-      groups: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 备注 */
-      remark: string;
-    }
-    /** 工作人员列表 */
-    export type ReturnsPropDataPropOrdinaryList = ReturnsPropDataPropOrdinaryListSubItem[];
-    /** 查询站点员工信息息响应 */
-    export interface ReturnsPropData {
-      /** 负责人列表 */
-      managerList: ReturnsPropDataPropManagerList;
-      /** 安全管理员列表 */
-      safetyManagerList: ReturnsPropDataPropSafetyManagerList;
-      /** 工作人员列表 */
-      ordinaryList: ReturnsPropDataPropOrdinaryList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getWorkersList {
-    export interface Options {
-      /** 站点id */
-      orgId?: number;
-      /** 姓名 */
-      name?: string;
-      /** 职务list */
-      jobTypeList?: any[];
-      /** 班别 */
-      groups?: number;
-    }
-    export type O = Options;
-    /** 工作人员基本信息响应 */
-    export interface ReturnsPropDataSubItem {
-      /** 员工id */
-      id: number;
-      /** 所属机构id */
-      orgId: number;
-      /** 工号 */
-      workerNum: string;
-      /** 姓名 */
-      name: string;
-      /** 身份证号 */
-      identityNum: string;
-      /** 手机号 */
-      mobile: string;
-      /** 职务 */
-      jobType: string;
-      /** 职务名称 */
-      jobTypeDesc: string;
-      /** 班别 */
-      groups: number;
-      /** 班别名称 */
-      groupsDesc: string;
-      /** 备注 */
-      remark: string;
-    }
-    /** 数据负载 */
-    export type ReturnsPropData = ReturnsPropDataSubItem[];
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      /** 数据负载 */
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getOrgInfoPaged {
-    export interface Options {
-      /** 查询关键字 */
-      queryKey?: string;
-      pageNum: number;
-      pageSize: number;
-    }
-    export type O = Options;
-    /** 联系方式List */
-    export type ReturnsPropDataPropListSubItemPropPhoneNum = string[];
-    /** 站点基本信息查询响应 */
-    export interface ReturnsPropDataPropListSubItem {
-      /** 机构id */
-      orgId: number;
-      /** 组织机构名称 */
-      orgName: string;
-      /** 机构名称简写 */
-      orgShortName: string;
-      /** 机构面积 */
-      orgArea: string;
-      /** 地址 */
-      address: string;
-      /** 联系方式 */
-      contact: string;
-      /** 联系方式List */
-      phoneNum: ReturnsPropDataPropListSubItemPropPhoneNum;
-      /** 负责人 */
-      manager: string;
-      /** 人数 */
-      workerCount: number;
-    }
-    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
-    /** 通用分页信息 */
-    export interface ReturnsPropData {
-      /** 当前页 */
-      currentPage: number;
-      /** 每页的数量 */
-      pageSize: number;
-      /** 总页数 */
-      totalPage: number;
-      /** 总记录数 */
-      totalNum: number;
-      list: ReturnsPropDataPropList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getOrgInfoOne {
-    export interface Options {
-      id: number;
-    }
-    export type O = Options;
-    /** 联系方式List */
-    export type ReturnsPropDataPropPhoneNum = string[];
-    /** 站点基本信息查询响应 */
-    export interface ReturnsPropData {
-      /** 机构id */
-      orgId: number;
-      /** 组织机构名称 */
-      orgName: string;
-      /** 机构名称简写 */
-      orgShortName: string;
-      /** 机构面积 */
-      orgArea: string;
-      /** 地址 */
-      address: string;
-      /** 联系方式 */
-      contact: string;
-      /** 联系方式List */
-      phoneNum: ReturnsPropDataPropPhoneNum;
-      /** 负责人 */
-      manager: string;
-      /** 人数 */
-      workerCount: number;
     }
     /**
      * 通用响应
@@ -4606,8 +4330,7 @@ export namespace Org {
       remark: string;
     }
     /** 员工附件列表 */
-    export type ReturnsPropDataPropWorkerAttachmentList =
-      ReturnsPropDataPropWorkerAttachmentListSubItem[];
+    export type ReturnsPropDataPropWorkerAttachmentList = ReturnsPropDataPropWorkerAttachmentListSubItem[];
     /** 查询员工资质证书响应 */
     export interface ReturnsPropData {
       /** 员工id */
@@ -4633,23 +4356,52 @@ export namespace Org {
     }
     export type R = Returns['data'];
   }
-  export namespace modifyOrg {
-    /** 联系方式List */
-    export type OptionsPropPhoneNum = string[];
-    /** 修改站点基本信息请求 */
+  export namespace getOrgInfoPaged {
     export interface Options {
-      /** 机构id */
-      orgId: number;
-      /** 机构面积 */
-      orgArea?: string;
-      /** 地址 */
-      address?: string;
-      /** 联系方式List */
-      phoneNum?: OptionsPropPhoneNum;
+      /** 查询关键字 */
+      queryKey?: string;
+      pageNum: number;
+      pageSize: number;
     }
     export type O = Options;
-    /** 数据负载 */
-    export interface ReturnsPropData {}
+    /** 联系方式List */
+    export type ReturnsPropDataPropListSubItemPropPhoneNum = string[];
+    /** 站点基本信息查询响应 */
+    export interface ReturnsPropDataPropListSubItem {
+      /** 机构id */
+      orgId: number;
+      /** 组织机构名称 */
+      orgName: string;
+      /** 机构名称简写 */
+      orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
+      /** 机构面积 */
+      orgArea: string;
+      /** 地址 */
+      address: string;
+      /** 联系方式 */
+      contact: string;
+      /** 联系方式List */
+      phoneNum: ReturnsPropDataPropListSubItemPropPhoneNum;
+      /** 负责人 */
+      manager: string;
+      /** 人数 */
+      workerCount: number;
+    }
+    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
+    /** 通用分页信息 */
+    export interface ReturnsPropData {
+      /** 当前页 */
+      currentPage: number;
+      /** 每页的数量 */
+      pageSize: number;
+      /** 总页数 */
+      totalPage: number;
+      /** 总记录数 */
+      totalNum: number;
+      list: ReturnsPropDataPropList;
+    }
     /**
      * 通用响应
      *
@@ -4658,36 +4410,269 @@ export namespace Org {
     export interface Returns {
       /** 响应状态 */
       status: number;
-      /** 数据负载 */
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
     }
     export type R = Returns['data'];
   }
-  export namespace modifyWorker {
-    /** 修改工作人员基本信息请求 */
+  export namespace getOrgInfoOne {
     export interface Options {
-      /** 员工id */
       id: number;
-      /** 工号 */
-      workerNum?: string;
-      /** 姓名 */
-      name?: string;
-      /** 身份证号 */
-      identityNum?: string;
-      /** 手机号 */
-      mobile?: string;
-      /** 职务 */
-      jobType?: string;
-      /** 班别 */
-      groups?: number;
-      /** 备注 */
-      remark?: string;
     }
     export type O = Options;
+    /** 联系方式List */
+    export type ReturnsPropDataPropPhoneNum = string[];
+    /** 站点基本信息查询响应 */
+    export interface ReturnsPropData {
+      /** 机构id */
+      orgId: number;
+      /** 组织机构名称 */
+      orgName: string;
+      /** 机构名称简写 */
+      orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
+      /** 机构面积 */
+      orgArea: string;
+      /** 地址 */
+      address: string;
+      /** 联系方式 */
+      contact: string;
+      /** 联系方式List */
+      phoneNum: ReturnsPropDataPropPhoneNum;
+      /** 负责人 */
+      manager: string;
+      /** 人数 */
+      workerCount: number;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace getWorkerOne {
+    export interface Options {
+      id: number;
+    }
+    export type O = Options;
+    /** 工作人员基本信息响应 */
+    export interface ReturnsPropData {
+      /** 员工id */
+      id: number;
+      /** 所属机构id */
+      orgId: number;
+      /** 工号 */
+      workerNum: string;
+      /** 姓名 */
+      name: string;
+      /** 身份证号 */
+      identityNum: string;
+      /** 手机号 */
+      mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
+      /** 职务 */
+      jobType: string;
+      /** 职务名称 */
+      jobTypeDesc: string;
+      /** 班别 */
+      groups: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 备注 */
+      remark: string;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace getOrgWorkers {
+    export interface Options {
+      /** 站点id */
+      orgId?: number;
+    }
+    export type O = Options;
+    /** 工作人员基本信息响应 */
+    export interface ReturnsPropDataPropManagerListSubItem {
+      /** 员工id */
+      id: number;
+      /** 所属机构id */
+      orgId: number;
+      /** 工号 */
+      workerNum: string;
+      /** 姓名 */
+      name: string;
+      /** 身份证号 */
+      identityNum: string;
+      /** 手机号 */
+      mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
+      /** 职务 */
+      jobType: string;
+      /** 职务名称 */
+      jobTypeDesc: string;
+      /** 班别 */
+      groups: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 备注 */
+      remark: string;
+    }
+    /** 负责人列表 */
+    export type ReturnsPropDataPropManagerList = ReturnsPropDataPropManagerListSubItem[];
+    /** 工作人员基本信息响应 */
+    export interface ReturnsPropDataPropSafetyManagerListSubItem {
+      /** 员工id */
+      id: number;
+      /** 所属机构id */
+      orgId: number;
+      /** 工号 */
+      workerNum: string;
+      /** 姓名 */
+      name: string;
+      /** 身份证号 */
+      identityNum: string;
+      /** 手机号 */
+      mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
+      /** 职务 */
+      jobType: string;
+      /** 职务名称 */
+      jobTypeDesc: string;
+      /** 班别 */
+      groups: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 备注 */
+      remark: string;
+    }
+    /** 安全管理员列表 */
+    export type ReturnsPropDataPropSafetyManagerList = ReturnsPropDataPropSafetyManagerListSubItem[];
+    /** 工作人员基本信息响应 */
+    export interface ReturnsPropDataPropOrdinaryListSubItem {
+      /** 员工id */
+      id: number;
+      /** 所属机构id */
+      orgId: number;
+      /** 工号 */
+      workerNum: string;
+      /** 姓名 */
+      name: string;
+      /** 身份证号 */
+      identityNum: string;
+      /** 手机号 */
+      mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
+      /** 职务 */
+      jobType: string;
+      /** 职务名称 */
+      jobTypeDesc: string;
+      /** 班别 */
+      groups: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 备注 */
+      remark: string;
+    }
+    /** 工作人员列表 */
+    export type ReturnsPropDataPropOrdinaryList = ReturnsPropDataPropOrdinaryListSubItem[];
+    /** 查询站点员工信息息响应 */
+    export interface ReturnsPropData {
+      /** 负责人列表 */
+      managerList: ReturnsPropDataPropManagerList;
+      /** 安全管理员列表 */
+      safetyManagerList: ReturnsPropDataPropSafetyManagerList;
+      /** 工作人员列表 */
+      ordinaryList: ReturnsPropDataPropOrdinaryList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace getWorkersList {
+    export interface Options {
+      /** 站点id */
+      orgId?: number;
+      /** 姓名 */
+      name?: string;
+      /** 岗位list */
+      jobTypeList?: any[];
+      /** 班别 */
+      groups?: number;
+    }
+    export type O = Options;
+    /** 工作人员基本信息响应 */
+    export interface ReturnsPropDataSubItem {
+      /** 员工id */
+      id: number;
+      /** 所属机构id */
+      orgId: number;
+      /** 工号 */
+      workerNum: string;
+      /** 姓名 */
+      name: string;
+      /** 身份证号 */
+      identityNum: string;
+      /** 手机号 */
+      mobile: string;
+      /** 部门 */
+      dept: string;
+      /** 部门描述 */
+      deptDesc: string;
+      /** 职务 */
+      jobType: string;
+      /** 职务名称 */
+      jobTypeDesc: string;
+      /** 班别 */
+      groups: number;
+      /** 班别名称 */
+      groupsDesc: string;
+      /** 备注 */
+      remark: string;
+    }
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export type ReturnsPropData = ReturnsPropDataSubItem[];
     /**
      * 通用响应
      *
@@ -4720,7 +4705,82 @@ export namespace Org {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace modifyOrg {
+    /** 联系方式List */
+    export type OptionsPropPhoneNum = string[];
+    /** 修改站点基本信息请求 */
+    export interface Options {
+      /** 机构id */
+      orgId: number;
+      /** 机构面积 */
+      orgArea?: string;
+      /** 地址 */
+      address?: string;
+      /** 联系方式List */
+      phoneNum?: OptionsPropPhoneNum;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace modifyWorker {
+    /** 修改工作人员基本信息请求 */
+    export interface Options {
+      /** 员工id */
+      id: number;
+      /** 工号 */
+      workerNum?: string;
+      /** 姓名 */
+      name?: string;
+      /** 身份证号 */
+      identityNum?: string;
+      /** 手机号 */
+      mobile?: string;
+      /** 部门 */
+      dept?: string;
+      /** 岗位 */
+      jobType?: string;
+      /** 班别 */
+      groups?: number;
+      /** 备注 */
+      remark?: string;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -4775,29 +4835,8 @@ export namespace Org {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      /** 数据负载 */
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
+    export interface ReturnsPropData {
     }
-    export type R = Returns['data'];
-  }
-  export namespace removeWorker {
-    export interface Options {
-      id: number;
-    }
-    export type O = Options;
-    /** 数据负载 */
-    export interface ReturnsPropData {}
     /**
      * 通用响应
      *
@@ -4819,7 +4858,31 @@ export namespace Org {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace removeWorker {
+    export interface Options {
+      id: number;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -4837,6 +4900,65 @@ export namespace Org {
   }
 }
 export namespace Cf {
+  export namespace getOneRecord {
+    export interface Options {
+      /** 主键 */
+      id: number;
+    }
+    export type O = Options;
+    /** 加液及充装检查记录明细 */
+    export interface ReturnsPropData {
+      /** 主键 */
+      id: number;
+      /** 车牌号 */
+      carNumber: string;
+      /** 时间 */
+      time: string;
+      /** 气瓶使用登记号 */
+      cylinderUseNumber: string;
+      /** 使用期内 0：未选 1：勾 -1：叉 */
+      serviceLife: string;
+      /** 附件齐全 0：未选 1：勾 -1：叉 */
+      completeAccessories: string;
+      /** 外观完整 0：未选 1：勾 -1：叉 */
+      completeAppearance: string;
+      /** 车辆停放 0：未选 1：勾 -1：叉 */
+      parking: string;
+      /** 充装前检查人 */
+      beforeChecker: string;
+      /** 加液量 */
+      liquidAmount: string;
+      /** 阀门附件 0：未选 1：勾 -1：叉 */
+      valveAccessories: string;
+      /** 气瓶压力 0：未选 1：勾 -1：叉 */
+      cylinderPressure: string;
+      /** 充装中检查人 */
+      processChecker: string;
+      /** 合格 0：未选 1：勾 -1：叉 */
+      qualified: string;
+      /** 泄漏(无) 0：未选 1：勾 -1：叉 */
+      noLeakage: string;
+      /** 充装后检查人 */
+      afterChecker: string;
+      /** 驾驶员 */
+      driver: string;
+      /** 操作人 */
+      operator: string;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace getOne {
     export interface Options {
       /** 主键 */
@@ -4969,8 +5091,7 @@ export namespace Cf {
       operator: string;
     }
     /** 加液及充装检查记录明细 */
-    export type ReturnsPropDataPropListSubItemPropDataList =
-      ReturnsPropDataPropListSubItemPropDataListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropDataList = ReturnsPropDataPropListSubItemPropDataListSubItem[];
     /** 查询加液及充装检查记录响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -5000,65 +5121,6 @@ export namespace Cf {
       /** 总记录数 */
       totalNum: number;
       list: ReturnsPropDataPropList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getOneRecord {
-    export interface Options {
-      /** 主键 */
-      id: number;
-    }
-    export type O = Options;
-    /** 加液及充装检查记录明细 */
-    export interface ReturnsPropData {
-      /** 主键 */
-      id: number;
-      /** 车牌号 */
-      carNumber: string;
-      /** 时间 */
-      time: string;
-      /** 气瓶使用登记号 */
-      cylinderUseNumber: string;
-      /** 使用期内 0：未选 1：勾 -1：叉 */
-      serviceLife: string;
-      /** 附件齐全 0：未选 1：勾 -1：叉 */
-      completeAccessories: string;
-      /** 外观完整 0：未选 1：勾 -1：叉 */
-      completeAppearance: string;
-      /** 车辆停放 0：未选 1：勾 -1：叉 */
-      parking: string;
-      /** 充装前检查人 */
-      beforeChecker: string;
-      /** 加液量 */
-      liquidAmount: string;
-      /** 阀门附件 0：未选 1：勾 -1：叉 */
-      valveAccessories: string;
-      /** 气瓶压力 0：未选 1：勾 -1：叉 */
-      cylinderPressure: string;
-      /** 充装中检查人 */
-      processChecker: string;
-      /** 合格 0：未选 1：勾 -1：叉 */
-      qualified: string;
-      /** 泄漏(无) 0：未选 1：勾 -1：叉 */
-      noLeakage: string;
-      /** 充装后检查人 */
-      afterChecker: string;
-      /** 驾驶员 */
-      driver: string;
-      /** 操作人 */
-      operator: string;
     }
     /**
      * 通用响应
@@ -5131,7 +5193,8 @@ export namespace Cf {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -5152,7 +5215,7 @@ export namespace Cf {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -5856,8 +5919,7 @@ export namespace Sg {
       driver: string;
     }
     /** 接班明细（多槽罐） */
-    export type ReturnsPropDataPropListSubItemPropJoinDataList =
-      ReturnsPropDataPropListSubItemPropJoinDataListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropJoinDataList = ReturnsPropDataPropListSubItemPropJoinDataListSubItem[];
     /** 交/接班明细（区域） */
     export interface ReturnsPropDataPropListSubItemPropJoinArea {
       /** 1号加气机 0：未选 1：勾 -1：叉 */
@@ -5935,8 +5997,7 @@ export namespace Sg {
       driver: string;
     }
     /** 交班明细（多槽罐） */
-    export type ReturnsPropDataPropListSubItemPropHandOverDataList =
-      ReturnsPropDataPropListSubItemPropHandOverDataListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropHandOverDataList = ReturnsPropDataPropListSubItemPropHandOverDataListSubItem[];
     /** 交/接班明细（区域） */
     export interface ReturnsPropDataPropListSubItemPropHandOverArea {
       /** 1号加气机 0：未选 1：勾 -1：叉 */
@@ -5976,8 +6037,7 @@ export namespace Sg {
       totalGas: string;
     }
     /** 加气明细 */
-    export type ReturnsPropDataPropListSubItemPropRecords =
-      ReturnsPropDataPropListSubItemPropRecordsSubItem[];
+    export type ReturnsPropDataPropListSubItemPropRecords = ReturnsPropDataPropListSubItemPropRecordsSubItem[];
     /** 交接班记录（卸液情况） */
     export interface ReturnsPropDataPropListSubItemPropUnloadDataListSubItem {
       /** 主键 */
@@ -5996,8 +6056,7 @@ export namespace Sg {
       unloadPerson: string;
     }
     /** 卸液情况 */
-    export type ReturnsPropDataPropListSubItemPropUnloadDataList =
-      ReturnsPropDataPropListSubItemPropUnloadDataListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropUnloadDataList = ReturnsPropDataPropListSubItemPropUnloadDataListSubItem[];
     /** 交/接班明细（槽罐累计加气） */
     export interface ReturnsPropDataPropListSubItemPropGasFillDataListSubItem {
       /** 主键 */
@@ -6014,8 +6073,7 @@ export namespace Sg {
       gasFill: string;
     }
     /** 槽罐累计加气 */
-    export type ReturnsPropDataPropListSubItemPropGasFillDataList =
-      ReturnsPropDataPropListSubItemPropGasFillDataListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropGasFillDataList = ReturnsPropDataPropListSubItemPropGasFillDataListSubItem[];
     /** 交接班查询响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -6301,7 +6359,8 @@ export namespace Sg {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -6508,7 +6567,8 @@ export namespace Sg {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -6529,228 +6589,31 @@ export namespace Sg {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
 export namespace Report {
-  export namespace queryInventoryReport {
-    export interface Options {
-      /** 所属站点id */
-      stationId?: number;
-      /** 所属站点id */
-      beginDate: string;
-      /** 所属站点id */
-      endDate: string;
-    }
-    export type O = Options;
-    /** 进销存表头 */
-    export interface ReturnsPropDataPropHeadListSubItemPropChildrenSubItem {
-      /** 表头名称 */
-      title: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren =
-      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
-    /** 进销存表头 */
-    export interface ReturnsPropDataPropHeadListSubItem {
-      /** 表头名称 */
-      title: string;
-      /** 数据索引 */
-      dataIndex: string;
-      /** 子表头集合 */
-      children: ReturnsPropDataPropHeadListSubItemPropChildren;
-    }
-    /** 表头 */
-    export type ReturnsPropDataPropHeadList = ReturnsPropDataPropHeadListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 期初库存 */
-    export type ReturnsPropDataPropDataListSubItemPropOpenDataList =
-      ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropInDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 进液入库 */
-    export type ReturnsPropDataPropDataListSubItemPropInDataList =
-      ReturnsPropDataPropDataListSubItemPropInDataListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 本月销售 */
-    export type ReturnsPropDataPropDataListSubItemPropSaleDataList =
-      ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 理论库存 */
-    export type ReturnsPropDataPropDataListSubItemPropTheoryDataList =
-      ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 实际库存 */
-    export type ReturnsPropDataPropDataListSubItemPropPhysicalDataList =
-      ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 误差情况 */
-    export type ReturnsPropDataPropDataListSubItemPropWrongDataList =
-      ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem[];
-    /** 进出存报表主记录 */
-    export interface ReturnsPropDataPropDataListSubItem {
-      /** 日期 */
-      date: string;
-      /** 期初库存 */
-      openDataList: ReturnsPropDataPropDataListSubItemPropOpenDataList;
-      /** 进液入库 */
-      inDataList: ReturnsPropDataPropDataListSubItemPropInDataList;
-      /** 本月销售 */
-      saleDataList: ReturnsPropDataPropDataListSubItemPropSaleDataList;
-      /** 理论库存 */
-      theoryDataList: ReturnsPropDataPropDataListSubItemPropTheoryDataList;
-      /** 实际库存 */
-      physicalDataList: ReturnsPropDataPropDataListSubItemPropPhysicalDataList;
-      /** 误差情况 */
-      wrongDataList: ReturnsPropDataPropDataListSubItemPropWrongDataList;
-    }
-    /** 数据 */
-    export type ReturnsPropDataPropDataList = ReturnsPropDataPropDataListSubItem[];
-    /** 进出存报表响应 */
-    export interface ReturnsPropData {
-      /** 表头 */
-      headList: ReturnsPropDataPropHeadList;
-      /** 数据 */
-      dataList: ReturnsPropDataPropDataList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace querySaleReport {
-    export interface Options {
-      /** 所属站点id */
-      stationId?: number;
-      /** 所属站点id */
-      beginDate: string;
-      /** 所属站点id */
-      endDate: string;
-    }
-    export type O = Options;
-    /** 进销存表头 */
-    export interface ReturnsPropDataPropHeadListSubItemPropChildrenSubItem {
-      /** 表头名称 */
-      title: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren =
-      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
-    /** 进销存表头 */
-    export interface ReturnsPropDataPropHeadListSubItem {
-      /** 表头名称 */
-      title: string;
-      /** 数据索引 */
-      dataIndex: string;
-      /** 子表头集合 */
-      children: ReturnsPropDataPropHeadListSubItemPropChildren;
-    }
-    /** 表头 */
-    export type ReturnsPropDataPropHeadList = ReturnsPropDataPropHeadListSubItem[];
-    /** 进出存报表子记录 */
-    export interface ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem {
-      /** 值 */
-      dataValue: string;
-      /** 数据索引 */
-      dataIndex: string;
-    }
-    export type ReturnsPropDataPropDataListSubItemPropWeightDataList =
-      ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem[];
-    /** 销售日报数据 */
-    export interface ReturnsPropDataPropDataListSubItem {
-      date: string;
-      weightDataList: ReturnsPropDataPropDataListSubItemPropWeightDataList;
-    }
-    export type ReturnsPropDataPropDataList = ReturnsPropDataPropDataListSubItem[];
-    /** 销售日报响应 */
-    export interface ReturnsPropData {
-      /** 表头 */
-      headList: ReturnsPropDataPropHeadList;
-      dataList: ReturnsPropDataPropDataList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
   export namespace exportExcel {
     export interface Options {
       /** 所属站点id */
       stationId?: number;
-      /** 所属站点id */
+      /** 开始时间 */
       beginDate: string;
-      /** 所属站点id */
+      /** 结束时间 */
       endDate: string;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace queryInventoryUnload {
     export interface Options {
       /** 所属站点id */
       stationId?: number;
-      /** 所属站点id */
+      /** 开始时间 */
       beginDate: string;
-      /** 所属站点id */
+      /** 结束时间 */
       endDate: string;
     }
     export type O = Options;
@@ -6762,8 +6625,7 @@ export namespace Report {
       dataIndex: string;
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren =
-      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
+    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
     /** 进销存表头 */
     export interface ReturnsPropDataPropHeadListSubItem {
       /** 表头名称 */
@@ -6831,28 +6693,216 @@ export namespace Report {
     }
     export type R = Returns['data'];
   }
+  export namespace queryInventoryReport {
+    export interface Options {
+      /** 所属站点id */
+      stationId?: number;
+      /** 开始时间 */
+      beginDate: string;
+      /** 结束时间 */
+      endDate: string;
+    }
+    export type O = Options;
+    /** 进销存表头 */
+    export interface ReturnsPropDataPropHeadListSubItemPropChildrenSubItem {
+      /** 表头名称 */
+      title: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 子表头集合 */
+    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
+    /** 进销存表头 */
+    export interface ReturnsPropDataPropHeadListSubItem {
+      /** 表头名称 */
+      title: string;
+      /** 数据索引 */
+      dataIndex: string;
+      /** 子表头集合 */
+      children: ReturnsPropDataPropHeadListSubItemPropChildren;
+    }
+    /** 表头 */
+    export type ReturnsPropDataPropHeadList = ReturnsPropDataPropHeadListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 期初库存 */
+    export type ReturnsPropDataPropDataListSubItemPropOpenDataList = ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropInDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 进液入库 */
+    export type ReturnsPropDataPropDataListSubItemPropInDataList = ReturnsPropDataPropDataListSubItemPropInDataListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 本月销售 */
+    export type ReturnsPropDataPropDataListSubItemPropSaleDataList = ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 理论库存 */
+    export type ReturnsPropDataPropDataListSubItemPropTheoryDataList = ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 实际库存 */
+    export type ReturnsPropDataPropDataListSubItemPropPhysicalDataList = ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 误差情况 */
+    export type ReturnsPropDataPropDataListSubItemPropWrongDataList = ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem[];
+    /** 进出存报表主记录 */
+    export interface ReturnsPropDataPropDataListSubItem {
+      /** 日期 */
+      date: string;
+      /** 期初库存 */
+      openDataList: ReturnsPropDataPropDataListSubItemPropOpenDataList;
+      /** 进液入库 */
+      inDataList: ReturnsPropDataPropDataListSubItemPropInDataList;
+      /** 本月销售 */
+      saleDataList: ReturnsPropDataPropDataListSubItemPropSaleDataList;
+      /** 理论库存 */
+      theoryDataList: ReturnsPropDataPropDataListSubItemPropTheoryDataList;
+      /** 实际库存 */
+      physicalDataList: ReturnsPropDataPropDataListSubItemPropPhysicalDataList;
+      /** 误差情况 */
+      wrongDataList: ReturnsPropDataPropDataListSubItemPropWrongDataList;
+    }
+    /** 数据 */
+    export type ReturnsPropDataPropDataList = ReturnsPropDataPropDataListSubItem[];
+    /** 进出存报表响应 */
+    export interface ReturnsPropData {
+      /** 表头 */
+      headList: ReturnsPropDataPropHeadList;
+      /** 数据 */
+      dataList: ReturnsPropDataPropDataList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace querySaleReport {
+    export interface Options {
+      /** 所属站点id */
+      stationId?: number;
+      /** 开始时间 */
+      beginDate: string;
+      /** 结束时间 */
+      endDate: string;
+    }
+    export type O = Options;
+    /** 进销存表头 */
+    export interface ReturnsPropDataPropHeadListSubItemPropChildrenSubItem {
+      /** 表头名称 */
+      title: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    /** 子表头集合 */
+    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[];
+    /** 进销存表头 */
+    export interface ReturnsPropDataPropHeadListSubItem {
+      /** 表头名称 */
+      title: string;
+      /** 数据索引 */
+      dataIndex: string;
+      /** 子表头集合 */
+      children: ReturnsPropDataPropHeadListSubItemPropChildren;
+    }
+    /** 表头 */
+    export type ReturnsPropDataPropHeadList = ReturnsPropDataPropHeadListSubItem[];
+    /** 进出存报表子记录 */
+    export interface ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem {
+      /** 值 */
+      dataValue: string;
+      /** 数据索引 */
+      dataIndex: string;
+    }
+    export type ReturnsPropDataPropDataListSubItemPropWeightDataList = ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem[];
+    /** 销售日报数据 */
+    export interface ReturnsPropDataPropDataListSubItem {
+      date: string;
+      weightDataList: ReturnsPropDataPropDataListSubItemPropWeightDataList;
+    }
+    export type ReturnsPropDataPropDataList = ReturnsPropDataPropDataListSubItem[];
+    /** 销售日报响应 */
+    export interface ReturnsPropData {
+      /** 表头 */
+      headList: ReturnsPropDataPropHeadList;
+      dataList: ReturnsPropDataPropDataList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
 }
 export namespace Sale {
   export namespace exportExcel {
     export interface Options {
       /** 所属站点id */
       stationId?: number;
-      /** 所属站点id */
+      /** 开始时间 */
       beginDate: string;
-      /** 所属站点id */
+      /** 结束时间 */
       endDate: string;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace querySaleInventory {
     export interface Options {
       /** 所属站点id */
       stationId?: number;
-      /** 所属站点id */
+      /** 开始时间 */
       beginDate: string;
-      /** 所属站点id */
+      /** 结束时间 */
       endDate: string;
     }
     export type O = Options;
@@ -6864,8 +6914,7 @@ export namespace Sale {
       dataIndex: string;
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropMainHeadListSubItemPropChildren =
-      ReturnsPropDataPropMainHeadListSubItemPropChildrenSubItem[];
+    export type ReturnsPropDataPropMainHeadListSubItemPropChildren = ReturnsPropDataPropMainHeadListSubItemPropChildrenSubItem[];
     /** 进销存表头 */
     export interface ReturnsPropDataPropMainHeadListSubItem {
       /** 表头名称 */
@@ -6895,8 +6944,7 @@ export namespace Sale {
       outValue: string;
     }
     /** 数据 */
-    export type ReturnsPropDataPropMainDataListSubItemPropChildrenData =
-      ReturnsPropDataPropMainDataListSubItemPropChildrenDataSubItem[];
+    export type ReturnsPropDataPropMainDataListSubItemPropChildrenData = ReturnsPropDataPropMainDataListSubItemPropChildrenDataSubItem[];
     /** 进销存主记录 */
     export interface ReturnsPropDataPropMainDataListSubItem {
       /** 日期 */
@@ -7057,8 +7105,7 @@ export namespace Home {
       liquidInlet: number;
     }
     /** 卸液情况 */
-    export type ReturnsPropDataPropInfoListSubItemPropVesselUploadList =
-      ReturnsPropDataPropInfoListSubItemPropVesselUploadListSubItem[];
+    export type ReturnsPropDataPropInfoListSubItemPropVesselUploadList = ReturnsPropDataPropInfoListSubItemPropVesselUploadListSubItem[];
     /** 各站点情况 */
     export interface ReturnsPropDataPropInfoListSubItem {
       /** 站点id */
@@ -7101,6 +7148,111 @@ export namespace Home {
   }
 }
 export namespace Sec {
+  export namespace exportExcel {
+    export interface Options {
+      /** 站点id */
+      stationId?: number;
+      /** 检查单编号 */
+      orderNo?: string;
+      /** 状态 1-检查中 2-检查完成 */
+      status?: number;
+      /** 检查结果 1-正常 2-异常 */
+      checkResult?: number;
+      /** 检查日期/年月 */
+      checkDate?: string;
+      /** 检查开始日期 */
+      checkStartDate?: string;
+      /** 检查结束日期 */
+      checkEndDate?: string;
+      /** 提交开始日期 */
+      submitStartDate?: string;
+      /** 提交结束日期 */
+      submitEndDate?: string;
+    }
+    export type O = Options;
+    export type Returns = any
+    export type R = Returns['data'];
+  }
+  export namespace initData {
+    export interface Options {
+      stationId?: number;
+    }
+    export type O = Options;
+    /** 特种设备检查内容 */
+    export interface ReturnsPropDataPropPositionListSubItemPropContentListSubItem {
+      /** id */
+      id: number;
+      /** 设备状况字典表id：对应字典表中的主键 */
+      conditionId: number;
+      /** 设备状况描述 */
+      conditionDesc: string;
+      /** 异常内容 */
+      content: string;
+      /** 巡检结果 1：正常 2：异常 */
+      result: number;
+    }
+    /** 检查内容列表 */
+    export type ReturnsPropDataPropPositionListSubItemPropContentList = ReturnsPropDataPropPositionListSubItemPropContentListSubItem[];
+    /** 特种设备部位 */
+    export interface ReturnsPropDataPropPositionListSubItem {
+      /** 设备部位id */
+      positionId: number;
+      /** 设备部位名称 */
+      positionDesc: string;
+      /** 检查内容列表 */
+      contentList: ReturnsPropDataPropPositionListSubItemPropContentList;
+    }
+    /** 检查列表 */
+    export type ReturnsPropDataPropPositionList = ReturnsPropDataPropPositionListSubItem[];
+    /** 特种设备检查单查询响应 */
+    export interface ReturnsPropData {
+      /** 检查单id */
+      id: number;
+      /** 单据编号 */
+      orderNo: string;
+      /** 特种设备id（压力容器id） */
+      equipId: number;
+      /** 检查人员 */
+      inspector: string;
+      /** 状态 1-检查中 2-检查完成 */
+      status: number;
+      /** 站点id */
+      stationId: number;
+      /** 检查日期/年月 */
+      checkDate: string;
+      /** 检查结果 1-正常 2-异常 */
+      checkResult: number;
+      /** 异常情况 */
+      abnormalContent: string;
+      /** 站点名称 */
+      stationName: string;
+      /** 设备名称 */
+      equipName: string;
+      /** 使用登记编号 */
+      equipNo: string;
+      /** 设备编号 */
+      equipCode: string;
+      /** 状态名称 */
+      statusDesc: string;
+      /** 检查结果名称 */
+      checkResultDesc: string;
+      /** 检查列表 */
+      positionList: ReturnsPropDataPropPositionList;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace getOne {
     export interface Options {
       /** 主键 */
@@ -7121,8 +7273,7 @@ export namespace Sec {
       result: number;
     }
     /** 检查内容列表 */
-    export type ReturnsPropDataPropPositionListSubItemPropContentList =
-      ReturnsPropDataPropPositionListSubItemPropContentListSubItem[];
+    export type ReturnsPropDataPropPositionListSubItemPropContentList = ReturnsPropDataPropPositionListSubItemPropContentListSubItem[];
     /** 特种设备部位 */
     export interface ReturnsPropDataPropPositionListSubItem {
       /** 设备部位id */
@@ -7271,112 +7422,6 @@ export namespace Sec {
     }
     export type R = Returns['data'];
   }
-  export namespace exportExcel {
-    export interface Options {
-      /** 站点id */
-      stationId?: number;
-      /** 检查单编号 */
-      orderNo?: string;
-      /** 状态 1-检查中 2-检查完成 */
-      status?: number;
-      /** 检查结果 1-正常 2-异常 */
-      checkResult?: number;
-      /** 检查日期/年月 */
-      checkDate?: string;
-      /** 检查开始日期 */
-      checkStartDate?: string;
-      /** 检查结束日期 */
-      checkEndDate?: string;
-      /** 提交开始日期 */
-      submitStartDate?: string;
-      /** 提交结束日期 */
-      submitEndDate?: string;
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
-  export namespace initData {
-    export interface Options {
-      stationId?: number;
-    }
-    export type O = Options;
-    /** 特种设备检查内容 */
-    export interface ReturnsPropDataPropPositionListSubItemPropContentListSubItem {
-      /** id */
-      id: number;
-      /** 设备状况字典表id：对应字典表中的主键 */
-      conditionId: number;
-      /** 设备状况描述 */
-      conditionDesc: string;
-      /** 异常内容 */
-      content: string;
-      /** 巡检结果 1：正常 2：异常 */
-      result: number;
-    }
-    /** 检查内容列表 */
-    export type ReturnsPropDataPropPositionListSubItemPropContentList =
-      ReturnsPropDataPropPositionListSubItemPropContentListSubItem[];
-    /** 特种设备部位 */
-    export interface ReturnsPropDataPropPositionListSubItem {
-      /** 设备部位id */
-      positionId: number;
-      /** 设备部位名称 */
-      positionDesc: string;
-      /** 检查内容列表 */
-      contentList: ReturnsPropDataPropPositionListSubItemPropContentList;
-    }
-    /** 检查列表 */
-    export type ReturnsPropDataPropPositionList = ReturnsPropDataPropPositionListSubItem[];
-    /** 特种设备检查单查询响应 */
-    export interface ReturnsPropData {
-      /** 检查单id */
-      id: number;
-      /** 单据编号 */
-      orderNo: string;
-      /** 特种设备id（压力容器id） */
-      equipId: number;
-      /** 检查人员 */
-      inspector: string;
-      /** 状态 1-检查中 2-检查完成 */
-      status: number;
-      /** 站点id */
-      stationId: number;
-      /** 检查日期/年月 */
-      checkDate: string;
-      /** 检查结果 1-正常 2-异常 */
-      checkResult: number;
-      /** 异常情况 */
-      abnormalContent: string;
-      /** 站点名称 */
-      stationName: string;
-      /** 设备名称 */
-      equipName: string;
-      /** 使用登记编号 */
-      equipNo: string;
-      /** 设备编号 */
-      equipCode: string;
-      /** 状态名称 */
-      statusDesc: string;
-      /** 检查结果名称 */
-      checkResultDesc: string;
-      /** 检查列表 */
-      positionList: ReturnsPropDataPropPositionList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
   export namespace persist {
     /** 特种设备检查内容 */
     export interface OptionsPropContentListSubItem {
@@ -7435,7 +7480,7 @@ export namespace Sec {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -7507,6 +7552,27 @@ export namespace Wo {
       /** 错误信息 */
       message: string;
     }
+    export type R = Returns['data'];
+  }
+  export namespace exportExcel {
+    export interface Options {
+      /** 站点id */
+      stationId?: number;
+      /** 工单编号 */
+      orderNo?: string;
+      /** 状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回 */
+      status?: number;
+      /** 维修性质 1-上门维修 2-急抢修 */
+      nature?: number;
+      /** 开始报修日期 */
+      beginDate?: string;
+      /** 结束报修日期 */
+      endDate?: string;
+      /** 主键集合 */
+      idList?: any[];
+    }
+    export type O = Options;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace getOne {
@@ -7738,27 +7804,6 @@ export namespace Wo {
     }
     export type R = Returns['data'];
   }
-  export namespace exportExcel {
-    export interface Options {
-      /** 站点id */
-      stationId?: number;
-      /** 工单编号 */
-      orderNo?: string;
-      /** 状态 1-待审核 2-待维修 3-维修中 4-维修完成 5-已驳回 */
-      status?: number;
-      /** 维修性质 1-上门维修 2-急抢修 */
-      nature?: number;
-      /** 开始报修日期 */
-      beginDate?: string;
-      /** 结束报修日期 */
-      endDate?: string;
-      /** 主键集合 */
-      idList?: any[];
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
   export namespace edit {
     /** 附件上传请求 */
     export interface OptionsPropFileListSubItem {
@@ -7804,7 +7849,8 @@ export namespace Wo {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -7825,11 +7871,53 @@ export namespace Wo {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
 export namespace SalesData {
+  export namespace addSales {
+    export interface Options {
+      /** ID */
+      id: number;
+      /** 记录时间 */
+      recordTime: string;
+      /** 加气站 */
+      gasStation: string;
+      /** 机号 */
+      machineId?: number;
+      /** 加气量 */
+      gasVolume: number;
+      /** 班次 */
+      shift?: number;
+      /** 用户单位 */
+      userCompany?: string;
+      /** 用户名 */
+      username?: string;
+      /** 加气类型 */
+      gasType?: string;
+      /** 加气编号 */
+      gasNo?: number;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace getDaySalesData {
     export interface Options {
       /** 起始时间 yyyy-MM-dd HH:mm:ss */
@@ -7838,7 +7926,7 @@ export namespace SalesData {
       endDate?: string;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace getSalesPaged {
@@ -8145,16 +8233,6 @@ export namespace Pip {
     }
     export type R = Returns['data'];
   }
-  export namespace discard {
-    /** 主键查询请求 */
-    export interface Options {
-      /** 主键 */
-      id: number;
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
   export namespace edit {
     /** 压力管道编辑请求 */
     export interface Options {
@@ -8199,7 +8277,8 @@ export namespace Pip {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -8213,6 +8292,16 @@ export namespace Pip {
       /** 错误信息 */
       message: string;
     }
+    export type R = Returns['data'];
+  }
+  export namespace discard {
+    /** 主键查询请求 */
+    export interface Options {
+      /** 主键 */
+      id: number;
+    }
+    export type O = Options;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -8269,6 +8358,19 @@ export namespace Pv {
       /** 错误信息 */
       message: string;
     }
+    export type R = Returns['data'];
+  }
+  export namespace exportExcel {
+    export interface Options {
+      /** 站点id */
+      stationId?: number;
+      /** 设备名称 */
+      name?: string;
+      /** 生产厂家 */
+      manufacturer?: number;
+    }
+    export type O = Options;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace getByTypeStation {
@@ -8502,29 +8604,6 @@ export namespace Pv {
     }
     export type R = Returns['data'];
   }
-  export namespace exportExcel {
-    export interface Options {
-      /** 站点id */
-      stationId?: number;
-      /** 设备名称 */
-      name?: string;
-      /** 生产厂家 */
-      manufacturer?: number;
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
-  export namespace discard {
-    /** 主键查询请求 */
-    export interface Options {
-      /** 主键 */
-      id: number;
-    }
-    export type O = Options;
-    export type Returns = any;
-    export type R = Returns['data'];
-  }
   export namespace edit {
     /** 常规设备编辑请求 */
     export interface Options {
@@ -8567,7 +8646,8 @@ export namespace Pv {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -8581,6 +8661,16 @@ export namespace Pv {
       /** 错误信息 */
       message: string;
     }
+    export type R = Returns['data'];
+  }
+  export namespace discard {
+    /** 主键查询请求 */
+    export interface Options {
+      /** 主键 */
+      id: number;
+    }
+    export type O = Options;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -8612,6 +8702,8 @@ export namespace UserCustom {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -8721,6 +8813,8 @@ export namespace UserCustom {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -8860,6 +8954,8 @@ export namespace User {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -8969,6 +9065,8 @@ export namespace User {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -9078,6 +9176,8 @@ export namespace User {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -9187,6 +9287,8 @@ export namespace User {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -9323,6 +9425,8 @@ export namespace User {
       orgName: string;
       /** 机构名称简写 */
       orgShortName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
       /** 机构面积 */
       orgArea: string;
       /** 地址 */
@@ -9424,7 +9528,7 @@ export namespace User {
       avatar: string;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
   export namespace modifyUserAvatar {
@@ -9439,7 +9543,8 @@ export namespace User {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -9503,7 +9608,8 @@ export namespace User {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -9525,7 +9631,8 @@ export namespace User {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -9617,7 +9724,8 @@ export namespace Message {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -9775,6 +9883,29 @@ export namespace Mro {
       status: number;
       /** 数据负载 */
       data: number;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace automaticDispatch {
+    export interface Options {
+      dispatchDate: string;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
       /** 错误信息 */
       message: string;
     }
@@ -9958,28 +10089,6 @@ export namespace Mro {
     }
     export type R = Returns['data'];
   }
-  export namespace automaticDispatch {
-    export interface Options {
-      dispatchDate: string;
-    }
-    export type O = Options;
-    /** 数据负载 */
-    export interface ReturnsPropData {}
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      /** 数据负载 */
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
   export namespace edit {
     /** 附件上传请求 */
     export interface OptionsPropFileListSubItem {
@@ -10033,7 +10142,8 @@ export namespace Mro {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10054,7 +10164,7 @@ export namespace Mro {
       id: number;
     }
     export type O = Options;
-    export type Returns = any;
+    export type Returns = any
     export type R = Returns['data'];
   }
 }
@@ -10202,8 +10312,7 @@ export namespace Mrp {
       repairDate: string;
     }
     /** 派单/中修日期列表 */
-    export type ReturnsPropDataPropListSubItemPropTimeList =
-      ReturnsPropDataPropListSubItemPropTimeListSubItem[];
+    export type ReturnsPropDataPropListSubItemPropTimeList = ReturnsPropDataPropListSubItemPropTimeListSubItem[];
     /** 中修计划查询响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -10295,7 +10404,8 @@ export namespace Mrp {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10319,7 +10429,8 @@ export namespace Mrp {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10521,8 +10632,7 @@ export namespace Dict {
       updatedBy: string;
     }
     /** 字典项列表 */
-    export type ReturnsPropDataSubItemPropDictValueList =
-      ReturnsPropDataSubItemPropDictValueListSubItem[];
+    export type ReturnsPropDataSubItemPropDictValueList = ReturnsPropDataSubItemPropDictValueListSubItem[];
     /** 字典列表查询响应 */
     export interface ReturnsPropDataSubItem {
       /** 字典key */
@@ -10541,59 +10651,6 @@ export namespace Dict {
       /** 响应状态 */
       status: number;
       /** 数据负载 */
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getTypes {
-    export interface Options {
-      typeKey?: string;
-      pageNum: number;
-      pageSize: number;
-    }
-    export type O = Options;
-    /** 字典类型响应 */
-    export interface ReturnsPropDataPropListSubItem {
-      /** 数据字典类型id */
-      id: number;
-      /** 字典编码 */
-      typeKey: string;
-      /** 字典类型值 */
-      typeValue: string;
-      /** 字典类型描述 */
-      typeDesc: string;
-      /** 值为1时不允许操作该条记录 */
-      operation: string;
-      /** 字典类型状态 0-启用 1-禁用 */
-      status: string;
-      /** 创建人 */
-      createdBy: string;
-      /** 更新人 */
-      updatedBy: string;
-    }
-    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
-    /** 通用分页信息 */
-    export interface ReturnsPropData {
-      /** 当前页 */
-      currentPage: number;
-      /** 每页的数量 */
-      pageSize: number;
-      /** 总页数 */
-      totalPage: number;
-      /** 总记录数 */
-      totalNum: number;
-      list: ReturnsPropDataPropList;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
@@ -10657,27 +10714,45 @@ export namespace Dict {
     }
     export type R = Returns['data'];
   }
-  export namespace modifyType {
-    /** 字典类型请求 */
+  export namespace getTypes {
     export interface Options {
+      typeKey?: string;
+      pageNum: number;
+      pageSize: number;
+    }
+    export type O = Options;
+    /** 字典类型响应 */
+    export interface ReturnsPropDataPropListSubItem {
       /** 数据字典类型id */
-      id?: number;
+      id: number;
       /** 字典编码 */
       typeKey: string;
       /** 字典类型值 */
-      typeValue?: string;
+      typeValue: string;
       /** 字典类型描述 */
-      typeDesc?: string;
+      typeDesc: string;
+      /** 值为1时不允许操作该条记录 */
+      operation: string;
       /** 字典类型状态 0-启用 1-禁用 */
-      status?: string;
+      status: string;
       /** 创建人 */
-      createdBy?: string;
+      createdBy: string;
       /** 更新人 */
-      updatedBy?: string;
+      updatedBy: string;
     }
-    export type O = Options;
-    /** 数据负载 */
-    export interface ReturnsPropData {}
+    export type ReturnsPropDataPropList = ReturnsPropDataPropListSubItem[];
+    /** 通用分页信息 */
+    export interface ReturnsPropData {
+      /** 当前页 */
+      currentPage: number;
+      /** 每页的数量 */
+      pageSize: number;
+      /** 总页数 */
+      totalPage: number;
+      /** 总记录数 */
+      totalNum: number;
+      list: ReturnsPropDataPropList;
+    }
     /**
      * 通用响应
      *
@@ -10686,7 +10761,6 @@ export namespace Dict {
     export interface Returns {
       /** 响应状态 */
       status: number;
-      /** 数据负载 */
       data: ReturnsPropData;
       /** 错误信息 */
       message: string;
@@ -10715,7 +10789,45 @@ export namespace Dict {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      /** 数据负载 */
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
+  export namespace modifyType {
+    /** 字典类型请求 */
+    export interface Options {
+      /** 数据字典类型id */
+      id?: number;
+      /** 字典编码 */
+      typeKey: string;
+      /** 字典类型值 */
+      typeValue?: string;
+      /** 字典类型描述 */
+      typeDesc?: string;
+      /** 字典类型状态 0-启用 1-禁用 */
+      status?: string;
+      /** 创建人 */
+      createdBy?: string;
+      /** 更新人 */
+      updatedBy?: string;
+    }
+    export type O = Options;
+    /** 数据负载 */
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10737,7 +10849,8 @@ export namespace Dict {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10759,7 +10872,8 @@ export namespace Dict {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -10804,62 +10918,6 @@ export namespace Gisc {
       updatedBy?: string;
       /** 查询关键字 */
       queryKey?: string;
-    }
-    export type O = Options;
-    /** 组织机构响应 */
-    export interface ReturnsPropData {
-      /** 组织机构id */
-      id: number;
-      /** 组织机构编码 */
-      orgCode: string;
-      /** 组织机构名称 */
-      orgName: string;
-      /** 机构名称简写 */
-      orgShortName: string;
-      /** 组织机构地址 */
-      orgAdress: string;
-      /** 父节点id */
-      parentId: number;
-      /** 机构类型 */
-      type: string;
-      /** 机构类型字典值id */
-      typeId: number;
-      /** 机构类型名称 */
-      typeName: string;
-      /** 组织机构等级字典id */
-      levelId: number;
-      /** 组织机构等级 */
-      level: string;
-      /** 组织机构等级名称 */
-      levelName: string;
-      /** 备注 */
-      remark: string;
-      /** 创建人 */
-      createdBy: string;
-      /** 创建时间 */
-      createdTime: string;
-      /** 更新人 */
-      updatedBy: string;
-      /** 机构路径 */
-      path: string;
-    }
-    /**
-     * 通用响应
-     *
-     * OK
-     */
-    export interface Returns {
-      /** 响应状态 */
-      status: number;
-      data: ReturnsPropData;
-      /** 错误信息 */
-      message: string;
-    }
-    export type R = Returns['data'];
-  }
-  export namespace getOrgOne {
-    export interface Options {
-      id: number;
     }
     export type O = Options;
     /** 组织机构响应 */
@@ -11209,6 +11267,62 @@ export namespace Gisc {
     }
     export type R = Returns['data'];
   }
+  export namespace getOrgOne {
+    export interface Options {
+      id: number;
+    }
+    export type O = Options;
+    /** 组织机构响应 */
+    export interface ReturnsPropData {
+      /** 组织机构id */
+      id: number;
+      /** 组织机构编码 */
+      orgCode: string;
+      /** 组织机构名称 */
+      orgName: string;
+      /** 机构名称简写 */
+      orgShortName: string;
+      /** 组织机构地址 */
+      orgAdress: string;
+      /** 父节点id */
+      parentId: number;
+      /** 机构类型 */
+      type: string;
+      /** 机构类型字典值id */
+      typeId: number;
+      /** 机构类型名称 */
+      typeName: string;
+      /** 组织机构等级字典id */
+      levelId: number;
+      /** 组织机构等级 */
+      level: string;
+      /** 组织机构等级名称 */
+      levelName: string;
+      /** 备注 */
+      remark: string;
+      /** 创建人 */
+      createdBy: string;
+      /** 创建时间 */
+      createdTime: string;
+      /** 更新人 */
+      updatedBy: string;
+      /** 机构路径 */
+      path: string;
+    }
+    /**
+     * 通用响应
+     *
+     * OK
+     */
+    export interface Returns {
+      /** 响应状态 */
+      status: number;
+      data: ReturnsPropData;
+      /** 错误信息 */
+      message: string;
+    }
+    export type R = Returns['data'];
+  }
   export namespace modifyOrg {
     /** 组织机构请求 */
     export interface Options {
@@ -11239,7 +11353,8 @@ export namespace Gisc {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
@@ -11261,7 +11376,8 @@ export namespace Gisc {
     }
     export type O = Options;
     /** 数据负载 */
-    export interface ReturnsPropData {}
+    export interface ReturnsPropData {
+    }
     /**
      * 通用响应
      *
