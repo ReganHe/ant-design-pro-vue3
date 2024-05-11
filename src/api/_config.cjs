@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 module.exports = [
   {
     name: 'portEnergy',
@@ -6,11 +8,7 @@ module.exports = [
     outputDir: './auto',
     json: 'http://pes.app.polarwin.cc:9080/v3/api-docs',
     showUpdateLog: true,
-    blackUrls: [
-      '/gisc/dict/value/get_list_bytypekey',
-      '/mgr/application_user/add_ext',
-      '/mgr/application_user/modify_ext',
-    ],
+    blackUrls: ['/gisc/dict/value/get_list_bytypekey', '/mgr/application_user/add_ext', '/mgr/application_user/modify_ext'],
     tagNameMap: (name) => {
       const TAG_MAP = {
         '01.账号预登录服务': 'GwsToken',
@@ -50,14 +48,14 @@ module.exports = [
         进销存服务: 'Sale',
         首页服务: 'Home',
         销售数据服务: 'SalesData',
-        进销存报表服务: 'Report',
-      };
-      return TAG_MAP[name];
+        进销存报表服务: 'Report'
+      }
+      return TAG_MAP[name]
     },
     API_MAP: function (apiName) {
-      return apiName;
-    },
-  },
+      return apiName
+    }
+  }
   // {
   //   "outputDir": "src/api/common",
   //   "json": "http://192.168.38.195:9516/rest/swagger.json",
@@ -69,4 +67,4 @@ module.exports = [
   //     return apiName
   //   }
   // },
-];
+]

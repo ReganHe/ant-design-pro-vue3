@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "type-check": "vue-tsc --noEmit",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "clean-dev": "vite --force",
     "report": "rimraf dist && cross-env vite build",

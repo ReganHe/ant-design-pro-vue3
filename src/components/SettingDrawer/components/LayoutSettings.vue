@@ -29,8 +29,8 @@
       <!-- 下滑时隐藏 Header -->
       <a-list-item>
         <template #actions>
-          <a-switch slot="actions" size="small" :disabled="!settingsStore.fixedHeader"
-            :checked="settingsStore.autoHideHeader" @change="handleFixedHeaderHidden" />
+          <a-switch size="small" :disabled="!settingsStore.fixedHeader" :checked="settingsStore.autoHideHeader"
+            @change="handleFixedHeaderHidden" />
         </template>
         <a-list-item-meta>
           <template #title>
@@ -44,8 +44,8 @@
       <!-- 固定侧边菜单 -->
       <a-list-item>
         <template #actions>
-          <a-switch slot="actions" size="small" :disabled="settingsStore.layout === 'topmenu'"
-            :checked="settingsStore.fixSiderbar" @change="handleFixSiderbar" />
+          <a-switch size="small" :disabled="settingsStore.layout === 'topmenu'" :checked="settingsStore.fixSiderbar"
+            @change="handleFixSiderbar" />
         </template>
         <a-list-item-meta>
           <template #title>

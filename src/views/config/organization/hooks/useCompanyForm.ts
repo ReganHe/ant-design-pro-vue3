@@ -163,7 +163,7 @@ export default function useCommonForm({ optionsMap }) {
     command.loading = true
     try {
       await form.emitRegister?.validate?.()
-      const { _orgCode, ...data } = form.model
+      const { ...data } = form.model
       await modifyOrg({ ...data, levelId: 2 })
       await message.success('保存成功', 1)
     } finally {

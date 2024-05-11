@@ -23,8 +23,8 @@
       }">
         <multi-tab v-if="settingsStore.multiTab" />
         <transition name="page-transition">
-          <section>
-            <route-view v-if="showRouterRef" />
+          <section v-if="showRouterRef">
+            <route-view />
           </section>
         </transition>
       </a-layout-content>

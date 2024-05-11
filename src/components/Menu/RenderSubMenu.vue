@@ -4,7 +4,7 @@
       <svg-icon v-if="props.menu.meta?.icon" :name="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <template #title>{{ props.menu.meta?.title }}</template>
-    <template v-for="sub in props.menu.children">
+    <template v-for="sub in props.menu.children" :key="sub.path">
       <!-- 递归组件 -->
       <RenderSubMenu :menu="sub" />
     </template>
