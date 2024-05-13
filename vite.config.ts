@@ -6,7 +6,6 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build'
   const root = process.cwd()
   const env = loadEnv(mode, root)
-  console.log(env)
   return {
     base: env.VITE_PUBLIC_PATH,
     resolve: {
