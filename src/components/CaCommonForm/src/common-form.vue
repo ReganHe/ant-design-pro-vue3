@@ -103,10 +103,11 @@ nextTick(() => {
 });
 // 处理验证后自动跳转到错误部分
 formEmitRegister.value['validate'] = () => {
-  return new Promise(async (resolve, reject) => {
+  return new Promise((resolve, reject) => {
     try {
-      await validate();
-      resolve(true);
+      validate().then(() => {
+        resolve(true);
+      });
     } catch (errorInfo: any) {
       scrollToField(errorInfo.errorFields[0].name);
       reject(false);
