@@ -25,7 +25,6 @@ app.component('CaCommonForm', CaCommonForm)
 
 /** 挂载全局变量 dayjs */
 app.config.globalProperties.$dayjs = dayjsWrapper
-console.log('app.config.globalProperties', app.config.globalProperties)
 
 app.mount('#app')
 
