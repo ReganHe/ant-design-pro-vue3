@@ -97,7 +97,6 @@
   // ================ Eslint ===================
   // ===========================================
   // "eslint.enable": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.options": {
     // 配置
     "plugins": [

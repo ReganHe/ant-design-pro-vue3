@@ -5,17 +5,14 @@
   "private": true,
   "scripts": {
     "dev": "cross-env vite --mode development",
-    "debug-vite": "cross-env vite --mode development --debug",
+    "debug": "cross-env vite --mode development --debug",
     "build:test": "cross-env vite build --mode test",
     "build:prod": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
-    "test:unit": "vitest",
+    "swagger": "swagger-parser -f",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/",
-    "clean-dev": "vite --force",
-    "report": "rimraf dist && cross-env vite build",
-    "swagger": "swagger-parser -f"
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "@aesoper/normal-utils": "0.1.5",
