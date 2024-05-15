@@ -1,11 +1,24 @@
 <template>
   <div class="ant-pro-multi-tab">
     <div class="ant-pro-multi-tab-wrapper">
-      <a-tabs hideAdd type="editable-card" v-model:activeKey="activeKey" :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }" @edit="onEdit">
-        <a-tab-pane v-for="page in pages" :key="page.fullPath" :closable="pages.length > 1" style="height: 0">
+      <a-tabs
+        hideAdd
+        type="editable-card"
+        v-model:activeKey="activeKey"
+        :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }"
+        @edit="onEdit"
+      >
+        <a-tab-pane
+          v-for="page in pages"
+          :key="page.fullPath"
+          :closable="pages.length > 1"
+          style="height: 0"
+        >
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
-              <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || page.meta.title }}</span>
+              <span :style="{ userSelect: 'none' }">{{
+                page.meta.customTitle || page.meta.title
+              }}</span>
               <template #overlay>
                 <a-menu
                   @click="

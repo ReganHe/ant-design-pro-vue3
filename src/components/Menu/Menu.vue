@@ -1,5 +1,12 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange" class="SysMenu">
+  <a-menu
+    :mode="mode"
+    :theme="theme"
+    :openKeys="openKeys.value"
+    :selectedKeys="selectedKeys"
+    @openChange="onOpenChange"
+    class="SysMenu"
+  >
     <template v-for="menu in menus" :key="menu.path">
       <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
@@ -72,7 +79,9 @@ const onOpenChange = (openKeysParams) => {
     return
   }
   // 非水平模式时
-  const latestOpenKey: string = openKeysParams.find((key) => /*去掉这个!则可以全部打开菜单(目前只能打开一个菜单)*/ !openKeys.value.includes(key))
+  const latestOpenKey: string = openKeysParams.find(
+    (key) => /*去掉这个!则可以全部打开菜单(目前只能打开一个菜单)*/ !openKeys.value.includes(key)
+  )
   if (!rootSubmenuKeysRef.value.includes(latestOpenKey)) {
     openKeys.value = openKeysParams
   } else {

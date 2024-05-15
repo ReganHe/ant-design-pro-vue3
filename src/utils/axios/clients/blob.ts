@@ -12,7 +12,13 @@ const requestClient = axios.create({
   }
 })
 
-requestClient.interceptors.request.use(requestInterceptor.onFulfilled, requestInterceptor.onRejected)
-requestClient.interceptors.response.use(responseInterceptor.onFulfilled, responseInterceptor.onRejected)
+requestClient.interceptors.request.use(
+  requestInterceptor.onFulfilled,
+  requestInterceptor.onRejected
+)
+requestClient.interceptors.response.use(
+  responseInterceptor.onFulfilled,
+  responseInterceptor.onRejected
+)
 
 export default requestClient

@@ -66,7 +66,17 @@ type ColorInputWithoutInstance = string | PRGB | PRGBA | RGB | RGBA | HSL | HSLA
 
 export type ColorInput = ColorInstance | ColorInputWithoutInstance
 
-export type ColorFormat = 'rgb' | 'prgb' | 'hex' | 'hex6' | 'hex3' | 'hex4' | 'hex8' | 'name' | 'hsl' | 'hsv'
+export type ColorFormat =
+  | 'rgb'
+  | 'prgb'
+  | 'hex'
+  | 'hex6'
+  | 'hex3'
+  | 'hex4'
+  | 'hex8'
+  | 'name'
+  | 'hsl'
+  | 'hsv'
 
 export class Color {
   protected instance: Instance = tinycolor('#000000')

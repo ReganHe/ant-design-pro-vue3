@@ -283,7 +283,8 @@ export namespace GwsUserInfo {
       id: number
       perms: string
     }
-    export type ReturnsPropDataPropMenuPermsSubItemPropPermissions = ReturnsPropDataPropMenuPermsSubItemPropPermissionsSubItem[]
+    export type ReturnsPropDataPropMenuPermsSubItemPropPermissions =
+      ReturnsPropDataPropMenuPermsSubItemPropPermissionsSubItem[]
     export interface ReturnsPropDataPropMenuPermsSubItem {
       menuId: number
       menuName: string
@@ -1197,7 +1198,8 @@ export namespace Lu {
       projectDesc: string
     }
     /** LNG加气站卸车情况 */
-    export type ReturnsPropDataPropListSubItemPropSituationList = ReturnsPropDataPropListSubItemPropSituationListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropSituationList =
+      ReturnsPropDataPropListSubItemPropSituationListSubItem[]
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropBeforeListSubItem {
       /** 主键 */
@@ -1212,7 +1214,8 @@ export namespace Lu {
       checkResult: string
     }
     /** 卸液前检查 */
-    export type ReturnsPropDataPropListSubItemPropBeforeList = ReturnsPropDataPropListSubItemPropBeforeListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropBeforeList =
+      ReturnsPropDataPropListSubItemPropBeforeListSubItem[]
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropProcessListSubItem {
       /** 主键 */
@@ -1227,7 +1230,8 @@ export namespace Lu {
       checkResult: string
     }
     /** 卸液过程检查 */
-    export type ReturnsPropDataPropListSubItemPropProcessList = ReturnsPropDataPropListSubItemPropProcessListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropProcessList =
+      ReturnsPropDataPropListSubItemPropProcessListSubItem[]
     /** LNG加气站卸车检查 */
     export interface ReturnsPropDataPropListSubItemPropAfterListSubItem {
       /** 主键 */
@@ -1242,7 +1246,8 @@ export namespace Lu {
       checkResult: string
     }
     /** 卸液后检查 */
-    export type ReturnsPropDataPropListSubItemPropAfterList = ReturnsPropDataPropListSubItemPropAfterListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropAfterList =
+      ReturnsPropDataPropListSubItemPropAfterListSubItem[]
     /** 查询LNG加气站卸车记录响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -1977,7 +1982,8 @@ export namespace Sc {
       result: number
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropDeviceListSubItemPropMonthList = ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[]
+    export type ReturnsPropDataPropDeviceListSubItemPropMonthList =
+      ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[]
     /** 巡检设备 */
     export interface ReturnsPropDataPropDeviceListSubItem {
       /** 巡检设备id */
@@ -2175,7 +2181,8 @@ export namespace Sc {
       result: number
     }
     /** 储罐巡检内容列表 */
-    export type ReturnsPropDataPropVesselListSubItemPropPvContentList = ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[]
+    export type ReturnsPropDataPropVesselListSubItemPropPvContentList =
+      ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[]
     /** 储罐巡检 */
     export interface ReturnsPropDataPropVesselListSubItem {
       /** 压力容器id */
@@ -2205,7 +2212,8 @@ export namespace Sc {
       times: number
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentList = ReturnsPropDataPropAreaListSubItemPropContentListSubItem[]
+    export type ReturnsPropDataPropAreaListSubItemPropContentList =
+      ReturnsPropDataPropAreaListSubItemPropContentListSubItem[]
     /** 巡检区域 */
     export interface ReturnsPropDataPropAreaListSubItem {
       /** 巡检区域id（对应字典类型id） */
@@ -2295,7 +2303,8 @@ export namespace Sc {
       result: number
     }
     /** 储罐巡检内容列表 */
-    export type ReturnsPropDataPropVesselListSubItemPropPvContentList = ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[]
+    export type ReturnsPropDataPropVesselListSubItemPropPvContentList =
+      ReturnsPropDataPropVesselListSubItemPropPvContentListSubItem[]
     /** 储罐巡检 */
     export interface ReturnsPropDataPropVesselListSubItem {
       /** 压力容器id */
@@ -2325,7 +2334,8 @@ export namespace Sc {
       times: number
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropAreaListSubItemPropContentList = ReturnsPropDataPropAreaListSubItemPropContentListSubItem[]
+    export type ReturnsPropDataPropAreaListSubItemPropContentList =
+      ReturnsPropDataPropAreaListSubItemPropContentListSubItem[]
     /** 巡检区域 */
     export interface ReturnsPropDataPropAreaListSubItem {
       /** 巡检区域id（对应字典类型id） */
@@ -2409,7 +2419,8 @@ export namespace Sc {
       result: number
     }
     /** 巡检内容列表 */
-    export type ReturnsPropDataPropDeviceListSubItemPropMonthList = ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[]
+    export type ReturnsPropDataPropDeviceListSubItemPropMonthList =
+      ReturnsPropDataPropDeviceListSubItemPropMonthListSubItem[]
     /** 巡检设备 */
     export interface ReturnsPropDataPropDeviceListSubItem {
       /** 巡检设备id */
@@ -4310,7 +4321,8 @@ export namespace Org {
       remark: string
     }
     /** 员工附件列表 */
-    export type ReturnsPropDataPropWorkerAttachmentList = ReturnsPropDataPropWorkerAttachmentListSubItem[]
+    export type ReturnsPropDataPropWorkerAttachmentList =
+      ReturnsPropDataPropWorkerAttachmentListSubItem[]
     /** 查询员工资质证书响应 */
     export interface ReturnsPropData {
       /** 员工id */
@@ -5065,7 +5077,8 @@ export namespace Cf {
       operator: string
     }
     /** 加液及充装检查记录明细 */
-    export type ReturnsPropDataPropListSubItemPropDataList = ReturnsPropDataPropListSubItemPropDataListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropDataList =
+      ReturnsPropDataPropListSubItemPropDataListSubItem[]
     /** 查询加液及充装检查记录响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -5892,7 +5905,8 @@ export namespace Sg {
       driver: string
     }
     /** 接班明细（多槽罐） */
-    export type ReturnsPropDataPropListSubItemPropJoinDataList = ReturnsPropDataPropListSubItemPropJoinDataListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropJoinDataList =
+      ReturnsPropDataPropListSubItemPropJoinDataListSubItem[]
     /** 交/接班明细（区域） */
     export interface ReturnsPropDataPropListSubItemPropJoinArea {
       /** 1号加气机 0：未选 1：勾 -1：叉 */
@@ -5970,7 +5984,8 @@ export namespace Sg {
       driver: string
     }
     /** 交班明细（多槽罐） */
-    export type ReturnsPropDataPropListSubItemPropHandOverDataList = ReturnsPropDataPropListSubItemPropHandOverDataListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropHandOverDataList =
+      ReturnsPropDataPropListSubItemPropHandOverDataListSubItem[]
     /** 交/接班明细（区域） */
     export interface ReturnsPropDataPropListSubItemPropHandOverArea {
       /** 1号加气机 0：未选 1：勾 -1：叉 */
@@ -6010,7 +6025,8 @@ export namespace Sg {
       totalGas: string
     }
     /** 加气明细 */
-    export type ReturnsPropDataPropListSubItemPropRecords = ReturnsPropDataPropListSubItemPropRecordsSubItem[]
+    export type ReturnsPropDataPropListSubItemPropRecords =
+      ReturnsPropDataPropListSubItemPropRecordsSubItem[]
     /** 交接班记录（卸液情况） */
     export interface ReturnsPropDataPropListSubItemPropUnloadDataListSubItem {
       /** 主键 */
@@ -6029,7 +6045,8 @@ export namespace Sg {
       unloadPerson: string
     }
     /** 卸液情况 */
-    export type ReturnsPropDataPropListSubItemPropUnloadDataList = ReturnsPropDataPropListSubItemPropUnloadDataListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropUnloadDataList =
+      ReturnsPropDataPropListSubItemPropUnloadDataListSubItem[]
     /** 交/接班明细（槽罐累计加气） */
     export interface ReturnsPropDataPropListSubItemPropGasFillDataListSubItem {
       /** 主键 */
@@ -6046,7 +6063,8 @@ export namespace Sg {
       gasFill: string
     }
     /** 槽罐累计加气 */
-    export type ReturnsPropDataPropListSubItemPropGasFillDataList = ReturnsPropDataPropListSubItemPropGasFillDataListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropGasFillDataList =
+      ReturnsPropDataPropListSubItemPropGasFillDataListSubItem[]
     /** 交接班查询响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -6596,7 +6614,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
+    export type ReturnsPropDataPropHeadListSubItemPropChildren =
+      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
     /** 进销存表头 */
     export interface ReturnsPropDataPropHeadListSubItem {
       /** 表头名称 */
@@ -6682,7 +6701,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
+    export type ReturnsPropDataPropHeadListSubItemPropChildren =
+      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
     /** 进销存表头 */
     export interface ReturnsPropDataPropHeadListSubItem {
       /** 表头名称 */
@@ -6702,7 +6722,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 期初库存 */
-    export type ReturnsPropDataPropDataListSubItemPropOpenDataList = ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropOpenDataList =
+      ReturnsPropDataPropDataListSubItemPropOpenDataListSubItem[]
     /** 进出存报表子记录 */
     export interface ReturnsPropDataPropDataListSubItemPropInDataListSubItem {
       /** 值 */
@@ -6711,7 +6732,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 进液入库 */
-    export type ReturnsPropDataPropDataListSubItemPropInDataList = ReturnsPropDataPropDataListSubItemPropInDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropInDataList =
+      ReturnsPropDataPropDataListSubItemPropInDataListSubItem[]
     /** 进出存报表子记录 */
     export interface ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem {
       /** 值 */
@@ -6720,7 +6742,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 本月销售 */
-    export type ReturnsPropDataPropDataListSubItemPropSaleDataList = ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropSaleDataList =
+      ReturnsPropDataPropDataListSubItemPropSaleDataListSubItem[]
     /** 进出存报表子记录 */
     export interface ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem {
       /** 值 */
@@ -6729,7 +6752,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 理论库存 */
-    export type ReturnsPropDataPropDataListSubItemPropTheoryDataList = ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropTheoryDataList =
+      ReturnsPropDataPropDataListSubItemPropTheoryDataListSubItem[]
     /** 进出存报表子记录 */
     export interface ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem {
       /** 值 */
@@ -6738,7 +6762,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 实际库存 */
-    export type ReturnsPropDataPropDataListSubItemPropPhysicalDataList = ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropPhysicalDataList =
+      ReturnsPropDataPropDataListSubItemPropPhysicalDataListSubItem[]
     /** 进出存报表子记录 */
     export interface ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem {
       /** 值 */
@@ -6747,7 +6772,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 误差情况 */
-    export type ReturnsPropDataPropDataListSubItemPropWrongDataList = ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropWrongDataList =
+      ReturnsPropDataPropDataListSubItemPropWrongDataListSubItem[]
     /** 进出存报表主记录 */
     export interface ReturnsPropDataPropDataListSubItem {
       /** 日期 */
@@ -6806,7 +6832,8 @@ export namespace Report {
       dataIndex: string
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropHeadListSubItemPropChildren = ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
+    export type ReturnsPropDataPropHeadListSubItemPropChildren =
+      ReturnsPropDataPropHeadListSubItemPropChildrenSubItem[]
     /** 进销存表头 */
     export interface ReturnsPropDataPropHeadListSubItem {
       /** 表头名称 */
@@ -6825,7 +6852,8 @@ export namespace Report {
       /** 数据索引 */
       dataIndex: string
     }
-    export type ReturnsPropDataPropDataListSubItemPropWeightDataList = ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem[]
+    export type ReturnsPropDataPropDataListSubItemPropWeightDataList =
+      ReturnsPropDataPropDataListSubItemPropWeightDataListSubItem[]
     /** 销售日报数据 */
     export interface ReturnsPropDataPropDataListSubItem {
       date: string
@@ -6885,7 +6913,8 @@ export namespace Sale {
       dataIndex: string
     }
     /** 子表头集合 */
-    export type ReturnsPropDataPropMainHeadListSubItemPropChildren = ReturnsPropDataPropMainHeadListSubItemPropChildrenSubItem[]
+    export type ReturnsPropDataPropMainHeadListSubItemPropChildren =
+      ReturnsPropDataPropMainHeadListSubItemPropChildrenSubItem[]
     /** 进销存表头 */
     export interface ReturnsPropDataPropMainHeadListSubItem {
       /** 表头名称 */
@@ -6915,7 +6944,8 @@ export namespace Sale {
       outValue: string
     }
     /** 数据 */
-    export type ReturnsPropDataPropMainDataListSubItemPropChildrenData = ReturnsPropDataPropMainDataListSubItemPropChildrenDataSubItem[]
+    export type ReturnsPropDataPropMainDataListSubItemPropChildrenData =
+      ReturnsPropDataPropMainDataListSubItemPropChildrenDataSubItem[]
     /** 进销存主记录 */
     export interface ReturnsPropDataPropMainDataListSubItem {
       /** 日期 */
@@ -7076,7 +7106,8 @@ export namespace Home {
       liquidInlet: number
     }
     /** 卸液情况 */
-    export type ReturnsPropDataPropInfoListSubItemPropVesselUploadList = ReturnsPropDataPropInfoListSubItemPropVesselUploadListSubItem[]
+    export type ReturnsPropDataPropInfoListSubItemPropVesselUploadList =
+      ReturnsPropDataPropInfoListSubItemPropVesselUploadListSubItem[]
     /** 各站点情况 */
     export interface ReturnsPropDataPropInfoListSubItem {
       /** 站点id */
@@ -7163,7 +7194,8 @@ export namespace Sec {
       result: number
     }
     /** 检查内容列表 */
-    export type ReturnsPropDataPropPositionListSubItemPropContentList = ReturnsPropDataPropPositionListSubItemPropContentListSubItem[]
+    export type ReturnsPropDataPropPositionListSubItemPropContentList =
+      ReturnsPropDataPropPositionListSubItemPropContentListSubItem[]
     /** 特种设备部位 */
     export interface ReturnsPropDataPropPositionListSubItem {
       /** 设备部位id */
@@ -7244,7 +7276,8 @@ export namespace Sec {
       result: number
     }
     /** 检查内容列表 */
-    export type ReturnsPropDataPropPositionListSubItemPropContentList = ReturnsPropDataPropPositionListSubItemPropContentListSubItem[]
+    export type ReturnsPropDataPropPositionListSubItemPropContentList =
+      ReturnsPropDataPropPositionListSubItemPropContentListSubItem[]
     /** 特种设备部位 */
     export interface ReturnsPropDataPropPositionListSubItem {
       /** 设备部位id */
@@ -10273,7 +10306,8 @@ export namespace Mrp {
       repairDate: string
     }
     /** 派单/中修日期列表 */
-    export type ReturnsPropDataPropListSubItemPropTimeList = ReturnsPropDataPropListSubItemPropTimeListSubItem[]
+    export type ReturnsPropDataPropListSubItemPropTimeList =
+      ReturnsPropDataPropListSubItemPropTimeListSubItem[]
     /** 中修计划查询响应 */
     export interface ReturnsPropDataPropListSubItem {
       /** 主键 */
@@ -10591,7 +10625,8 @@ export namespace Dict {
       updatedBy: string
     }
     /** 字典项列表 */
-    export type ReturnsPropDataSubItemPropDictValueList = ReturnsPropDataSubItemPropDictValueListSubItem[]
+    export type ReturnsPropDataSubItemPropDictValueList =
+      ReturnsPropDataSubItemPropDictValueListSubItem[]
     /** 字典列表查询响应 */
     export interface ReturnsPropDataSubItem {
       /** 字典key */

@@ -8,7 +8,11 @@ module.exports = [
     outputDir: './auto',
     json: 'http://pes.app.polarwin.cc:9080/v3/api-docs',
     showUpdateLog: true,
-    blackUrls: ['/gisc/dict/value/get_list_bytypekey', '/mgr/application_user/add_ext', '/mgr/application_user/modify_ext'],
+    blackUrls: [
+      '/gisc/dict/value/get_list_bytypekey',
+      '/mgr/application_user/add_ext',
+      '/mgr/application_user/modify_ext'
+    ],
     tagNameMap: (name) => {
       const TAG_MAP = {
         '01.账号预登录服务': 'GwsToken',

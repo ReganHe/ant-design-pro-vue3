@@ -1,7 +1,11 @@
 <template>
   <a-breadcrumb class="breadcrumb">
     <a-breadcrumb-item v-for="item in state.breadList" :key="item.name">
-      <router-link v-if="item.name !== state.name" :to="{ path: item.path === '' ? '/' : item.path }">{{ item.meta.title }}</router-link>
+      <router-link
+        v-if="item.name !== state.name"
+        :to="{ path: item.path === '' ? '/' : item.path }"
+        >{{ item.meta.title }}</router-link
+      >
       <span v-else>{{ item.meta.title }}</span>
     </a-breadcrumb-item>
   </a-breadcrumb>

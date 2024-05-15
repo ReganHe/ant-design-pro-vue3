@@ -22,7 +22,10 @@
       width: `calc(${width} - ${layout === 'vertical' ? '16px' : '0px'})`,
       marginLeft: `${layout === 'vertical' ? '8px' : '0'}`,
       marginRight: `${layout === 'vertical' ? '8px' : '0'}`,
-      marginBottom: ['groupTitle', 'custom', 'space'].includes(type) || validateInfos[dataField]?.help ? '0' : 'inherit',
+      marginBottom:
+        ['groupTitle', 'custom', 'space'].includes(type) || validateInfos[dataField]?.help
+          ? '0'
+          : 'inherit',
       ...extendProps.formItemStyle
     }"
   >
@@ -30,7 +33,9 @@
       v-if="type === 'select'"
       v-model:value="model[dataField]"
       placeholder="请选择"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
@@ -38,7 +43,9 @@
       v-else-if="type === 'autocomplete'"
       v-model:value="model[dataField]"
       placeholder="请选择"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
@@ -46,14 +53,18 @@
       v-else-if="type === 'date'"
       v-model:value="model[dataField]"
       placeholder="请选择"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
     <RangePicker
       v-else-if="type === 'dateRange'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
@@ -61,24 +72,36 @@
       v-else-if="type === 'time'"
       v-model:value="model[dataField]"
       placeholder="请选择"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
     <TimeRangePicker
       v-else-if="type === 'timeRange'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
-    <span v-else-if="type === 'text'" v-bind="elementProps" :style="{ width: '100%', whiteSpace: 'pre-line', ...elementProps.style }">
-      {{ `${model[dataField] || (elementProps?.suffix ? ' - ' : '暂无')}${elementProps?.suffix || ''}` }}
+    <span
+      v-else-if="type === 'text'"
+      v-bind="elementProps"
+      :style="{ width: '100%', whiteSpace: 'pre-line', ...elementProps.style }"
+    >
+      {{
+        `${model[dataField] || (elementProps?.suffix ? ' - ' : '暂无')}${elementProps?.suffix || ''}`
+      }}
     </span>
     <Textarea
       v-else-if="type === 'textArea'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       placeholder="请输入"
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
@@ -96,7 +119,9 @@
     >
       <div style="float: left">
         {{ extendProps.groupTitle }}
-        <span style="margin-left: 36px; font-size: 14px; color: #999; font-weight: normal">{{ extendProps.subTitle }}</span>
+        <span style="margin-left: 36px; font-size: 14px; color: #999; font-weight: normal">{{
+          extendProps.subTitle
+        }}</span>
       </div>
       <div v-if="extendProps.groupCommands" :style="{ float: 'right' }">
         <Button
@@ -114,14 +139,18 @@
     <CheckboxGroup
       v-else-if="type === 'checkboxGroup'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
     <RadioGroup
       v-else-if="type === 'radioGroup'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
     />
@@ -148,15 +177,22 @@
       :style="{
         width: '100%',
         ...elementProps.style,
-        color: ((extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {}).color
+        color: (
+          (extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {}
+        ).color
       }"
     >
-      {{ ((extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {}).label }}
+      {{
+        ((extendProps.statusOptions || []).filter((r) => r.value === model[dataField])[0] || {})
+          .label
+      }}
     </span>
     <InputNumber
       v-else-if="type === 'inputNumber'"
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       placeholder="请输入"
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
@@ -164,14 +200,18 @@
     <Switch
       v-else-if="type === 'switch'"
       v-model:checked="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       v-bind="elementProps"
       :style="elementProps.style"
     />
     <Input
       v-else
       v-model:value="model[dataField]"
-      :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+      :disabled="
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      "
       placeholder="请输入"
       v-bind="elementProps"
       :style="{ width: '100%', ...elementProps.style }"
@@ -185,7 +225,22 @@
 
 <script lang="ts" setup>
 import { PropType, computed } from 'vue'
-import { FormItem, Input, InputNumber, AutoComplete, Select, DatePicker, RangePicker, TimePicker, TimeRangePicker, Textarea, Button, CheckboxGroup, RadioGroup, Switch } from 'ant-design-vue'
+import {
+  FormItem,
+  Input,
+  InputNumber,
+  AutoComplete,
+  Select,
+  DatePicker,
+  RangePicker,
+  TimePicker,
+  TimeRangePicker,
+  Textarea,
+  Button,
+  CheckboxGroup,
+  RadioGroup,
+  Switch
+} from 'ant-design-vue'
 import { FormFieldExtendProps } from '#/castor-antd'
 import { Rule } from 'ant-design-vue/es/form/interface'
 import UploadDrag from './upload-dragger.vue'

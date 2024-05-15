@@ -8,7 +8,10 @@ const s = 'ApiGwsApplication.'
  *
  * **TAG:** 04.应用管理服务； &nbsp;&nbsp; **PATH:** /mgr/application/get_list_paged；
  */
-export const findApplicationsPaged = base.createRequest<GwsApplication.findApplicationsPaged.Options, GwsApplication.findApplicationsPaged.Returns['data']>(s + 'findApplicationsPaged', (params) => ({
+export const findApplicationsPaged = base.createRequest<
+  GwsApplication.findApplicationsPaged.Options,
+  GwsApplication.findApplicationsPaged.Returns['data']
+>(s + 'findApplicationsPaged', (params) => ({
   url: `/mgr/application/get_list_paged`,
   method: 'GET',
   params
@@ -19,7 +22,10 @@ export const findApplicationsPaged = base.createRequest<GwsApplication.findAppli
  *
  * **TAG:** 04.应用管理服务； &nbsp;&nbsp; **PATH:** /mgr/application/get_one/{id}；
  */
-export const findOneApplication = base.createRequest<GwsApplication.findOneApplication.Options, GwsApplication.findOneApplication.Returns['data']>(s + 'findOneApplication', ({ id, ...params }) => ({
+export const findOneApplication = base.createRequest<
+  GwsApplication.findOneApplication.Options,
+  GwsApplication.findOneApplication.Returns['data']
+>(s + 'findOneApplication', ({ id, ...params }) => ({
   url: `/mgr/application/get_one/${id}`,
   method: 'GET',
   params
@@ -30,7 +36,9 @@ export const findOneApplication = base.createRequest<GwsApplication.findOneAppli
  *
  * **TAG:** 04.应用管理服务； &nbsp;&nbsp; **PATH:** /mgr/application/get_uc_list；
  */
-export const findUserCenterApplication = base.createNoParamsRequest<GwsApplication.findUserCenterApplication.Returns['data']>(s + 'findUserCenterApplication', () => ({
+export const findUserCenterApplication = base.createNoParamsRequest<
+  GwsApplication.findUserCenterApplication.Returns['data']
+>(s + 'findUserCenterApplication', () => ({
   url: `/mgr/application/get_uc_list`,
   method: 'GET'
 }))

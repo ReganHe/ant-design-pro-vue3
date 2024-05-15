@@ -15,7 +15,11 @@
       <svg-icon :name="props.menu.meta?.icon" v-if="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <!-- 外部链接 -->
-    <a v-if="props.menu.meta?.target" :href="props.menu.meta?.target" :target="props.menu.meta.blank === false ? '' : '_blank'">
+    <a
+      v-if="props.menu.meta?.target"
+      :href="props.menu.meta?.target"
+      :target="props.menu.meta.blank === false ? '' : '_blank'"
+    >
       <!-- span重复了吧?这就是template的弊端,jsx才是王道 -->
       <span>{{ props.menu.meta?.title }}</span>
     </a>

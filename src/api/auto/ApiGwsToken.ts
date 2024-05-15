@@ -8,7 +8,10 @@ const s = 'ApiGwsToken.'
  *
  * **TAG:** 01.账号预登录服务； &nbsp;&nbsp; **PATH:** /account/exchange_refresh_token；
  */
-export const exchangeRefreshToken = base.createRequest<GwsToken.exchangeRefreshToken.Options, GwsToken.exchangeRefreshToken.Returns['data']>(s + 'exchangeRefreshToken', (data) => ({
+export const exchangeRefreshToken = base.createRequest<
+  GwsToken.exchangeRefreshToken.Options,
+  GwsToken.exchangeRefreshToken.Returns['data']
+>(s + 'exchangeRefreshToken', (data) => ({
   url: `/account/exchange_refresh_token`,
   method: 'POST',
   data
@@ -21,4 +24,7 @@ export const exchangeRefreshToken = base.createRequest<GwsToken.exchangeRefreshT
  *
  * **TAG:** 01.账号预登录服务； &nbsp;&nbsp; **PATH:** /account/pre_login；
  */
-export const preLogin = base.createRequest<GwsToken.preLogin.Options, GwsToken.preLogin.Returns['data']>(s + 'preLogin', (data) => ({ url: `/account/pre_login`, method: 'POST', data }))
+export const preLogin = base.createRequest<
+  GwsToken.preLogin.Options,
+  GwsToken.preLogin.Returns['data']
+>(s + 'preLogin', (data) => ({ url: `/account/pre_login`, method: 'POST', data }))

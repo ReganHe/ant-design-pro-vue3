@@ -1,6 +1,12 @@
 <template>
   <Form ref="formRef" :model="model" layout="inline" v-bind="elementProps">
-    <QueryCtrl v-for="(field, index) in fields" :key="index" :default-model="model" v-bind="field" @enterKeyDown="handleKeyDown" />
+    <QueryCtrl
+      v-for="(field, index) in fields"
+      :key="index"
+      :default-model="model"
+      v-bind="field"
+      @enterKeyDown="handleKeyDown"
+    />
     <FormItem>
       <Button
         v-for="(item, index) of commands"

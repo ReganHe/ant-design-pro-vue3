@@ -1,5 +1,11 @@
 <template>
-  <component :is="customComponents[componentKey]" :v-model:component-data="record[dataField]" :model="record" :dataField="dataField" :handleEmit="handleEmit" />
+  <component
+    :is="customComponents[componentKey]"
+    :v-model:component-data="record[dataField]"
+    :model="record"
+    :dataField="dataField"
+    :handleEmit="handleEmit"
+  />
 </template>
 
 <script lang="ts" setup>

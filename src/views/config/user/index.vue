@@ -17,10 +17,22 @@
         />
       </div>
     </div>
-    <Modal v-model:open="form.visible" :title="form.title" width="500px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
+    <Modal
+      v-model:open="form.visible"
+      :title="form.title"
+      width="500px"
+      :footer="null"
+      :after-close="() => resetForm({ form, callback: getList })"
+    >
       <ca-common-form v-bind="form" />
     </Modal>
-    <Modal v-model:open="resetPwdForm.visible" :title="resetPwdForm.title" width="500px" :footer="null" :after-close="() => resetForm({ form: resetPwdForm, callback: null })">
+    <Modal
+      v-model:open="resetPwdForm.visible"
+      :title="resetPwdForm.title"
+      width="500px"
+      :footer="null"
+      :after-close="() => resetForm({ form: resetPwdForm, callback: null })"
+    >
       <ca-common-form v-bind="resetPwdForm" />
     </Modal>
   </div>
@@ -149,7 +161,11 @@ const handleAdd = () => {
   setFormValue(form.model, {
     orgId: pageModel.currentOrgId,
     path: pageModel.currentOrgPath,
-    roleIds: pageModel.roles.filter((r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')).map((r) => r.id),
+    roleIds: pageModel.roles
+      .filter(
+        (r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')
+      )
+      .map((r) => r.id),
     deviceIds: pageModel.devices.map((r) => r.id)
   })
 }
@@ -163,7 +179,11 @@ const handleEdit = ({ index, row }) => {
     status: row.status === '0',
     orgId: pageModel.currentOrgId,
     path: pageModel.currentOrgPath,
-    roleIds: pageModel.roles.filter((r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')).map((r) => r.id),
+    roleIds: pageModel.roles
+      .filter(
+        (r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')
+      )
+      .map((r) => r.id),
     deviceIds: pageModel.devices.map((r) => r.id)
   })
 }

@@ -8,14 +8,20 @@ const s = 'ApiReport.'
  *
  * **TAG:** 进销存报表服务； &nbsp;&nbsp; **PATH:** /1.0/report/export_excel；
  */
-export const exportExcel = base.createBlobRequest<Report.exportExcel.Options>(s + 'exportExcel', (params) => ({ url: `/1.0/report/export_excel`, method: 'GET', params }))
+export const exportExcel = base.createBlobRequest<Report.exportExcel.Options>(
+  s + 'exportExcel',
+  (params) => ({ url: `/1.0/report/export_excel`, method: 'GET', params })
+)
 
 /**
  * 查询查询进出存报表
  *
  * **TAG:** 进销存报表服务； &nbsp;&nbsp; **PATH:** /1.0/report/get_sale_inventory_report；
  */
-export const queryInventoryReport = base.createRequest<Report.queryInventoryReport.Options, Report.queryInventoryReport.Returns['data']>(s + 'queryInventoryReport', (params) => ({
+export const queryInventoryReport = base.createRequest<
+  Report.queryInventoryReport.Options,
+  Report.queryInventoryReport.Returns['data']
+>(s + 'queryInventoryReport', (params) => ({
   url: `/1.0/report/get_sale_inventory_report`,
   method: 'GET',
   params
@@ -26,7 +32,10 @@ export const queryInventoryReport = base.createRequest<Report.queryInventoryRepo
  *
  * **TAG:** 进销存报表服务； &nbsp;&nbsp; **PATH:** /1.0/report/get_sale_inventory_unload；
  */
-export const queryInventoryUnload = base.createRequest<Report.queryInventoryUnload.Options, Report.queryInventoryUnload.Returns['data']>(s + 'queryInventoryUnload', (params) => ({
+export const queryInventoryUnload = base.createRequest<
+  Report.queryInventoryUnload.Options,
+  Report.queryInventoryUnload.Returns['data']
+>(s + 'queryInventoryUnload', (params) => ({
   url: `/1.0/report/get_sale_inventory_unload`,
   method: 'GET',
   params
@@ -37,7 +46,10 @@ export const queryInventoryUnload = base.createRequest<Report.queryInventoryUnlo
  *
  * **TAG:** 进销存报表服务； &nbsp;&nbsp; **PATH:** /1.0/report/get_sale_report；
  */
-export const querySaleReport = base.createRequest<Report.querySaleReport.Options, Report.querySaleReport.Returns['data']>(s + 'querySaleReport', (params) => ({
+export const querySaleReport = base.createRequest<
+  Report.querySaleReport.Options,
+  Report.querySaleReport.Returns['data']
+>(s + 'querySaleReport', (params) => ({
   url: `/1.0/report/get_sale_report`,
   method: 'GET',
   params

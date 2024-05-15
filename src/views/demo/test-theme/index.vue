@@ -1,7 +1,9 @@
 <template>
   <a-config-provider :theme="themesStore.themeConfig">
     <a-select v-model:value="themesStore.themeName" style="width: 240px">
-      <a-select-option v-for="(color, name) in variables" :value="name" :key="name"> {{ name }}:{{ color }}</a-select-option>
+      <a-select-option v-for="(color, name) in variables" :value="name" :key="name">
+        {{ name }}:{{ color }}</a-select-option
+      >
     </a-select>
     <a-select v-model:value="themesStore.darkMode" style="width: 120px">
       <a-select-option value="dark">dark</a-select-option>
@@ -9,7 +11,9 @@
     </a-select>
     <a-button-group>
       <a-button type="primary">切换主题- {{ themesStore.themeName }}</a-button>
-      <a-button @click="themesStore.toggleDarkMode">切换模式{{ themesStore.darkModeComp }}</a-button>
+      <a-button @click="themesStore.toggleDarkMode"
+        >切换模式{{ themesStore.darkModeComp }}</a-button
+      >
     </a-button-group>
 
     <div class="common-page">
@@ -25,7 +29,13 @@
           }"
         />
       </div>
-      <Modal v-model:open="form.visible" :title="form.title" width="900px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
+      <Modal
+        v-model:open="form.visible"
+        :title="form.title"
+        width="900px"
+        :footer="null"
+        :after-close="() => resetForm({ form, callback: getList })"
+      >
         <ca-common-form v-bind="form" />
       </Modal>
     </div>
@@ -117,7 +127,8 @@ const getList = () => {
   console.log('getList', table.pagination, query.model)
   table.loading = true
   setTimeout(() => {
-    const baseIndex = (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
+    const baseIndex =
+      (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
     table.dataSource = [
       {
         id: baseIndex + 1,

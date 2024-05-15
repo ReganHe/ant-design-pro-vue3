@@ -82,7 +82,13 @@
       />
     </div> -->
     <div class="format-group" v-if="currentFormat === 'hex'">
-      <input v-model="currentColor.hex" type="text" maxlength="7" placeholder="hex" @blur="onInputChange('hex')" />
+      <input
+        v-model="currentColor.hex"
+        type="text"
+        maxlength="7"
+        placeholder="hex"
+        @blur="onInputChange('hex')"
+      />
     </div>
   </div>
 </template>

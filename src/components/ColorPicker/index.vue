@@ -1,14 +1,39 @@
 <template>
   <div class="bee-ele-colorPicker">
     <div class="bee-ele-row">
-      <saturation class="bee-ele-saturation" :hidden="true" :saturation="currentColor.hsv.s" :hue="currentColor.hsv.h" :value="currentColor.hsv.v" @change="onSaturationChange" />
-      <hue class="bee-ele-hue" :vertical="true" size="small" :hue="currentColor.hsv.h" @change="onHueChange" v-if="!disableHue" />
+      <saturation
+        class="bee-ele-saturation"
+        :hidden="true"
+        :saturation="currentColor.hsv.s"
+        :hue="currentColor.hsv.h"
+        :value="currentColor.hsv.v"
+        @change="onSaturationChange"
+      />
+      <hue
+        class="bee-ele-hue"
+        :vertical="true"
+        size="small"
+        :hue="currentColor.hsv.h"
+        @change="onHueChange"
+        v-if="!disableHue"
+      />
     </div>
-    <alpha style="width: 257px" :color="currentColor.hex8" @change="onAlphaChange" :alpha="currentColor.alpha" v-if="!disableAlpha" />
+    <alpha
+      style="width: 257px"
+      :color="currentColor.hex8"
+      @change="onAlphaChange"
+      :alpha="currentColor.alpha"
+      v-if="!disableAlpha"
+    />
 
     <v-color-input style="width: 257px" :color="currentColor" @change="onInputChange" />
 
-    <history :color-list="storageColorList" :round="historyRound" @change="onCompactChange" v-if="!disableHistory" />
+    <history
+      :color-list="storageColorList"
+      :round="historyRound"
+      @change="onCompactChange"
+      v-if="!disableHistory"
+    />
   </div>
 </template>
 
@@ -19,7 +44,15 @@ import Hue from './common/Hue.vue'
 import Alpha from './common/Alpha.vue'
 import History from './common/History.vue'
 import VColorInput from './common/VColorInput.vue'
-import { Color, ColorAttrs, ColorFormat, ColorInput, debounceFn, MAX_STORAGE_LENGTH, STORAGE_COLOR_KEY } from './color'
+import {
+  Color,
+  ColorAttrs,
+  ColorFormat,
+  ColorInput,
+  debounceFn,
+  MAX_STORAGE_LENGTH,
+  STORAGE_COLOR_KEY
+} from './color'
 
 const props = defineProps({
   color: {

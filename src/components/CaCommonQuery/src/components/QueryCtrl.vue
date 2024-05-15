@@ -1,6 +1,18 @@
 <template>
-  <FormItem :label="label" :name="dataField" v-bind="extendProps.formItemProps" v-if="!visibleValidator || visibleValidator({ model })">
-    <Select v-if="type === 'select'" v-model:value="model[dataField]" placeholder="请选择" :disabled="disableValidator && disableValidator({ model })" :allow-clear="true" v-bind="elementProps" />
+  <FormItem
+    :label="label"
+    :name="dataField"
+    v-bind="extendProps.formItemProps"
+    v-if="!visibleValidator || visibleValidator({ model })"
+  >
+    <Select
+      v-if="type === 'select'"
+      v-model:value="model[dataField]"
+      placeholder="请选择"
+      :disabled="disableValidator && disableValidator({ model })"
+      :allow-clear="true"
+      v-bind="elementProps"
+    />
     <DatePicker
       v-else-if="type === 'date'"
       v-model:value="model[dataField]"
@@ -9,7 +21,13 @@
       :allow-clear="true"
       v-bind="elementProps"
     />
-    <RangePicker v-else-if="type === 'dateRange'" v-model:value="model[dataField]" :disabled="disableValidator && disableValidator({ model })" :allow-clear="true" v-bind="elementProps" />
+    <RangePicker
+      v-else-if="type === 'dateRange'"
+      v-model:value="model[dataField]"
+      :disabled="disableValidator && disableValidator({ model })"
+      :allow-clear="true"
+      v-bind="elementProps"
+    />
     <TimePicker
       v-else-if="type === 'time'"
       v-model:value="model[dataField]"
@@ -18,14 +36,35 @@
       :allow-clear="true"
       v-bind="elementProps"
     />
-    <TimeRangePicker v-else-if="type === 'timeRange'" v-model:value="model[dataField]" :disabled="disableValidator && disableValidator({ model })" :allow-clear="true" v-bind="elementProps" />
-    <Input v-else v-model:value="model[dataField]" placeholder="请输入" :disabled="disableValidator && disableValidator({ model })" v-bind="elementProps" @pressEnter="handleInputEnter" />
+    <TimeRangePicker
+      v-else-if="type === 'timeRange'"
+      v-model:value="model[dataField]"
+      :disabled="disableValidator && disableValidator({ model })"
+      :allow-clear="true"
+      v-bind="elementProps"
+    />
+    <Input
+      v-else
+      v-model:value="model[dataField]"
+      placeholder="请输入"
+      :disabled="disableValidator && disableValidator({ model })"
+      v-bind="elementProps"
+      @pressEnter="handleInputEnter"
+    />
   </FormItem>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { FormItem, Input, Select, DatePicker, RangePicker, TimePicker, TimeRangePicker } from 'ant-design-vue'
+import {
+  FormItem,
+  Input,
+  Select,
+  DatePicker,
+  RangePicker,
+  TimePicker,
+  TimeRangePicker
+} from 'ant-design-vue'
 const props = defineProps({
   type: {
     type: String,

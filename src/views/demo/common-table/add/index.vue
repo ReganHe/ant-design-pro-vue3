@@ -82,7 +82,8 @@ const getList = () => {
   console.log('getList', table.pagination || {})
   table.loading = true
   setTimeout(() => {
-    const baseIndex = (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
+    const baseIndex =
+      (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
     table.dataSource = [
       {
         id: baseIndex + 1,

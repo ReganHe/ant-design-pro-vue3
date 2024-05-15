@@ -1,9 +1,16 @@
 <template>
-  <div class="table-append-header" v-if="title || addCommand || (customCommands && customCommands.length)">
+  <div
+    class="table-append-header"
+    v-if="title || addCommand || (customCommands && customCommands.length)"
+  >
     <div class="table-title">{{ title || '' }}</div>
     <div class="table-commands">
       <Button
-        v-if="addCommand && addCommand.text && (!addCommand.visibleValidator || addCommand.visibleValidator())"
+        v-if="
+          addCommand &&
+          addCommand.text &&
+          (!addCommand.visibleValidator || addCommand.visibleValidator())
+        "
         type="primary"
         :disabled="addCommand.disableValidator && addCommand.disableValidator()"
         v-bind="addCommand.elementProps"
@@ -84,7 +91,16 @@ const antColumns = computed<any>(() =>
         return {
           title: r.label,
           customRender: ({ record, index }) => {
-            return <LinkColumn command={(r.extendProps || {}).linkCommand} dataField={r.dataField} handleEmit={handleEmit} record={record} index={index} elementProps={r.elementProps} />
+            return (
+              <LinkColumn
+                command={(r.extendProps || {}).linkCommand}
+                dataField={r.dataField}
+                handleEmit={handleEmit}
+                record={record}
+                index={index}
+                elementProps={r.elementProps}
+              />
+            )
           },
           ...r.elementProps
         }
@@ -92,7 +108,15 @@ const antColumns = computed<any>(() =>
         return {
           title: r.label,
           customRender: ({ record }) => {
-            return <ComponentColumn customComponents={props.customComponents} componentKey={(r.extendProps || {}).componentKey} dataField={r.dataField} record={record} handleEmit={handleEmit} />
+            return (
+              <ComponentColumn
+                customComponents={props.customComponents}
+                componentKey={(r.extendProps || {}).componentKey}
+                dataField={r.dataField}
+                record={record}
+                handleEmit={handleEmit}
+              />
+            )
           },
           ...r.elementProps
         }
@@ -100,7 +124,14 @@ const antColumns = computed<any>(() =>
         return {
           title: r.label,
           customRender: ({ record, index }) => {
-            return <CommandColumn commands={(r.extendProps || {}).commands} handleEmit={handleEmit} record={record} index={index} />
+            return (
+              <CommandColumn
+                commands={(r.extendProps || {}).commands}
+                handleEmit={handleEmit}
+                record={record}
+                index={index}
+              />
+            )
           },
           ...r.elementProps
         }
@@ -108,7 +139,13 @@ const antColumns = computed<any>(() =>
         return {
           title: r.label,
           customRender: ({ record }) => {
-            return <StatusColumn options={(r.extendProps || {}).options} record={record} dataField={r.dataField} />
+            return (
+              <StatusColumn
+                options={(r.extendProps || {}).options}
+                record={record}
+                dataField={r.dataField}
+              />
+            )
           },
           ...r.elementProps
         }

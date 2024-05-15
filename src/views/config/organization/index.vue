@@ -12,7 +12,13 @@
         }"
       />
     </div>
-    <Modal v-model:open="form.visible" :title="form.title" width="400px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
+    <Modal
+      v-model:open="form.visible"
+      :title="form.title"
+      width="400px"
+      :footer="null"
+      :after-close="() => resetForm({ form, callback: getList })"
+    >
       <ca-common-form v-bind="form" />
     </Modal>
   </div>

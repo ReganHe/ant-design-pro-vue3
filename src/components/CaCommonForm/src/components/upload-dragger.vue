@@ -2,7 +2,8 @@
   <UploadDragger
     name="uploadFile"
     :class="{
-      'custom-upload': operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+      'custom-upload':
+        operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
     }"
     v-model:file-list="model[dataField]"
     :action="uploadUrl"
@@ -12,35 +13,69 @@
     @remove="handleRemove"
     @download="handleDownload"
     v-bind="elementProps"
-    :disabled="operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))"
+    :disabled="
+      operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))
+    "
     :style="{ width: '100%', ...elementProps.style }"
   >
     <span
-      v-if="(operateType === 'view' || (disableValidator && disableValidator({ model, operateType }))) && model[dataField] && model[dataField].length === 0"
+      v-if="
+        (operateType === 'view' ||
+          (disableValidator && disableValidator({ model, operateType }))) &&
+        model[dataField] &&
+        model[dataField].length === 0
+      "
       class="float-left"
       :style="{ color: elementProps.style && elementProps.style.color }"
       >暂无附件</span
     >
-    <div v-if="!(operateType === 'view' || (disableValidator && disableValidator({ model, operateType })))" class="flex mx-4 items-center">
+    <div
+      v-if="
+        !(operateType === 'view' || (disableValidator && disableValidator({ model, operateType })))
+      "
+      class="flex mx-4 items-center"
+    >
       <p class="ant-upload-drag-icon" style="margin-bottom: 0">
         <inbox-outlined />
       </p>
       <div class="pl-2">
-        <p class="ant-upload-text text-left" style="font-size: 14px; margin: 0">点击或将文件拖拽到这里上传</p>
+        <p class="ant-upload-text text-left" style="font-size: 14px; margin: 0">
+          点击或将文件拖拽到这里上传
+        </p>
         <p class="ant-upload-hint text-left" style="font-size: 14px">
           {{ extendProps.tips }}
         </p>
       </div>
     </div>
     <template #itemRender="{ file, actions }">
-      <div v-loading="file.status === 'uploading'" class="mt-2 p-1 flex justify-between items-center file-item">
+      <div
+        v-loading="file.status === 'uploading'"
+        class="mt-2 p-1 flex justify-between items-center file-item"
+      >
         <span :style="file.status === 'error' ? 'color: red' : ''">{{ file.name }}</span>
         <div>
           <Button v-if="file.id" type="link" @click="actions.download">下载</Button>
-          <Button v-if="!(operateType === 'view' || (disableValidator && disableValidator({ model, operateType })))" type="link" @click="actions.remove" danger>删除</Button>
+          <Button
+            v-if="
+              !(
+                operateType === 'view' ||
+                (disableValidator && disableValidator({ model, operateType }))
+              )
+            "
+            type="link"
+            @click="actions.remove"
+            danger
+            >删除</Button
+          >
         </div>
       </div>
-      <Progress v-if="file.status === 'uploading'" style="width: calc(100% - 24px)" :percent="parseFloat(file?.percent.toFixed(2))" size="small" :strokeWidth="1" />
+      <Progress
+        v-if="file.status === 'uploading'"
+        style="width: calc(100% - 24px)"
+        :percent="parseFloat(file?.percent.toFixed(2))"
+        size="small"
+        :strokeWidth="1"
+      />
     </template>
   </UploadDragger>
 </template>
@@ -108,7 +143,9 @@ const handleChange = (info: UploadChangeParam) => {
   if (file.response && file.status !== 'removed') {
     if (file.response.status === -40000) {
       msg.error('文件超过大小限制，请重新上传')
-      model.value[props.dataField] = model.value[props.dataField].filter((item: UploadFile) => item.uid !== file.uid)
+      model.value[props.dataField] = model.value[props.dataField].filter(
+        (item: UploadFile) => item.uid !== file.uid
+      )
     } else if (file.response.status === 0) {
       msg.success('文件上传成功！')
       file.fileName = file.name
@@ -127,7 +164,9 @@ const handleRemove = (file) => {
         onOk: async () => {
           attachmentService.removeAttachment(file.id).then(() => {
             msg.success('附件删除成功！')
-            model.value[props.dataField] = model.value[props.dataField].filter((item: UploadFile) => item.uid !== file.uid)
+            model.value[props.dataField] = model.value[props.dataField].filter(
+              (item: UploadFile) => item.uid !== file.uid
+            )
             resolve(true)
           })
         },

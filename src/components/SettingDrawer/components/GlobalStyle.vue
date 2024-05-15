@@ -5,7 +5,10 @@
         <template #title>暗色菜单风格</template>
         <div class="setting-drawer-index-item" @click="handleMenuTheme('dark')">
           <img src="../icons/darkMenu.svg" alt="dark" />
-          <div class="setting-drawer-index-selectIcon" v-if="settingsStore.theme === 'dark' && !settingsStore.darkMode">
+          <div
+            class="setting-drawer-index-selectIcon"
+            v-if="settingsStore.theme === 'dark' && !settingsStore.darkMode"
+          >
             <CheckOutlined />
           </div>
         </div>

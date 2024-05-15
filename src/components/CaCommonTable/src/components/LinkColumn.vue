@@ -1,5 +1,9 @@
 <template>
-  <Button :class="[elementProps.ellipsis ? 'nowrap-link' : 'wrap-link', 'link-class']" type="link" @click="handleEmit(command, { row: record, index })">
+  <Button
+    :class="[elementProps.ellipsis ? 'nowrap-link' : 'wrap-link', 'link-class']"
+    type="link"
+    @click="handleEmit(command, { row: record, index })"
+  >
     {{ record[dataField] }}
   </Button>
 </template>

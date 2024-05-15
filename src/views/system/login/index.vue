@@ -27,10 +27,20 @@
           </a-input-password>
         </a-form-item>
         <a-form-item v-bind="validateInfos.rememberMe">
-          <a-checkbox v-model:checked="formRef.rememberMe" style="float: left"> 自动登录 </a-checkbox>
+          <a-checkbox v-model:checked="formRef.rememberMe" style="float: left">
+            自动登录
+          </a-checkbox>
         </a-form-item>
         <a-form-item style="margin-top: 24px">
-          <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loading" :disabled="state.loading">登录</a-button>
+          <a-button
+            size="large"
+            type="primary"
+            htmlType="submit"
+            class="login-button"
+            :loading="state.loading"
+            :disabled="state.loading"
+            >登录</a-button
+          >
         </a-form-item>
       </a-form>
     </div>
@@ -80,7 +90,15 @@ const { validate, validateInfos } = useForm(formRef, rulesRef)
 const timeFix = () => {
   const time = new Date()
   const hour = time.getHours()
-  return hour < 9 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour < 20 ? '下午好' : '晚上好'
+  return hour < 9
+    ? '早上好'
+    : hour <= 11
+      ? '上午好'
+      : hour <= 13
+        ? '中午好'
+        : hour < 20
+          ? '下午好'
+          : '晚上好'
 }
 
 const handleSubmit = async (e: Event) => {

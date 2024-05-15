@@ -1,7 +1,11 @@
 <template>
   <SettingItem title="主题色">
     <div style="height: 20px">
-      <a-tooltip class="setting-drawer-theme-color-colorBlock" v-for="(item, index) in colorList" :key="index">
+      <a-tooltip
+        class="setting-drawer-theme-color-colorBlock"
+        v-for="(item, index) in colorList"
+        :key="index"
+      >
         <template #title>{{ item.key }}</template>
         <a-tag :color="item.color" @click="changeColor(item.color, item.key)">
           <CheckOutlined v-if="item.color === settingsStore.color" />
@@ -12,7 +16,10 @@
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
-        <a-tag :color="isCustomColorRef ? settingsStore.color : ''" class="setting-drawer-theme-color-colorBlock">
+        <a-tag
+          :color="isCustomColorRef ? settingsStore.color : ''"
+          class="setting-drawer-theme-color-colorBlock"
+        >
           <CheckOutlined v-if="isCustomColorRef" />
         </a-tag>
       </a-popover>

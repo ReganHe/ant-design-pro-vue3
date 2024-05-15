@@ -1,5 +1,10 @@
 <template>
-  <Tree :tree-data="treeModel.data" v-model:expandedKeys="treeModel.expandedKeys" v-model:selectedKeys="treeModel.selectedKeys" @select="handleSelect" />
+  <Tree
+    :tree-data="treeModel.data"
+    v-model:expandedKeys="treeModel.expandedKeys"
+    v-model:selectedKeys="treeModel.selectedKeys"
+    @select="handleSelect"
+  />
 </template>
 
 <script lang="ts" setup>

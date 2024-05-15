@@ -1,7 +1,10 @@
 <template>
   <div class="user-wrapper">
     <div class="content-box">
-      <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md" target="_blank">
+      <a
+        href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md"
+        target="_blank"
+      >
         <span class="action">
           <QuestionCircleOutlined />
         </span>
@@ -41,7 +44,12 @@
 
 <script lang="ts" setup name="UserMenu">
 import { Modal } from 'ant-design-vue'
-import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons-vue'
+import {
+  QuestionCircleOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+  UserOutlined
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useUserStore } from '@/store/modules/user'

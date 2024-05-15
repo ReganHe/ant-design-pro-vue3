@@ -45,7 +45,11 @@ export default {
       return <BlobResp>{
         data: res.data,
         type: res.headers['content-type'],
-        name: decodeURIComponent(res.headers['content-disposition'].substring(res.headers['content-disposition'].indexOf('=') + 1))
+        name: decodeURIComponent(
+          res.headers['content-disposition'].substring(
+            res.headers['content-disposition'].indexOf('=') + 1
+          )
+        )
       }
     }
 
@@ -55,7 +59,9 @@ export default {
       case ResultEnum.TOKEN_TIMEOUT:
       case ResultEnum.TOKEN_ERROR:
       case ResultEnum.NO_TOKEN:
-        dataErrMsg = [ResultEnum.TOKEN_TIMEOUT, ResultEnum.TOKEN_ERROR].includes(res.data.status) ? '用户密钥已过期，请重新登录' : res.data.message
+        dataErrMsg = [ResultEnum.TOKEN_TIMEOUT, ResultEnum.TOKEN_ERROR].includes(res.data.status)
+          ? '用户密钥已过期，请重新登录'
+          : res.data.message
         showGlobalMessage(dataErrMsg, async () => {
           const userStore = useUserStoreWithOut()
           userStore.resetToken()
@@ -70,7 +76,8 @@ export default {
     }
   },
   onRejected: async (error: any) => {
-    let errMsg = error.message || (error.response && error.response.data.message) || '网络开小差了...'
+    let errMsg =
+      error.message || (error.response && error.response.data.message) || '网络开小差了...'
     if (errMsg.indexOf('timeout') > -1) {
       errMsg = '请求超时，请稍侯再试...'
     }

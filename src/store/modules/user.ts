@@ -50,7 +50,9 @@ export const useUserStore = defineStore({
 
         this.roles = userPermissionRes.roles
         this.menuPerms = userPermissionRes.menuPerms
-        const userBasicRes = await userCustomService.getUserByUserId({ userId: userPermissionRes.id })
+        const userBasicRes = await userCustomService.getUserByUserId({
+          userId: userPermissionRes.id
+        })
         if (!userBasicRes) {
           throw Error('获取用户基本信息失败, 请重新登陆.')
         }

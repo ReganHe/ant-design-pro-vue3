@@ -15,7 +15,9 @@
           :scrollToFirstError="true"
         >
           <FormCtrl
-            v-for="(field, index) in fields.filter((r) => (r.extendProps || {}).showInFooter !== true)"
+            v-for="(field, index) in fields.filter(
+              (r) => (r.extendProps || {}).showInFooter !== true
+            )"
             :key="index"
             :operate-type="operateType"
             :default-model="model"
@@ -34,7 +36,13 @@
   </div>
   <div
     class="footer"
-    v-if="commands && commands.length && commands.some((item) => !item.visibleValidator || item.visibleValidator({ model, operateType }))"
+    v-if="
+      commands &&
+      commands.length &&
+      commands.some(
+        (item) => !item.visibleValidator || item.visibleValidator({ model, operateType })
+      )
+    "
     :style="{ background: 'white', ...(extendProps || {}).footerStyle }"
   >
     <div class="status" :style="{ overflow: 'hidden' }">
@@ -85,7 +93,11 @@ const formRules = computed(() => {
   } else {
     const rules = {}
     props.fields.forEach((field) => {
-      if (field.rules && (!field.visibleValidator || field.visibleValidator({ model: props.model, operateType: props.operateType }))) {
+      if (
+        field.rules &&
+        (!field.visibleValidator ||
+          field.visibleValidator({ model: props.model, operateType: props.operateType }))
+      ) {
         rules[field.dataField] = field.rules
       }
     })

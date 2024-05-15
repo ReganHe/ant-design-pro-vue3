@@ -9,7 +9,13 @@
         }"
       />
     </div>
-    <Drawer v-model:open="form.visible" :title="form.title" width="400px" placement="right" @after-open-change="onAfterOpenChange">
+    <Drawer
+      v-model:open="form.visible"
+      :title="form.title"
+      width="400px"
+      placement="right"
+      @after-open-change="onAfterOpenChange"
+    >
       <ca-common-form v-bind="form" />
     </Drawer>
   </div>

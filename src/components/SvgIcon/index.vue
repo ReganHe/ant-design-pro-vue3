@@ -1,8 +1,15 @@
 <template>
-  <svg v-if="isLocalSvgFile" aria-hidden="true" :width="fontSize" :height="fontSize" :style="{ color }">
+  <svg
+    v-if="isLocalSvgFile"
+    aria-hidden="true"
+    :width="fontSize"
+    :height="fontSize"
+    :style="{ color }"
+  >
     <use :xlink:href="symbolIdRef" />
   </svg>
-  <component v-else :is="icons[antvIconNameRef]" :style="{ fontSize: fontSize }" v-bind="$attrs"> </component>
+  <component v-else :is="icons[antvIconNameRef]" :style="{ fontSize: fontSize }" v-bind="$attrs">
+  </component>
 </template>
 
 <script lang="ts" setup name="SvgIcon">

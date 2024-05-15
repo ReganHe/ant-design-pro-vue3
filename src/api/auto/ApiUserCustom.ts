@@ -8,7 +8,10 @@ const s = 'ApiUserCustom.'
  *
  * **TAG:** 用户服务； &nbsp;&nbsp; **PATH:** /1.0/user/get_user_one_detail/{userId}；
  */
-export const getUserByUserId = base.createRequest<UserCustom.getUserByUserId.Options, UserCustom.getUserByUserId.Returns['data']>(s + 'getUserByUserId', ({ userId, ...params }) => ({
+export const getUserByUserId = base.createRequest<
+  UserCustom.getUserByUserId.Options,
+  UserCustom.getUserByUserId.Returns['data']
+>(s + 'getUserByUserId', ({ userId, ...params }) => ({
   url: `/1.0/user/get_user_one_detail/${userId}`,
   method: 'GET',
   params
@@ -19,7 +22,10 @@ export const getUserByUserId = base.createRequest<UserCustom.getUserByUserId.Opt
  *
  * **TAG:** 用户服务； &nbsp;&nbsp; **PATH:** /1.0/user/get_users_one/{id}；
  */
-export const getUserOne = base.createRequest<UserCustom.getUserOne.Options, UserCustom.getUserOne.Returns['data']>(s + 'getUserOne', ({ id, ...params }) => ({
+export const getUserOne = base.createRequest<
+  UserCustom.getUserOne.Options,
+  UserCustom.getUserOne.Returns['data']
+>(s + 'getUserOne', ({ id, ...params }) => ({
   url: `/1.0/user/get_users_one/${id}`,
   method: 'GET',
   params

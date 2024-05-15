@@ -12,7 +12,13 @@
         }"
       />
     </div>
-    <Modal v-model:open="form.visible" :title="form.title" width="900px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
+    <Modal
+      v-model:open="form.visible"
+      :title="form.title"
+      width="900px"
+      :footer="null"
+      :after-close="() => resetForm({ form, callback: getList })"
+    >
       <ca-common-form v-bind="form" />
     </Modal>
   </div>
@@ -97,7 +103,8 @@ const getList = () => {
   console.log('getList', table.pagination, query.model)
   table.loading = true
   setTimeout(() => {
-    const baseIndex = (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
+    const baseIndex =
+      (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
     table.dataSource = [
       {
         id: baseIndex + 1,

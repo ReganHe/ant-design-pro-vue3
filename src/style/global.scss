@@ -606,7 +606,11 @@
 
   .ant-dropdown-menu-item > .anticon:first-child,
   .ant-dropdown-menu-item > .ant-dropdown-menu-title-content > a > .anticon:first-child,
-  .ant-dropdown-menu-submenu-title > .anticon:first-child .ant-dropdown-menu-submenu-title > a > .anticon:first-child {
+  .ant-dropdown-menu-submenu-title
+    > .anticon:first-child
+    .ant-dropdown-menu-submenu-title
+    > a
+    > .anticon:first-child {
     min-width: 12px;
     margin-right: 8px;
   }

@@ -49,7 +49,8 @@ const getList = () => {
   console.log('getList', table.pagination)
   table.loading = true
   setTimeout(() => {
-    const baseIndex = (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
+    const baseIndex =
+      (((table.pagination || {}).current || 1) - 1) * ((table.pagination || {}).pageSize || 10)
     let tableList: Array<Object> = []
     for (let i = 1; i <= ((table.pagination || {}).pageSize || 10); i++) {
       tableList.push({

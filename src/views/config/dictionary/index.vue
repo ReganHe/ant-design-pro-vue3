@@ -12,10 +12,22 @@
         }"
       />
     </div>
-    <Drawer v-model:open="form.visible" :title="form.title" width="400px" placement="right" @after-open-change="onAfterOpenChange">
+    <Drawer
+      v-model:open="form.visible"
+      :title="form.title"
+      width="400px"
+      placement="right"
+      @after-open-change="onAfterOpenChange"
+    >
       <ca-common-form v-bind="form" />
     </Drawer>
-    <Drawer v-model:open="dictItemForm.visible" :title="dictItemForm.title" width="800px" placement="right" @after-open-change="onAfterDictItemFormVisibleChange">
+    <Drawer
+      v-model:open="dictItemForm.visible"
+      :title="dictItemForm.title"
+      width="800px"
+      placement="right"
+      @after-open-change="onAfterDictItemFormVisibleChange"
+    >
       <ca-common-form v-bind="dictItemForm" />
     </Drawer>
   </div>

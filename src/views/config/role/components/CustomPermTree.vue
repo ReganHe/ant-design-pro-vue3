@@ -1,6 +1,14 @@
 <template>
   <div class="custom-perm-tree">
-    <Tree :tree-data="treeModel.data" :checkedKeys="defaultCheckedKeys" :selectable="false" v-model:expandedKeys="treeModel.expandedKeys" :accordion="true" :checkable="true" @check="handleCheck" />
+    <Tree
+      :tree-data="treeModel.data"
+      :checkedKeys="defaultCheckedKeys"
+      :selectable="false"
+      v-model:expandedKeys="treeModel.expandedKeys"
+      :accordion="true"
+      :checkable="true"
+      @check="handleCheck"
+    />
   </div>
 </template>
 
@@ -25,14 +33,22 @@ const emits = defineEmits(['update:component-data'])
 
 const defaultCheckedKeys = computed(() => [
   ...(props.model.checkedPerms['funcPointList'] || []),
-  ...props.model.checkedPerms['routeList'].filter((r) => (props.model.checkedPerms['noFuncLeafRouteIds'] ? props.model.checkedPerms['noFuncLeafRouteIds'].indexOf(r) > -1 : r))
+  ...props.model.checkedPerms['routeList'].filter((r) =>
+    props.model.checkedPerms['noFuncLeafRouteIds']
+      ? props.model.checkedPerms['noFuncLeafRouteIds'].indexOf(r) > -1
+      : r
+  )
 ])
 
 const treeModel = reactive({
   expandedKeys: ['-1D'],
   checkedKeys: [
     ...(props.model.checkedPerms['funcPointList'] || []),
-    ...props.model.checkedPerms['routeList'].filter((r) => (props.model.checkedPerms['noFuncLeafRouteIds'] ? props.model.checkedPerms['noFuncLeafRouteIds'].indexOf(r) > -1 : r))
+    ...props.model.checkedPerms['routeList'].filter((r) =>
+      props.model.checkedPerms['noFuncLeafRouteIds']
+        ? props.model.checkedPerms['noFuncLeafRouteIds'].indexOf(r) > -1
+        : r
+    )
   ],
   data: [] as DataNode[],
   menu: {

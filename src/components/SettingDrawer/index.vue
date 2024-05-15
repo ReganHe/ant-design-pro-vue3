@@ -1,6 +1,12 @@
 <template>
   <div class="setting-drawer">
-    <a-drawer width="320" placement="right" @close="onClose" :closable="isMobile" :open="settingsStore.showSettings">
+    <a-drawer
+      width="320"
+      placement="right"
+      @close="onClose"
+      :closable="isMobile"
+      :open="settingsStore.showSettings"
+    >
       <div class="setting-drawer-index-content">
         <!-- 整体风格设置 -->
         <GlobalStyle />
