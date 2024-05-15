@@ -1,17 +1,19 @@
 <template>
   <div class="ant-pro-multi-tab">
     <div class="ant-pro-multi-tab-wrapper">
-      <a-tabs hideAdd type="editable-card" v-model:activeKey="activeKey"
-        :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }" @edit="onEdit">
+      <a-tabs hideAdd type="editable-card" v-model:activeKey="activeKey" :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }" @edit="onEdit">
         <a-tab-pane v-for="page in pages" :key="page.fullPath" :closable="pages.length > 1" style="height: 0">
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
               <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || page.meta.title }}</span>
               <template #overlay>
-                <a-menu @click="({ key }) => {
-                  closeMenuClick(key, page.fullPath)
-                }
-                  ">
+                <a-menu
+                  @click="
+                    ({ key }) => {
+                      closeMenuClick(key, page.fullPath)
+                    }
+                  "
+                >
                   <a-menu-item key="closeSelf">关闭当前标签</a-menu-item>
                   <a-menu-item key="closeRight">关闭右侧</a-menu-item>
                   <a-menu-item key="closeLeft">关闭左侧</a-menu-item>
@@ -42,38 +44,38 @@ const selectedLastPath = () => {
   activeKey.value = fullPathList[fullPathList.length - 1]
 }
 
-  ; (function created() {
-    // 全局的事件绑定用于页面内控制tab标签,暂时用不上
-    // #region
-    emitter.once('multiTab.open', (val) => {
-      if (!val) {
-        throw new Error(`multi-tab: open tab ${val} err`)
-      }
-      activeKey.value = val
-    })
-    emitter.once('multiTab.close', (val) => {
-      if (!val) {
-        closeSelf(activeKey.value)
-        return
-      }
-      closeSelf(val)
-    })
-    emitter.once('multiTab.rename', ({ key, name }) => {
-      console.log('rename', key, name)
-      try {
-        const item = pages.find((item) => item.path === key)
-        item!.meta.customTitle = name
-        proxy!.$forceUpdate()
-      } catch (e) {
-        console.error(e)
-      }
-    })
-    // #endregion
+;(function created() {
+  // 全局的事件绑定用于页面内控制tab标签,暂时用不上
+  // #region
+  emitter.once('multiTab.open', (val) => {
+    if (!val) {
+      throw new Error(`multi-tab: open tab ${val} err`)
+    }
+    activeKey.value = val
+  })
+  emitter.once('multiTab.close', (val) => {
+    if (!val) {
+      closeSelf(activeKey.value)
+      return
+    }
+    closeSelf(val)
+  })
+  emitter.once('multiTab.rename', ({ key, name }) => {
+    console.log('rename', key, name)
+    try {
+      const item = pages.find((item) => item.path === key)
+      item!.meta.customTitle = name
+      proxy!.$forceUpdate()
+    } catch (e) {
+      console.error(e)
+    }
+  })
+  // #endregion
 
-    pages.push(router.currentRoute.value)
-    fullPathList.push(router.currentRoute.value.fullPath)
-    selectedLastPath()
-  })()
+  pages.push(router.currentRoute.value)
+  fullPathList.push(router.currentRoute.value.fullPath)
+  selectedLastPath()
+})()
 
 const onEdit = (targetKey) => {
   //proxy[action](targetKey)
@@ -159,7 +161,6 @@ watch(activeKey, (newPathKey) => {
     padding-left: 0;
 
     .ant-tabs-nav-container {
-
       .ant-tabs-tab-prev:hover,
       .ant-tabs-tab-next:hover {
         // width: 22px;

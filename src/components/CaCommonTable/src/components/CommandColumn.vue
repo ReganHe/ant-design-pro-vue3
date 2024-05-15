@@ -14,31 +14,31 @@
 </template>
 
 <script lang="ts" setup>
-  import { Button } from 'ant-design-vue';
-import { PropType } from 'vue';
+import { Button } from 'ant-design-vue'
+import { PropType } from 'vue'
 
-  defineProps({
-      commands: {
-        type: Array<any>,
-        default: () => [],
-      },
-      handleEmit: {
-        type: Function as PropType<(event: string, args?: object) => void>,
-        default: () => {},
-      },
-      record: {
-        type: Object,
-        default: () => {},
-      },
-      index: {
-        type: Number,
-        default: 0,
-      },
-    });
+defineProps({
+  commands: {
+    type: Array<any>,
+    default: () => []
+  },
+  handleEmit: {
+    type: Function as PropType<(event: string, args?: object) => void>,
+    default: () => {}
+  },
+  record: {
+    type: Object,
+    default: () => {}
+  },
+  index: {
+    type: Number,
+    default: 0
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-  .command {
-    padding: 0 6px;
-  }
+.command {
+  padding: 0 6px;
+}
 </style>

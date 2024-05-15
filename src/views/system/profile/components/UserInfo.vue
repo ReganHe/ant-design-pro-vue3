@@ -33,20 +33,20 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { SolutionOutlined } from '@ant-design/icons-vue';
+import { reactive } from 'vue'
+import { SolutionOutlined } from '@ant-design/icons-vue'
 
-import { useUserStore } from '@/store/modules/user';
-import headerImg from '@/assets/header.jpg';
+import { useUserStore } from '@/store/modules/user'
+import headerImg from '@/assets/header.jpg'
 
-const userStore = useUserStore();
+const userStore = useUserStore()
 const user = reactive({
   avatar: userStore.info?.avatar || headerImg,
   userName: userStore.info?.userName,
   loginName: userStore.info?.loginName,
   roles: userStore.roles.map((r) => r.name),
   orgName: userStore.info?.orgName
-});
+})
 </script>
 
 <style lang="scss" scoped>

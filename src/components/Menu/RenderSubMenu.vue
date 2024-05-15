@@ -15,8 +15,7 @@
       <svg-icon :name="props.menu.meta?.icon" v-if="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <!-- 外部链接 -->
-    <a v-if="props.menu.meta?.target" :href="props.menu.meta?.target"
-      :target="props.menu.meta.blank === false ? '' : '_blank'">
+    <a v-if="props.menu.meta?.target" :href="props.menu.meta?.target" :target="props.menu.meta.blank === false ? '' : '_blank'">
       <!-- span重复了吧?这就是template的弊端,jsx才是王道 -->
       <span>{{ props.menu.meta?.title }}</span>
     </a>
@@ -27,8 +26,8 @@
 </template>
 <script lang="ts" setup name="RenderSubMenu">
 import SvgIcon from '@/components/SvgIcon/index.vue'
-import type { PropType } from 'vue';
-import { RouteRecordRaw } from 'vue-router';
+import type { PropType } from 'vue'
+import { RouteRecordRaw } from 'vue-router'
 
 const props = defineProps({
   menu: {
@@ -39,7 +38,6 @@ const props = defineProps({
 </script>
 <style lang="scss" scoped>
 .menuName {
-
   svg,
   span {
     vertical-align: middle;

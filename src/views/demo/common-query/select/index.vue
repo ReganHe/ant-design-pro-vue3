@@ -5,21 +5,21 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive } from 'vue';
-import { CommonQuery, QueryField } from '#/castor-antd';
+import { computed, reactive } from 'vue'
+import { CommonQuery, QueryField } from '#/castor-antd'
 
 const optionsMap = reactive({
   sex: [
     {
       value: 1,
-      label: '男',
+      label: '男'
     },
     {
       value: 2,
-      label: '女',
-    },
-  ],
-});
+      label: '女'
+    }
+  ]
+})
 
 const fields = computed<Array<QueryField>>(() => {
   return [
@@ -31,9 +31,9 @@ const fields = computed<Array<QueryField>>(() => {
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '120px' } },
-        },
-      },
+          wrapperCol: { style: { width: '120px' } }
+        }
+      }
     },
     {
       type: 'default',
@@ -43,9 +43,9 @@ const fields = computed<Array<QueryField>>(() => {
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '200px' } },
-        },
-      },
+          wrapperCol: { style: { width: '200px' } }
+        }
+      }
     },
     {
       type: 'select',
@@ -53,34 +53,34 @@ const fields = computed<Array<QueryField>>(() => {
       dataField: 'sex',
       columnSpan: 1,
       elementProps: {
-        options: optionsMap['sex'],
+        options: optionsMap['sex']
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '70px' } },
-          wrapperCol: { style: { width: '60px' } },
-        },
-      },
-    },
-  ];
-});
+          wrapperCol: { style: { width: '60px' } }
+        }
+      }
+    }
+  ]
+})
 
 const handleFilter = () => {
-  console.log('handleFilter', query.model);
-};
+  console.log('handleFilter', query.model)
+}
 
 const handleReset = () => {
-  console.log('handleReset', query.emitRegister);
-  query.emitRegister?.resetFields?.();
-  handleFilter();
-};
+  console.log('handleReset', query.emitRegister)
+  query.emitRegister?.resetFields?.()
+  handleFilter()
+}
 
 const query = reactive<CommonQuery>({
   loading: false,
   model: {
     name: '张三',
     address: '长江路555号',
-    sex: 1,
+    sex: 1
   },
   fields,
   commands: [
@@ -88,24 +88,24 @@ const query = reactive<CommonQuery>({
       text: '查询',
       command: 'handleFilter',
       elementProps: {
-        type: 'primary',
+        type: 'primary'
       },
-      canKeyDown: true,
+      canKeyDown: true
     },
     {
       text: '重置',
-      command: 'handleReset',
-    },
+      command: 'handleReset'
+    }
   ],
   elementProps: {
     labelCol: { style: { width: '40px' } },
-    wrapperCol: { style: { flex: 1 } },
+    wrapperCol: { style: { flex: 1 } }
   },
   emitRegister: {
     handleFilter,
-    handleReset,
-  },
-});
+    handleReset
+  }
+})
 </script>
 <style lang="scss" scoped>
 .common-query-container {

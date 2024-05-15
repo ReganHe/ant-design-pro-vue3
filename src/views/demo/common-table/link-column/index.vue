@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, computed } from 'vue';
-import { CommonTable, TableField } from '#/castor-antd';
+import { reactive, computed } from 'vue'
+import { CommonTable, TableField } from '#/castor-antd'
 
 const columns = computed<Array<TableField>>(() => {
   return [
@@ -15,8 +15,8 @@ const columns = computed<Array<TableField>>(() => {
       label: '序号',
       dataField: 'index',
       elementProps: {
-        width: '60px',
-      },
+        width: '60px'
+      }
     },
     {
       type: 'link',
@@ -24,37 +24,37 @@ const columns = computed<Array<TableField>>(() => {
       dataField: 'code',
       elementProps: {
         width: '100px',
-        align: 'center',
+        align: 'center'
       },
       extendProps: {
-        linkCommand: 'handleLink',
-      },
+        linkCommand: 'handleLink'
+      }
     },
     {
       type: 'default',
       label: '姓名',
       dataField: 'name',
       elementProps: {
-        width: '80px',
-      },
+        width: '80px'
+      }
     },
     {
       type: 'default',
       label: '日期',
       dataField: 'date',
       elementProps: {
-        width: '120px',
-      },
+        width: '120px'
+      }
     },
     {
       type: 'default',
       label: '地址',
-      dataField: 'address',
-    },
-  ];
-});
+      dataField: 'address'
+    }
+  ]
+})
 const getList = () => {
-  table.loading = true;
+  table.loading = true
   setTimeout(() => {
     table.dataSource = [
       {
@@ -62,42 +62,42 @@ const getList = () => {
         date: '2016-05-02',
         code: '101',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
+        address: '上海市普陀区金沙江路 1518 弄'
       },
       {
         id: 2,
         date: '2016-05-04',
         code: '102',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
+        address: '上海市普陀区金沙江路 1517 弄'
       },
       {
         id: 3,
         date: '2016-05-01',
         code: '103',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-      },
-    ];
-    table.loading = false;
-  }, 200);
-};
+        address: '上海市普陀区金沙江路 1519 弄'
+      }
+    ]
+    table.loading = false
+  }, 200)
+}
 
 const table = reactive<CommonTable>({
   loading: false,
   dataSource: [] as Array<any>,
   columns,
-  pagination: false,
-});
+  pagination: false
+})
 
 const handleLink = ({ row, index }) => {
-  console.log('handleLink', row, index);
-};
+  console.log('handleLink', row, index)
+}
 
 const emitRegister = {
-  handleLink,
-};
-getList();
+  handleLink
+}
+getList()
 </script>
 
 <style lang="scss" scoped>

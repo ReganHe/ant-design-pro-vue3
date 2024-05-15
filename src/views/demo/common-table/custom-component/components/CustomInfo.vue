@@ -9,27 +9,27 @@
 </template>
 
 <script lang="ts" setup>
-  import { Tag } from 'ant-design-vue';
+import { Tag } from 'ant-design-vue'
 
-  defineProps({
-    model: {
-      type: Object,
-      default: () => {},
-    },
-  });
+defineProps({
+  model: {
+    type: Object,
+    default: () => {}
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-  .custom-info {
-    .user-info {
-      span {
-        color: rgb(27, 87, 216);
-        font-weight: bold;
-      }
-    }
-    .user-address {
-      margin-top: 6px;
-      color: rgba(27, 87, 216, 0.8);
+.custom-info {
+  .user-info {
+    span {
+      color: rgb(27, 87, 216);
+      font-weight: bold;
     }
   }
+  .user-address {
+    margin-top: 6px;
+    color: rgba(27, 87, 216, 0.8);
+  }
+}
 </style>

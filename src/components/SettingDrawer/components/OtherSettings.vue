@@ -36,21 +36,20 @@ import { updateColorWeak, updateGrayMode } from '../settingConfig'
 import SettingItem from './SettingItem.vue'
 import { useSettingsStore } from '@/store/modules/settings'
 
-const settingsStore = useSettingsStore();
+const settingsStore = useSettingsStore()
 
 const onColorWeak = (checked) => {
-  settingsStore.setValue('weak', checked);
+  settingsStore.setValue('weak', checked)
   updateColorWeak(checked)
 }
 
 const onGrayMode = (checked) => {
-  settingsStore.setValue('gray', checked);
+  settingsStore.setValue('gray', checked)
   updateGrayMode(checked)
 }
 
 const onMultiTab = (checked) => {
-  settingsStore.setValue('multiTab', checked);
+  settingsStore.setValue('multiTab', checked)
 }
 </script>
-<style lang="scss">
-</style>
+<style lang="scss"></style>

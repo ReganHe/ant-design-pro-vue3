@@ -3,8 +3,8 @@
     <div class="bg-banner" />
     <div id="login-box">
       <div class="login-banner">
-        <img src="../../../assets/logo.png" class="logo">
-        <img src="../../../assets/login-box-bg.svg" class="banner">
+        <img src="../../../assets/logo.png" class="logo" />
+        <img src="../../../assets/login-box-bg.svg" class="banner" />
       </div>
       <a-form id="formLogin" class="login-form" @submit="handleSubmit" :model="formRef">
         <div class="title-container">
@@ -30,8 +30,7 @@
           <a-checkbox v-model:checked="formRef.rememberMe" style="float: left"> 自动登录 </a-checkbox>
         </a-form-item>
         <a-form-item style="margin-top: 24px">
-          <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loading"
-            :disabled="state.loading">登录</a-button>
+          <a-button size="large" type="primary" htmlType="submit" class="login-button" :loading="state.loading" :disabled="state.loading">登录</a-button>
         </a-form-item>
       </a-form>
     </div>
@@ -49,23 +48,21 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { useUserStore } from '@/store/modules/user'
 import GlobalFooter from '@/components/GlobalFooter/index.vue'
 
-
-const userStore = useUserStore();
+const userStore = useUserStore()
 
 const useForm = Form.useForm
 const router = useRouter()
 
 const state = reactive({
-  loading: false,
+  loading: false
 })
 const title = import.meta.env.VITE_GLOB_APP_TITLE
-
 
 // #region 表单相关
 const formRef = reactive({
   rememberMe: false,
   username: '',
-  password: '',
+  password: ''
 })
 
 const rulesRef = reactive({
@@ -76,7 +73,7 @@ const rulesRef = reactive({
       message: '请输入用户名'
     }
   ],
-  password: [{ required: true, message: '请输入密码！' }, {}],
+  password: [{ required: true, message: '请输入密码！' }, {}]
 })
 const { validate, validateInfos } = useForm(formRef, rulesRef)
 
@@ -96,14 +93,14 @@ const handleSubmit = async (e: Event) => {
       loginName: formRef.username,
       password: formRef.password,
       applicationId: parseInt(import.meta.env.VITE_GLOB_APP_ID),
-      deviceId: parseInt(import.meta.env.VITE_GLOB_DEVICE_ID),
+      deviceId: parseInt(import.meta.env.VITE_GLOB_DEVICE_ID)
     })
     router.replace('/')
     // 延迟 1 秒显示欢迎信息
     setTimeout(() => {
       notification.success({
         message: '欢迎',
-        description: `${timeFix()}，欢迎回来`,
+        description: `${timeFix()}，欢迎回来`
       })
     })
     state.loading = false
@@ -112,7 +109,6 @@ const handleSubmit = async (e: Event) => {
   }
 }
 // #endregion
-
 </script>
 
 <style lang="scss" scoped>
@@ -136,7 +132,9 @@ const handleSubmit = async (e: Event) => {
     overflow: hidden;
     background-color: $g-container-bg;
     border-radius: 10px;
-    box-shadow: 0px 12px 32px 4px rgba(0, 0, 0, .04), 0px 8px 20px rgba(0, 0, 0, .08);
+    box-shadow:
+      0px 12px 32px 4px rgba(0, 0, 0, 0.04),
+      0px 8px 20px rgba(0, 0, 0, 0.08);
     transform: translateX(-50%) translateY(-50%);
 
     .login-banner {
@@ -160,7 +158,7 @@ const handleSubmit = async (e: Event) => {
         left: 20px;
         height: 30px;
         border-radius: 4px;
-        box-shadow: 0px 0px 12px rgba(0, 0, 0, .12);
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
       }
     }
 

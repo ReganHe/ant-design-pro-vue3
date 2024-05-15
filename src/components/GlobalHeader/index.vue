@@ -1,9 +1,11 @@
 <template>
   <transition name="showHeader">
     <div v-if="visible" class="header-animat">
-      <a-layout-header v-if="visible"
+      <a-layout-header
+        v-if="visible"
         :class="[settingsStore.fixedHeader && 'ant-header-fixedHeader', settingsStore.sidebar ? 'ant-header-side-opened' : 'ant-header-side-closed']"
-        :style="{ padding: '0' }">
+        :style="{ padding: '0' }"
+      >
         <div v-if="props.mode === 'sidemenu'" class="header">
           <span @click="toggle">
             <template v-if="appStore.device === 'mobile'">
@@ -49,8 +51,8 @@ import { useAppStore } from '@/store/modules/app'
 import { RouteRecordRaw } from 'vue-router'
 import { MenuTheme } from 'ant-design-vue'
 
-const settingsStore = useSettingsStore();
-const appStore = useAppStore();
+const settingsStore = useSettingsStore()
+const appStore = useAppStore()
 const visible = ref<boolean>(true)
 const oldScrollTop = ref<number>(0)
 const ticking = ref<boolean>(false)

@@ -5,33 +5,33 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, reactive } from 'vue';
-import { CommonForm, FormField } from '#/castor-antd';
+import { computed, onMounted, reactive } from 'vue'
+import { CommonForm, FormField } from '#/castor-antd'
 
 const optionsMap = reactive({
   sex: [
     {
       value: 1,
-      label: '男',
+      label: '男'
     },
     {
       value: 2,
-      label: '女',
-    },
+      label: '女'
+    }
   ],
   equipment: [
     {
       value: 'double',
       label: '双压记录仪',
-      disabled: false,
+      disabled: false
     },
     {
       value: 'remote',
       label: '压力远传处理仪',
-      disabled: false,
-    },
-  ],
-});
+      disabled: false
+    }
+  ]
+})
 
 const fields = computed<Array<FormField>>(() => {
   return [
@@ -45,29 +45,29 @@ const fields = computed<Array<FormField>>(() => {
         groupCommands: [
           {
             text: '取消关注',
-            command: 'handleUnStar',
+            command: 'handleUnStar'
           },
           {
             text: '关注',
-            command: 'handleStar',
-          },
+            command: 'handleStar'
+          }
         ],
         formItemStyle: {
-          marginTop: '6px',
-        },
-      },
+          marginTop: '6px'
+        }
+      }
     },
     {
       type: 'text',
       label: '编号',
       dataField: 'code',
-      columnSpan: 1,
+      columnSpan: 1
     },
     {
       type: 'default',
       label: '姓名',
       dataField: 'name',
-      columnSpan: 1,
+      columnSpan: 1
     },
     {
       type: 'select',
@@ -75,14 +75,14 @@ const fields = computed<Array<FormField>>(() => {
       dataField: 'sex',
       columnSpan: 1,
       elementProps: {
-        options: optionsMap['sex'],
-      },
+        options: optionsMap['sex']
+      }
     },
     {
       type: 'inputNumber',
       label: '年龄',
       dataField: 'age',
-      columnSpan: 1,
+      columnSpan: 1
     },
     {
       type: 'date',
@@ -91,8 +91,8 @@ const fields = computed<Array<FormField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'year',
-        valueFormat: 'YYYY',
-      },
+        valueFormat: 'YYYY'
+      }
     },
     {
       type: 'date',
@@ -101,8 +101,8 @@ const fields = computed<Array<FormField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'month',
-        valueFormat: 'YYYY-MM',
-      },
+        valueFormat: 'YYYY-MM'
+      }
     },
     {
       type: 'date',
@@ -111,26 +111,26 @@ const fields = computed<Array<FormField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'date',
-        valueFormat: 'YYYY-MM-DD',
-      },
+        valueFormat: 'YYYY-MM-DD'
+      }
     },
     {
       type: 'switch',
       label: '是否启用',
       dataField: 'userEnabled',
-      columnSpan: 1,
+      columnSpan: 1
     },
     {
       type: 'textArea',
       label: '地址',
       dataField: 'address',
-      columnSpan: 2,
+      columnSpan: 2
     },
     {
       type: 'space',
       label: '',
       dataField: '',
-      columnSpan: 2,
+      columnSpan: 2
     },
     {
       type: 'groupTitle',
@@ -140,9 +140,9 @@ const fields = computed<Array<FormField>>(() => {
       extendProps: {
         groupTitle: '2、其它信息',
         formItemStyle: {
-          marginTop: '6px',
-        },
-      },
+          marginTop: '6px'
+        }
+      }
     },
     {
       type: 'checkboxGroup',
@@ -150,8 +150,8 @@ const fields = computed<Array<FormField>>(() => {
       dataField: 'equipment',
       columnSpan: 1,
       elementProps: {
-        options: optionsMap['equipment'],
-      },
+        options: optionsMap['equipment']
+      }
     },
     {
       type: 'radioGroup',
@@ -159,31 +159,31 @@ const fields = computed<Array<FormField>>(() => {
       dataField: 'sex',
       columnSpan: 1,
       elementProps: {
-        options: optionsMap['sex'],
-      },
-    },
-  ];
-});
+        options: optionsMap['sex']
+      }
+    }
+  ]
+})
 
 const handleStar = () => {
-  console.log('handleStar', form.model);
-};
+  console.log('handleStar', form.model)
+}
 
 const handleUnStar = () => {
-  console.log('handleUnStar', form.model);
-};
+  console.log('handleUnStar', form.model)
+}
 
 const handleSave = ({ command }) => {
-  console.log('handleSave', form.model);
-  command.loading = true;
-  setTimeout(() => (command.loading = false), 2000);
-};
+  console.log('handleSave', form.model)
+  command.loading = true
+  setTimeout(() => (command.loading = false), 2000)
+}
 
 const handleCancel = ({ command }) => {
-  console.log('handleCancel');
-  command.loading = true;
-  setTimeout(() => (command.loading = false), 2000);
-};
+  console.log('handleCancel')
+  command.loading = true
+  setTimeout(() => (command.loading = false), 2000)
+}
 
 const form = reactive<CommonForm>({
   loading: false,
@@ -198,44 +198,43 @@ const form = reactive<CommonForm>({
     userDate: '',
     userEnabled: true,
     address: '长江路555号',
-    equipment: [],
+    equipment: []
   },
   fields,
   commands: [
     {
       text: '取消',
-      command: 'handleCancel',
+      command: 'handleCancel'
     },
     {
       text: '确定',
       command: 'handleSave',
       loading: false,
       elementProps: {
-        type: 'primary',
-      },
-    },
+        type: 'primary'
+      }
+    }
   ],
   elementProps: {
     labelCol: { style: { width: '80px' } },
     wrapperCol: { style: { flex: 1 } },
-    style: {
-    },
+    style: {}
   },
   extendProps: {
-    contentStyle: { overflow: 'auto', flex: 1, marginTop: '12px' },
+    contentStyle: { overflow: 'auto', flex: 1, marginTop: '12px' }
   },
   emitRegister: {
     handleStar,
     handleUnStar,
     handleSave,
-    handleCancel,
-  },
-});
+    handleCancel
+  }
+})
 
 onMounted(() => {
-  form.loading = true;
-  setTimeout(() => (form.loading = false), 3000);
-});
+  form.loading = true
+  setTimeout(() => (form.loading = false), 3000)
+})
 </script>
 
 <style lang="scss" scoped>

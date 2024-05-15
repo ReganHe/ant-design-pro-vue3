@@ -1,6 +1,5 @@
 <template>
   <div class="footer">
-
     <div class="copyright">
       Copyright
       <CopyrightOutlined />&nbsp;2024

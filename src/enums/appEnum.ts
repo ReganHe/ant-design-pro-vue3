@@ -1,4 +1,3 @@
-
 export enum DeviceTypeEnum {
   DESKTOP = 'desktop',
   TABLET = 'tablet',

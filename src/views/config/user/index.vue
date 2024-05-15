@@ -8,51 +8,51 @@
         <ca-common-query v-bind="{ ...query, emitRegister }" />
       </div>
       <div class="common-table-container">
-        <ca-common-table v-bind="{
-          ...table,
-          emitRegister,
-          elementProps: { ...table.elementProps, onChange: onTableChange },
-        }" />
+        <ca-common-table
+          v-bind="{
+            ...table,
+            emitRegister,
+            elementProps: { ...table.elementProps, onChange: onTableChange }
+          }"
+        />
       </div>
     </div>
-    <Modal v-model:open="form.visible" :title="form.title" width="500px" :footer="null"
-      :after-close="() => resetForm({ form, callback: getList })">
+    <Modal v-model:open="form.visible" :title="form.title" width="500px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
       <ca-common-form v-bind="form" />
     </Modal>
-    <Modal v-model:open="resetPwdForm.visible" :title="resetPwdForm.title" width="500px" :footer="null"
-      :after-close="() => resetForm({ form: resetPwdForm, callback: null })">
+    <Modal v-model:open="resetPwdForm.visible" :title="resetPwdForm.title" width="500px" :footer="null" :after-close="() => resetForm({ form: resetPwdForm, callback: null })">
       <ca-common-form v-bind="resetPwdForm" />
     </Modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { message, Modal } from 'ant-design-vue';
-import { onBeforeMount, reactive } from 'vue';
-import { SelectItem } from '#/castor-antd';
-import { resetForm, setFormValue } from '@/hooks/component/useModal';
-import useCommonTable from './hooks/useCommonTable';
-import useCommonQuery from './hooks/useCommonQuery';
-import useCommonForm from './hooks/useCommonForm';
-import OrgTree from './components/OrgTree.vue';
-import { getOrgs } from '@/api/auto/ApiGisc';
-import { getUsersPaged, removeUser } from '@/api/auto/ApiUser';
-import { findUserCenterApplication } from '@/api/auto/ApiGwsApplication';
-import useResetPwdForm from './hooks/useResetPwdForm';
-import { getLockedUserIdsByApplicationId, unlock } from '@/api/auto/ApiGwsUserInfo';
+import { message, Modal } from 'ant-design-vue'
+import { onBeforeMount, reactive } from 'vue'
+import { SelectItem } from '#/castor-antd'
+import { resetForm, setFormValue } from '@/hooks/component/useModal'
+import useCommonTable from './hooks/useCommonTable'
+import useCommonQuery from './hooks/useCommonQuery'
+import useCommonForm from './hooks/useCommonForm'
+import OrgTree from './components/OrgTree.vue'
+import { getOrgs } from '@/api/auto/ApiGisc'
+import { getUsersPaged, removeUser } from '@/api/auto/ApiUser'
+import { findUserCenterApplication } from '@/api/auto/ApiGwsApplication'
+import useResetPwdForm from './hooks/useResetPwdForm'
+import { getLockedUserIdsByApplicationId, unlock } from '@/api/auto/ApiGwsUserInfo'
 
 const optionsMap = reactive<Record<string, SelectItem[]>>({
   status: [
     {
       value: '0',
-      label: '已启用',
+      label: '已启用'
     },
     {
       value: '1',
-      label: '未启用',
-    },
-  ],
-});
+      label: '未启用'
+    }
+  ]
+})
 
 const pageModel = reactive({
   currentOrgId: undefined,
@@ -61,123 +61,115 @@ const pageModel = reactive({
   companyInfo: {} as any,
   roles: [] as any,
   devices: [] as any,
-  lockedUserIds: [] as number[],
-});
+  lockedUserIds: [] as number[]
+})
 
-const query = useCommonQuery({ optionsMap });
-const table = useCommonTable({ optionsMap, pageModel });
-const form = useCommonForm();
-const resetPwdForm = useResetPwdForm();
+const query = useCommonQuery({ optionsMap })
+const table = useCommonTable({ optionsMap, pageModel })
+const form = useCommonForm()
+const resetPwdForm = useResetPwdForm()
 
 //#region basic
 const getCompanyInfo = async () => {
   const companyRes = await getOrgs({
-    levelId: 2,
-  });
-  pageModel.companyInfo = companyRes[0];
-  pageModel.currentOrgId = pageModel.companyInfo.id;
-  pageModel.currentOrgLevel = pageModel.companyInfo.level;
-  pageModel.currentOrgPath = pageModel.companyInfo.path;
-};
+    levelId: 2
+  })
+  pageModel.companyInfo = companyRes[0]
+  pageModel.currentOrgId = pageModel.companyInfo.id
+  pageModel.currentOrgLevel = pageModel.companyInfo.level
+  pageModel.currentOrgPath = pageModel.companyInfo.path
+}
 
 const getAppInfo = async () => {
-  const apps = await findUserCenterApplication();
-  console.log('getAppInfo', apps);
-  const currentApp = apps.find((r) => r.applicationCode === 'pes');
-  pageModel.roles = currentApp?.roles;
-  pageModel.devices = currentApp?.devices;
-};
+  const apps = await findUserCenterApplication()
+  console.log('getAppInfo', apps)
+  const currentApp = apps.find((r) => r.applicationCode === 'pes')
+  pageModel.roles = currentApp?.roles
+  pageModel.devices = currentApp?.devices
+}
 
 const getLockedUsers = async () => {
   pageModel.lockedUserIds = await getLockedUserIdsByApplicationId({
-    applicationId: parseInt(import.meta.env.VITE_GLOB_APP_ID),
-  });
-};
+    applicationId: parseInt(import.meta.env.VITE_GLOB_APP_ID)
+  })
+}
 
 //#endregion
 
 //#region tree
 const handleOrgSelect = (selectedNode) => {
-  pageModel.currentOrgId = selectedNode.key;
-  pageModel.currentOrgLevel = selectedNode.level;
-  pageModel.currentOrgPath = selectedNode.path;
-  getList();
-};
+  pageModel.currentOrgId = selectedNode.key
+  pageModel.currentOrgLevel = selectedNode.level
+  pageModel.currentOrgPath = selectedNode.path
+  getList()
+}
 
 //#endregion
 //#region query
 const handleFilter = () => {
-  console.log('handleFilter', query.model);
-  (table.pagination || {}).current = 1;
-  getList();
-};
+  console.log('handleFilter', query.model)
+  ;(table.pagination || {}).current = 1
+  getList()
+}
 
 const handleReset = async () => {
-  console.log('handleReset', query.model);
-  await (emitRegister as any).resetFields();
-  handleFilter();
-};
+  console.log('handleReset', query.model)
+  await (emitRegister as any).resetFields()
+  handleFilter()
+}
 //#endregion
 
 //#region  table
 const getList = async () => {
-  console.log('getList', table.pagination, query.model);
-  table.loading = true;
+  console.log('getList', table.pagination, query.model)
+  table.loading = true
   const res = await getUsersPaged({
     orgId: pageModel.currentOrgId,
     queryKey: query.model.queryKey,
     status: query.model.status,
     pageNum: (table.pagination || {}).current ?? 1,
-    pageSize: (table.pagination || {}).pageSize ?? 10,
-  });
-  table.dataSource = res.list;
-  (table.pagination || {}).total = res.totalNum;
-  table.loading = false;
-};
+    pageSize: (table.pagination || {}).pageSize ?? 10
+  })
+  table.dataSource = res.list
+  ;(table.pagination || {}).total = res.totalNum
+  table.loading = false
+}
 
 const onTableChange = (newPagination, filters, sorter, extra) => {
-  console.log('onTableChange', newPagination, filters, sorter, extra);
-  (table.pagination || {}).current = newPagination.current;
-  (table.pagination || {}).pageSize = newPagination.pageSize;
-  getList();
-};
+  console.log('onTableChange', newPagination, filters, sorter, extra)
+  ;(table.pagination || {}).current = newPagination.current
+  ;(table.pagination || {}).pageSize = newPagination.pageSize
+  getList()
+}
 
 const handleAdd = () => {
-  console.log('handleAdd');
-  form.operateType = 'add';
-  form.visible = true;
+  console.log('handleAdd')
+  form.operateType = 'add'
+  form.visible = true
   setFormValue(form.model, {
     orgId: pageModel.currentOrgId,
     path: pageModel.currentOrgPath,
-    roleIds: pageModel.roles
-      .filter(
-        (r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')
-      )
-      .map((r) => r.id),
-    deviceIds: pageModel.devices.map((r) => r.id),
-  });
-};
+    roleIds: pageModel.roles.filter((r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')).map((r) => r.id),
+    deviceIds: pageModel.devices.map((r) => r.id)
+  })
+}
 
 const handleEdit = ({ index, row }) => {
-  console.log('handleEdit', index, row);
-  form.operateType = 'edit';
-  form.visible = true;
+  console.log('handleEdit', index, row)
+  form.operateType = 'edit'
+  form.visible = true
   setFormValue(form.model, {
     ...row,
     status: row.status === '0',
     orgId: pageModel.currentOrgId,
     path: pageModel.currentOrgPath,
-    roleIds: pageModel.roles
-      .filter(
-        (r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')
-      )
-      .map((r) => r.id),
-    deviceIds: pageModel.devices.map((r) => r.id),
-  });
-};
+    roleIds: pageModel.roles.filter((r) => r.code === (pageModel.currentOrgLevel === 'CP' ? 'company-admin' : 'site-admin')).map((r) => r.id),
+    deviceIds: pageModel.devices.map((r) => r.id)
+  })
+}
 
 const handleDelete = ({ index, row }) => {
-  console.log('handleDelete', index, row);
+  console.log('handleDelete', index, row)
   Modal.confirm({
     type: 'warning',
     title: '提示',
@@ -185,34 +177,34 @@ const handleDelete = ({ index, row }) => {
     okText: '确定',
     cancelText: '取消',
     onCancel: () => {
-      message.info('已取消删除');
+      message.info('已取消删除')
     },
     onOk: async () => {
       await removeUser({
-        id: row.id,
-      });
-      message.success('删除成功!', 1, getList);
-    },
-  });
-};
+        id: row.id
+      })
+      message.success('删除成功!', 1, getList)
+    }
+  })
+}
 
 const handleResetPwd = ({ index, row }) => {
-  console.log('handleResetPwd', index, row);
-  resetPwdForm.operateType = 'add';
-  resetPwdForm.visible = true;
-  setFormValue(resetPwdForm.model, { id: row.userId });
-};
+  console.log('handleResetPwd', index, row)
+  resetPwdForm.operateType = 'add'
+  resetPwdForm.visible = true
+  setFormValue(resetPwdForm.model, { id: row.userId })
+}
 
 const handleUnlock = async ({ index, row }) => {
-  console.log('handleUnlock', index, row);
+  console.log('handleUnlock', index, row)
   await unlock({
-    userId: row.userId,
-  });
+    userId: row.userId
+  })
   message.success('操作成功!', 1, async () => {
-    await getLockedUsers();
-    getList();
-  });
-};
+    await getLockedUsers()
+    getList()
+  })
+}
 
 //#endregion
 const emitRegister = {
@@ -222,13 +214,13 @@ const emitRegister = {
   handleEdit,
   handleDelete,
   handleResetPwd,
-  handleUnlock,
-};
+  handleUnlock
+}
 
 onBeforeMount(async () => {
-  await Promise.all([getCompanyInfo(), getAppInfo(), getLockedUsers()]);
-  getList();
-});
+  await Promise.all([getCompanyInfo(), getAppInfo(), getLockedUsers()])
+  getList()
+})
 </script>
 <style lang="scss" scoped>
 .config-user {

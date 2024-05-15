@@ -32,12 +32,11 @@ import OtherSettings from './components/OtherSettings.vue'
 import { isMobile } from '@/utils/device-type'
 import { useSettingsStore } from '@/store/modules/settings'
 
-const settingsStore = useSettingsStore();
+const settingsStore = useSettingsStore()
 
 const onClose = () => {
   settingsStore.setValue('showSettings', false)
 }
-
 </script>
 
 <style lang="scss" scoped>

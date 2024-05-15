@@ -136,9 +136,7 @@
   "paths": {
     "/account/exchange_refresh_token": {
       "post": {
-        "tags": [
-          "01.账号预登录服务"
-        ],
+        "tags": ["01.账号预登录服务"],
         "summary": "交换正式令牌(Refresh Token)",
         "operationId": "exchangeRefreshToken",
         "requestBody": {
@@ -167,9 +165,7 @@
     },
     "/account/pre_login": {
       "post": {
-        "tags": [
-          "01.账号预登录服务"
-        ],
+        "tags": ["01.账号预登录服务"],
         "summary": "预登录并签发临时令牌(Short Term Token)",
         "description": "前端接口调用",
         "operationId": "preLogin",
@@ -199,9 +195,7 @@
     },
     "/account/login_direct": {
       "post": {
-        "tags": [
-          "02.账号服务"
-        ],
+        "tags": ["02.账号服务"],
         "summary": "登录并签发令牌(Refresh Token)",
         "description": "API接口调用",
         "operationId": "accountLogin4Direct",
@@ -231,9 +225,7 @@
     },
     "/account/login": {
       "post": {
-        "tags": [
-          "02.账号服务"
-        ],
+        "tags": ["02.账号服务"],
         "summary": "登录并签发令牌(Refresh Token)",
         "description": "前端接口调用",
         "operationId": "accountLogin4Frontend",
@@ -263,9 +255,7 @@
     },
     "/account/exchange_access_token": {
       "post": {
-        "tags": [
-          "02.账号服务"
-        ],
+        "tags": ["02.账号服务"],
         "summary": "交换访问令牌",
         "operationId": "exchangeAccessToken",
         "requestBody": {
@@ -294,9 +284,7 @@
     },
     "/account/captcha/{type}": {
       "get": {
-        "tags": [
-          "02.账号服务"
-        ],
+        "tags": ["02.账号服务"],
         "summary": "获取验证码",
         "description": "1 - 普通类型，2 - 中文类型，3 - 算术类型",
         "operationId": "captcha",
@@ -326,9 +314,7 @@
     },
     "/account/logout": {
       "delete": {
-        "tags": [
-          "02.账号服务"
-        ],
+        "tags": ["02.账号服务"],
         "summary": "退出登录",
         "operationId": "accountLogout",
         "responses": {
@@ -352,9 +338,7 @@
     },
     "/account/modify_password": {
       "post": {
-        "tags": [
-          "03.个人信息"
-        ],
+        "tags": ["03.个人信息"],
         "summary": "修改密码",
         "operationId": "modifyPassword",
         "requestBody": {
@@ -388,9 +372,7 @@
     },
     "/account/reset_password": {
       "post": {
-        "tags": [
-          "03.个人信息"
-        ],
+        "tags": ["03.个人信息"],
         "summary": "重置密码",
         "operationId": "resetPassword",
         "requestBody": {
@@ -424,9 +406,7 @@
     },
     "/account/unlock_user/{userId}": {
       "post": {
-        "tags": [
-          "03.个人信息"
-        ],
+        "tags": ["03.个人信息"],
         "summary": "解锁用户",
         "operationId": "unlock",
         "parameters": [
@@ -462,9 +442,7 @@
     },
     "/account/{applicationId}/locked_user_ids": {
       "get": {
-        "tags": [
-          "03.个人信息"
-        ],
+        "tags": ["03.个人信息"],
         "summary": "获取锁定用户ID列表",
         "operationId": "getLockedUserIdsByApplicationId",
         "parameters": [
@@ -500,9 +478,7 @@
     },
     "/account/get_current_login_user_info": {
       "get": {
-        "tags": [
-          "03.个人信息"
-        ],
+        "tags": ["03.个人信息"],
         "summary": "获取当前登录用户信息",
         "operationId": "getCurrentLoginUserInfo",
         "responses": {
@@ -526,9 +502,7 @@
     },
     "/mgr/application/get_list_paged": {
       "get": {
-        "tags": [
-          "04.应用管理服务"
-        ],
+        "tags": ["04.应用管理服务"],
         "summary": "分页获取应用列表",
         "operationId": "findApplicationsPaged",
         "parameters": [
@@ -574,9 +548,7 @@
     },
     "/mgr/application/get_one/{id}": {
       "get": {
-        "tags": [
-          "04.应用管理服务"
-        ],
+        "tags": ["04.应用管理服务"],
         "summary": "获取单个应用信息",
         "operationId": "findOneApplication",
         "parameters": [
@@ -612,9 +584,7 @@
     },
     "/mgr/application/get_uc_list": {
       "get": {
-        "tags": [
-          "04.应用管理服务"
-        ],
+        "tags": ["04.应用管理服务"],
         "summary": "获取应用中心所有应用的关联信息（包括角色、设备）",
         "operationId": "findUserCenterApplication",
         "responses": {
@@ -638,9 +608,7 @@
     },
     "/mgr/role/save_refs_menu_perm_api": {
       "post": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "新增/更新角色配置的所有菜单&功能点&数据接口",
         "operationId": "saveRoleRefsMenuPermApi",
         "requestBody": {
@@ -674,9 +642,7 @@
     },
     "/mgr/role/add": {
       "post": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "新增角色",
         "operationId": "addRole",
         "requestBody": {
@@ -710,9 +676,7 @@
     },
     "/mgr/role/get_refs_menu_perm_api_list/{id}": {
       "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "获取角色已配置的所有菜单&功能点&数据接口",
         "operationId": "findAllRoleRefsMenuPermApi",
         "parameters": [
@@ -748,9 +712,7 @@
     },
     "/mgr/role/get_as_tree": {
       "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "获取所有功能点（树形式）",
         "description": "将功能点以设备分组的静态树形式展现",
         "operationId": "findStaticMenu",
@@ -775,9 +737,7 @@
     },
     "/mgr/role/get_list_paged": {
       "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "分页获取角色",
         "operationId": "findRolesPaged",
         "parameters": [
@@ -855,9 +815,7 @@
     },
     "/mgr/role/get_one/{id}": {
       "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "获取单个角色信息",
         "operationId": "findOneRole",
         "parameters": [
@@ -893,9 +851,7 @@
     },
     "/mgr/role/get_api_list_paged": {
       "get": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "分页获取所有数据接口",
         "operationId": "findAllApisPaged",
         "parameters": [
@@ -941,9 +897,7 @@
     },
     "/mgr/role/modify": {
       "put": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "修改角色",
         "operationId": "modifyRole",
         "requestBody": {
@@ -977,9 +931,7 @@
     },
     "/mgr/role/remove/{id}": {
       "delete": {
-        "tags": [
-          "07.角色管理服务"
-        ],
+        "tags": ["07.角色管理服务"],
         "summary": "删除角色",
         "operationId": "removeRole",
         "parameters": [
@@ -1015,9 +967,7 @@
     },
     "/mgr/application_user/add": {
       "post": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "summary": "新增应用用户",
         "operationId": "addUser_1",
         "requestBody": {
@@ -1051,9 +1001,7 @@
     },
     "/mgr/application_user/add_ext": {
       "post": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "operationId": "addUser_2",
         "requestBody": {
           "content": {
@@ -1086,9 +1034,7 @@
     },
     "/mgr/application_user/get_ext_one": {
       "get": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "operationId": "findOneUser",
         "parameters": [
           {
@@ -1134,9 +1080,7 @@
     },
     "/mgr/application_user/get_one/{id}": {
       "get": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "summary": "获取单个应用用户信息",
         "operationId": "findOneUser_1",
         "parameters": [
@@ -1172,9 +1116,7 @@
     },
     "/mgr/application_user/modify": {
       "put": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "summary": "修改应用用户",
         "operationId": "modifyUser_1",
         "requestBody": {
@@ -1208,9 +1150,7 @@
     },
     "/mgr/application_user/modify_ext": {
       "put": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "operationId": "modifyUser_2",
         "requestBody": {
           "content": {
@@ -1243,9 +1183,7 @@
     },
     "/mgr/application_user/remove/{id}": {
       "delete": {
-        "tags": [
-          "12.应用用户管理服务"
-        ],
+        "tags": ["12.应用用户管理服务"],
         "summary": "删除应用用户",
         "operationId": "removeUser_1",
         "parameters": [
@@ -1281,9 +1219,7 @@
     },
     "/1.0/lu/init_data": {
       "get": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
+        "tags": ["LNG加气站卸车记录服务"],
         "summary": "初始化LNG加气站卸车记录",
         "operationId": "initDayInspectData_1",
         "parameters": [
@@ -1318,9 +1254,7 @@
     },
     "/1.0/lu/get_one": {
       "get": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
+        "tags": ["LNG加气站卸车记录服务"],
         "summary": "主键查询LNG加气站卸车记录",
         "operationId": "getOne_6",
         "parameters": [
@@ -1357,9 +1291,7 @@
     },
     "/1.0/lu/get_paged": {
       "get": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
+        "tags": ["LNG加气站卸车记录服务"],
         "summary": "分页查询LNG加气站卸车记录",
         "operationId": "getPaged_7",
         "parameters": [
@@ -1464,9 +1396,7 @@
     },
     "/1.0/lu/persist": {
       "put": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
+        "tags": ["LNG加气站卸车记录服务"],
         "summary": "持久化LNG加气站卸车记录",
         "operationId": "persist",
         "requestBody": {
@@ -1500,9 +1430,7 @@
     },
     "/1.0/lu/remove/{id}": {
       "delete": {
-        "tags": [
-          "LNG加气站卸车记录服务"
-        ],
+        "tags": ["LNG加气站卸车记录服务"],
         "summary": "删除LNG加气站卸车记录",
         "operationId": "remove_6",
         "parameters": [
@@ -1530,9 +1458,7 @@
     },
     "/1.0/sp/get_by_year": {
       "get": {
-        "tags": [
-          "安全检测计划表服务"
-        ],
+        "tags": ["安全检测计划表服务"],
         "summary": "按年份查询安全检测计划表",
         "operationId": "getByYear_1",
         "parameters": [
@@ -1566,9 +1492,7 @@
     },
     "/1.0/sp/remove_station": {
       "put": {
-        "tags": [
-          "安全检测计划表服务"
-        ],
+        "tags": ["安全检测计划表服务"],
         "summary": "移除计划中的站点",
         "operationId": "removeStation",
         "requestBody": {
@@ -1602,9 +1526,7 @@
     },
     "/1.0/sp/persist": {
       "put": {
-        "tags": [
-          "安全检测计划表服务"
-        ],
+        "tags": ["安全检测计划表服务"],
         "summary": "持久化安全检查计划",
         "operationId": "persist_1",
         "requestBody": {
@@ -1638,9 +1560,7 @@
     },
     "/1.0/spf/add": {
       "post": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "新增检测报告文件",
         "operationId": "add_2",
         "requestBody": {
@@ -1674,9 +1594,7 @@
     },
     "/1.0/spf/get_one": {
       "get": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "主键查询全检测计划文件",
         "operationId": "getOne_2",
         "parameters": [
@@ -1713,9 +1631,7 @@
     },
     "/1.0/spf/get_paged": {
       "get": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "分页查询全检测计划文件",
         "operationId": "getPaged_2",
         "parameters": [
@@ -1807,9 +1723,7 @@
     },
     "/1.0/spf/get_by_year": {
       "get": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "按年份查询安全检测计划表",
         "operationId": "getByYear",
         "parameters": [
@@ -1843,9 +1757,7 @@
     },
     "/1.0/spf/edit": {
       "put": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "编辑检测报告文件",
         "operationId": "edit_2",
         "requestBody": {
@@ -1879,9 +1791,7 @@
     },
     "/1.0/spf/remove/{id}": {
       "delete": {
-        "tags": [
-          "安全检测计划文件服务"
-        ],
+        "tags": ["安全检测计划文件服务"],
         "summary": "删除检测报告文件",
         "operationId": "remove_1",
         "parameters": [
@@ -1909,9 +1819,7 @@
     },
     "/1.0/sc/get_day_paged": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "分页查询安全检查（日）",
         "operationId": "getDayPaged",
         "parameters": [
@@ -2059,9 +1967,7 @@
     },
     "/1.0/sc/get_month_one": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "查询安全检查（月）详细",
         "operationId": "getMonthOne",
         "parameters": [
@@ -2098,9 +2004,7 @@
     },
     "/1.0/sc/get_month_paged": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "分页查询安全检查（月）",
         "operationId": "getMonthPaged",
         "parameters": [
@@ -2248,9 +2152,7 @@
     },
     "/1.0/sc/export_excel": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel",
         "parameters": [
@@ -2373,9 +2275,7 @@
     },
     "/1.0/sc/get_day_one": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "查询安全检查（日）详细",
         "operationId": "getDayOne",
         "parameters": [
@@ -2412,9 +2312,7 @@
     },
     "/1.0/sc/init_day_inspect": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "初始化安全检查（日）检查单",
         "operationId": "initDayInspectData",
         "parameters": [
@@ -2449,9 +2347,7 @@
     },
     "/1.0/sc/init_month_inspect": {
       "get": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "初始化安全检查（月）检查单",
         "operationId": "initMonthInspectData",
         "parameters": [
@@ -2486,9 +2382,7 @@
     },
     "/1.0/sc/day_persist": {
       "put": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "持久化安全检查（日）",
         "operationId": "dayPersist",
         "requestBody": {
@@ -2522,9 +2416,7 @@
     },
     "/1.0/sc/month_persist": {
       "put": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "持久化安全检查（月）",
         "operationId": "monthPersist",
         "requestBody": {
@@ -2558,9 +2450,7 @@
     },
     "/1.0/sc/day_remove/{id}": {
       "delete": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "删除安全检查单（日）",
         "operationId": "dayRemove",
         "parameters": [
@@ -2588,9 +2478,7 @@
     },
     "/1.0/sc/month_remove/{id}": {
       "delete": {
-        "tags": [
-          "安全检查服务"
-        ],
+        "tags": ["安全检查服务"],
         "summary": "删除安全检查单（月）",
         "operationId": "monthRemove",
         "parameters": [
@@ -2618,9 +2506,7 @@
     },
     "/1.0/safety_training/add": {
       "post": {
-        "tags": [
-          "安全学习培训服务"
-        ],
+        "tags": ["安全学习培训服务"],
         "summary": "新增安全培训记录",
         "operationId": "add_3",
         "requestBody": {
@@ -2654,9 +2540,7 @@
     },
     "/1.0/safety_training/get_one/{id}": {
       "get": {
-        "tags": [
-          "安全学习培训服务"
-        ],
+        "tags": ["安全学习培训服务"],
         "summary": "主键查询安全培训记录",
         "operationId": "getOne_3",
         "parameters": [
@@ -2691,9 +2575,7 @@
     },
     "/1.0/safety_training/get_paged": {
       "get": {
-        "tags": [
-          "安全学习培训服务"
-        ],
+        "tags": ["安全学习培训服务"],
         "summary": "分页查询安全培训记录",
         "operationId": "getPaged_3",
         "parameters": [
@@ -2758,9 +2640,7 @@
     },
     "/1.0/safety_training/edit": {
       "put": {
-        "tags": [
-          "安全学习培训服务"
-        ],
+        "tags": ["安全学习培训服务"],
         "summary": "编辑安全培训记录",
         "operationId": "edit_3",
         "requestBody": {
@@ -2794,9 +2674,7 @@
     },
     "/1.0/safety_training/remove/{id}": {
       "delete": {
-        "tags": [
-          "安全学习培训服务"
-        ],
+        "tags": ["安全学习培训服务"],
         "summary": "删除安全培训记录",
         "operationId": "remove_2",
         "parameters": [
@@ -2831,9 +2709,7 @@
     },
     "/1.0/device/add": {
       "post": {
-        "tags": [
-          "常规设备服务"
-        ],
+        "tags": ["常规设备服务"],
         "summary": "新增常规设备",
         "operationId": "add",
         "requestBody": {
@@ -2867,9 +2743,7 @@
     },
     "/1.0/device/get_one": {
       "get": {
-        "tags": [
-          "常规设备服务"
-        ],
+        "tags": ["常规设备服务"],
         "summary": "主键查询常规设备详情",
         "operationId": "getOne",
         "parameters": [
@@ -2906,9 +2780,7 @@
     },
     "/1.0/device/get_paged": {
       "get": {
-        "tags": [
-          "常规设备服务"
-        ],
+        "tags": ["常规设备服务"],
         "summary": "分页查询设备列表",
         "operationId": "getPaged",
         "parameters": [
@@ -2984,9 +2856,7 @@
     },
     "/1.0/device/edit": {
       "put": {
-        "tags": [
-          "常规设备服务"
-        ],
+        "tags": ["常规设备服务"],
         "summary": "编辑常规设备",
         "operationId": "edit",
         "requestBody": {
@@ -3020,9 +2890,7 @@
     },
     "/1.0/device/remove/{id}": {
       "delete": {
-        "tags": [
-          "常规设备服务"
-        ],
+        "tags": ["常规设备服务"],
         "summary": "删除常规设备",
         "operationId": "remove",
         "parameters": [
@@ -3050,9 +2918,7 @@
     },
     "/1.0/gsb/add": {
       "post": {
-        "tags": [
-          "常规物资台帐服务"
-        ],
+        "tags": ["常规物资台帐服务"],
         "summary": "新增常规物资台帐",
         "operationId": "add_6",
         "requestBody": {
@@ -3086,9 +2952,7 @@
     },
     "/1.0/gsb/get_paged": {
       "get": {
-        "tags": [
-          "常规物资台帐服务"
-        ],
+        "tags": ["常规物资台帐服务"],
         "summary": "分页查询常规物资台帐",
         "operationId": "getPaged_6",
         "parameters": [
@@ -3173,9 +3037,7 @@
     },
     "/1.0/gsb/remove/{id}": {
       "delete": {
-        "tags": [
-          "常规物资台帐服务"
-        ],
+        "tags": ["常规物资台帐服务"],
         "summary": "删除常规物资台帐",
         "operationId": "remove_5",
         "parameters": [
@@ -3203,9 +3065,7 @@
     },
     "/1.0/mu/get_condition": {
       "get": {
-        "tags": [
-          "厂家/单位服务"
-        ],
+        "tags": ["厂家/单位服务"],
         "summary": "条件查询厂家/单位",
         "operationId": "getByCondition",
         "parameters": [
@@ -3252,9 +3112,7 @@
     },
     "/1.0/vehicle_manage/external/add": {
       "post": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "新增外部车辆信息记录",
         "operationId": "addExternal",
         "requestBody": {
@@ -3288,9 +3146,7 @@
     },
     "/1.0/vehicle_manage/internal/add": {
       "post": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "新增内部车辆信息记录",
         "operationId": "addInternal",
         "requestBody": {
@@ -3324,9 +3180,7 @@
     },
     "/1.0/vehicle_manage/internal/get_one/{id}": {
       "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "主键查询内部车辆信息记录",
         "operationId": "getInternalOne",
         "parameters": [
@@ -3361,9 +3215,7 @@
     },
     "/1.0/vehicle_manage/internal/get_paged": {
       "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "分页查询内部车辆信息记录",
         "operationId": "getInternalPaged",
         "parameters": [
@@ -3417,9 +3269,7 @@
     },
     "/1.0/vehicle_manage/external/get_one/{id}": {
       "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "主键查询外部车辆信息记录",
         "operationId": "getExternalOne",
         "parameters": [
@@ -3454,9 +3304,7 @@
     },
     "/1.0/vehicle_manage/external/get_paged": {
       "get": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "分页查询外部车辆信息记录",
         "operationId": "getExternalPaged",
         "parameters": [
@@ -3520,9 +3368,7 @@
     },
     "/1.0/vehicle_manage/internal/edit": {
       "put": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "编辑内部车辆信息记录",
         "operationId": "editInternal",
         "requestBody": {
@@ -3556,9 +3402,7 @@
     },
     "/1.0/vehicle_manage/external/edit": {
       "put": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "编辑外部车辆信息记录",
         "operationId": "editExternal",
         "requestBody": {
@@ -3592,9 +3436,7 @@
     },
     "/1.0/vehicle_manage/remove/{id}": {
       "delete": {
-        "tags": [
-          "车辆信息管理"
-        ],
+        "tags": ["车辆信息管理"],
         "summary": "删除车辆信息记录",
         "operationId": "remove_3",
         "parameters": [
@@ -3629,9 +3471,7 @@
     },
     "/1.0/img/get_upload_file": {
       "get": {
-        "tags": [
-          "多媒体服务"
-        ],
+        "tags": ["多媒体服务"],
         "summary": "下载上传文件",
         "operationId": "getUploadFile",
         "responses": {
@@ -3648,9 +3488,7 @@
     },
     "/1.0/attachment/upload_file": {
       "post": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "上传附件",
         "operationId": "uploadFile",
         "requestBody": {
@@ -3689,9 +3527,7 @@
     },
     "/1.0/attachment/add_attachment": {
       "post": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "附件批量提交",
         "operationId": "addAttachment",
         "requestBody": {
@@ -3725,9 +3561,7 @@
     },
     "/1.0/attachment/download_tag": {
       "get": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "打包下载",
         "operationId": "downloadTag",
         "parameters": [
@@ -3768,9 +3602,7 @@
     },
     "/1.0/attachment/get_attachment_by_id": {
       "get": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "主键查询附件明细",
         "operationId": "getAttachmentById",
         "parameters": [
@@ -3805,9 +3637,7 @@
     },
     "/1.0/attachment/get_station_attachments": {
       "get": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "分页查询站点附件列表",
         "operationId": "getStationAttachments",
         "parameters": [
@@ -3876,9 +3706,7 @@
     },
     "/1.0/attachment/get_safe_attachment_paged": {
       "get": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "分页查询安全管理制度附件列表",
         "operationId": "getSafeAttachmentPaged",
         "parameters": [
@@ -3965,9 +3793,7 @@
     },
     "/1.0/attachment/download_attachment": {
       "get": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "下载附件",
         "operationId": "downloadAttachment",
         "parameters": [
@@ -3995,9 +3821,7 @@
     },
     "/1.0/attachment/edit_attachment": {
       "put": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "更新附件",
         "operationId": "editAttachment",
         "requestBody": {
@@ -4031,9 +3855,7 @@
     },
     "/1.0/attachment/remove_attachment/{id}": {
       "delete": {
-        "tags": [
-          "附件服务"
-        ],
+        "tags": ["附件服务"],
         "summary": "删除附件",
         "operationId": "removeAttachment",
         "parameters": [
@@ -4061,9 +3883,7 @@
     },
     "/gisc/supplier/add": {
       "post": {
-        "tags": [
-          "供应商服务"
-        ],
+        "tags": ["供应商服务"],
         "summary": "添加供应商",
         "operationId": "addSupplier",
         "requestBody": {
@@ -4097,9 +3917,7 @@
     },
     "/gisc/supplier/get_supplier_list": {
       "get": {
-        "tags": [
-          "供应商服务"
-        ],
+        "tags": ["供应商服务"],
         "summary": "查询所有有效供应商",
         "operationId": "getSupplierList",
         "responses": {
@@ -4123,9 +3941,7 @@
     },
     "/gisc/supplier/modify": {
       "put": {
-        "tags": [
-          "供应商服务"
-        ],
+        "tags": ["供应商服务"],
         "summary": "修改供应商",
         "operationId": "modifySupplier",
         "requestBody": {
@@ -4159,9 +3975,7 @@
     },
     "/gisc/supplier/remove/{id}": {
       "delete": {
-        "tags": [
-          "供应商服务"
-        ],
+        "tags": ["供应商服务"],
         "summary": "删除供应商",
         "operationId": "removeSupplier",
         "parameters": [
@@ -4196,9 +4010,7 @@
     },
     "/1.0/org/get_station_list": {
       "get": {
-        "tags": [
-          "机构管理"
-        ],
+        "tags": ["机构管理"],
         "summary": "查询用户站点列表",
         "operationId": "getStationList",
         "parameters": [
@@ -4232,9 +4044,7 @@
     },
     "/1.0/cf/get_one_record": {
       "get": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
+        "tags": ["加液及充装检查记录"],
         "summary": "主键查询加液及充装检查记录明细",
         "operationId": "getOneRecord",
         "parameters": [
@@ -4271,9 +4081,7 @@
     },
     "/1.0/cf/get_one": {
       "get": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
+        "tags": ["加液及充装检查记录"],
         "summary": "主键查询加液及充装检查记录",
         "operationId": "getOne_7",
         "parameters": [
@@ -4310,9 +4118,7 @@
     },
     "/1.0/cf/get_paged": {
       "get": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
+        "tags": ["加液及充装检查记录"],
         "summary": "分页查询加液及充装检查记录",
         "operationId": "getPaged_8",
         "parameters": [
@@ -4397,9 +4203,7 @@
     },
     "/1.0/cf/persist": {
       "put": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
+        "tags": ["加液及充装检查记录"],
         "summary": "持久化加液及充装检查记录",
         "operationId": "persist_2",
         "requestBody": {
@@ -4433,9 +4237,7 @@
     },
     "/1.0/cf/remove/{id}": {
       "delete": {
-        "tags": [
-          "加液及充装检查记录"
-        ],
+        "tags": ["加液及充装检查记录"],
         "summary": "删除加液及充装检查记录",
         "operationId": "remove_7",
         "parameters": [
@@ -4463,9 +4265,7 @@
     },
     "/1.0/sg/get_sales_info": {
       "get": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "刷新本班情况",
         "operationId": "getSecurityGroupsInfo",
         "parameters": [
@@ -4524,9 +4324,7 @@
     },
     "/1.0/sg/get_shifts_data": {
       "get": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "获取交接班时硬件上传数据",
         "operationId": "getShiftsDataInfo",
         "parameters": [
@@ -4596,9 +4394,7 @@
     },
     "/1.0/sg/get_day_end": {
       "get": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "获取日结信息",
         "operationId": "dayEnd",
         "parameters": [
@@ -4657,9 +4453,7 @@
     },
     "/1.0/sg/get_one": {
       "get": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "主键查询交接班记录",
         "operationId": "getOne_8",
         "parameters": [
@@ -4696,9 +4490,7 @@
     },
     "/1.0/sg/get_paged": {
       "get": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "分页查询交接班记录",
         "operationId": "getPaged_9",
         "parameters": [
@@ -4816,9 +4608,7 @@
     },
     "/1.0/sg/persist_multiple_vessel": {
       "put": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "持久化交接班（多槽罐）",
         "operationId": "persistMultipleVessel",
         "requestBody": {
@@ -4852,9 +4642,7 @@
     },
     "/1.0/sg/persist": {
       "put": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "持久化交接班",
         "operationId": "persist_3",
         "requestBody": {
@@ -4888,9 +4676,7 @@
     },
     "/1.0/sg/remove/{id}": {
       "delete": {
-        "tags": [
-          "交接班服务"
-        ],
+        "tags": ["交接班服务"],
         "summary": "删除交接班记录",
         "operationId": "remove_8",
         "parameters": [
@@ -4918,9 +4704,7 @@
     },
     "/1.0/report/export_excel": {
       "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
+        "tags": ["进销存报表服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel_5",
         "parameters": [
@@ -4970,9 +4754,7 @@
     },
     "/1.0/report/get_sale_inventory_unload": {
       "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
+        "tags": ["进销存报表服务"],
         "summary": "查询卸液记录报表",
         "operationId": "queryInventoryUnload",
         "parameters": [
@@ -5029,9 +4811,7 @@
     },
     "/1.0/report/get_sale_inventory_report": {
       "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
+        "tags": ["进销存报表服务"],
         "summary": "查询查询进出存报表",
         "operationId": "queryInventoryReport",
         "parameters": [
@@ -5088,9 +4868,7 @@
     },
     "/1.0/report/get_sale_report": {
       "get": {
-        "tags": [
-          "进销存报表服务"
-        ],
+        "tags": ["进销存报表服务"],
         "summary": "查询销售日报",
         "operationId": "querySaleReport",
         "parameters": [
@@ -5147,9 +4925,7 @@
     },
     "/1.0/sale/export_excel": {
       "get": {
-        "tags": [
-          "进销存服务"
-        ],
+        "tags": ["进销存服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel_1",
         "parameters": [
@@ -5199,9 +4975,7 @@
     },
     "/1.0/sale/get_sale_inventory": {
       "get": {
-        "tags": [
-          "进销存服务"
-        ],
+        "tags": ["进销存服务"],
         "summary": "查询进销存报表",
         "operationId": "querySaleInventory",
         "parameters": [
@@ -5258,9 +5032,7 @@
     },
     "/1.0/certificate_manage/add": {
       "post": {
-        "tags": [
-          "人员持证情况汇总"
-        ],
+        "tags": ["人员持证情况汇总"],
         "summary": "新增人员证书信息",
         "operationId": "add_7",
         "requestBody": {
@@ -5294,9 +5066,7 @@
     },
     "/1.0/certificate_manage/get_info_paged": {
       "get": {
-        "tags": [
-          "人员持证情况汇总"
-        ],
+        "tags": ["人员持证情况汇总"],
         "summary": "分页查询证书汇总",
         "operationId": "getInfoPaged",
         "parameters": [
@@ -5420,9 +5190,7 @@
     },
     "/1.0/certificate_manage/get_info_one/{id}": {
       "get": {
-        "tags": [
-          "人员持证情况汇总"
-        ],
+        "tags": ["人员持证情况汇总"],
         "summary": "查询人员证书信息",
         "operationId": "getInfoOne",
         "parameters": [
@@ -5457,9 +5225,7 @@
     },
     "/1.0/certificate_manage/get_maturity_summary": {
       "get": {
-        "tags": [
-          "人员持证情况汇总"
-        ],
+        "tags": ["人员持证情况汇总"],
         "summary": "证书到期汇总",
         "operationId": "getMaturitySummary",
         "parameters": [
@@ -5516,9 +5282,7 @@
     },
     "/1.0/certificate_manage/edit": {
       "put": {
-        "tags": [
-          "人员持证情况汇总"
-        ],
+        "tags": ["人员持证情况汇总"],
         "summary": "编辑人员证书信息",
         "operationId": "edit_6",
         "requestBody": {
@@ -5552,9 +5316,7 @@
     },
     "/1.0/operation/p/get_operation_paged": {
       "get": {
-        "tags": [
-          "日志服务"
-        ],
+        "tags": ["日志服务"],
         "summary": "分页查询操作日志",
         "operationId": "getOperationLogPaged",
         "parameters": [
@@ -5629,9 +5391,7 @@
     },
     "/1.0/home/get_sales_inventory": {
       "get": {
-        "tags": [
-          "首页服务"
-        ],
+        "tags": ["首页服务"],
         "summary": "首页查询各站点统计进销存情况",
         "operationId": "getSalesInventoryByStation",
         "parameters": [
@@ -5679,9 +5439,7 @@
     },
     "/1.0/sec/export_excel": {
       "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel_4",
         "parameters": [
@@ -5793,9 +5551,7 @@
     },
     "/1.0/sec/init_data": {
       "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "初始化特种设备检查单",
         "operationId": "initData",
         "parameters": [
@@ -5830,9 +5586,7 @@
     },
     "/1.0/sec/get_one": {
       "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "查询特种设备检查单明细",
         "operationId": "getOne_11",
         "parameters": [
@@ -5869,9 +5623,7 @@
     },
     "/1.0/sec/get_paged": {
       "get": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "分页查询特种设备检查",
         "operationId": "getPaged_13",
         "parameters": [
@@ -6008,9 +5760,7 @@
     },
     "/1.0/sec/persist": {
       "put": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "持久化特种设备检查单",
         "operationId": "persist_4",
         "requestBody": {
@@ -6044,9 +5794,7 @@
     },
     "/1.0/sec/remove/{id}": {
       "delete": {
-        "tags": [
-          "特种设备检查服务"
-        ],
+        "tags": ["特种设备检查服务"],
         "summary": "删除特种设备检查单",
         "operationId": "remove_10",
         "parameters": [
@@ -6074,9 +5822,7 @@
     },
     "/1.0/wo/add": {
       "post": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "新增维修报告",
         "operationId": "add_8",
         "requestBody": {
@@ -6110,9 +5856,7 @@
     },
     "/1.0/wo/export_excel": {
       "get": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel_2",
         "parameters": [
@@ -6209,9 +5953,7 @@
     },
     "/1.0/wo/get_one": {
       "get": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "主键查询维修报告详情",
         "operationId": "getOne_9",
         "parameters": [
@@ -6248,9 +5990,7 @@
     },
     "/1.0/wo/get_paged": {
       "get": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "分页查询维修报告",
         "operationId": "getPaged_10",
         "parameters": [
@@ -6372,9 +6112,7 @@
     },
     "/1.0/wo/edit": {
       "put": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "编辑维修报告",
         "operationId": "edit_7",
         "requestBody": {
@@ -6408,9 +6146,7 @@
     },
     "/1.0/wo/remove/{id}": {
       "delete": {
-        "tags": [
-          "维修报告服务"
-        ],
+        "tags": ["维修报告服务"],
         "summary": "删除维修报告",
         "operationId": "remove_9",
         "parameters": [
@@ -6438,9 +6174,7 @@
     },
     "/1.0/sales_data/add": {
       "post": {
-        "tags": [
-          "销售数据服务"
-        ],
+        "tags": ["销售数据服务"],
         "summary": "接收销售系统推送数据",
         "operationId": "addSales",
         "requestBody": {
@@ -6474,9 +6208,7 @@
     },
     "/1.0/sales_data/get_detail": {
       "get": {
-        "tags": [
-          "销售数据服务"
-        ],
+        "tags": ["销售数据服务"],
         "summary": "按时间拉取销售数据",
         "operationId": "getDaySalesData",
         "parameters": [
@@ -6515,9 +6247,7 @@
     },
     "/1.0/sales_data/get_paged": {
       "get": {
-        "tags": [
-          "销售数据服务"
-        ],
+        "tags": ["销售数据服务"],
         "summary": "分页条件查询销售数据列表",
         "operationId": "getSalesPaged",
         "parameters": [
@@ -6604,9 +6334,7 @@
     },
     "/1.0/pip/add": {
       "post": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "新增压力管道",
         "operationId": "add_1",
         "requestBody": {
@@ -6640,9 +6368,7 @@
     },
     "/1.0/pip/get_one": {
       "get": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "主键查询压力管道明细",
         "operationId": "getOne_1",
         "parameters": [
@@ -6679,9 +6405,7 @@
     },
     "/1.0/pip/get_paged": {
       "get": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "分页查询设备列表",
         "operationId": "getPaged_1",
         "parameters": [
@@ -6746,9 +6470,7 @@
     },
     "/1.0/pip/get_length": {
       "get": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "查询所有管道长度",
         "operationId": "getPipeLengthSum",
         "parameters": [
@@ -6783,9 +6505,7 @@
     },
     "/1.0/pip/edit": {
       "put": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "编辑压力管道",
         "operationId": "edit_1",
         "requestBody": {
@@ -6819,9 +6539,7 @@
     },
     "/1.0/pip/discard": {
       "put": {
-        "tags": [
-          "压力管道服务"
-        ],
+        "tags": ["压力管道服务"],
         "summary": "废弃压力管道",
         "operationId": "discard",
         "requestBody": {
@@ -6848,9 +6566,7 @@
     },
     "/1.0/pv/add": {
       "post": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "新增压力容器",
         "operationId": "add_9",
         "requestBody": {
@@ -6884,9 +6600,7 @@
     },
     "/1.0/pv/export_excel": {
       "get": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "导出Excel",
         "operationId": "exportExcel_3",
         "parameters": [
@@ -6937,9 +6651,7 @@
     },
     "/1.0/pv/get_by_type_station": {
       "get": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "查询站点或登陆用户站点下的储罐",
         "operationId": "getByTypeStation",
         "parameters": [
@@ -6974,9 +6686,7 @@
     },
     "/1.0/pv/get_by_station": {
       "get": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "查询站点或登陆用户站点下的压力容器",
         "operationId": "getByStation",
         "parameters": [
@@ -7011,9 +6721,7 @@
     },
     "/1.0/pv/get_one": {
       "get": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "主键查询常规设备详情",
         "operationId": "getOne_10",
         "parameters": [
@@ -7050,9 +6758,7 @@
     },
     "/1.0/pv/get_paged": {
       "get": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "分页查询设备列表",
         "operationId": "getPaged_12",
         "parameters": [
@@ -7128,9 +6834,7 @@
     },
     "/1.0/pv/edit": {
       "put": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "编辑压力容器",
         "operationId": "edit_8",
         "requestBody": {
@@ -7164,9 +6868,7 @@
     },
     "/1.0/pv/discard": {
       "put": {
-        "tags": [
-          "压力容器服务"
-        ],
+        "tags": ["压力容器服务"],
         "summary": "废弃压力容器",
         "operationId": "discard_1",
         "requestBody": {
@@ -7193,9 +6895,7 @@
     },
     "/1.0/user/get_users_one/{id}": {
       "get": {
-        "tags": [
-          "用户服务"
-        ],
+        "tags": ["用户服务"],
         "summary": "使用id查询用户",
         "operationId": "getUserOne",
         "parameters": [
@@ -7230,9 +6930,7 @@
     },
     "/1.0/user/get_user_one_detail/{userId}": {
       "get": {
-        "tags": [
-          "用户服务"
-        ],
+        "tags": ["用户服务"],
         "summary": "根据userId（非主键）查询用户机构以及机构下的站点",
         "operationId": "getUserByUserId",
         "parameters": [
@@ -7267,9 +6965,7 @@
     },
     "/gisc/user/add": {
       "post": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "新增用户",
         "operationId": "addUser",
         "requestBody": {
@@ -7303,9 +6999,7 @@
     },
     "/gisc/user/img/upload": {
       "post": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "上传用户头像",
         "operationId": "uploadImg",
         "requestBody": {
@@ -7344,9 +7038,7 @@
     },
     "/gisc/user/get_users_one/{id}": {
       "get": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "使用id查询用户",
         "operationId": "getUserOne_1",
         "parameters": [
@@ -7381,9 +7073,7 @@
     },
     "/gisc/user/get_user_one_detail/{userId}": {
       "get": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "根据userId（非主键）查询用户机构以及机构下的站点",
         "operationId": "getUserByUserId_1",
         "parameters": [
@@ -7418,9 +7108,7 @@
     },
     "/gisc/user/get_users_paged": {
       "get": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "查询用户列表",
         "operationId": "getUsersPaged",
         "parameters": [
@@ -7660,9 +7348,7 @@
     },
     "/gisc/user/img/get_img": {
       "get": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "获取用户头像",
         "operationId": "getImg",
         "parameters": [
@@ -7697,9 +7383,7 @@
     },
     "/gisc/user/modify_avatar": {
       "put": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "修改用户头像",
         "operationId": "modifyUserAvatar",
         "requestBody": {
@@ -7733,9 +7417,7 @@
     },
     "/gisc/user/modify": {
       "put": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "修改用户信息",
         "operationId": "modifyUser",
         "requestBody": {
@@ -7769,9 +7451,7 @@
     },
     "/gisc/user/remove/{id}": {
       "delete": {
-        "tags": [
-          "用户管理服务"
-        ],
+        "tags": ["用户管理服务"],
         "summary": "删除用户",
         "operationId": "removeUser",
         "parameters": [
@@ -7806,9 +7486,7 @@
     },
     "/1.0/gas/get_gas_paged": {
       "get": {
-        "tags": [
-          "用气监控服务"
-        ],
+        "tags": ["用气监控服务"],
         "summary": "分页条件查询用气列表",
         "operationId": "getGasPaged",
         "parameters": [
@@ -7883,9 +7561,7 @@
     },
     "/1.0/org_manage/worker/add": {
       "post": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "添加员工",
         "operationId": "addWorker",
         "requestBody": {
@@ -7919,9 +7595,7 @@
     },
     "/1.0/org_manage/org/get_org_extra_info/{id}": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "按主键查询站点机构额外信息",
         "operationId": "getOrgExtraInfoOne",
         "parameters": [
@@ -7956,9 +7630,7 @@
     },
     "/1.0/org_manage/worker/attachment/get_list": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "查询员工资质证书",
         "operationId": "getWorkerAttachmentList",
         "parameters": [
@@ -7995,9 +7667,7 @@
     },
     "/1.0/org_manage/org/get_org_info_paged": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "站点机构分页查询",
         "operationId": "getOrgInfoPaged",
         "parameters": [
@@ -8051,9 +7721,7 @@
     },
     "/1.0/org_manage/org/get_org_info/{id}": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "按主键查询站点机构信息",
         "operationId": "getOrgInfoOne",
         "parameters": [
@@ -8088,9 +7756,7 @@
     },
     "/1.0/org_manage/worker/get/{id}": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "根据主键查询员工信息",
         "operationId": "getWorkerOne",
         "parameters": [
@@ -8125,9 +7791,7 @@
     },
     "/1.0/org_manage/worker/get_org_workers": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "查询机构下员工列表",
         "operationId": "getOrgWorkers",
         "parameters": [
@@ -8164,9 +7828,7 @@
     },
     "/1.0/org_manage/worker/get_list": {
       "get": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "查询员工列表",
         "operationId": "getWorkersList",
         "parameters": [
@@ -8238,9 +7900,7 @@
     },
     "/1.0/org_manage/org/modify_extra": {
       "put": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "修改站点额外信息",
         "operationId": "modifyOrgExtraInfo",
         "requestBody": {
@@ -8274,9 +7934,7 @@
     },
     "/1.0/org_manage/org/modify": {
       "put": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "修改站点基本信息",
         "operationId": "modifyOrg",
         "requestBody": {
@@ -8310,9 +7968,7 @@
     },
     "/1.0/org_manage/worker/modify": {
       "put": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "修改员工信息",
         "operationId": "modifyWorker",
         "requestBody": {
@@ -8346,9 +8002,7 @@
     },
     "/1.0/org_manage/worker/attachment/modify_batch": {
       "put": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "批量修改员工资质证书",
         "operationId": "modifyWorkerAttachmentBatch",
         "requestBody": {
@@ -8382,9 +8036,7 @@
     },
     "/1.0/org_manage/worker/attachment/remove/{id}": {
       "delete": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "删除员工资质文件",
         "operationId": "removeWorkerAttachment",
         "parameters": [
@@ -8419,9 +8071,7 @@
     },
     "/1.0/org_manage/worker/remove/{id}": {
       "delete": {
-        "tags": [
-          "站点管理服务"
-        ],
+        "tags": ["站点管理服务"],
         "summary": "删除员工",
         "operationId": "removeWorker",
         "parameters": [
@@ -8456,9 +8106,7 @@
     },
     "/1.0/message/message_read": {
       "post": {
-        "tags": [
-          "站内信服务"
-        ],
+        "tags": ["站内信服务"],
         "summary": "站内信已读",
         "operationId": "messageRead",
         "requestBody": {
@@ -8492,9 +8140,7 @@
     },
     "/1.0/message/get_unread_count": {
       "get": {
-        "tags": [
-          "站内信服务"
-        ],
+        "tags": ["站内信服务"],
         "summary": "查询未读站内信条数",
         "operationId": "getUnreadCount",
         "responses": {
@@ -8518,9 +8164,7 @@
     },
     "/1.0/message/get_paged": {
       "get": {
-        "tags": [
-          "站内信服务"
-        ],
+        "tags": ["站内信服务"],
         "summary": "分页条件查询站内信列表",
         "operationId": "getPaged_11",
         "parameters": [
@@ -8606,9 +8250,7 @@
     },
     "/1.0/mro/add": {
       "post": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "新增中修工单",
         "operationId": "add_4",
         "requestBody": {
@@ -8642,9 +8284,7 @@
     },
     "/1.0/mro/auto": {
       "get": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "手动触发中修派单",
         "operationId": "automaticDispatch",
         "parameters": [
@@ -8678,9 +8318,7 @@
     },
     "/1.0/mro/get_one": {
       "get": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "主键查询中修工单详情",
         "operationId": "getOne_4",
         "parameters": [
@@ -8717,9 +8355,7 @@
     },
     "/1.0/mro/get_paged": {
       "get": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "分页查询中修工单",
         "operationId": "getPaged_4",
         "parameters": [
@@ -8840,9 +8476,7 @@
     },
     "/1.0/mro/edit": {
       "put": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "编辑中修工单",
         "operationId": "edit_4",
         "requestBody": {
@@ -8876,9 +8510,7 @@
     },
     "/1.0/mro/remove/{id}": {
       "delete": {
-        "tags": [
-          "中修工单服务"
-        ],
+        "tags": ["中修工单服务"],
         "summary": "删除中修工单",
         "operationId": "remove_4",
         "parameters": [
@@ -8906,9 +8538,7 @@
     },
     "/1.0/mrp/add": {
       "post": {
-        "tags": [
-          "中修计划服务"
-        ],
+        "tags": ["中修计划服务"],
         "summary": "新增中修计划",
         "operationId": "add_5",
         "requestBody": {
@@ -8942,9 +8572,7 @@
     },
     "/1.0/mrp/get_one": {
       "get": {
-        "tags": [
-          "中修计划服务"
-        ],
+        "tags": ["中修计划服务"],
         "summary": "主键查询中修计划详情",
         "operationId": "getOne_5",
         "parameters": [
@@ -8981,9 +8609,7 @@
     },
     "/1.0/mrp/get_paged": {
       "get": {
-        "tags": [
-          "中修计划服务"
-        ],
+        "tags": ["中修计划服务"],
         "summary": "分页查询中修计划",
         "operationId": "getPaged_5",
         "parameters": [
@@ -9079,9 +8705,7 @@
     },
     "/1.0/mrp/edit": {
       "put": {
-        "tags": [
-          "中修计划服务"
-        ],
+        "tags": ["中修计划服务"],
         "summary": "编辑中修计划",
         "operationId": "edit_5",
         "requestBody": {
@@ -9115,9 +8739,7 @@
     },
     "/1.0/mrp/stop": {
       "put": {
-        "tags": [
-          "中修计划服务"
-        ],
+        "tags": ["中修计划服务"],
         "summary": "终止中修计划",
         "operationId": "stop",
         "requestBody": {
@@ -9151,9 +8773,7 @@
     },
     "/1.0/dict/value/add": {
       "post": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "新增数据字典子项",
         "operationId": "addValue",
         "requestBody": {
@@ -9187,9 +8807,7 @@
     },
     "/1.0/dict/type/add": {
       "post": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "新增数据字典类型",
         "operationId": "addType",
         "requestBody": {
@@ -9223,9 +8841,7 @@
     },
     "/1.0/dict/value/get_list_bytypekey": {
       "get": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "使用字典编码查询所有字典子项值",
         "operationId": "getValuesByKey",
         "parameters": [
@@ -9259,9 +8875,7 @@
     },
     "/1.0/dict/value/get_list_by_type_keys": {
       "get": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "使用字典编码集合查询所有字典子项值",
         "operationId": "getValuesByKeys",
         "parameters": [
@@ -9298,9 +8912,7 @@
     },
     "/1.0/dict/value/get_list_paged": {
       "get": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "查询数据字典子项",
         "operationId": "getValues",
         "parameters": [
@@ -9353,9 +8965,7 @@
     },
     "/1.0/dict/type/get_list_paged": {
       "get": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "查询数据字典类型",
         "operationId": "getTypes",
         "parameters": [
@@ -9407,9 +9017,7 @@
     },
     "/gisc/dict/value/get_list_bytypekey": {
       "get": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "使用字典编码查询所有字典子项值",
         "operationId": "getValuesByKey_1",
         "parameters": [
@@ -9443,9 +9051,7 @@
     },
     "/1.0/dict/value/modify": {
       "put": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "修改数据字典子项",
         "operationId": "modifyValue",
         "requestBody": {
@@ -9479,9 +9085,7 @@
     },
     "/1.0/dict/type/modify": {
       "put": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "修改数据字典类型",
         "operationId": "modifyType",
         "requestBody": {
@@ -9515,9 +9119,7 @@
     },
     "/1.0/dict/type/remove/{id}": {
       "delete": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "删除数据字典类型",
         "operationId": "removeType",
         "parameters": [
@@ -9552,9 +9154,7 @@
     },
     "/1.0/dict/value/remove/{id}": {
       "delete": {
-        "tags": [
-          "字典服务"
-        ],
+        "tags": ["字典服务"],
         "summary": "删除数据字典子项",
         "operationId": "removeValue",
         "parameters": [
@@ -9589,9 +9189,7 @@
     },
     "/gisc/org/add": {
       "post": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "新增组织机构",
         "operationId": "addOrg",
         "requestBody": {
@@ -9625,9 +9223,7 @@
     },
     "/gisc/org/get_list": {
       "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "查询组织机构",
         "operationId": "getOrgs",
         "parameters": [
@@ -9780,9 +9376,7 @@
     },
     "/gisc/org/get_user_org": {
       "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "权限查询机构",
         "operationId": "getOrgByUser",
         "parameters": [
@@ -9935,9 +9529,7 @@
     },
     "/gisc/org/get_list_tree": {
       "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "查询组织机构树",
         "operationId": "getOrgTree",
         "parameters": [
@@ -9972,9 +9564,7 @@
     },
     "/gisc/org/get_list_paged": {
       "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "分页查询组织机构",
         "operationId": "getOrgsPaged",
         "parameters": [
@@ -10145,9 +9735,7 @@
     },
     "/gisc/org/get_one/{id}": {
       "get": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "使用id查询组织机构",
         "operationId": "getOrgOne",
         "parameters": [
@@ -10182,9 +9770,7 @@
     },
     "/gisc/org/modify": {
       "put": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "修改组织机构",
         "operationId": "modifyOrg_1",
         "requestBody": {
@@ -10218,9 +9804,7 @@
     },
     "/gisc/org/remove/{id}": {
       "delete": {
-        "tags": [
-          "组织机构管理服务"
-        ],
+        "tags": ["组织机构管理服务"],
         "summary": "删除组织机构",
         "operationId": "removeOrg",
         "parameters": [
@@ -10393,9 +9977,7 @@
         "description": "通用分页信息"
       },
       "DeviceEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -10466,10 +10048,7 @@
         "description": "通用响应"
       },
       "DeviceAddRequest": {
-        "required": [
-          "name",
-          "stationId"
-        ],
+        "required": ["name", "stationId"],
         "type": "object",
         "properties": {
           "name": {
@@ -10727,9 +10306,7 @@
         "description": "通用分页信息"
       },
       "IndustrialPipingEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -10839,9 +10416,7 @@
         "description": "通用响应"
       },
       "PkRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -10853,11 +10428,7 @@
         "description": "主键查询请求"
       },
       "IndustrialPipingAddRequest": {
-        "required": [
-          "code",
-          "name",
-          "stationId"
-        ],
+        "required": ["code", "name", "stationId"],
         "type": "object",
         "properties": {
           "name": {
@@ -11042,9 +10613,7 @@
         "description": "通用响应"
       },
       "ModifyOrgExtraRequest": {
-        "required": [
-          "orgId"
-        ],
+        "required": ["orgId"],
         "type": "object",
         "properties": {
           "orgId": {
@@ -11205,9 +10774,7 @@
         "description": "员工资质证书信息"
       },
       "ModifyOrgRequest": {
-        "required": [
-          "orgId"
-        ],
+        "required": ["orgId"],
         "type": "object",
         "properties": {
           "orgId": {
@@ -11356,9 +10923,7 @@
         "description": "通用响应"
       },
       "ModifyWorkerRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -11549,10 +11114,7 @@
         "description": "通用响应"
       },
       "WorkerAttachmentBatchRequest": {
-        "required": [
-          "workerAttachmentList",
-          "workerId"
-        ],
+        "required": ["workerAttachmentList", "workerId"],
         "type": "object",
         "properties": {
           "workerId": {
@@ -11628,11 +11190,7 @@
         "description": "员工资质文件信息"
       },
       "AddWorkerRequest": {
-        "required": [
-          "name",
-          "orgId",
-          "workerNum"
-        ],
+        "required": ["name", "orgId", "workerNum"],
         "type": "object",
         "properties": {
           "orgId": {
@@ -11866,10 +11424,7 @@
         "description": "通用分页信息"
       },
       "AttachmentUploadData": {
-        "required": [
-          "fileName",
-          "type"
-        ],
+        "required": ["fileName", "type"],
         "type": "object",
         "properties": {
           "id": {
@@ -11916,9 +11471,7 @@
         "description": "附件上传请求"
       },
       "SafePlanFileEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -12015,10 +11568,7 @@
         "description": "安全检测计划表查询响应"
       },
       "SafePlanFileAddRequest": {
-        "required": [
-          "planId",
-          "stationId"
-        ],
+        "required": ["planId", "stationId"],
         "type": "object",
         "properties": {
           "planId": {
@@ -12243,14 +11793,7 @@
         "description": "通用分页信息"
       },
       "SafetyTrainingEditRequest": {
-        "required": [
-          "endTime",
-          "id",
-          "name",
-          "orgId",
-          "startTime",
-          "type"
-        ],
+        "required": ["endTime", "id", "name", "orgId", "startTime", "type"],
         "type": "object",
         "properties": {
           "id": {
@@ -12291,13 +11834,7 @@
         }
       },
       "SafetyTrainingAddRequest": {
-        "required": [
-          "endTime",
-          "name",
-          "orgId",
-          "startTime",
-          "type"
-        ],
+        "required": ["endTime", "name", "orgId", "startTime", "type"],
         "type": "object",
         "properties": {
           "orgId": {
@@ -12333,10 +11870,7 @@
         }
       },
       "InternalVehicleEditRequest": {
-        "required": [
-          "id",
-          "licenseNum"
-        ],
+        "required": ["id", "licenseNum"],
         "type": "object",
         "properties": {
           "id": {
@@ -12365,11 +11899,7 @@
         }
       },
       "ExternalVehicleEditRequest": {
-        "required": [
-          "id",
-          "licenseNum",
-          "vehicleCode"
-        ],
+        "required": ["id", "licenseNum", "vehicleCode"],
         "type": "object",
         "properties": {
           "id": {
@@ -12625,10 +12155,7 @@
         "description": "通用分页信息"
       },
       "ExternalVehicleAddRequest": {
-        "required": [
-          "licenseNum",
-          "vehicleCode"
-        ],
+        "required": ["licenseNum", "vehicleCode"],
         "type": "object",
         "properties": {
           "licenseNum": {
@@ -12664,9 +12191,7 @@
         }
       },
       "InternalVehicleAddRequest": {
-        "required": [
-          "licenseNum"
-        ],
+        "required": ["licenseNum"],
         "type": "object",
         "properties": {
           "licenseNum": {
@@ -12858,9 +12383,7 @@
         "description": "通用分页信息"
       },
       "MediumRepairOrderEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -12922,9 +12445,7 @@
         "description": "中修工单编辑请求"
       },
       "MediumRepairOrderAddRequest": {
-        "required": [
-          "contents"
-        ],
+        "required": ["contents"],
         "type": "object",
         "properties": {
           "contents": {
@@ -12976,10 +12497,7 @@
         "description": "中修工单添加请求"
       },
       "DictValueRequest": {
-        "required": [
-          "dicCode",
-          "typeId"
-        ],
+        "required": ["dicCode", "typeId"],
         "type": "object",
         "properties": {
           "id": {
@@ -13138,9 +12656,7 @@
         "description": "通用响应"
       },
       "DictTypeRequest": {
-        "required": [
-          "typeKey"
-        ],
+        "required": ["typeKey"],
         "type": "object",
         "properties": {
           "id": {
@@ -13489,12 +13005,7 @@
         "description": "储罐巡检内容"
       },
       "SecurityDayPersistRequest": {
-        "required": [
-          "checkDate",
-          "contentList",
-          "stationId",
-          "status"
-        ],
+        "required": ["checkDate", "contentList", "stationId", "status"],
         "type": "object",
         "properties": {
           "id": {
@@ -13687,12 +13198,7 @@
         "description": "通用响应"
       },
       "SecurityMonthPersistRequest": {
-        "required": [
-          "checkDate",
-          "monthList",
-          "stationId",
-          "status"
-        ],
+        "required": ["checkDate", "monthList", "stationId", "status"],
         "type": "object",
         "properties": {
           "id": {
@@ -14249,9 +13755,7 @@
         "description": "数据负载"
       },
       "AttachmentAddRequest": {
-        "required": [
-          "fileList"
-        ],
+        "required": ["fileList"],
         "type": "object",
         "properties": {
           "fileList": {
@@ -14287,9 +13791,7 @@
         "description": "通用响应"
       },
       "AttachmentEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -14568,10 +14070,7 @@
         "description": "中修计划查询响应"
       },
       "MediumRepairPlanTimeData": {
-        "required": [
-          "dispatchDate",
-          "repairDate"
-        ],
+        "required": ["dispatchDate", "repairDate"],
         "type": "object",
         "properties": {
           "dispatchDate": {
@@ -14654,9 +14153,7 @@
         "description": "通用分页信息"
       },
       "MediumRepairPlanEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -14684,13 +14181,7 @@
         "description": "中修计划编辑请求"
       },
       "MediumRepairPlanAddRequest": {
-        "required": [
-          "planEndDate",
-          "planStartDate",
-          "repairDate",
-          "stationId",
-          "timeList"
-        ],
+        "required": ["planEndDate", "planStartDate", "repairDate", "stationId", "timeList"],
         "type": "object",
         "properties": {
           "stationId": {
@@ -14793,11 +14284,7 @@
         "description": "通用分页信息"
       },
       "GoodsStandingBookAddRequest": {
-        "required": [
-          "name",
-          "receiveDate",
-          "receiver"
-        ],
+        "required": ["name", "receiveDate", "receiver"],
         "type": "object",
         "properties": {
           "name": {
@@ -14935,12 +14422,7 @@
         "description": "通用分页信息"
       },
       "AddSalesDetailRequest": {
-        "required": [
-          "gasStation",
-          "gasVolume",
-          "id",
-          "recordTime"
-        ],
+        "required": ["gasStation", "gasVolume", "id", "recordTime"],
         "type": "object",
         "properties": {
           "id": {
@@ -15355,10 +14837,7 @@
         "description": "LNG加气站卸车记录持久化请求"
       },
       "SafePlanRemoveRequest": {
-        "required": [
-          "id",
-          "removeStation"
-        ],
+        "required": ["id", "removeStation"],
         "type": "object",
         "properties": {
           "id": {
@@ -15374,12 +14853,7 @@
         "description": "安全检测站点删除请求"
       },
       "SafePlanPersistRequest": {
-        "required": [
-          "planId",
-          "planMonthId",
-          "planYear",
-          "stationList"
-        ],
+        "required": ["planId", "planMonthId", "planYear", "stationList"],
         "type": "object",
         "properties": {
           "planYear": {
@@ -17023,9 +16497,7 @@
         "description": "通用分页信息"
       },
       "WorkOrderEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -17070,10 +16542,7 @@
         "description": "维修报告编辑请求"
       },
       "WorkOrderAddRequest": {
-        "required": [
-          "contents",
-          "stationId"
-        ],
+        "required": ["contents", "stationId"],
         "type": "object",
         "properties": {
           "contents": {
@@ -17160,9 +16629,7 @@
         "description": "通用响应"
       },
       "MessageReadRequest": {
-        "required": [
-          "msgIdList"
-        ],
+        "required": ["msgIdList"],
         "type": "object",
         "properties": {
           "msgIdList": {
@@ -17455,9 +16922,7 @@
         "description": "通用分页信息"
       },
       "PressureVesselEditRequest": {
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "type": "object",
         "properties": {
           "id": {
@@ -17543,11 +17008,7 @@
         "description": "常规设备编辑请求"
       },
       "PressureVesselAddRequest": {
-        "required": [
-          "code",
-          "name",
-          "type"
-        ],
+        "required": ["code", "name", "type"],
         "type": "object",
         "properties": {
           "name": {
@@ -17825,12 +17286,7 @@
         "description": "通用分页信息"
       },
       "SeCheckContentPersistRequest": {
-        "required": [
-          "checkDate",
-          "contentList",
-          "stationId",
-          "status"
-        ],
+        "required": ["checkDate", "contentList", "stationId", "status"],
         "type": "object",
         "properties": {
           "id": {
@@ -18465,10 +17921,7 @@
         "description": "供应商列表查询响应"
       },
       "SupplierAddRequest": {
-        "required": [
-          "name",
-          "shortName"
-        ],
+        "required": ["name", "shortName"],
         "type": "object",
         "properties": {
           "name": {
@@ -18491,10 +17944,7 @@
         "description": "供应商新增请求"
       },
       "SupplierModifyRequest": {
-        "required": [
-          "id",
-          "name"
-        ],
+        "required": ["id", "name"],
         "type": "object",
         "properties": {
           "id": {
@@ -18510,11 +17960,7 @@
         "description": "供应商修改请求"
       },
       "UserAvatarRequest": {
-        "required": [
-          "avatar",
-          "avatarGroup",
-          "id"
-        ],
+        "required": ["avatar", "avatarGroup", "id"],
         "type": "object",
         "properties": {
           "id": {
@@ -18634,13 +18080,7 @@
         "description": "用户管理请求"
       },
       "AddUserRequest": {
-        "required": [
-          "deviceIds",
-          "loginName",
-          "password",
-          "roleIds",
-          "userName"
-        ],
+        "required": ["deviceIds", "loginName", "password", "roleIds", "userName"],
         "type": "object",
         "properties": {
           "loginName": {

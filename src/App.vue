@@ -1,6 +1,5 @@
 <template>
-  <a-config-provider :locale="zhCN" :theme="settingsStore.themeConfig
-    ">
+  <a-config-provider :locale="zhCN" :theme="settingsStore.themeConfig">
     <!-- algorithm: theme.darkAlgorithm,夜间主题 -->
     <router-view />
   </a-config-provider>
@@ -11,9 +10,9 @@ import { onErrorCaptured, h, onMounted } from 'vue'
 import zhCN from 'ant-design-vue/es/locale/zh_CN'
 import { setDeviceType } from '@/utils/device-type'
 import { Modal } from 'ant-design-vue'
-import { useSettingsStore } from '@/store/modules/settings';
+import { useSettingsStore } from '@/store/modules/settings'
 
-const settingsStore = useSettingsStore();
+const settingsStore = useSettingsStore()
 
 window.onresize = setDeviceType
 setDeviceType()
@@ -25,7 +24,6 @@ onMounted(() => {
   document.documentElement.setAttribute('data-theme', themeName)
   // 设置dark
   document.documentElement.setAttribute('data-dark', settingsStore.darkMode ? 'dark' : 'light')
-
 })
 
 //全局错误处理

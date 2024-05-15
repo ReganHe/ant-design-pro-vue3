@@ -1,26 +1,23 @@
 <template>
   <a-layout :class="['layout', appStore.device]">
     <!-- SideMenu -->
-    <a-drawer v-if="isMobile" placement="left" :class="`drawer-sider ${settingsStore.theme}`" :closable="false"
-      :open="collapsedRef" @close="drawerClose" width="256px">
-      <side-menu mode="inline" :menus="permissionStore.routes" :theme="settingsStore.theme" :collapsed="false"
-        :collapsible="true" />
+    <a-drawer v-if="isMobile" placement="left" :class="`drawer-sider ${settingsStore.theme}`" :closable="false" :open="collapsedRef" @close="drawerClose" width="256px">
+      <side-menu mode="inline" :menus="permissionStore.routes" :theme="settingsStore.theme" :collapsed="false" :collapsible="true" />
     </a-drawer>
 
-    <side-menu v-else-if="settingsStore.layout !== 'topmenu'" mode="inline" :menus="permissionStore.routes"
-      :theme="settingsStore.theme" :collapsed="collapsedRef" :collapsible="true" />
-    <a-layout :class="[settingsStore.layout, `content-width-${settingsStore.contentWidth}`]"
-      :style="{ paddingLeft: contentPaddingLeftRef, minHeight: '100vh' }">
+    <side-menu v-else-if="settingsStore.layout !== 'topmenu'" mode="inline" :menus="permissionStore.routes" :theme="settingsStore.theme" :collapsed="collapsedRef" :collapsible="true" />
+    <a-layout :class="[settingsStore.layout, `content-width-${settingsStore.contentWidth}`]" :style="{ paddingLeft: contentPaddingLeftRef, minHeight: '100vh' }">
       <!-- layout header -->
-      <global-header :mode="settingsStore.layout" :menus="permissionStore.routes" :theme="settingsStore.theme"
-        :collapsed="collapsedRef" @toggle="toggle" @refresh="onRefresh" />
+      <global-header :mode="settingsStore.layout" :menus="permissionStore.routes" :theme="settingsStore.theme" :collapsed="collapsedRef" @toggle="toggle" @refresh="onRefresh" />
 
       <!-- layout content -->
-      <a-layout-content :style="{
-        height: '100%',
-        margin: '24px 24px 0',
-        paddingTop: settingsStore.fixedHeader ? '64px' : '0'
-      }">
+      <a-layout-content
+        :style="{
+          height: '100%',
+          margin: '24px 24px 0',
+          paddingTop: settingsStore.fixedHeader ? '64px' : '0'
+        }"
+      >
         <multi-tab v-if="settingsStore.multiTab" />
         <transition name="page-transition">
           <section v-if="showRouterRef">
@@ -52,9 +49,9 @@ import { useSettingsStore } from '@/store/modules/settings'
 import { useAppStore } from '@/store/modules/app'
 import { usePermissionStore } from '@/store/modules/permission'
 
-const settingsStore = useSettingsStore();
-const appStore = useAppStore();
-const permissionStore = usePermissionStore();
+const settingsStore = useSettingsStore()
+const appStore = useAppStore()
+const permissionStore = usePermissionStore()
 
 const showRouterRef = ref(true)
 const collapsedRef = ref(!settingsStore.sidebar)

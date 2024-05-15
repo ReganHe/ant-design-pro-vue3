@@ -9,9 +9,9 @@
 <script lang="ts" setup name="RouteView">
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
-import { useSettingsStore } from '@/store/modules/settings';
+import { useSettingsStore } from '@/store/modules/settings'
 
-const settingsStore = useSettingsStore();
+const settingsStore = useSettingsStore()
 const router = useRouter()
 const isKeep = ref(false)
 
@@ -21,7 +21,6 @@ const props = defineProps({
     default: false
   }
 })
-
 
 watch(
   () => router.currentRoute.value,

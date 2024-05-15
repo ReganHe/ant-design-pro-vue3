@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, shallowRef } from 'vue';
-import CustomInfo from './components/CustomInfo.vue';
-import { CommonTable, TableField } from '#/castor-antd';
+import { computed, reactive, shallowRef } from 'vue'
+import CustomInfo from './components/CustomInfo.vue'
+import { CommonTable, TableField } from '#/castor-antd'
 
 const columns = computed<Array<TableField>>(() => {
   return [
@@ -16,65 +16,65 @@ const columns = computed<Array<TableField>>(() => {
       label: '日期',
       dataField: 'date',
       elementProps: {
-        width: '120px',
-      },
+        width: '120px'
+      }
     },
     {
       type: 'default',
       label: '姓名',
       dataField: 'name',
       elementProps: {
-        width: '100px',
-      },
+        width: '100px'
+      }
     },
     {
       type: 'default',
       label: '地址',
       dataField: 'address',
       elementProps: {
-        width: '240px',
-      },
+        width: '240px'
+      }
     },
     {
       type: 'custom',
       label: '备注',
       dataField: 'custom-info',
       elementProps: {
-        width: '200px',
+        width: '200px'
       },
       extendProps: {
-        componentKey: 'customInfo',
-      },
-    },
-  ];
-});
+        componentKey: 'customInfo'
+      }
+    }
+  ]
+})
 
 const getList = () => {
-  table.loading = true;
+  table.loading = true
   setTimeout(() => {
     table.dataSource = [
       {
         id: 1,
         date: '2016-05-02',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
+        address: '上海市普陀区金沙江路 1518 弄'
       },
       {
         id: 2,
         date: '2016-05-04',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
+        address: '上海市普陀区金沙江路 1517 弄'
       },
       {
         id: 3,
         date: '2016-05-01',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-      },
-    ];
-    table.loading = false;
-  }, 200);
-};
+        address: '上海市普陀区金沙江路 1519 弄'
+      }
+    ]
+    table.loading = false
+  }, 200)
+}
 
 const table = reactive<CommonTable>({
   loading: false,
@@ -82,11 +82,11 @@ const table = reactive<CommonTable>({
   columns,
   pagination: false,
   customComponents: {
-    customInfo: shallowRef(CustomInfo),
-  },
-});
+    customInfo: shallowRef(CustomInfo)
+  }
+})
 
-getList();
+getList()
 </script>
 
 <style lang="scss" scoped>

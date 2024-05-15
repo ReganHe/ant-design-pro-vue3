@@ -1,4 +1,4 @@
-import { nextTick } from 'vue';
+import { nextTick } from 'vue'
 
 /**
  * 重置表单（清空校验结果、重置字段值）
@@ -6,12 +6,12 @@ import { nextTick } from 'vue';
  * @param callback 回调事件
  */
 export const resetForm = ({ form, callback }) => {
-  (form.emitRegister as any).clearValidate();
-  (form.emitRegister as any).resetFields();
+  ;(form.emitRegister as any).clearValidate()
+  ;(form.emitRegister as any).resetFields()
   if (callback) {
-    callback();
+    callback()
   }
-};
+}
 
 /**
  * 更新表单绑定对象值
@@ -20,12 +20,12 @@ export const resetForm = ({ form, callback }) => {
  * @param data 新设定的数据对象
  */
 export const setFormValue = (model, data) => {
-  console.log('setFormValue', model, data);
+  console.log('setFormValue', model, data)
   nextTick(() => {
     Object.keys(model).forEach((field) => {
       if (Object.hasOwn(data, field)) {
-        model[field] = data[field];
+        model[field] = data[field]
       }
-    });
-  });
-};
+    })
+  })
+}

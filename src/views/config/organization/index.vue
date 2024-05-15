@@ -4,91 +4,92 @@
       <ca-common-form v-bind="companyForm" />
     </div>
     <div class="common-table-container">
-      <ca-common-table v-bind="{
-        ...table,
-        emitRegister,
-        elementProps: { ...table.elementProps, onChange: onTableChange },
-      }" />
+      <ca-common-table
+        v-bind="{
+          ...table,
+          emitRegister,
+          elementProps: { ...table.elementProps, onChange: onTableChange }
+        }"
+      />
     </div>
-    <Modal v-model:open="form.visible" :title="form.title" width="400px" :footer="null"
-      :after-close="() => resetForm({ form, callback: getList })">
+    <Modal v-model:open="form.visible" :title="form.title" width="400px" :footer="null" :after-close="() => resetForm({ form, callback: getList })">
       <ca-common-form v-bind="form" />
     </Modal>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { message, Modal } from 'ant-design-vue';
-import { onBeforeMount, reactive, ref } from 'vue';
-import { SelectItem } from '#/castor-antd';
-import { resetForm, setFormValue } from '@/hooks/component/useModal';
-import useCommonTable from './hooks/useCommonTable';
-import useCommonForm from './hooks/useCommonForm';
-import useCompanyForm from './hooks/useCompanyForm';
-import { getOrgs, getOrgsPaged, removeOrg } from '@/api/auto/ApiGisc';
-import { getValuesByKey } from '@/api/auto/ApiDict';
+import { message, Modal } from 'ant-design-vue'
+import { onBeforeMount, reactive, ref } from 'vue'
+import { SelectItem } from '#/castor-antd'
+import { resetForm, setFormValue } from '@/hooks/component/useModal'
+import useCommonTable from './hooks/useCommonTable'
+import useCommonForm from './hooks/useCommonForm'
+import useCompanyForm from './hooks/useCompanyForm'
+import { getOrgs, getOrgsPaged, removeOrg } from '@/api/auto/ApiGisc'
+import { getValuesByKey } from '@/api/auto/ApiDict'
 
 const optionsMap = reactive<Record<string, SelectItem[]>>({
-  orgType: [],
-});
+  orgType: []
+})
 
-const companyForm = useCompanyForm({ optionsMap });
-const table = useCommonTable();
-const form = useCommonForm();
+const companyForm = useCompanyForm({ optionsMap })
+const table = useCommonTable()
+const form = useCommonForm()
 
 //#region  basic
 const getBasic = async () => {
   const res = await getValuesByKey({
-    typeKey: 'OrgType',
-  });
+    typeKey: 'OrgType'
+  })
   optionsMap['orgType'] = res.map((r) => {
     return {
       value: r.id,
-      label: r.dicValue,
-    };
-  });
-};
+      label: r.dicValue
+    }
+  })
+}
 //#endregion
 
 //#region  table
 const getList = async () => {
-  console.log('getList', table.pagination);
-  table.loading = true;
+  console.log('getList', table.pagination)
+  table.loading = true
   const res = await getOrgsPaged({
     parentId: companyId.value,
     pageNum: (table.pagination || {}).current || 1,
-    pageSize: (table.pagination || {}).pageSize || 10,
-  });
-  table.dataSource = res.list;
-  (table.pagination || {}).total = res.totalNum;
-  table.loading = false;
-};
+    pageSize: (table.pagination || {}).pageSize || 10
+  })
+  table.dataSource = res.list
+  ;(table.pagination || {}).total = res.totalNum
+  table.loading = false
+}
 
 const onTableChange = (newPagination, filters, sorter, extra) => {
-  console.log('onTableChange', newPagination, filters, sorter, extra);
-  (table.pagination || {}).current = newPagination.current;
-  (table.pagination || {}).pageSize = newPagination.pageSize;
-  getList();
-};
+  console.log('onTableChange', newPagination, filters, sorter, extra)
+  ;(table.pagination || {}).current = newPagination.current
+  ;(table.pagination || {}).pageSize = newPagination.pageSize
+  getList()
+}
 
 const handleAdd = () => {
-  console.log('handleAdd');
-  form.operateType = 'add';
-  form.model.parentId = companyId.value;
-  form.title = `新建站点`;
-  form.visible = true;
-};
+  console.log('handleAdd')
+  form.operateType = 'add'
+  form.model.parentId = companyId.value
+  form.title = `新建站点`
+  form.visible = true
+}
 
 const handleEdit = ({ index, row }) => {
-  console.log('handleEdit', index, row);
-  form.operateType = 'edit';
-  form.title = `编辑站点 - ${row.orgCode}`;
-  form.visible = true;
-  setFormValue(form.model, row);
-};
+  console.log('handleEdit', index, row)
+  form.operateType = 'edit'
+  form.title = `编辑站点 - ${row.orgCode}`
+  form.visible = true
+  setFormValue(form.model, row)
+}
 
 const handleDelete = ({ index, row }) => {
-  console.log('handleDelete', index, row);
+  console.log('handleDelete', index, row)
   Modal.confirm({
     type: 'warning',
     title: '提示',
@@ -96,37 +97,37 @@ const handleDelete = ({ index, row }) => {
     okText: '确定',
     cancelText: '取消',
     onCancel: () => {
-      message.info('已取消删除');
+      message.info('已取消删除')
     },
     onOk: async () => {
       await removeOrg({
-        id: row.id,
-      });
-      message.success('删除成功!', 1, getList);
-    },
-  });
-};
+        id: row.id
+      })
+      message.success('删除成功!', 1, getList)
+    }
+  })
+}
 //#endregion
 
 const emitRegister = {
   handleEdit,
   handleDelete,
-  handleAdd,
-};
+  handleAdd
+}
 
-const companyId = ref(-1);
+const companyId = ref(-1)
 
 onBeforeMount(async () => {
-  await getBasic();
+  await getBasic()
   const companyRes = await getOrgs({
-    levelId: 2,
-  });
-  const companyInfo = (companyRes || [])[0] || {};
-  companyId.value = companyInfo.id;
-  companyForm.operateType = 'view';
-  setFormValue(companyForm.model, companyInfo);
-  getList();
-});
+    levelId: 2
+  })
+  const companyInfo = (companyRes || [])[0] || {}
+  companyId.value = companyInfo.id
+  companyForm.operateType = 'view'
+  setFormValue(companyForm.model, companyInfo)
+  getList()
+})
 </script>
 <style lang="scss" scoped>
 .common-page {

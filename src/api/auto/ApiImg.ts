@@ -7,4 +7,4 @@ const s = 'ApiImg.'
  *
  * **TAG:** 多媒体服务； &nbsp;&nbsp; **PATH:** /1.0/img/get_upload_file；
  */
-export const getUploadFile = base.createNoParamsBlobRequest(s + 'getUploadFile', () => ({url: `/1.0/img/get_upload_file`, method: 'GET' }))
+export const getUploadFile = base.createNoParamsBlobRequest(s + 'getUploadFile', () => ({ url: `/1.0/img/get_upload_file`, method: 'GET' }))

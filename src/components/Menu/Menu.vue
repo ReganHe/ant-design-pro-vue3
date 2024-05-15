@@ -1,6 +1,5 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange"
-    class="SysMenu">
+  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange" class="SysMenu">
     <template v-for="menu in menus" :key="menu.path">
       <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
@@ -10,7 +9,7 @@
 import { reactive, computed, onMounted, watch, ref } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
-import { MenuMode, MenuTheme } from 'ant-design-vue';
+import { MenuMode, MenuTheme } from 'ant-design-vue'
 import { PropType } from 'vue'
 
 const props = defineProps({
@@ -40,7 +39,7 @@ const route = router.currentRoute
 const openKeys = reactive<any>({ value: [] })
 const selectedKeys = ref<any>([])
 const cachedOpenKeys = reactive<any>({ value: [] })
-const rootSubmenuKeysRef = computed(() => props.menus.map(r => r.path))
+const rootSubmenuKeysRef = computed(() => props.menus.map((r) => r.path))
 
 onMounted(() => {
   updateMenu()

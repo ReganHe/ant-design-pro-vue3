@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive } from 'vue';
-import { CommonTable, TableField } from '#/castor-antd';
+import { computed, reactive } from 'vue'
+import { CommonTable, TableField } from '#/castor-antd'
 
 const columns = computed<Array<TableField>>(() => {
   return [
@@ -15,32 +15,32 @@ const columns = computed<Array<TableField>>(() => {
       label: '序号',
       dataField: 'index',
       elementProps: {
-        width: '60px ',
-      },
+        width: '60px '
+      }
     },
     {
       type: 'default',
       label: '日期',
       dataField: 'date',
       elementProps: {
-        width: '100px',
-      },
+        width: '100px'
+      }
     },
     {
       type: 'default',
       label: '姓名',
       dataField: 'name',
       elementProps: {
-        width: '100px',
-      },
+        width: '100px'
+      }
     },
     {
       type: 'default',
       label: '地址',
       dataField: 'address',
       elementProps: {
-        width: '200px',
-      },
+        width: '200px'
+      }
     },
     {
       type: 'commands',
@@ -48,7 +48,7 @@ const columns = computed<Array<TableField>>(() => {
       dataField: 'commands',
       elementProps: {
         fixed: 'right',
-        width: '100px',
+        width: '100px'
       },
       extendProps: {
         commands: [
@@ -56,55 +56,55 @@ const columns = computed<Array<TableField>>(() => {
             text: '编辑',
             command: 'handleEdit',
             disableValidator: ({ row }) => row.id === 2,
-            visibleValidator: ({ row }) => row.id >= 2,
+            visibleValidator: ({ row }) => row.id >= 2
           },
           {
             text: '删除',
             command: 'handleDelete',
             elementProps: {
-              danger: true,
-            },
-          },
-        ],
-      },
-    },
-  ];
-});
+              danger: true
+            }
+          }
+        ]
+      }
+    }
+  ]
+})
 
 const getList = () => {
-  table.loading = true;
+  table.loading = true
   setTimeout(() => {
     table.dataSource = [
       {
         id: 1,
         date: '2016-05-02',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄',
+        address: '上海市普陀区金沙江路 1518 弄'
       },
       {
         id: 2,
         date: '2016-05-04',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
+        address: '上海市普陀区金沙江路 1517 弄'
       },
       {
         id: 3,
         date: '2016-05-01',
         name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-      },
-    ];
-    table.loading = false;
-    return table.dataSource;
-  }, 200);
-};
+        address: '上海市普陀区金沙江路 1519 弄'
+      }
+    ]
+    table.loading = false
+    return table.dataSource
+  }, 200)
+}
 
 const handleEdit = ({ index, row }) => {
-  console.log('handleEdit', index, row);
-};
+  console.log('handleEdit', index, row)
+}
 const handleDelete = ({ index, row }) => {
-  console.log('handleDelete', index, row);
-};
+  console.log('handleDelete', index, row)
+}
 
 const table = reactive<CommonTable>({
   loading: false,
@@ -113,11 +113,11 @@ const table = reactive<CommonTable>({
   pagination: false,
   emitRegister: {
     handleEdit,
-    handleDelete,
-  },
-});
+    handleDelete
+  }
+})
 
-getList();
+getList()
 </script>
 
 <style lang="scss" scoped>

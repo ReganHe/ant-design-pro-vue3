@@ -46,24 +46,23 @@ import { useRouter } from 'vue-router'
 import { useSettingsStore } from '@/store/modules/settings'
 import { useUserStore } from '@/store/modules/user'
 
-const settingsStore = useSettingsStore();
-const userStore = useUserStore();
+const settingsStore = useSettingsStore()
+const userStore = useUserStore()
 const router = useRouter()
 const handleLogout = () => {
   Modal.confirm({
     title: '提示',
     content: '真的要注销登录吗 ?',
     onOk: async () => {
-      await userStore.logout();
+      await userStore.logout()
       router.push({ path: '/user/login' })
     },
-    onCancel() { }
+    onCancel() {}
   })
 }
 const showSystemSetting = () => {
   settingsStore.setValue('showSettings', true)
 }
-
 </script>
 <style lang="scss">
 .user-dropdown-menu-wrapper {

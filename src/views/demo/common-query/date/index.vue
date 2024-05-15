@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive } from 'vue';
-import { CommonQuery, QueryField } from '#/castor-antd';
+import { computed, reactive } from 'vue'
+import { CommonQuery, QueryField } from '#/castor-antd'
 
 const fields = computed<Array<QueryField>>(() => {
   return [
@@ -18,9 +18,9 @@ const fields = computed<Array<QueryField>>(() => {
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '120px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '120px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'default',
@@ -30,9 +30,9 @@ const fields = computed<Array<QueryField>>(() => {
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '200px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '200px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'date',
@@ -41,14 +41,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'year',
-        valueFormat: 'YYYY',
+        valueFormat: 'YYYY'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '86px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '86px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'dateRange',
@@ -57,14 +57,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'year',
-        valueFormat: 'YYYY',
+        valueFormat: 'YYYY'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '66px' } },
-          wrapperCol: { style: { width: '150px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '150px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'date',
@@ -73,14 +73,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'month',
-        valueFormat: 'YYYY-MM',
+        valueFormat: 'YYYY-MM'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '106px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '106px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'dateRange',
@@ -89,14 +89,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'month',
-        valueFormat: 'YYYY-MM',
+        valueFormat: 'YYYY-MM'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '66px' } },
-          wrapperCol: { style: { width: '200px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '200px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'date',
@@ -105,14 +105,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'date',
-        valueFormat: 'YYYY-MM-DD',
+        valueFormat: 'YYYY-MM-DD'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '126px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '126px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'dateRange',
@@ -121,14 +121,14 @@ const fields = computed<Array<QueryField>>(() => {
       columnSpan: 1,
       elementProps: {
         picker: 'date',
-        valueFormat: 'YYYY-MM-DD',
+        valueFormat: 'YYYY-MM-DD'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '66px' } },
-          wrapperCol: { style: { width: '246px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '246px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'date',
@@ -138,14 +138,14 @@ const fields = computed<Array<QueryField>>(() => {
       elementProps: {
         showTime: true,
         picker: 'date',
-        valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        valueFormat: 'YYYY-MM-DD HH:mm:ss'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '66px' } },
-          wrapperCol: { style: { width: '186px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '186px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'dateRange',
@@ -155,14 +155,14 @@ const fields = computed<Array<QueryField>>(() => {
       elementProps: {
         showTime: true,
         picker: 'date',
-        valueFormat: 'YYYY-MM-DD HH:mm:ss',
+        valueFormat: 'YYYY-MM-DD HH:mm:ss'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '100px' } },
-          wrapperCol: { style: { width: '360px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '360px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'time',
@@ -170,14 +170,14 @@ const fields = computed<Array<QueryField>>(() => {
       dataField: 'userTime',
       columnSpan: 1,
       elementProps: {
-        valueFormat: 'HH:mm:ss',
+        valueFormat: 'HH:mm:ss'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '40px' } },
-          wrapperCol: { style: { width: '106px', marginBottom: '12px' } },
-        },
-      },
+          wrapperCol: { style: { width: '106px', marginBottom: '12px' } }
+        }
+      }
     },
     {
       type: 'timeRange',
@@ -185,27 +185,27 @@ const fields = computed<Array<QueryField>>(() => {
       dataField: 'userTimeRange',
       columnSpan: 1,
       elementProps: {
-        valueFormat: 'HH:mm:ss',
+        valueFormat: 'HH:mm:ss'
       },
       extendProps: {
         formItemProps: {
           labelCol: { style: { width: '66px' } },
-          wrapperCol: { style: { width: '200px', marginBottom: '12px' } },
-        },
-      },
-    },
-  ];
-});
+          wrapperCol: { style: { width: '200px', marginBottom: '12px' } }
+        }
+      }
+    }
+  ]
+})
 
 const handleFilter = () => {
-  console.log('handleFilter', query.model);
-};
+  console.log('handleFilter', query.model)
+}
 
 const handleReset = () => {
-  console.log('handleReset', query.emitRegister);
-  query.emitRegister?.resetFields?.();
-  handleFilter();
-};
+  console.log('handleReset', query.emitRegister)
+  query.emitRegister?.resetFields?.()
+  handleFilter()
+}
 
 const query = reactive<CommonQuery>({
   loading: false,
@@ -221,7 +221,7 @@ const query = reactive<CommonQuery>({
     userMonthRange: ['2022-07', '2022-09'],
     userDateRange: ['2022-07-22', '2022-07-24'],
     userTimeRange: ['13:18:28', '15:18:28'],
-    userDateTimeRange: ['2022-07-22 13:18:28', '2022-07-23 13:18:28'],
+    userDateTimeRange: ['2022-07-22 13:18:28', '2022-07-23 13:18:28']
   },
   fields,
   commands: [
@@ -229,24 +229,24 @@ const query = reactive<CommonQuery>({
       text: '查询',
       command: 'handleFilter',
       elementProps: {
-        type: 'primary',
+        type: 'primary'
       },
-      canKeyDown: true,
+      canKeyDown: true
     },
     {
       text: '重置',
-      command: 'handleReset',
-    },
+      command: 'handleReset'
+    }
   ],
   elementProps: {
     labelCol: { style: { width: '40px' } },
-    wrapperCol: { style: { flex: 1 } },
+    wrapperCol: { style: { flex: 1 } }
   },
   emitRegister: {
     handleFilter,
-    handleReset,
-  },
-});
+    handleReset
+  }
+})
 </script>
 <style lang="scss" scoped>
 .common-query-container {

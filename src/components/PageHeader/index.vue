@@ -77,7 +77,7 @@ export default {
       flex: 0 1 72px;
       margin: 0 24px 8px 0;
 
-      &>span {
+      & > span {
         border-radius: 72px;
         display: block;
         width: 72px;

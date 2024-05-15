@@ -9,7 +9,6 @@
       </a-tooltip>
       <!-- 自定义颜色 -->
       <a-popover title="自定义" overlayClassName="themeColorCustomColor" placement="bottomRight">
-
         <template #content>
           <ColorPicker @change="changeColor" format="hex" disableHistory disableAlpha />
         </template>
@@ -30,13 +29,13 @@ import SettingItem from './SettingItem.vue'
 import ColorPicker from '@/components/ColorPicker/index.vue'
 import { useSettingsStore } from '@/store/modules/settings'
 
-const settingsStore = useSettingsStore();
+const settingsStore = useSettingsStore()
 
 const changeColor = (color: string, key: string) => {
-  console.log('changeColor', color, settingsStore, key);
-  const themeName = key ? key : (isCustomColorRef.value ? 'custom' : 'default');
-  settingsStore.setValue('color', color);
-  settingsStore.setValue('themeName', themeName);
+  console.log('changeColor', color, settingsStore, key)
+  const themeName = key ? key : isCustomColorRef.value ? 'custom' : 'default'
+  settingsStore.setValue('color', color)
+  settingsStore.setValue('themeName', themeName)
   document.documentElement.setAttribute('data-theme', themeName)
   console.log('changeColor result', settingsStore.color)
   ConfigProvider.config({
