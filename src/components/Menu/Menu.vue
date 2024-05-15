@@ -1,12 +1,13 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" @openChange="onOpenChange" class="SysMenu">
+  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange"
+    class="SysMenu">
     <template v-for="menu in menus" :key="menu.path">
       <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
   </a-menu>
 </template>
 <script lang="ts" setup name="Menu">
-import { reactive, computed, onMounted, watch } from 'vue'
+import { reactive, computed, onMounted, watch, ref } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
 import { MenuMode, MenuTheme } from 'ant-design-vue';
@@ -33,10 +34,11 @@ const props = defineProps({
     default: false
   }
 })
+const emit = defineEmits(['menuSelect'])
 const router = useRouter()
 const route = router.currentRoute
-
 const openKeys = reactive<any>({ value: [] })
+const selectedKeys = ref<any>([])
 const cachedOpenKeys = reactive<any>({ value: [] })
 const rootSubmenuKeysRef = computed(() => props.menus.map(r => r.path))
 
@@ -55,7 +57,7 @@ watch(
   }
 )
 
-// 主要作用:使用router.push跳转页面时更左侧新菜单选中项
+// 主要作用:使用router.push跳转页面时更新左侧新菜单选中项
 watch(
   () => route.value,
   () => {
@@ -84,7 +86,11 @@ const updateMenu = () => {
   const { hidden } = route.value.meta
   if (routes.length >= 3 && hidden) {
     routes.pop()
+    selectedKeys.value = [routes[routes.length - 1].path]
+  } else {
+    selectedKeys.value = [routes.pop()!.path]
   }
+
   const openKeysArr: any = []
   if (props.mode === 'inline') {
     routes.forEach((item) => {
