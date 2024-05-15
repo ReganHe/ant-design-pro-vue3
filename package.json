@@ -9,9 +9,9 @@
     "build:test": "cross-env vite build --mode test",
     "build:prod": "cross-env NODE_ENV=production vite build",
     "preview": "vite preview",
-    "swagger": "swagger-parser -f",
+    "swagger": "swagger-parser -f && prettier --write src/api/auto/",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
     "format": "prettier --write src/"
   },
   "dependencies": {

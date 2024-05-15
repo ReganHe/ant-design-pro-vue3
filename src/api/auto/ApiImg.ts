@@ -1,4 +1,5 @@
 import * as base from './base'
+import { Img } from './modal'
 
 const s = 'ApiImg.'
 

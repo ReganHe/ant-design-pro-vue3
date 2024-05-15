@@ -117,5 +117,5 @@
    * 使用"include"引入的文件可以使用"exclude"属性过滤。
    */
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "types/**/*.d.ts", "types/**/*.ts", "build/**/*.ts", "vite.config.ts"],
-  "exclude": ["node_modules", "dist", "**/*.js"]
+  "exclude": ["node_modules", "dist", "**/*.js", "src/api/auto"]
 }
