@@ -12,7 +12,8 @@
     "swagger": "swagger-parser -f && prettier --write src/api/auto/",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .eslintignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prepare": "husky"
   },
   "dependencies": {
     "@aesoper/normal-utils": "0.1.5",
@@ -60,6 +61,7 @@
     "eslint-define-config": "^2.1.0",
     "eslint-plugin-vue": "9.23.0",
     "express": "4.18.2",
+    "husky": "^9.0.11",
     "jsdom": "24.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "3.2.5",
