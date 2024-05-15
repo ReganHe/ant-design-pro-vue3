@@ -33,7 +33,7 @@ const props = defineProps({
     default: false
   }
 })
-const emit = defineEmits(['menuSelect'])
+
 const router = useRouter()
 const route = router.currentRoute
 const openKeys = reactive<any>({ value: [] })
