@@ -5,7 +5,7 @@
         <template #title>侧边栏导航</template>
         <div class="setting-drawer-index-item" @click="handleLayout('sidemenu')">
           <img src="../icons/sideMenu.svg" alt="sidemenu" />
-          <div class="setting-drawer-index-selectIcon" v-if="layoutMode === 'sidemenu'">
+          <div class="setting-drawer-index-selectIcon" v-if="settingsStore.layout === 'sidemenu'">
             <CheckOutlined />
           </div>
         </div>
@@ -15,7 +15,7 @@
         <template #title>顶部栏导航</template>
         <div class="setting-drawer-index-item" @click="handleLayout('topmenu')">
           <img src="../icons/topMenu.svg" alt="topmenu" />
-          <div class="setting-drawer-index-selectIcon" v-if="layoutMode !== 'sidemenu'">
+          <div class="setting-drawer-index-selectIcon" v-if="settingsStore.layout !== 'sidemenu'">
             <CheckOutlined />
           </div>
         </div>
@@ -23,26 +23,31 @@
     </div>
   </SettingItem>
 </template>
+
 <script lang="ts" setup name="NavigationMode">
-import { systemConfig } from '@/store/reactiveState'
-import { TOGGLE_LAYOUT_MODE, TOGGLE_FIXED_SIDERBAR } from '@/store/mutation-types'
-import useSiteSettings from '@/store/useSiteSettings'
 import { CheckOutlined } from '@ant-design/icons-vue'
 import SettingItem from './SettingItem.vue'
+import { useSettingsStore } from '@/store/modules/settings'
 
-const { layoutMode } = useSiteSettings()
+const settingsStore = useSettingsStore()
+
 const handleLayout = (mode) => {
-  systemConfig.commit(TOGGLE_LAYOUT_MODE, mode)
+  settingsStore.setValue('layout', mode)
+  if (mode === 'sidemenu') {
+    settingsStore.setValue('contentWidth', 'Fluid')
+  }
   // 因为顶部菜单不能固定左侧菜单栏，所以强制关闭
   handleFixSiderbar(false)
 }
 
 const handleFixSiderbar = (fixed) => {
-  if (systemConfig.state.layout === 'topmenu') {
-    systemConfig.commit(TOGGLE_FIXED_SIDERBAR, false)
+  if (settingsStore.layout === 'topmenu') {
+    settingsStore.setValue('fixSiderbar', false)
     return
   }
-  systemConfig.commit(TOGGLE_FIXED_SIDERBAR, fixed)
+
+  settingsStore.setValue('fixSiderbar', fixed)
 }
 </script>
-<style lang="less" scoped></style>
+
+<style lang="scss" scoped></style>

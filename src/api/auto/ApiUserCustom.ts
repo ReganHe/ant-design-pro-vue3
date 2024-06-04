@@ -1,7 +1,7 @@
-import * as base from './base';
-import { UserCustom } from './modal';
+import * as base from './base'
+import { UserCustom } from './modal'
 
-const s = 'ApiUserCustom.';
+const s = 'ApiUserCustom.'
 
 /**
  * 根据userId（非主键）查询用户机构以及机构下的站点
@@ -14,8 +14,8 @@ export const getUserByUserId = base.createRequest<
 >(s + 'getUserByUserId', ({ userId, ...params }) => ({
   url: `/1.0/user/get_user_one_detail/${userId}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 使用id查询用户
@@ -28,5 +28,5 @@ export const getUserOne = base.createRequest<
 >(s + 'getUserOne', ({ id, ...params }) => ({
   url: `/1.0/user/get_users_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))

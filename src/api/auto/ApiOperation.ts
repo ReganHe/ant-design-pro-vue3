@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Operation } from './modal';
+import * as base from './base'
+import { Operation } from './modal'
 
-const s = 'ApiOperation.';
+const s = 'ApiOperation.'
 
 /**
  * 分页查询操作日志
@@ -14,5 +14,5 @@ export const getOperationLogPaged = base.createRequest<
 >(s + 'getOperationLogPaged', (params) => ({
   url: `/1.0/operation/p/get_operation_paged`,
   method: 'GET',
-  params,
-}));
+  params
+}))

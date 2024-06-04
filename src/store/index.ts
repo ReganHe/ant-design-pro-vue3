@@ -1,13 +1,4 @@
-import app from './modules/global'
-import { createStore } from 'vuex'
-import { genStore } from '@/utils/batchImportFiles'
+import { createPinia } from 'pinia'
 
-const allStores = genStore()
-const store = createStore({
-  modules: {
-    app,
-    ...allStores
-  }
-})
-
-export default store
+const store = createPinia()
+export { store }

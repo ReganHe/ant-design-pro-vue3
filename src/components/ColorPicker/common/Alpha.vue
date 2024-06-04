@@ -76,7 +76,9 @@ const getCursorLeft = () => {
     const alpha = currentAlpha.value
     const rect = barEle.value?.getBoundingClientRect()
 
-    return Math.round(alpha * (rect.width - cursorEle.value?.offsetWidth) + cursorEle.value?.offsetWidth / 2)
+    return Math.round(
+      alpha * (rect.width - cursorEle.value?.offsetWidth) + cursorEle.value?.offsetWidth / 2
+    )
   }
 
   return 0
@@ -88,7 +90,9 @@ const getCursorTop = () => {
     const alpha = currentAlpha.value
     const rect = barEle.value?.getBoundingClientRect()
 
-    return Math.round(alpha * (rect.height - cursorEle.value.offsetHeight) + cursorEle.value.offsetHeight / 2)
+    return Math.round(
+      alpha * (rect.height - cursorEle.value.offsetHeight) + cursorEle.value.offsetHeight / 2
+    )
   }
   return 0
 }
@@ -108,13 +112,24 @@ const onDragSlider = (event: MouseEvent) => {
       left = Math.max(cursorEle.value.offsetWidth / 2, left)
       left = Math.min(left, rect.width - cursorEle.value.offsetWidth / 2)
 
-      currentAlpha.value = Math.round(((left - cursorEle.value.offsetWidth / 2) / (rect.width - cursorEle.value.offsetWidth)) * 100) / 100
+      currentAlpha.value =
+        Math.round(
+          ((left - cursorEle.value.offsetWidth / 2) / (rect.width - cursorEle.value.offsetWidth)) *
+            100
+        ) / 100
     } else {
       let top = event.clientY - rect.top
       top = Math.max(cursorEle.value.offsetHeight / 2, top)
       top = Math.min(top, rect.height - cursorEle.value.offsetHeight / 2)
 
-      currentAlpha.value = 1 - Math.round(((top - cursorEle.value.offsetHeight / 2) / (rect.height - cursorEle.value.offsetHeight)) * 100) / 100
+      currentAlpha.value =
+        1 -
+        Math.round(
+          ((top - cursorEle.value.offsetHeight / 2) /
+            (rect.height - cursorEle.value.offsetHeight)) *
+            100
+        ) /
+          100
     }
 
     emit('update:alpha', currentAlpha.value)

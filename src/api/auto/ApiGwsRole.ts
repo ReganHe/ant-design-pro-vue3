@@ -1,7 +1,7 @@
-import * as base from './base';
-import { GwsRole } from './modal';
+import * as base from './base'
+import { GwsRole } from './modal'
 
-const s = 'ApiGwsRole.';
+const s = 'ApiGwsRole.'
 
 /**
  * 新增角色
@@ -11,7 +11,7 @@ const s = 'ApiGwsRole.';
 export const addRole = base.createRequest<GwsRole.addRole.Options, GwsRole.addRole.Returns['data']>(
   s + 'addRole',
   (data) => ({ url: `/mgr/role/add`, method: 'POST', data })
-);
+)
 
 /**
  * 分页获取所有数据接口
@@ -24,8 +24,8 @@ export const findAllApisPaged = base.createRequest<
 >(s + 'findAllApisPaged', (params) => ({
   url: `/mgr/role/get_api_list_paged`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 获取角色已配置的所有菜单&功能点&数据接口
@@ -38,8 +38,8 @@ export const findAllRoleRefsMenuPermApi = base.createRequest<
 >(s + 'findAllRoleRefsMenuPermApi', ({ id, ...params }) => ({
   url: `/mgr/role/get_refs_menu_perm_api_list/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 获取单个角色信息
@@ -52,8 +52,8 @@ export const findOneRole = base.createRequest<
 >(s + 'findOneRole', ({ id, ...params }) => ({
   url: `/mgr/role/get_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 分页获取角色
@@ -63,7 +63,11 @@ export const findOneRole = base.createRequest<
 export const findRolesPaged = base.createRequest<
   GwsRole.findRolesPaged.Options,
   GwsRole.findRolesPaged.Returns['data']
->(s + 'findRolesPaged', (params) => ({ url: `/mgr/role/get_list_paged`, method: 'GET', params }));
+>(s + 'findRolesPaged', (params) => ({
+  url: `/mgr/role/get_list_paged`,
+  method: 'GET',
+  params
+}))
 
 /**
  * 获取所有功能点（树形式）
@@ -75,7 +79,7 @@ export const findRolesPaged = base.createRequest<
 export const findStaticMenu = base.createNoParamsRequest<GwsRole.findStaticMenu.Returns['data']>(
   s + 'findStaticMenu',
   () => ({ url: `/mgr/role/get_as_tree`, method: 'GET' })
-);
+)
 
 /**
  * 修改角色
@@ -85,7 +89,7 @@ export const findStaticMenu = base.createNoParamsRequest<GwsRole.findStaticMenu.
 export const modifyRole = base.createRequest<
   GwsRole.modifyRole.Options,
   GwsRole.modifyRole.Returns['data']
->(s + 'modifyRole', (data) => ({ url: `/mgr/role/modify`, method: 'PUT', data }));
+>(s + 'modifyRole', (data) => ({ url: `/mgr/role/modify`, method: 'PUT', data }))
 
 /**
  * 删除角色
@@ -98,8 +102,8 @@ export const removeRole = base.createRequest<
 >(s + 'removeRole', ({ id, ...params }) => ({
   url: `/mgr/role/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))
 
 /**
  * 新增/更新角色配置的所有菜单&功能点&数据接口
@@ -112,5 +116,5 @@ export const saveRoleRefsMenuPermApi = base.createRequest<
 >(s + 'saveRoleRefsMenuPermApi', (data) => ({
   url: `/mgr/role/save_refs_menu_perm_api`,
   method: 'POST',
-  data,
-}));
+  data
+}))

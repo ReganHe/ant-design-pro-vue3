@@ -1,7 +1,7 @@
-import * as base from './base';
-import { GwsUserInfo } from './modal';
+import * as base from './base'
+import { GwsUserInfo } from './modal'
 
-const s = 'ApiGwsUserInfo.';
+const s = 'ApiGwsUserInfo.'
 
 /**
  * 获取当前登录用户信息
@@ -12,8 +12,8 @@ export const getCurrentLoginUserInfo = base.createNoParamsRequest<
   GwsUserInfo.getCurrentLoginUserInfo.Returns['data']
 >(s + 'getCurrentLoginUserInfo', () => ({
   url: `/account/get_current_login_user_info`,
-  method: 'GET',
-}));
+  method: 'GET'
+}))
 
 /**
  * 获取锁定用户ID列表
@@ -26,8 +26,8 @@ export const getLockedUserIdsByApplicationId = base.createRequest<
 >(s + 'getLockedUserIdsByApplicationId', ({ applicationId, ...params }) => ({
   url: `/account/${applicationId}/locked_user_ids`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 修改密码
@@ -37,7 +37,11 @@ export const getLockedUserIdsByApplicationId = base.createRequest<
 export const modifyPassword = base.createRequest<
   GwsUserInfo.modifyPassword.Options,
   GwsUserInfo.modifyPassword.Returns['data']
->(s + 'modifyPassword', (data) => ({ url: `/account/modify_password`, method: 'POST', data }));
+>(s + 'modifyPassword', (data) => ({
+  url: `/account/modify_password`,
+  method: 'POST',
+  data
+}))
 
 /**
  * 重置密码
@@ -47,7 +51,11 @@ export const modifyPassword = base.createRequest<
 export const resetPassword = base.createRequest<
   GwsUserInfo.resetPassword.Options,
   GwsUserInfo.resetPassword.Returns['data']
->(s + 'resetPassword', (data) => ({ url: `/account/reset_password`, method: 'POST', data }));
+>(s + 'resetPassword', (data) => ({
+  url: `/account/reset_password`,
+  method: 'POST',
+  data
+}))
 
 /**
  * 解锁用户
@@ -60,5 +68,5 @@ export const unlock = base.createRequest<
 >(s + 'unlock', ({ userId, ...data }) => ({
   url: `/account/unlock_user/${userId}`,
   method: 'POST',
-  data,
-}));
+  data
+}))

@@ -1,7 +1,7 @@
-import * as base from './base';
-import { VehicleManage } from './modal';
+import * as base from './base'
+import { VehicleManage } from './modal'
 
-const s = 'ApiVehicleManage.';
+const s = 'ApiVehicleManage.'
 
 /**
  * 新增外部车辆信息记录
@@ -11,7 +11,11 @@ const s = 'ApiVehicleManage.';
 export const addExternal = base.createRequest<
   VehicleManage.addExternal.Options,
   VehicleManage.addExternal.Returns['data']
->(s + 'addExternal', (data) => ({ url: `/1.0/vehicle_manage/external/add`, method: 'POST', data }));
+>(s + 'addExternal', (data) => ({
+  url: `/1.0/vehicle_manage/external/add`,
+  method: 'POST',
+  data
+}))
 
 /**
  * 新增内部车辆信息记录
@@ -21,7 +25,11 @@ export const addExternal = base.createRequest<
 export const addInternal = base.createRequest<
   VehicleManage.addInternal.Options,
   VehicleManage.addInternal.Returns['data']
->(s + 'addInternal', (data) => ({ url: `/1.0/vehicle_manage/internal/add`, method: 'POST', data }));
+>(s + 'addInternal', (data) => ({
+  url: `/1.0/vehicle_manage/internal/add`,
+  method: 'POST',
+  data
+}))
 
 /**
  * 编辑外部车辆信息记录
@@ -34,8 +42,8 @@ export const editExternal = base.createRequest<
 >(s + 'editExternal', (data) => ({
   url: `/1.0/vehicle_manage/external/edit`,
   method: 'PUT',
-  data,
-}));
+  data
+}))
 
 /**
  * 编辑内部车辆信息记录
@@ -48,8 +56,8 @@ export const editInternal = base.createRequest<
 >(s + 'editInternal', (data) => ({
   url: `/1.0/vehicle_manage/internal/edit`,
   method: 'PUT',
-  data,
-}));
+  data
+}))
 
 /**
  * 主键查询外部车辆信息记录
@@ -62,8 +70,8 @@ export const getExternalOne = base.createRequest<
 >(s + 'getExternalOne', ({ id, ...params }) => ({
   url: `/1.0/vehicle_manage/external/get_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 分页查询外部车辆信息记录
@@ -76,8 +84,8 @@ export const getExternalPaged = base.createRequest<
 >(s + 'getExternalPaged', (params) => ({
   url: `/1.0/vehicle_manage/external/get_paged`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 主键查询内部车辆信息记录
@@ -90,8 +98,8 @@ export const getInternalOne = base.createRequest<
 >(s + 'getInternalOne', ({ id, ...params }) => ({
   url: `/1.0/vehicle_manage/internal/get_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 分页查询内部车辆信息记录
@@ -104,8 +112,8 @@ export const getInternalPaged = base.createRequest<
 >(s + 'getInternalPaged', (params) => ({
   url: `/1.0/vehicle_manage/internal/get_paged`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 删除车辆信息记录
@@ -118,5 +126,5 @@ export const remove = base.createRequest<
 >(s + 'remove', ({ id, ...params }) => ({
   url: `/1.0/vehicle_manage/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))

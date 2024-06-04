@@ -1,51 +1,46 @@
 <template>
-  <a-sub-menu v-if="menu.children && !menu.hideChildrenInMenu" :key="menu.path" popupClassName="popupSubMenu">
+  <a-sub-menu v-if="props.menu.children" :key="props.menu.path" popupClassName="popupSubMenu">
     <template #icon>
-      <SvgIcon :name="menu.meta.icon" v-if="menu.meta.icon" />
+      <svg-icon v-if="props.menu.meta?.icon" :name="props.menu.meta?.icon" fontSize="18px" />
     </template>
-    <template #title>{{ menu.meta.title }}</template>
-    <template v-if="!menu.hideChildrenInMenu">
-      <template v-for="sub in menu.children">
-        <!-- 递归组件 -->
-        <RenderSubMenu :menu="sub" />
-      </template>
+    <template #title>{{ props.menu.meta?.title }}</template>
+    <template v-for="sub in props.menu.children" :key="sub.path">
+      <!-- 递归组件 -->
+      <RenderSubMenu :menu="sub" />
     </template>
   </a-sub-menu>
   <!-- renderMenuItem -->
-  <a-menu-item :key="menu.path" v-if="!menu.children && !menu.meta.hidden">
+  <a-menu-item :key="props.menu.path" v-if="!props.menu.children && !props.menu.meta?.hidden">
     <template #icon>
-      <SvgIcon :name="menu.meta.icon" v-if="menu.meta.icon" />
+      <svg-icon :name="props.menu.meta?.icon" v-if="props.menu.meta?.icon" fontSize="18px" />
     </template>
     <!-- 外部链接 -->
-    <a v-if="menu.meta.target" :href="menu.meta.target" :target="menu.meta.blank === false ? '' : '_blank'">
+    <a
+      v-if="props.menu.meta?.target"
+      :href="props.menu.meta?.target"
+      :target="props.menu.meta.blank === false ? '' : '_blank'"
+    >
       <!-- span重复了吧?这就是template的弊端,jsx才是王道 -->
-      <span>{{ menu.meta.title }}</span>
+      <span>{{ props.menu.meta?.title }}</span>
     </a>
-    <router-link :to="filterParams(menu.path)" v-else>
-      <span>{{ menu.meta.title }}</span>
+    <router-link :to="props.menu.path" v-else>
+      <span>{{ props.menu.meta?.title }}</span>
     </router-link>
   </a-menu-item>
 </template>
 <script lang="ts" setup name="RenderSubMenu">
 import SvgIcon from '@/components/SvgIcon/index.vue'
+import type { PropType } from 'vue'
+import { RouteRecordRaw } from 'vue-router'
 
-const props = defineProps(['menu'])
-// info:todo:貌似没用
-if (props.menu.children && props.menu.hideChildrenInMenu) {
-  // 把有子菜单的 并且 父菜单是要隐藏子菜单的
-  // 都给子菜单增加一个 hidden 属性
-  // 用来给刷新页面时， selectedKeys 做控制用
-  props.menu.children.forEach((item) => {
-    item.meta = Object.assign(item.meta, { hidden: true })
-  })
-}
-
-// info:todo:目前没有发现需要入口带参数的情况,一般这种跳转的都是二级页面,是从其他页面跳转过来的,不需要显示在菜单中,目前菜单中是这种路径的,点击也会报404,因为没有对:pageNo([1-9]\\d*)?进行翻译,直接当做了路径去匹配,目前做法是去掉后面的参数
-const filterParams = (menu) => {
-  return menu.indexOf('/:') > 0 ? menu.split('/:')[0] : menu
-}
+const props = defineProps({
+  menu: {
+    type: Object as PropType<RouteRecordRaw>,
+    required: true
+  }
+})
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .menuName {
   svg,
   span {

@@ -27,7 +27,8 @@ import { computed, nextTick, onMounted, ref, watch } from 'vue'
 
 import { DOMUtils, DragEventOptions } from '@aesoper/normal-utils'
 
-const bg = '-webkit-linear-gradient(left, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 16.66%, rgb(0, 255, 0) 33.33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 66.66%, rgb(255, 0, 255) 83.33%, rgb(255, 0, 0) 100%)'
+const bg =
+  '-webkit-linear-gradient(left, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 16.66%, rgb(0, 255, 0) 33.33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 66.66%, rgb(255, 0, 255) 83.33%, rgb(255, 0, 0) 100%)'
 const verticalBg =
   '-webkit-linear-gradient(bottom, rgb(255, 0, 0) 0%, rgb(255, 255, 0) 16.66%, rgb(0, 255, 0) 33.33%, rgb(0, 255, 255) 50%, rgb(0, 0, 255) 66.66%, rgb(255, 0, 255) 83.33%, rgb(255, 0, 0) 100%)'
 
@@ -72,7 +73,10 @@ const getBarLeftPosition = () => {
     if (currentHue.value === 360) {
       return rect.width - barHandle.value.offsetWidth / 2
     }
-    return ((currentHue.value % 360) * (rect.width - barHandle.value.offsetWidth)) / 360 + barHandle.value.offsetWidth / 2
+    return (
+      ((currentHue.value % 360) * (rect.width - barHandle.value.offsetWidth)) / 360 +
+      barHandle.value.offsetWidth / 2
+    )
   }
 
   return 0
@@ -86,7 +90,10 @@ const getBarTopPosition = () => {
     if (currentHue.value === 360) {
       return barHandle.value?.offsetHeight / 2
     }
-    return ((360 - (currentHue.value % 360)) * (rect.height - barHandle.value.offsetHeight)) / 360 + barHandle.value.offsetHeight / 2
+    return (
+      ((360 - (currentHue.value % 360)) * (rect.height - barHandle.value.offsetHeight)) / 360 +
+      barHandle.value.offsetHeight / 2
+    )
   }
 
   return 0
@@ -106,25 +113,23 @@ const handleDrag = (event: MouseEvent) => {
       left = Math.min(left, rect.width - barHandle.value.offsetWidth / 2)
       left = Math.max(barHandle.value.offsetWidth / 2, left)
 
-      currentHue.value = Math.round(((left - barHandle.value.offsetWidth / 2) / (rect.width - barHandle.value.offsetWidth)) * 360)
+      currentHue.value = Math.round(
+        ((left - barHandle.value.offsetWidth / 2) / (rect.width - barHandle.value.offsetWidth)) *
+          360
+      )
     } else {
       let top = event.clientY - rect.top
       top = Math.min(top, rect.height - barHandle.value?.offsetHeight / 2)
       top = Math.max(barHandle.value.offsetHeight / 2, top)
 
-      currentHue.value = Math.round(((top - barHandle.value.offsetHeight / 2) / (rect.height - barHandle.value.offsetHeight)) * 360)
+      currentHue.value = Math.round(
+        ((top - barHandle.value.offsetHeight / 2) / (rect.height - barHandle.value.offsetHeight)) *
+          360
+      )
     }
 
     emit('update:hue', currentHue.value)
     emit('change', currentHue.value)
-  }
-}
-
-const handleClick = (event: MouseEvent) => {
-  const target = event.target
-
-  if (target !== barHandle.value) {
-    handleDrag(event)
   }
 }
 

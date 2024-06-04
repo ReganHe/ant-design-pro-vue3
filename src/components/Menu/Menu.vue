@@ -1,27 +1,36 @@
 <template>
-  <a-menu :mode="mode" :theme="theme" :openKeys="openKeys.value" :selectedKeys="selectedKeys" @openChange="onOpenChange" @click="onSelect" class="SysMenu">
-    <template v-for="m in menu" :key="m.path">
-      <RenderSubMenu :menu="m" v-if="!m.hidden" />
+  <a-menu
+    :mode="mode"
+    :theme="theme"
+    :openKeys="openKeys.value"
+    :selectedKeys="selectedKeys"
+    @openChange="onOpenChange"
+    class="SysMenu"
+  >
+    <template v-for="menu in menus" :key="menu.path">
+      <RenderSubMenu :menu="menu" v-if="!menu.meta?.hidden" />
     </template>
   </a-menu>
 </template>
 <script lang="ts" setup name="Menu">
-import { reactive, computed, onMounted, watch, ref, ComputedRef } from 'vue'
-import { useRouter } from 'vue-router'
+import { reactive, computed, onMounted, watch, ref } from 'vue'
+import { RouteRecordRaw, useRouter } from 'vue-router'
 import RenderSubMenu from './RenderSubMenu.vue'
+import { MenuMode, MenuTheme } from 'ant-design-vue'
+import { PropType } from 'vue'
 
 const props = defineProps({
-  menu: {
-    type: Array,
+  menus: {
+    type: Array<RouteRecordRaw>,
     required: true
   },
   theme: {
-    type: String,
+    type: String as PropType<MenuTheme>,
     required: false,
     default: 'dark'
   },
   mode: {
-    type: String,
+    type: String as PropType<MenuMode>,
     required: false,
     default: 'inline'
   },
@@ -31,16 +40,14 @@ const props = defineProps({
     default: false
   }
 })
+
 const router = useRouter()
 const route = router.currentRoute
 const openKeys = reactive<any>({ value: [] })
 const selectedKeys = ref<any>([])
 const cachedOpenKeys = reactive<any>({ value: [] })
-const rootSubmenuKeys: ComputedRef<string[]> = computed(() => {
-  const keys: string[] = []
-  props.menu.forEach((item: any) => keys.push(item.path))
-  return keys
-})
+const rootSubmenuKeysRef = computed(() => props.menus.map((r) => r.path))
+
 onMounted(() => {
   updateMenu()
 })
@@ -56,10 +63,10 @@ watch(
   }
 )
 
-// 主要作用:使用router.push跳转页面时更左侧新菜单选中项
+// 主要作用:使用router.push跳转页面时更新左侧新菜单选中项
 watch(
   () => route.value,
-  (val) => {
+  () => {
     updateMenu()
   }
 )
@@ -72,19 +79,16 @@ const onOpenChange = (openKeysParams) => {
     return
   }
   // 非水平模式时
-  const latestOpenKey: string = openKeysParams.find((key) => /*去掉这个!则可以全部打开菜单(目前只能打开一个菜单)*/ !openKeys.value.includes(key))
-  if (!rootSubmenuKeys.value.includes(latestOpenKey)) {
+  const latestOpenKey: string = openKeysParams.find(
+    (key) => /*去掉这个!则可以全部打开菜单(目前只能打开一个菜单)*/ !openKeys.value.includes(key)
+  )
+  if (!rootSubmenuKeysRef.value.includes(latestOpenKey)) {
     openKeys.value = openKeysParams
   } else {
     openKeys.value = latestOpenKey ? [latestOpenKey] : []
   }
 }
 
-const emit = defineEmits(['menuSelect'])
-const onSelect = ({ item, key, selectedKeys: selectedKeysParams }) => {
-  selectedKeys.value = selectedKeysParams
-  emit('menuSelect', { item, key, selectedKeys })
-}
 const updateMenu = () => {
   const routes = route.value.matched.concat()
   const { hidden } = route.value.meta
@@ -94,6 +98,7 @@ const updateMenu = () => {
   } else {
     selectedKeys.value = [routes.pop()!.path]
   }
+
   const openKeysArr: any = []
   if (props.mode === 'inline') {
     routes.forEach((item) => {
@@ -103,4 +108,3 @@ const updateMenu = () => {
   props.collapsed ? (cachedOpenKeys.value = openKeysArr) : (openKeys.value = openKeysArr)
 }
 </script>
-<style lang="less"></style>

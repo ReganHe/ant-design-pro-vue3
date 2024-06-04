@@ -1,27 +1,18 @@
 <template>
   <div class="footer">
-    <div :class="['links', isMobile ? 'lessMargin' : '']">
-      <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md" target="_blank">Pro 首页</a>
-      <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md" target="_blank">
-        <GithubOutlined />
-      </a>
-      <a href="https://ant.design/">Ant Design</a>
-      <a href="https://2x.antdv.com/">Vue Antd</a>
-    </div>
     <div class="copyright">
       Copyright
-      <CopyrightOutlined />&nbsp;2023
-      <span>Ones</span>
+      <CopyrightOutlined />&nbsp;2024
+      <span>New Era</span>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup name="GlobalFooter">
-import { CopyrightOutlined, GithubOutlined } from '@ant-design/icons-vue'
-import { isMobile } from '@/utils/device'
+import { CopyrightOutlined } from '@ant-design/icons-vue'
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .footer {
   padding: 0 16px;
   margin: 48px 0 24px;
@@ -41,15 +32,8 @@ import { isMobile } from '@/utils/device'
         margin-right: 40px;
       }
     }
-
-    &.lessMargin {
-      a {
-        &:not(:last-child) {
-          margin-right: 20px;
-        }
-      }
-    }
   }
+
   .copyright {
     color: rgba(0, 0, 0, 0.45);
     font-size: 14px;

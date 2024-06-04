@@ -1,8 +1,8 @@
 <template>
   <div class="logo">
-    <router-link :to="{ name: 'account' }">
-      <SvgIcon name="logo" />
-      <h1 v-if="showTitle">{{ title }}</h1>
+    <router-link :to="{ name: 'profile' }">
+      <svg-icon name="logo" />
+      <h1 v-if="props.showTitle">{{ props.title }}</h1>
     </router-link>
   </div>
 </template>
@@ -13,7 +13,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 const props = defineProps({
   title: {
     type: String,
-    default: 'Ant Design Pro',
+    default: 'Castor Admin',
     required: false
   },
   showTitle: {

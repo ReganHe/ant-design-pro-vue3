@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Home } from './modal';
+import * as base from './base'
+import { Home } from './modal'
 
-const s = 'ApiHome.';
+const s = 'ApiHome.'
 
 /**
  * 首页查询各站点统计进销存情况
@@ -14,5 +14,5 @@ export const getSalesInventoryByStation = base.createRequest<
 >(s + 'getSalesInventoryByStation', (params) => ({
   url: `/1.0/home/get_sales_inventory`,
   method: 'GET',
-  params,
-}));
+  params
+}))
