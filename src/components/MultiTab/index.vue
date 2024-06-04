@@ -1,15 +1,28 @@
 <template>
   <div class="ant-pro-multi-tab">
     <div class="ant-pro-multi-tab-wrapper">
-      <a-tabs hideAdd type="editable-card" v-model:activeKey="activeKey" :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }" @edit="onEdit">
-        <a-tab-pane v-for="page in pages" :key="page.fullPath" :closable="pages.length > 1" style="height: 0">
+      <a-tabs
+        hideAdd
+        type="editable-card"
+        v-model:activeKey="activeKey"
+        :tabBarStyle="{ margin: 0, paddingLeft: '16px', paddingTop: '1px' }"
+        @edit="onEdit"
+      >
+        <a-tab-pane
+          v-for="page in pages"
+          :key="page.fullPath"
+          :closable="pages.length > 1"
+          style="height: 0"
+        >
           <template #tab>
             <a-dropdown :trigger="['contextmenu']">
-              <span :style="{ userSelect: 'none' }">{{ page.meta.customTitle || page.meta.title }}</span>
+              <span :style="{ userSelect: 'none' }">{{
+                page.meta.customTitle || page.meta.title
+              }}</span>
               <template #overlay>
                 <a-menu
                   @click="
-                    ({ key, item, domEvent }) => {
+                    ({ key }) => {
                       closeMenuClick(key, page.fullPath)
                     }
                   "
@@ -28,17 +41,17 @@
   </div>
 </template>
 <script lang="ts" setup name="MultiTab">
-import { ref, reactive, watch, getCurrentInstance } from 'vue'
+import { ref, reactive, watch, getCurrentInstance, ComponentInternalInstance } from 'vue'
 import { useRouter, RouteLocationNormalizedLoaded } from 'vue-router'
-import events from '@/utils/eventBus'
+import emitter from '@/utils/emitter'
 import { message } from 'ant-design-vue'
-import './index.less'
+import './index.scss'
 
 let fullPathList: Array<string> = []
 const pages = reactive<Array<RouteLocationNormalizedLoaded>>([])
 const activeKey = ref('')
 const router = useRouter()
-const { proxy } = getCurrentInstance()
+const { proxy } = getCurrentInstance() as ComponentInternalInstance
 
 const selectedLastPath = () => {
   activeKey.value = fullPathList[fullPathList.length - 1]
@@ -47,25 +60,25 @@ const selectedLastPath = () => {
 ;(function created() {
   // 全局的事件绑定用于页面内控制tab标签,暂时用不上
   // #region
-  events.once('multiTab.open', (val) => {
+  emitter.once('multiTab.open', (val) => {
     if (!val) {
       throw new Error(`multi-tab: open tab ${val} err`)
     }
     activeKey.value = val
   })
-  events.once('multiTab.close', (val) => {
+  emitter.once('multiTab.close', (val) => {
     if (!val) {
       closeSelf(activeKey.value)
       return
     }
     closeSelf(val)
   })
-  events.once('multiTab.rename', ({ key, name }) => {
+  emitter.once('multiTab.rename', ({ key, name }) => {
     console.log('rename', key, name)
     try {
       const item = pages.find((item) => item.path === key)
       item!.meta.customTitle = name
-      proxy.$forceUpdate()
+      proxy!.$forceUpdate()
     } catch (e) {
       console.error(e)
     }
@@ -77,7 +90,7 @@ const selectedLastPath = () => {
   selectedLastPath()
 })()
 
-const onEdit = (targetKey, action) => {
+const onEdit = (targetKey) => {
   //proxy[action](targetKey)
   remove(targetKey)
 }
@@ -93,7 +106,7 @@ const remove = (targetKey) => {
 }
 
 // content menu
-const closeSelf = (e) => {
+const closeSelf = (e: string) => {
   // 判断是否为最后一个标签页，如果是最后一个，则无法被关闭
   if (fullPathList.length > 1) {
     remove(e)
@@ -101,7 +114,7 @@ const closeSelf = (e) => {
     message.info('这是最后一个标签了, 无法被关闭')
   }
 }
-const closeLeft = (e) => {
+const closeLeft = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   if (currentIndex > 0) {
     fullPathList.forEach((item, index) => {
@@ -113,7 +126,7 @@ const closeLeft = (e) => {
     message.info('左侧没有标签')
   }
 }
-const closeRight = (e) => {
+const closeRight = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   if (currentIndex < fullPathList.length - 1) {
     fullPathList.forEach((item, index) => {
@@ -125,7 +138,7 @@ const closeRight = (e) => {
     message.info('右侧没有标签')
   }
 }
-const closeAll = (e) => {
+const closeAll = (e: string) => {
   const currentIndex = fullPathList.indexOf(e)
   fullPathList.forEach((item, index) => {
     if (index !== currentIndex) {
@@ -133,7 +146,7 @@ const closeAll = (e) => {
     }
   })
 }
-const closeMenuClick = (key: string, route) => {
+const closeMenuClick = (key: string | number, route: string) => {
   const allFun = { closeAll, closeRight, closeLeft, closeSelf }
   allFun[key](route)
 }
@@ -153,8 +166,10 @@ watch(activeKey, (newPathKey) => {
   router.push({ path: newPathKey })
 })
 </script>
-<style lang="less">
-.tab_style() {
+<style lang="scss">
+.ant-pro-multi-tab-wrapper {
+  min-height: 42px;
+
   .ant-tabs-card {
     padding-left: 0;
 
@@ -197,10 +212,5 @@ watch(activeKey, (newPathKey) => {
       }
     }
   }
-}
-
-.ant-pro-multi-tab-wrapper {
-  min-height: 42px;
-  .tab_style() !important;
 }
 </style>

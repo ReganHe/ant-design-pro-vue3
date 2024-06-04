@@ -27,7 +27,17 @@ import { getCurrentInstance, onMounted, reactive, ref, watch } from 'vue'
 import { DOMUtils } from '@aesoper/normal-utils'
 
 const clamp = (value: number, min: number, max: number) => {
-  return min < max ? (value < min ? min : value > max ? max : value) : value < max ? max : value > min ? min : value
+  return min < max
+    ? value < min
+      ? min
+      : value > max
+        ? max
+        : value
+    : value < max
+      ? max
+      : value > min
+        ? min
+        : value
 }
 const props = defineProps({
   hue: {

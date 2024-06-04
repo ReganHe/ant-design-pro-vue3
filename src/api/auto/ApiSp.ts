@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Sp } from './modal';
+import * as base from './base'
+import { Sp } from './modal'
 
-const s = 'ApiSp.';
+const s = 'ApiSp.'
 
 /**
  * 按年份查询安全检测计划表
@@ -11,7 +11,7 @@ const s = 'ApiSp.';
 export const getByYear = base.createRequest<Sp.getByYear.Options, Sp.getByYear.Returns['data']>(
   s + 'getByYear',
   (params) => ({ url: `/1.0/sp/get_by_year`, method: 'GET', params })
-);
+)
 
 /**
  * 持久化安全检查计划
@@ -21,7 +21,7 @@ export const getByYear = base.createRequest<Sp.getByYear.Options, Sp.getByYear.R
 export const persist = base.createRequest<Sp.persist.Options, Sp.persist.Returns['data']>(
   s + 'persist',
   (data) => ({ url: `/1.0/sp/persist`, method: 'PUT', data })
-);
+)
 
 /**
  * 移除计划中的站点
@@ -31,4 +31,4 @@ export const persist = base.createRequest<Sp.persist.Options, Sp.persist.Returns
 export const removeStation = base.createRequest<
   Sp.removeStation.Options,
   Sp.removeStation.Returns['data']
->(s + 'removeStation', (data) => ({ url: `/1.0/sp/remove_station`, method: 'PUT', data }));
+>(s + 'removeStation', (data) => ({ url: `/1.0/sp/remove_station`, method: 'PUT', data }))

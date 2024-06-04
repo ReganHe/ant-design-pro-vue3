@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Device } from './modal';
+import * as base from './base'
+import { Device } from './modal'
 
-const s = 'ApiDevice.';
+const s = 'ApiDevice.'
 
 /**
  * 新增常规设备
@@ -11,7 +11,7 @@ const s = 'ApiDevice.';
 export const add = base.createRequest<Device.add.Options, Device.add.Returns['data']>(
   s + 'add',
   (data) => ({ url: `/1.0/device/add`, method: 'POST', data })
-);
+)
 
 /**
  * 编辑常规设备
@@ -21,7 +21,7 @@ export const add = base.createRequest<Device.add.Options, Device.add.Returns['da
 export const edit = base.createRequest<Device.edit.Options, Device.edit.Returns['data']>(
   s + 'edit',
   (data) => ({ url: `/1.0/device/edit`, method: 'PUT', data })
-);
+)
 
 /**
  * 主键查询常规设备详情
@@ -31,7 +31,7 @@ export const edit = base.createRequest<Device.edit.Options, Device.edit.Returns[
 export const getOne = base.createRequest<Device.getOne.Options, Device.getOne.Returns['data']>(
   s + 'getOne',
   (params) => ({ url: `/1.0/device/get_one`, method: 'GET', params })
-);
+)
 
 /**
  * 分页查询设备列表
@@ -41,7 +41,7 @@ export const getOne = base.createRequest<Device.getOne.Options, Device.getOne.Re
 export const getPaged = base.createRequest<
   Device.getPaged.Options,
   Device.getPaged.Returns['data']
->(s + 'getPaged', (params) => ({ url: `/1.0/device/get_paged`, method: 'GET', params }));
+>(s + 'getPaged', (params) => ({ url: `/1.0/device/get_paged`, method: 'GET', params }))
 
 /**
  * 删除常规设备
@@ -51,4 +51,4 @@ export const getPaged = base.createRequest<
 export const remove = base.createRequest<Device.remove.Options, Device.remove.Returns['data']>(
   s + 'remove',
   ({ id, ...params }) => ({ url: `/1.0/device/remove/${id}`, method: 'DELETE', params })
-);
+)

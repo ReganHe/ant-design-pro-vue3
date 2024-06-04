@@ -1,7 +1,7 @@
-import * as base from './base';
-import { GwsUser } from './modal';
+import * as base from './base'
+import { GwsUser } from './modal'
 
-const s = 'ApiGwsUser.';
+const s = 'ApiGwsUser.'
 
 /**
  * 新增应用用户
@@ -11,7 +11,7 @@ const s = 'ApiGwsUser.';
 export const addUser = base.createRequest<GwsUser.addUser.Options, GwsUser.addUser.Returns['data']>(
   s + 'addUser',
   (data) => ({ url: `/mgr/application_user/add`, method: 'POST', data })
-);
+)
 
 /**
  * 获取单个应用用户信息
@@ -24,8 +24,8 @@ export const findOneUser = base.createRequest<
 >(s + 'findOneUser', ({ id, ...params }) => ({
   url: `/mgr/application_user/get_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 修改应用用户
@@ -35,7 +35,7 @@ export const findOneUser = base.createRequest<
 export const modifyUser = base.createRequest<
   GwsUser.modifyUser.Options,
   GwsUser.modifyUser.Returns['data']
->(s + 'modifyUser', (data) => ({ url: `/mgr/application_user/modify`, method: 'PUT', data }));
+>(s + 'modifyUser', (data) => ({ url: `/mgr/application_user/modify`, method: 'PUT', data }))
 
 /**
  * 删除应用用户
@@ -48,5 +48,5 @@ export const removeUser = base.createRequest<
 >(s + 'removeUser', ({ id, ...params }) => ({
   url: `/mgr/application_user/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))

@@ -5,7 +5,7 @@
         <!-- 内容区域宽度  -->
         <a-list-item>
           <template #actions>
-            <a-switch size="small" :checked="colorWeak" @change="onColorWeak" />
+            <a-switch size="small" :checked="settingsStore.weak" @change="onColorWeak" />
           </template>
           <a-list-item-meta>
             <template #title>色弱模式</template>
@@ -13,7 +13,7 @@
         </a-list-item>
         <a-list-item>
           <template #actions>
-            <a-switch size="small" :checked="grayMode" @change="onGrayMode" />
+            <a-switch size="small" :checked="settingsStore.gray" @change="onGrayMode" />
           </template>
           <a-list-item-meta>
             <template #title>黑白模式</template>
@@ -21,7 +21,7 @@
         </a-list-item>
         <a-list-item>
           <template #actions>
-            <a-switch size="small" :checked="multiTab" @change="onMultiTab" />
+            <a-switch size="small" :checked="settingsStore.multiTab" @change="onMultiTab" />
           </template>
           <a-list-item-meta>
             <template #title>多页签模式</template>
@@ -32,26 +32,24 @@
   </SettingItem>
 </template>
 <script lang="ts" setup name="OtherSettings">
-import { systemConfig } from '@/store/reactiveState'
-import { TOGGLE_WEAK, TOGGLE_GRAY, TOGGLE_MULTI_TAB } from '@/store/mutation-types'
-import useSiteSettings from '@/store/useSiteSettings'
 import { updateColorWeak, updateGrayMode } from '../settingConfig'
 import SettingItem from './SettingItem.vue'
+import { useSettingsStore } from '@/store/modules/settings'
 
-const { colorWeak, grayMode, multiTab } = useSiteSettings()
+const settingsStore = useSettingsStore()
 
 const onColorWeak = (checked) => {
-  systemConfig.commit(TOGGLE_WEAK, checked)
+  settingsStore.setValue('weak', checked)
   updateColorWeak(checked)
 }
 
 const onGrayMode = (checked) => {
-  systemConfig.commit(TOGGLE_GRAY, checked)
+  settingsStore.setValue('gray', checked)
   updateGrayMode(checked)
 }
 
 const onMultiTab = (checked) => {
-  systemConfig.commit(TOGGLE_MULTI_TAB, checked)
+  settingsStore.setValue('multiTab', checked)
 }
 </script>
-<style lang="less"></style>
+<style lang="scss"></style>

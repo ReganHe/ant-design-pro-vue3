@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .page-header {
   background: #fff;
   padding: 16px 32px 0;
@@ -109,12 +109,14 @@ export default {
         margin-bottom: 16px;
         flex: auto;
       }
+
       .logo {
         width: 28px;
         height: 28px;
         border-radius: 4px;
         margin-right: 16px;
       }
+
       .content,
       .headerContent {
         flex: auto;
@@ -131,17 +133,20 @@ export default {
           }
         }
       }
+
       .extra {
         flex: 0 1 auto;
         margin-left: 88px;
         min-width: 242px;
         text-align: right;
       }
+
       .action {
         margin-left: 56px;
         min-width: 266px;
         flex: 0 1 auto;
         text-align: right;
+
         &:empty {
           display: none;
         }

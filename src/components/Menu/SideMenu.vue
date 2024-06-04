@@ -1,31 +1,45 @@
 <template>
   <a-layout-sider
-    :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
+    :class="[
+      'sider',
+      isDesktop ? null : 'shadow',
+      props.theme,
+      settingsStore.fixSiderbar ? 'ant-fixed-sidemenu' : null
+    ]"
     width="256px"
-    :collapsible="collapsible"
-    v-model:collapsed="sideMenuCollapsed"
+    :collapsible="props.collapsible"
+    v-model:collapsed="sideMenuCollapsedRef"
     :trigger="null"
   >
     <logo />
-    <Menu :collapsed="collapsed" :menu="menus" :theme="theme" :mode="mode" @select="onSelect" />
+    <Menu
+      :collapsed="props.collapsed"
+      :menus="props.menus"
+      :theme="props.theme"
+      :mode="props.mode"
+    />
   </a-layout-sider>
 </template>
 
 <script lang="ts" setup name="SideMenu">
-import { watch, ref } from 'vue'
+import { watch, ref, PropType } from 'vue'
 import Logo from '@/components/tools/Logo.vue'
 import Menu from './Menu.vue'
-import { isDesktop } from '@/utils/device'
-import useSiteSettings from '@/store/useSiteSettings'
+import { isDesktop } from '@/utils/device-type'
+import { useSettingsStore } from '@/store/modules/settings'
+import { RouteRecordRaw } from 'vue-router'
+import { MenuMode, MenuTheme } from 'ant-design-vue'
+
+const settingsStore = useSettingsStore()
 
 const props = defineProps({
   mode: {
-    type: String,
+    type: String as PropType<MenuMode>,
     required: false,
     default: 'inline'
   },
   theme: {
-    type: String,
+    type: String as PropType<MenuTheme>,
     required: false,
     default: 'dark'
   },
@@ -40,25 +54,19 @@ const props = defineProps({
     default: false
   },
   menus: {
-    type: Array,
+    type: Array<RouteRecordRaw>,
     required: true
   }
 })
 
-const sideMenuCollapsed = ref(false)
+const sideMenuCollapsedRef = ref(false)
 watch(
   () => props.collapsed,
   (newVal) => {
-    sideMenuCollapsed.value = newVal
+    sideMenuCollapsedRef.value = newVal
   },
   {
     immediate: true
   }
 )
-
-const emit = defineEmits(['menuSelect'])
-const onSelect = (obj) => {
-  emit('menuSelect', obj)
-}
-const { fixSiderbar } = useSiteSettings()
 </script>

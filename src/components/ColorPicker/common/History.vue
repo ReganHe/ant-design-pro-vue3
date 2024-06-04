@@ -1,7 +1,13 @@
 <template>
   <div class="bee-colorPicker__record">
     <div class="color-list">
-      <div class="color-item transparent" :class="{ 'color-item__round': round }" v-for="(v, i) in colorList" :key="i" @click="onClickRecord(v)">
+      <div
+        class="color-item transparent"
+        :class="{ 'color-item__round': props.round }"
+        v-for="(v, i) in props.colorList"
+        :key="i"
+        @click="onClickRecord(v)"
+      >
         <div class="color-item__display" :style="{ backgroundColor: v }"></div>
       </div>
     </div>

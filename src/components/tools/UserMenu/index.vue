@@ -1,20 +1,23 @@
 <template>
   <div class="user-wrapper">
     <div class="content-box">
-      <a href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md" target="_blank">
+      <a
+        href="https://github.com/bailihuiyue/ant-design-pro-vue3/blob/main/README.md"
+        target="_blank"
+      >
         <span class="action">
           <QuestionCircleOutlined />
         </span>
       </a>
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
-          <a-avatar class="avatar" size="small" :src="UserInfo.avatar" />
-          <span class="nickname">{{ UserInfo.name }}</span>
+          <a-avatar class="avatar" size="small" :src="userStore.avatar" />
+          <span class="nickname">{{ userStore.info.userName }}</span>
         </span>
         <template #overlay>
           <a-menu class="user-dropdown-menu-wrapper">
             <a-menu-item key="1">
-              <router-link :to="{ path: '/account/center' }">
+              <router-link :to="{ path: '/profile/center' }">
                 <UserOutlined />
                 <span>个人中心</span>
               </router-link>
@@ -23,12 +26,6 @@
               <a>
                 <SettingOutlined />
                 <span>系统设置</span>
-              </a>
-            </a-menu-item>
-            <a-menu-item key="3" @click="onLockScreen">
-              <a>
-                <LockOutlined />
-                <span>锁定屏幕</span>
               </a>
             </a-menu-item>
             <a-menu-divider />
@@ -46,39 +43,36 @@
 </template>
 
 <script lang="ts" setup name="UserMenu">
-import { logout } from '@/views/user/service'
-import { USER_INFO } from '@/store/mutation-types'
 import { Modal } from 'ant-design-vue'
-import { QuestionCircleOutlined, SettingOutlined, LogoutOutlined, LockOutlined, UserOutlined } from '@ant-design/icons-vue'
-import { systemConfig } from '@/store/reactiveState'
-import ls from '@/utils/Storage'
+import {
+  QuestionCircleOutlined,
+  SettingOutlined,
+  LogoutOutlined,
+  UserOutlined
+} from '@ant-design/icons-vue'
 import { useRouter } from 'vue-router'
-import { clearUserInfo } from '@/utils/util'
+import { useSettingsStore } from '@/store/modules/settings'
+import { useUserStore } from '@/store/modules/user'
 
+const settingsStore = useSettingsStore()
+const userStore = useUserStore()
 const router = useRouter()
-const UserInfo = ls.get(USER_INFO)
 const handleLogout = () => {
   Modal.confirm({
     title: '提示',
     content: '真的要注销登录吗 ?',
-    onOk: () => {
-      logout().then((res) => {
-        clearUserInfo()
-        router.push({ path: '/user/login' })
-      })
+    onOk: async () => {
+      await userStore.logout()
+      router.push({ path: '/user/login' })
     },
     onCancel() {}
   })
 }
 const showSystemSetting = () => {
-  systemConfig.commit('SET_SETTING_DRAWER', true)
-}
-
-const onLockScreen = () => {
-  systemConfig.commit('SET_LOCK_SCREEN', true)
+  settingsStore.setValue('showSettings', true)
 }
 </script>
-<style lang="less">
+<style lang="scss">
 .user-dropdown-menu-wrapper {
   .ant-dropdown-menu-item {
     width: 100% !important;

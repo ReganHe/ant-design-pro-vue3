@@ -1,7 +1,7 @@
-import * as base from './base';
-import { User } from './modal';
+import * as base from './base'
+import { User } from './modal'
 
-const s = 'ApiUser.';
+const s = 'ApiUser.'
 
 /**
  * 新增用户
@@ -11,17 +11,18 @@ const s = 'ApiUser.';
 export const addUser = base.createRequest<User.addUser.Options, User.addUser.Returns['data']>(
   s + 'addUser',
   (data) => ({ url: `/gisc/user/add`, method: 'POST', data })
-);
+)
 
 /**
  * 获取用户头像
  *
  * **TAG:** 用户管理服务； &nbsp;&nbsp; **PATH:** /gisc/user/img/get_img；
  */
-export const getImg = base.createRequest<User.getImg.Options, User.getImg.Returns['data']>(
-  s + 'getImg',
-  (params) => ({ url: `/gisc/user/img/get_img`, method: 'GET', params })
-);
+export const getImg = base.createBlobRequest<User.getImg.Options>(s + 'getImg', (params) => ({
+  url: `/gisc/user/img/get_img`,
+  method: 'GET',
+  params
+}))
 
 /**
  * 根据userId（非主键）查询用户机构以及机构下的站点
@@ -34,8 +35,8 @@ export const getUserByUserId = base.createRequest<
 >(s + 'getUserByUserId', ({ userId, ...params }) => ({
   url: `/gisc/user/get_user_one_detail/${userId}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 使用id查询用户
@@ -48,8 +49,8 @@ export const getUserOne = base.createRequest<
 >(s + 'getUserOne', ({ id, ...params }) => ({
   url: `/gisc/user/get_users_one/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 查询用户列表
@@ -59,7 +60,11 @@ export const getUserOne = base.createRequest<
 export const getUsersPaged = base.createRequest<
   User.getUsersPaged.Options,
   User.getUsersPaged.Returns['data']
->(s + 'getUsersPaged', (params) => ({ url: `/gisc/user/get_users_paged`, method: 'GET', params }));
+>(s + 'getUsersPaged', (params) => ({
+  url: `/gisc/user/get_users_paged`,
+  method: 'GET',
+  params
+}))
 
 /**
  * 修改用户信息
@@ -69,7 +74,7 @@ export const getUsersPaged = base.createRequest<
 export const modifyUser = base.createRequest<
   User.modifyUser.Options,
   User.modifyUser.Returns['data']
->(s + 'modifyUser', (data) => ({ url: `/gisc/user/modify`, method: 'PUT', data }));
+>(s + 'modifyUser', (data) => ({ url: `/gisc/user/modify`, method: 'PUT', data }))
 
 /**
  * 修改用户头像
@@ -79,7 +84,11 @@ export const modifyUser = base.createRequest<
 export const modifyUserAvatar = base.createRequest<
   User.modifyUserAvatar.Options,
   User.modifyUserAvatar.Returns['data']
->(s + 'modifyUserAvatar', (data) => ({ url: `/gisc/user/modify_avatar`, method: 'PUT', data }));
+>(s + 'modifyUserAvatar', (data) => ({
+  url: `/gisc/user/modify_avatar`,
+  method: 'PUT',
+  data
+}))
 
 /**
  * 删除用户
@@ -92,8 +101,8 @@ export const removeUser = base.createRequest<
 >(s + 'removeUser', ({ id, ...params }) => ({
   url: `/gisc/user/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))
 
 /**
  * 上传用户头像
@@ -103,4 +112,4 @@ export const removeUser = base.createRequest<
 export const uploadImg = base.createRequest<User.uploadImg.Options, User.uploadImg.Returns['data']>(
   s + 'uploadImg',
   (data) => ({ url: `/gisc/user/img/upload`, method: 'POST', data })
-);
+)

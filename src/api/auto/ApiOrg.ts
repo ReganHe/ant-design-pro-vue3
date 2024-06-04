@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Org } from './modal';
+import * as base from './base'
+import { Org } from './modal'
 
-const s = 'ApiOrg.';
+const s = 'ApiOrg.'
 
 /**
  * 添加员工
@@ -11,7 +11,7 @@ const s = 'ApiOrg.';
 export const addWorker = base.createRequest<Org.addWorker.Options, Org.addWorker.Returns['data']>(
   s + 'addWorker',
   (data) => ({ url: `/1.0/org_manage/worker/add`, method: 'POST', data })
-);
+)
 
 /**
  * 按主键查询站点机构额外信息
@@ -24,8 +24,8 @@ export const getOrgExtraInfoOne = base.createRequest<
 >(s + 'getOrgExtraInfoOne', ({ id, ...params }) => ({
   url: `/1.0/org_manage/org/get_org_extra_info/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 按主键查询站点机构信息
@@ -38,8 +38,8 @@ export const getOrgInfoOne = base.createRequest<
 >(s + 'getOrgInfoOne', ({ id, ...params }) => ({
   url: `/1.0/org_manage/org/get_org_info/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 站点机构分页查询
@@ -52,8 +52,8 @@ export const getOrgInfoPaged = base.createRequest<
 >(s + 'getOrgInfoPaged', (params) => ({
   url: `/1.0/org_manage/org/get_org_info_paged`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 查询机构下员工列表
@@ -66,8 +66,8 @@ export const getOrgWorkers = base.createRequest<
 >(s + 'getOrgWorkers', (params) => ({
   url: `/1.0/org_manage/worker/get_org_workers`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 查询用户站点列表
@@ -77,7 +77,11 @@ export const getOrgWorkers = base.createRequest<
 export const getStationList = base.createRequest<
   Org.getStationList.Options,
   Org.getStationList.Returns['data']
->(s + 'getStationList', (params) => ({ url: `/1.0/org/get_station_list`, method: 'GET', params }));
+>(s + 'getStationList', (params) => ({
+  url: `/1.0/org/get_station_list`,
+  method: 'GET',
+  params
+}))
 
 /**
  * 查询员工资质证书
@@ -90,8 +94,8 @@ export const getWorkerAttachmentList = base.createRequest<
 >(s + 'getWorkerAttachmentList', (params) => ({
   url: `/1.0/org_manage/worker/attachment/get_list`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 根据主键查询员工信息
@@ -104,8 +108,8 @@ export const getWorkerOne = base.createRequest<
 >(s + 'getWorkerOne', ({ id, ...params }) => ({
   url: `/1.0/org_manage/worker/get/${id}`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 查询员工列表
@@ -118,8 +122,8 @@ export const getWorkersList = base.createRequest<
 >(s + 'getWorkersList', (params) => ({
   url: `/1.0/org_manage/worker/get_list`,
   method: 'GET',
-  params,
-}));
+  params
+}))
 
 /**
  * 修改站点基本信息
@@ -129,7 +133,7 @@ export const getWorkersList = base.createRequest<
 export const modifyOrg = base.createRequest<Org.modifyOrg.Options, Org.modifyOrg.Returns['data']>(
   s + 'modifyOrg',
   (data) => ({ url: `/1.0/org_manage/org/modify`, method: 'PUT', data })
-);
+)
 
 /**
  * 修改站点额外信息
@@ -142,8 +146,8 @@ export const modifyOrgExtraInfo = base.createRequest<
 >(s + 'modifyOrgExtraInfo', (data) => ({
   url: `/1.0/org_manage/org/modify_extra`,
   method: 'PUT',
-  data,
-}));
+  data
+}))
 
 /**
  * 修改员工信息
@@ -153,7 +157,11 @@ export const modifyOrgExtraInfo = base.createRequest<
 export const modifyWorker = base.createRequest<
   Org.modifyWorker.Options,
   Org.modifyWorker.Returns['data']
->(s + 'modifyWorker', (data) => ({ url: `/1.0/org_manage/worker/modify`, method: 'PUT', data }));
+>(s + 'modifyWorker', (data) => ({
+  url: `/1.0/org_manage/worker/modify`,
+  method: 'PUT',
+  data
+}))
 
 /**
  * 批量修改员工资质证书
@@ -166,8 +174,8 @@ export const modifyWorkerAttachmentBatch = base.createRequest<
 >(s + 'modifyWorkerAttachmentBatch', (data) => ({
   url: `/1.0/org_manage/worker/attachment/modify_batch`,
   method: 'PUT',
-  data,
-}));
+  data
+}))
 
 /**
  * 删除员工
@@ -180,8 +188,8 @@ export const removeWorker = base.createRequest<
 >(s + 'removeWorker', ({ id, ...params }) => ({
   url: `/1.0/org_manage/worker/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))
 
 /**
  * 删除员工资质文件
@@ -194,5 +202,5 @@ export const removeWorkerAttachment = base.createRequest<
 >(s + 'removeWorkerAttachment', ({ id, ...params }) => ({
   url: `/1.0/org_manage/worker/attachment/remove/${id}`,
   method: 'DELETE',
-  params,
-}));
+  params
+}))

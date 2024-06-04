@@ -1,7 +1,7 @@
-import * as base from './base';
-import { Gas } from './modal';
+import * as base from './base'
+import { Gas } from './modal'
 
-const s = 'ApiGas.';
+const s = 'ApiGas.'
 
 /**
  * 分页条件查询用气列表
@@ -11,4 +11,4 @@ const s = 'ApiGas.';
 export const getGasPaged = base.createRequest<
   Gas.getGasPaged.Options,
   Gas.getGasPaged.Returns['data']
->(s + 'getGasPaged', (params) => ({ url: `/1.0/gas/get_gas_paged`, method: 'GET', params }));
+>(s + 'getGasPaged', (params) => ({ url: `/1.0/gas/get_gas_paged`, method: 'GET', params }))
