@@ -1,10 +1,12 @@
 import { createApp } from 'vue'
 import Antd from 'ant-design-vue'
+// import Castor3UI from '@neweratech/castor3-ui'
 import setupDefaultSetting from '@/utils/default-setting'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { CaCommonQuery } from '@/components/CaCommonQuery'
-import { CaCommonTable } from '@/components/CaCommonTable'
+// import { CaCommonTable } from '@/components/CaCommonTable'
 import { CaCommonForm } from '@/components/CaCommonForm'
+import CaCommonTable from '@neweratech/castor3-ui/es/CaCommonTable'
 import App from '@/App.vue'
 import { router } from '@/router'
 import { store } from '@/store'
@@ -16,6 +18,7 @@ import '@/utils/passive-events'
 
 const app = createApp(App)
 app.use(Antd)
+// app.use(Castor3UI)
 app.use(router)
 app.use(store)
 app.component('SvgIcon', SvgIcon)
