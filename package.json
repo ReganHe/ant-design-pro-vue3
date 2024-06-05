@@ -16,11 +16,11 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@neweratech/castor3-ui": "0.0.4",
     "@aesoper/normal-utils": "0.1.5",
     "@ant-design/icons-vue": "^6.1.0",
     "@logicflow/core": "^1.2.1",
     "@logicflow/extension": "^1.2.1",
-    "@neweratech/castor3-ui": "^0.0.3",
     "@vueuse/core": "^9.13.0",
     "ant-design-vue": "^4.0.0",
     "axios": "^0.24.0",
