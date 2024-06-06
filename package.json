@@ -16,7 +16,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@neweratech/castor3-ui": "0.0.4",
+    "@neweratech/castor3-ui": "0.0.5",
     "@aesoper/normal-utils": "0.1.5",
     "@ant-design/icons-vue": "^6.1.0",
     "@logicflow/core": "^1.2.1",
